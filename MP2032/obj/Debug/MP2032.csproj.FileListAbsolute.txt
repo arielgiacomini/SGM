@@ -1,0 +1,10 @@
+C:\Clones\SistemaGerenciamentoMecanicaLoquinho\MP2032\bin\Debug\MP2032.exe.config
+C:\Clones\SistemaGerenciamentoMecanicaLoquinho\MP2032\bin\Debug\MP2032.exe
+C:\Clones\SistemaGerenciamentoMecanicaLoquinho\MP2032\bin\Debug\MP2032.pdb
+C:\Clones\SistemaGerenciamentoMecanicaLoquinho\MP2032\obj\Debug\MP2032.csprojAssemblyReference.cache
+C:\Clones\SistemaGerenciamentoMecanicaLoquinho\MP2032\obj\Debug\MP2032.frmFuncionalidadesImpressora.resources
+C:\Clones\SistemaGerenciamentoMecanicaLoquinho\MP2032\obj\Debug\MP2032.Properties.Resources.resources
+C:\Clones\SistemaGerenciamentoMecanicaLoquinho\MP2032\obj\Debug\MP2032.csproj.GenerateResource.cache
+C:\Clones\SistemaGerenciamentoMecanicaLoquinho\MP2032\obj\Debug\MP2032.csproj.CoreCompileInputs.cache
+C:\Clones\SistemaGerenciamentoMecanicaLoquinho\MP2032\obj\Debug\MP2032.exe
+C:\Clones\SistemaGerenciamentoMecanicaLoquinho\MP2032\obj\Debug\MP2032.pdb

@@ -1,0 +1,6 @@
+DROP VIEW [ConsolidadoDiarioSistema];
+CREATE VIEW [ConsolidadoDiarioSistema] AS
+SELECT 
+	   (SELECT COUNT(*) AS ContagemDeClientesNoDia FROM Cliente WHERE strftime('%Y-%m-%d', DataCadastro) = current_date) AS ContagemDeClientesNoDia,
+       (SELECT COUNT(*) AS ContagemDeOrcamentosNoDia FROM Orcamento WHERE strftime('%Y-%m-%d', DataCadastro) = current_date) AS ContagemDeOrcamentosNoDia,
+	   (SELECT SUM(ValorTotal) AS ValorTotalDeOrcamentosNoDia FROM Orcamento WHERE strftime('%Y-%m-%d', DataCadastro) = current_date) AS ValorTotalDeOrcamentosNoDia

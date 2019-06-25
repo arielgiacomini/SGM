@@ -1,0 +1,138 @@
+DROP TABLE ClienteVeiculo;
+DROP TABLE Orcamento;
+DROP TABLE Cliente;
+DROP TABLE OrcamentoMaodeObra;
+DROP TABLE OrcamentoPeca;
+DROP TABLE Pecas;
+DROP TABLE MaodeObra;
+CREATE TABLE `Cliente` (
+	`ClienteId`	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+	`Cliente`	VARCHAR ( 200 ) DEFAULT '',
+	`Apelido`	VARCHAR ( 200 ) DEFAULT '',
+	`DocumentoCliente`	VARCHAR ( 200 ) DEFAULT '',
+	`Sexo`	VARCHAR ( 20 ) DEFAULT '',
+	`EstadoCivil`	VARCHAR ( 20 ) DEFAULT '',
+	`DataNascimento`	DATETIME,
+	`Email`	VARCHAR ( 15 ) DEFAULT '',
+	`TelefoneFixo`	VARCHAR ( 15 ) DEFAULT '(00)0000-0000',
+	`TelefoneCelular`	VARCHAR ( 15 ) DEFAULT '(00)0-0000-0000',
+	`TelefoneOutros`	VARCHAR ( 15 ) DEFAULT '(00)0-0000-0000',
+	`LogradouroCEP`	VARCHAR ( 15 ) DEFAULT '',
+	`LogradouroNome`	VARCHAR ( 500 ) DEFAULT '',
+	`LogradouroNumero`	VARCHAR ( 20 ) DEFAULT '',
+	`LogradouroComplemento`	VARCHAR ( 500 ) DEFAULT '',
+	`LogradouroMunicipio`	VARCHAR ( 500 ) DEFAULT '',
+	`LogradouroBairro`	VARCHAR ( 500 ) DEFAULT '',
+	`LogradouroUF`	CHAR ( 2 ) DEFAULT '',
+	`RecebeNotificacoes`	BIT DEFAULT 0,
+	`ClienteAtivo`	INTEGER DEFAULT 1,
+	`DataCadastro`	DATETIME DEFAULT current_timestamp
+);
+INSERT INTO Cliente
+	(
+	 Cliente,
+	 Apelido,
+	 DocumentoCliente,
+	 Sexo,
+	 EstadoCivil,
+	 DataNascimento,
+	 Email,
+	 TelefoneFixo,
+	 TelefoneCelular,
+	 TelefoneOutros,
+	 LogradouroCEP,
+	 LogradouroNome,
+	 LogradouroNumero,
+	 LogradouroComplemento,
+	 LogradouroMunicipio,
+	 LogradouroBairro,
+	 LogradouroUF,
+	 RecebeNotificacoes
+	) VALUES (
+	  'Sem Cliente',
+	  'Sem Cliente',
+	  '888.888.888-88',
+	  'MASCULINO',
+	  'SOLTEIRO(A)',
+	  (SELECT current_timestamp),
+	  'giacomini.ariel@gmail.com',
+	  '(11)3793-6886',
+	  '(11)9.8250-5422',
+	  '(11)98097-1648',
+	  '03962-120',
+	  'Avenida Cláudio Augusto Fernandes',
+	  '537',
+	  'Oficina Mecânica',
+	  'São Paulo',
+	  'São Mateus',
+	  'SP',
+	  1
+	);
+CREATE TABLE `ClienteVeiculo` (
+	`ClienteVeiculoId`	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+	`ClienteId`	INTEGER,
+	`VeiculoId`	INTEGER,
+	`AnoVeiculo`	INTEGER NOT NULL DEFAULT 0,
+	`PlacaVeiculo`	VARCHAR ( 10 ) NOT NULL DEFAULT '',
+	`CorVeiculo`	VARCHAR ( 200 ) NOT NULL DEFAULT '',
+	`KmRodados`	FLOAT NOT NULL DEFAULT 0,
+	FOREIGN KEY(`VeiculoId`) REFERENCES `Veiculo`(`VeiculoId`),
+	FOREIGN KEY(`ClienteId`) REFERENCES `Cliente`(`ClienteId`)
+);
+INSERT INTO ClienteVeiculo (ClienteId, VeiculoId, AnoVeiculo, PlacaVeiculo, CorVeiculo, KmRodados)
+	VALUES (1, 178, 2014, 'AAA-0000', 'PRATA', 42000);
+	
+CREATE TABLE `Pecas` (
+	`PecaId`	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+	`Peca`	VARCHAR ( 500 ) NOT NULL DEFAULT '',
+	`Fornecedor`	VARCHAR ( 500 ) NOT NULL DEFAULT '',
+	`Valor`	DECIMAL ( 8 , 2 ) NOT NULL DEFAULT 0,
+	`ValorFrete`	DECIMAL ( 8 , 2 ) NOT NULL DEFAULT 0,
+	`Ativo`	BIT NOT NULL DEFAULT 1,
+	`DataCadastro`	DATETIME NOT NULL DEFAULT current_timestamp
+);
+INSERT INTO Pecas (Peca, Fornecedor, Valor, ValorFrete) 
+	VALUES ('PRETINHO PARA BRILHO DE PNEUS', 'LOQUINHO ME', 11, 2);
+	
+CREATE TABLE `MaodeObra` (
+	`MaodeObraId`	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+	`MaodeObra`	VARCHAR ( 500 ) NOT NULL DEFAULT '',
+	`Tipo`	VARCHAR ( 100 ) NOT NULL DEFAULT '',
+	`Valor`	DECIMAL NOT NULL DEFAULT 0,
+	`VigenciaInicial`	DATETIME NOT NULL DEFAULT '',
+	`VigenciaFinal`	DATETIME NOT NULL DEFAULT '',
+	`Ativo`	BIT NOT NULL DEFAULT 1,
+	`DataCadastro`	DATETIME NOT NULL DEFAULT current_timestamp
+);
+INSERT INTO MaodeObra (MaodeObra, Tipo, Valor, VigenciaInicial, VigenciaFinal)
+	VALUES ('LIMPEZA DE BICOS', 'GRANDE ESFORÇO', 50, '2019-01-15 00:00:00', '2022-01-15 00:00:00');
+INSERT INTO MaodeObra (MaodeObra, Tipo, Valor, VigenciaInicial, VigenciaFinal)
+	VALUES ('TROCA DE OLÉO', 'MÉDIO ESFORÇO', 40, '2019-01-15 00:00:00', '2022-01-15 00:00:00');
+	
+CREATE TABLE `Orcamento` (
+	`OrcamentoId`	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+	`ClienteId`	INTEGER NOT NULL,
+	`Descricao`	VARCHAR ( 500 ) NOT NULL DEFAULT '',
+	`ValorAdicional`	DECIMAL NOT NULL DEFAULT 0.0,
+	`PercentualDesconto`	DECIMAL NOT NULL DEFAULT 0.0,
+	`ValorDesconto`	DECIMAL NOT NULL DEFAULT 0.0,
+	`ValorTotal`	DECIMAL NOT NULL DEFAULT 0.0,
+	`Status`	VARCHAR ( 20 ) NOT NULL DEFAULT '',
+	`Ativo`	BIT NOT NULL DEFAULT 1,
+	`DataCadastro`	DATETIME NOT NULL DEFAULT CURRENT_DATE,
+	FOREIGN KEY(`ClienteId`) REFERENCES `Cliente`(`ClienteId`)
+);
+
+CREATE TABLE `OrcamentoMaodeObra` (
+	`OrcamentoId`	INTEGER NOT NULL,
+	`MaodeObraId`	INTEGER NOT NULL,
+	FOREIGN KEY(`MaodeObraId`) REFERENCES `MaodeObra`(`MaodeObraId`),
+	FOREIGN KEY(`OrcamentoId`) REFERENCES `OrcamentoMaodeObra`(`OrcamentoId`)
+);
+
+CREATE TABLE `OrcamentoPeca` (
+	`OrcamentoId`	INTEGER NOT NULL,
+	`PecaId`	INTEGER NOT NULL,
+	FOREIGN KEY(`OrcamentoId`) REFERENCES `OrcamentoPeca`(`OrcamentoId`),
+	FOREIGN KEY(`PecaId`) REFERENCES `Pecas`(`PecaId`)
+);
