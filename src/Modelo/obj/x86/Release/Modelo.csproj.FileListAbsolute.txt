@@ -1,0 +1,4 @@
+C:\Clones\SGM-WindowsForms\src\Modelo\bin\x86\Release\Modelo.dll
+C:\Clones\SGM-WindowsForms\src\Modelo\bin\x86\Release\Modelo.pdb
+C:\Clones\SGM-WindowsForms\src\Modelo\obj\x86\Release\Modelo.dll
+C:\Clones\SGM-WindowsForms\src\Modelo\obj\x86\Release\Modelo.pdb
