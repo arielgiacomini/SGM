@@ -7,3 +7,4 @@
 /.vs/SGM/v16/Server/sqlite3/storage.ide
 /.vs/SGM/v16/Server/sqlite3/storage.ide-shm
 /.vs/SGM/v16/Server/sqlite3/storage.ide-wal
+*.suo
