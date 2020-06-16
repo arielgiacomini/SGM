@@ -227,7 +227,7 @@ namespace GUI
 
         private void BtnBuscarHistoricoCliente_Click(object sender, EventArgs e)
         {
-            frmConsultaHistoricoServicoClienteVeiculo consultaHistorico = new frmConsultaHistoricoServicoClienteVeiculo
+            FrmConsultaHistoricoServicoClienteVeiculo consultaHistorico = new FrmConsultaHistoricoServicoClienteVeiculo
             {
                 clienteId = Convert.ToInt32(txtClienteId.Text)
             };

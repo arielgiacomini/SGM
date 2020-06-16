@@ -182,7 +182,7 @@ namespace DAL
                 modelo.CLogradouroMunicipio = Convert.ToString(registro["LogradouroMunicipio"]);
                 modelo.CLogradouroBairro = Convert.ToString(registro["LogradouroBairro"]);
                 modelo.CLogradouroUF = Convert.ToString(registro["LogradouroUF"]);
-
+                modelo.CDataCadastro = Convert.ToDateTime(registro["DataCadastro"]).AddHours(-3);
             }
 
             conexao.Desconectar();

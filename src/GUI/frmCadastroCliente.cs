@@ -30,6 +30,7 @@ namespace GUI
             txtBairro.Clear();
             txtCidade.Clear();
             txtUF.Clear();
+            txtDataCadastro.Clear();
         }
 
         private void FrmCadastroCliente_Load(object sender, EventArgs e)
@@ -213,6 +214,7 @@ namespace GUI
                 txtCidade.Text = modelo.CLogradouroMunicipio;
                 txtBairro.Text = modelo.CLogradouroBairro;
                 txtUF.Text = modelo.CLogradouroUF;
+                txtDataCadastro.Text = Convert.ToString(modelo.CDataCadastro);
                 alteraBotoes(3);
             }
             else
@@ -259,6 +261,7 @@ namespace GUI
                         txtCidade.Text = modelo.CLogradouroMunicipio;
                         txtBairro.Text = modelo.CLogradouroBairro;
                         txtUF.Text = modelo.CLogradouroUF;
+                        txtDataCadastro.Text = Convert.ToString(modelo.CDataCadastro);
                         //alteraBotoes(3);
                     }
                 }

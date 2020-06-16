@@ -24,9 +24,10 @@ namespace Modelo
             this.LogradouroMunicipio = "";
             this.LogradouroBairro = "";
             this.LogradouroUF = "";
+            this.DataCadastro = DateTime.Now;
         }
 
-        public ModeloCliente(int ClienteId, String Cliente, String Apelido, String DocumentoCliente, String Sexo, String EstadoCivil, DateTime DataNascimento, String Email, String TelefoneFixo, String TelefoneCelular, String TelefoneOutros, String LogradouroCEP, String LogradouroNome, String LogradouroNumero, String LogradouroComplemento, String LogradouroMunicipio, String LogradouroBairro, String LogradouroUF)
+        public ModeloCliente(int ClienteId, string Cliente, string Apelido, string DocumentoCliente, string Sexo, string EstadoCivil, DateTime DataNascimento, string Email, string TelefoneFixo, string TelefoneCelular, string TelefoneOutros, string LogradouroCEP, string LogradouroNome, string LogradouroNumero, string LogradouroComplemento, string LogradouroMunicipio, string LogradouroBairro, string LogradouroUF, DateTime DataCadastro)
 
         {
             this.ClienteId = ClienteId;
@@ -47,26 +48,28 @@ namespace Modelo
             this.LogradouroMunicipio = LogradouroMunicipio;
             this.LogradouroBairro = LogradouroBairro;
             this.LogradouroUF = LogradouroUF;
+            this.DataCadastro = DataCadastro;
         }
 
         private int ClienteId;
-        private String Cliente;
-        private String Apelido;
-        private String DocumentoCliente;
-        private String Sexo;
-        private String EstadoCivil;
+        private string Cliente;
+        private string Apelido;
+        private string DocumentoCliente;
+        private string Sexo;
+        private string EstadoCivil;
         private DateTime DataNascimento;
-        private String Email;
-        private String TelefoneFixo;
-        private String TelefoneCelular;
-        private String TelefoneOutros;
-        private String LogradouroCEP;
-        private String LogradouroNome;
-        private String LogradouroNumero;
-        private String LogradouroComplemento;
-        private String LogradouroMunicipio;
-        private String LogradouroBairro;
-        private String LogradouroUF;
+        private string Email;
+        private string TelefoneFixo;
+        private string TelefoneCelular;
+        private string TelefoneOutros;
+        private string LogradouroCEP;
+        private string LogradouroNome;
+        private string LogradouroNumero;
+        private string LogradouroComplemento;
+        private string LogradouroMunicipio;
+        private string LogradouroBairro;
+        private string LogradouroUF;
+        private DateTime DataCadastro;
 
         public int CClienteId
         {
@@ -74,27 +77,27 @@ namespace Modelo
             set { this.ClienteId = value; }
         }
 
-        public String CCliente
+        public string CCliente
         {
             get { return this.Cliente; }
             set { this.Cliente = value; }
         }
-        public String CApelido
+        public string CApelido
         {
             get { return this.Apelido; }
             set { this.Apelido = value; }
         }
-        public String CDocumentoCliente
+        public string CDocumentoCliente
         {
             get { return this.DocumentoCliente; }
             set { this.DocumentoCliente = value; }
         }
-        public String CSexo
+        public string CSexo
         {
             get { return this.Sexo; }
             set { this.Sexo = value; }
         }
-        public String CEstadoCivil
+        public string CEstadoCivil
         {
             get { return this.EstadoCivil; }
             set { this.EstadoCivil = value; }
@@ -104,60 +107,65 @@ namespace Modelo
             get { return this.DataNascimento; }
             set { this.DataNascimento = value; }
         }
-        public String CEmail
+        public string CEmail
         {
             get { return this.Email; }
             set { this.Email = value; }
         }
-        public String CTelefoneFixo
+        public string CTelefoneFixo
         {
             get { return this.TelefoneFixo; }
             set { this.TelefoneFixo = value; }
         }
-        public String CTelefoneCelular
+        public string CTelefoneCelular
         {
             get { return this.TelefoneCelular; }
             set { this.TelefoneCelular = value; }
         }
-        public String CTelefoneOutros
+        public string CTelefoneOutros
         {
             get { return this.TelefoneOutros; }
             set { this.TelefoneOutros = value; }
         }
-        public String CLogradouroCEP
+        public string CLogradouroCEP
         {
             get { return this.LogradouroCEP; }
             set { this.LogradouroCEP = value; }
         }
-        public String CLogradouroNome
+        public string CLogradouroNome
         {
             get { return this.LogradouroNome; }
             set { this.LogradouroNome = value; }
         }
-        public String CLogradouroNumero
+        public string CLogradouroNumero
         {
             get { return this.LogradouroNumero; }
             set { this.LogradouroNumero = value; }
         }
-        public String CLogradouroComplemento
+        public string CLogradouroComplemento
         {
             get { return this.LogradouroComplemento; }
             set { this.LogradouroComplemento = value; }
         }
-        public String CLogradouroMunicipio
+        public string CLogradouroMunicipio
         {
             get { return this.LogradouroMunicipio; }
             set { this.LogradouroMunicipio = value; }
         }
-        public String CLogradouroBairro
+        public string CLogradouroBairro
         {
             get { return this.LogradouroBairro; }
             set { this.LogradouroBairro = value; }
         }
-        public String CLogradouroUF
+        public string CLogradouroUF
         {
             get { return this.LogradouroUF; }
             set { this.LogradouroUF = value; }
+        }
+        public DateTime CDataCadastro
+        {
+            get { return this.DataCadastro; }
+            set { this.DataCadastro = value; }
         }
     }
 }

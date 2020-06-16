@@ -15,17 +15,16 @@ namespace GUI
             InitializeComponent();
         }
 
-        private void btnConsultaOrcamentosGerados_Click(object sender, EventArgs e)
+        private void BtnConsultaOrcamentosGerados_Click(object sender, EventArgs e)
         {
-            // objeto para gravar os dados no banco de dados
             DALConexao cx = new DALConexao(ConnectionStringConfiguration.ConnectionString);
             BLLOrcamento bll = new BLLOrcamento(cx);
             dgvConsultaOrcamentoGerados.DataSource = bll.LocalizarFrmConsultaGerarOrcamento(txtConsultaOrcamentosGerados.Text);
         }
 
-        private void frmConsultaGerarOrcamento_Load(object sender, EventArgs e)
+        private void FrmConsultaGerarOrcamento_Load(object sender, EventArgs e)
         {
-            btnConsultaOrcamentosGerados_Click(sender, e); // para carregar o grid na chamada da tela
+            BtnConsultaOrcamentosGerados_Click(sender, e);
             dgvConsultaOrcamentoGerados.Columns[0].HeaderText = "Código";
             dgvConsultaOrcamentoGerados.Columns[0].Width = 50;
             dgvConsultaOrcamentoGerados.Columns[1].HeaderText = "Cliente";
@@ -35,8 +34,6 @@ namespace GUI
             dgvConsultaOrcamentoGerados.Columns[3].ToolTipText = "Já considerando o adicional e descontos se houver ambos. ;)";
             dgvConsultaOrcamentoGerados.Columns[4].HeaderText = "Status";
             dgvConsultaOrcamentoGerados.Columns[4].Width = 70;
-            //dgvConsultaOrcamentoGerados.Columns[2].HeaderText = "Descrição Orçamento";
-            //dgvConsultaOrcamentoGerados.Columns[2].Width = 120;
         }
 
         private void dgvConsultaOrcamentoGerados_CellDoubleClick(object sender, DataGridViewCellEventArgs e)

@@ -291,7 +291,7 @@ namespace DAL
             "SELECT " +
             " Servico.ServicoId " +
             ",Cliente.ClienteId " +
-            ",Servico.DataCadastro AS DataServico " +
+            ",CAST(DATETIME(Servico.DataCadastro, '-3 hour') AS VARCHAR) AS DataServico " +
             ",Cliente.Cliente " +
             ",Veiculo.Marca || ' - ' || Veiculo.Modelo AS MarcaModeloVeiculo " +
             ",ClienteVeiculo.PlacaVeiculo " +

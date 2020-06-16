@@ -1,0 +1,10 @@
+C:\Clones\SGM-WindowsForms\src\BLL\bin\x86\Debug\BLL.dll
+C:\Clones\SGM-WindowsForms\src\BLL\bin\x86\Debug\BLL.pdb
+C:\Clones\SGM-WindowsForms\src\BLL\bin\x86\Debug\DAL.dll
+C:\Clones\SGM-WindowsForms\src\BLL\bin\x86\Debug\Modelo.dll
+C:\Clones\SGM-WindowsForms\src\BLL\bin\x86\Debug\DAL.pdb
+C:\Clones\SGM-WindowsForms\src\BLL\bin\x86\Debug\Modelo.pdb
+C:\Clones\SGM-WindowsForms\src\BLL\obj\x86\Debug\BLL.csprojAssemblyReference.cache
+C:\Clones\SGM-WindowsForms\src\BLL\obj\x86\Debug\BLL.csproj.CopyComplete
+C:\Clones\SGM-WindowsForms\src\BLL\obj\x86\Debug\BLL.dll
+C:\Clones\SGM-WindowsForms\src\BLL\obj\x86\Debug\BLL.pdb

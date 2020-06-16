@@ -66,6 +66,8 @@
             this.txtCelular = new System.Windows.Forms.MaskedTextBox();
             this.txtTelefoneOutros = new System.Windows.Forms.MaskedTextBox();
             this.imgLogoTipo = new System.Windows.Forms.PictureBox();
+            this.txtDataCadastro = new System.Windows.Forms.TextBox();
+            this.lblDataCadastro = new System.Windows.Forms.Label();
             this.pnCadastro.SuspendLayout();
             this.pnBotoes.SuspendLayout();
             this.gbLogradouro.SuspendLayout();
@@ -74,6 +76,8 @@
             // 
             // pnCadastro
             // 
+            this.pnCadastro.Controls.Add(this.lblDataCadastro);
+            this.pnCadastro.Controls.Add(this.txtDataCadastro);
             this.pnCadastro.Controls.Add(this.txtTelefoneOutros);
             this.pnCadastro.Controls.Add(this.txtCelular);
             this.pnCadastro.Controls.Add(this.txtTelefoneFixo);
@@ -479,6 +483,24 @@
             this.imgLogoTipo.TabIndex = 33;
             this.imgLogoTipo.TabStop = false;
             // 
+            // txtDataCadastro
+            // 
+            this.txtDataCadastro.Location = new System.Drawing.Point(101, 405);
+            this.txtDataCadastro.Name = "txtDataCadastro";
+            this.txtDataCadastro.ReadOnly = true;
+            this.txtDataCadastro.Size = new System.Drawing.Size(123, 20);
+            this.txtDataCadastro.TabIndex = 34;
+            // 
+            // lblDataCadastro
+            // 
+            this.lblDataCadastro.AutoSize = true;
+            this.lblDataCadastro.Enabled = false;
+            this.lblDataCadastro.Location = new System.Drawing.Point(11, 408);
+            this.lblDataCadastro.Name = "lblDataCadastro";
+            this.lblDataCadastro.Size = new System.Drawing.Size(87, 13);
+            this.lblDataCadastro.TabIndex = 35;
+            this.lblDataCadastro.Text = "Cadastro Cliente:";
+            // 
             // FrmCadastroCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -536,5 +558,7 @@
         private System.Windows.Forms.Label lblCelular;
         private System.Windows.Forms.Label lblTelefoneFixo;
         private System.Windows.Forms.PictureBox imgLogoTipo;
+        private System.Windows.Forms.Label lblDataCadastro;
+        private System.Windows.Forms.TextBox txtDataCadastro;
     }
 }
