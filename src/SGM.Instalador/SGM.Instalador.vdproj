@@ -224,6 +224,14 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                }
             }
         }
         "Release"
@@ -1222,7 +1230,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_495ED0408326476B8EE5699D9E58D630"
             {
-            "SourcePath" = "8:..\\GUI\\obj\\x86\\Release\\GUI.exe"
+            "SourcePath" = "8:..\\GUI\\obj\\x86\\Debug\\GUI.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_6A1A87B77E904575B5F41474E8C227DE"

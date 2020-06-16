@@ -1,6 +1,6 @@
 ﻿namespace GUI
 {
-    partial class frmConsultaHistoricoServicoClienteVeiculo
+    partial class FrmConsultaHistoricoServicoClienteVeiculo
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmConsultaHistoricoServicoClienteVeiculo));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmConsultaHistoricoServicoClienteVeiculo));
             this.dgvServicoHistoricoClienteVeiculo = new System.Windows.Forms.DataGridView();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnPlacaClienteVeiculoConsulta = new System.Windows.Forms.Button();
@@ -49,7 +49,7 @@
             this.dgvServicoHistoricoClienteVeiculo.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvServicoHistoricoClienteVeiculo.Size = new System.Drawing.Size(760, 472);
             this.dgvServicoHistoricoClienteVeiculo.TabIndex = 8;
-            this.dgvServicoHistoricoClienteVeiculo.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvServicoHistoricoClienteVeiculo_CellDoubleClick);
+            this.dgvServicoHistoricoClienteVeiculo.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvServicoHistoricoClienteVeiculo_CellDoubleClick);
             // 
             // pictureBox1
             // 

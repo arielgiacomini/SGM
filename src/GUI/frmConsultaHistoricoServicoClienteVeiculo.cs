@@ -5,13 +5,13 @@ using System.Windows.Forms;
 
 namespace GUI
 {
-    public partial class frmConsultaHistoricoServicoClienteVeiculo : Form
+    public partial class FrmConsultaHistoricoServicoClienteVeiculo : Form
     {
         public int codigo = 0;
         public int clienteId = 0;
         public string placaVeiculo = "";
 
-        public frmConsultaHistoricoServicoClienteVeiculo()
+        public FrmConsultaHistoricoServicoClienteVeiculo()
         {
             InitializeComponent();
         }
@@ -27,12 +27,14 @@ namespace GUI
                 BtnPlacaClienteVeiculoConsulta_Click(sender, e);
             }
 
+          
             dgvServicoHistoricoClienteVeiculo.Columns[0].HeaderText = "Código Serviço";
             dgvServicoHistoricoClienteVeiculo.Columns[0].Width = 50;
             dgvServicoHistoricoClienteVeiculo.Columns[1].HeaderText = "Código Cliente";
             dgvServicoHistoricoClienteVeiculo.Columns[1].Width = 50;
             dgvServicoHistoricoClienteVeiculo.Columns[2].HeaderText = "Data do Serviço";
-            dgvServicoHistoricoClienteVeiculo.Columns[2].Width = 100;
+            dgvServicoHistoricoClienteVeiculo.Columns[2].Width = 110;
+            dgvServicoHistoricoClienteVeiculo.Columns["DataServico"].DefaultCellStyle.Format = "dd/MM/yyyy hh:mm";
             dgvServicoHistoricoClienteVeiculo.Columns[3].HeaderText = "Cliente";
             dgvServicoHistoricoClienteVeiculo.Columns[3].Width = 150;
             dgvServicoHistoricoClienteVeiculo.Columns[4].HeaderText = "Marca / Modelo";
@@ -45,19 +47,28 @@ namespace GUI
             dgvServicoHistoricoClienteVeiculo.Columns[7].Width = 150;
             dgvServicoHistoricoClienteVeiculo.Columns[8].HeaderText = "Valor Adicional";
             dgvServicoHistoricoClienteVeiculo.Columns[8].Width = 70;
+            dgvServicoHistoricoClienteVeiculo.Columns[8].DefaultCellStyle.Format = "C2";
+            dgvServicoHistoricoClienteVeiculo.Columns[8].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             dgvServicoHistoricoClienteVeiculo.Columns[9].HeaderText = "% de Desconto";
             dgvServicoHistoricoClienteVeiculo.Columns[9].Width = 70;
+            dgvServicoHistoricoClienteVeiculo.Columns[9].DefaultCellStyle.Format = "P1";
+            dgvServicoHistoricoClienteVeiculo.Columns[9].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgvServicoHistoricoClienteVeiculo.Columns[10].HeaderText = "Valor Desconto";
             dgvServicoHistoricoClienteVeiculo.Columns[10].Width = 70;
+            dgvServicoHistoricoClienteVeiculo.Columns[10].DefaultCellStyle.Format = "C2";
+            dgvServicoHistoricoClienteVeiculo.Columns[10].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             dgvServicoHistoricoClienteVeiculo.Columns[11].HeaderText = "Valor Total";
             dgvServicoHistoricoClienteVeiculo.Columns[11].Width = 70;
+            dgvServicoHistoricoClienteVeiculo.Columns[11].DefaultCellStyle.Format = "C2";
+            dgvServicoHistoricoClienteVeiculo.Columns[11].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
         }
 
         private void BtnPlacaClienteVeiculoConsulta_Click(object sender, System.EventArgs e)
         {
             DALConexao cx = new DALConexao(ConnectionStringConfiguration.ConnectionString);
             BLLServico servico = new BLLServico(cx);
-            dgvServicoHistoricoClienteVeiculo.DataSource = servico.BuscaHistoricoServicoClientePorPlacaVeiculo(txtPlacaClienteVeiculoConsulta.Text);
+            var dados = servico.BuscaHistoricoServicoClientePorPlacaVeiculo(txtPlacaClienteVeiculoConsulta.Text);
+            dgvServicoHistoricoClienteVeiculo.DataSource = dados;
         }
 
         private void CarregandoGridViewFiltradoPorCliente(int clienteId)
@@ -68,7 +79,7 @@ namespace GUI
             dgvServicoHistoricoClienteVeiculo.DataSource = bll.BuscarHistoricoServicoClienteByClienteId(clienteId);
         }
 
-        private void dgvServicoHistoricoClienteVeiculo_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void DgvServicoHistoricoClienteVeiculo_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
             {

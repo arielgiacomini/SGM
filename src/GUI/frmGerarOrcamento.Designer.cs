@@ -475,7 +475,7 @@ namespace GUI
             this.ClientSize = new System.Drawing.Size(784, 651);
             this.Name = "frmGerarOrcamento";
             this.Text = "Sistema de Gerenciamento Mecânica - Efetuar Orçamento";
-            this.Load += new System.EventHandler(this.frmGerarOrcamento_Load);
+            this.Load += new System.EventHandler(this.FrmGerarOrcamento_Load);
             this.pnCadastro.ResumeLayout(false);
             this.pnCadastro.PerformLayout();
             this.pnBotoes.ResumeLayout(false);

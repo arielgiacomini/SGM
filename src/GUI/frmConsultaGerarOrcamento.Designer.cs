@@ -61,7 +61,7 @@
             this.btnConsultaOrcamentosGerados.TabIndex = 18;
             this.btnConsultaOrcamentosGerados.Text = "Consultar";
             this.btnConsultaOrcamentosGerados.UseVisualStyleBackColor = true;
-            this.btnConsultaOrcamentosGerados.Click += new System.EventHandler(this.btnConsultaOrcamentosGerados_Click);
+            this.btnConsultaOrcamentosGerados.Click += new System.EventHandler(this.BtnConsultaOrcamentosGerados_Click);
             // 
             // txtConsultaOrcamentosGerados
             // 
@@ -103,7 +103,7 @@
             this.Name = "frmConsultaGerarOrcamento";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Sistema de Gerenciamento Mecânica - Consulta de Orçamentos Gerados";
-            this.Load += new System.EventHandler(this.frmConsultaGerarOrcamento_Load);
+            this.Load += new System.EventHandler(this.FrmConsultaGerarOrcamento_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvConsultaOrcamentoGerados)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);

@@ -72,7 +72,7 @@ namespace GUI
             dgvCliente.Columns[3].Width = 220;
         }
 
-        private void frmGerarOrcamento_Load(object sender, EventArgs e)
+        private void FrmGerarOrcamento_Load(object sender, EventArgs e)
         {
 
         }
