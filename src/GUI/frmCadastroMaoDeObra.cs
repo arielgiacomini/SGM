@@ -58,7 +58,7 @@ namespace GUI
                 if (d.ToString() == "Yes")
                 {
                     // objeto para gravar os dados no banco de dados
-                    DALConexao cx = new DALConexao(DadosDaConexao.StringDeConexao);
+                    DALConexao cx = new DALConexao(ConnectionStringConfiguration.ConnectionString);
                     BLLMaoDeObra bll = new BLLMaoDeObra(cx);
                     bll.Excluir(Convert.ToInt32(txtMaoDeObraId.Text));
                     MessageBox.Show("Registro Excluído com Sucesso!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -98,7 +98,7 @@ namespace GUI
                 modelo.CAtivo = Convert.ToBoolean(vf);
 
                 // objeto para gravar os dados no banco de dados
-                DALConexao cx = new DALConexao(DadosDaConexao.StringDeConexao);
+                DALConexao cx = new DALConexao(ConnectionStringConfiguration.ConnectionString);
                 BLLMaoDeObra bll = new BLLMaoDeObra(cx);
 
                 if (this.operacao == "inserir")
@@ -143,7 +143,7 @@ namespace GUI
             if (m.codigo != 0)
             {
                 // objeto para gravar os dados no banco de dados
-                DALConexao cx = new DALConexao(DadosDaConexao.StringDeConexao);
+                DALConexao cx = new DALConexao(ConnectionStringConfiguration.ConnectionString);
                 BLLMaoDeObra bll = new BLLMaoDeObra(cx);
                 ModeloMaoDeObra modelo = bll.CarregaModeloMaoDeObra(m.codigo);
                 txtMaoDeObraId.Text = Convert.ToString(modelo.CMaodeObraId);

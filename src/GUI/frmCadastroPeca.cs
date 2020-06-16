@@ -50,7 +50,7 @@ namespace GUI
                 if (d.ToString() == "Yes")
                 {
                     // objeto para gravar os dados no banco de dados
-                    DALConexao cx = new DALConexao(DadosDaConexao.StringDeConexao);
+                    DALConexao cx = new DALConexao(ConnectionStringConfiguration.ConnectionString);
                     BLLPeca bll = new BLLPeca(cx);
                     bll.Excluir(Convert.ToInt32(txtPecaId.Text));
                     MessageBox.Show("Registro Excluído com Sucesso!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -77,7 +77,7 @@ namespace GUI
                 modelo.CValorFrete = Convert.ToDecimal(txtValorFrete.Text.Replace("R$ ", ""));
 
                 // objeto para gravar os dados no banco de dados
-                DALConexao cx = new DALConexao(DadosDaConexao.StringDeConexao);
+                DALConexao cx = new DALConexao(ConnectionStringConfiguration.ConnectionString);
                 BLLPeca bll = new BLLPeca(cx);
 
                 if (this.operacao == "inserir")
@@ -120,7 +120,7 @@ namespace GUI
             if (l.codigo != 0)
             {
                 // objeto para gravar os dados no banco de dados
-                DALConexao cx = new DALConexao(DadosDaConexao.StringDeConexao);
+                DALConexao cx = new DALConexao(ConnectionStringConfiguration.ConnectionString);
                 BLLPeca bll = new BLLPeca(cx);
                 ModeloPeca modelo = bll.CarregaModeloPeca(l.codigo);
                 txtPecaId.Text = Convert.ToString(modelo.CPecaId);

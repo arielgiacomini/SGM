@@ -59,7 +59,7 @@ namespace GUI
 
         private void BtnConsultaCliente_Click(object sender, EventArgs e)
         {
-            DALConexao cx = new DALConexao(DadosDaConexao.StringDeConexao);
+            DALConexao cx = new DALConexao(ConnectionStringConfiguration.ConnectionString);
             BLLOrcamento bll = new BLLOrcamento(cx);
             dgvCliente.DataSource = bll.LocalizarCliente(txtConsultaCliente.Text);
             dgvCliente.Columns[0].HeaderText = "Código";
@@ -109,7 +109,7 @@ namespace GUI
             ModeloOrcamento modelo = new ModeloOrcamento();
             modelo.CClienteId = Convert.ToInt32(txtClienteId.Text);
             modelo.CStatus = "ORÇAMENTO INICIADO";
-            DALConexao cx = new DALConexao(DadosDaConexao.StringDeConexao);
+            DALConexao cx = new DALConexao(ConnectionStringConfiguration.ConnectionString);
             BLLOrcamento bll = new BLLOrcamento(cx);
             bll.IncluirOrcamento(modelo);
             txtOrcamentoId.Text = Convert.ToString(modelo.COrcamentoId);
@@ -131,7 +131,7 @@ namespace GUI
 
                 if (r.codigo != 0)
                 {
-                    DALConexao cx = new DALConexao(DadosDaConexao.StringDeConexao);
+                    DALConexao cx = new DALConexao(ConnectionStringConfiguration.ConnectionString);
                     BLLOrcamento bll = new BLLOrcamento(cx);
                     dgvOcultoGuardaInformacao.DataSource = bll.LocalizarMaodeObra(r.codigo);
                     dgvMaodeObra.DataSource = bll.LocalizarOrcamentoMaodeObra(Convert.ToInt32(txtOrcamentoId.Text));
@@ -173,7 +173,7 @@ namespace GUI
             if (p.codigo != 0)
             {
                 // objeto para gravar os dados no banco de dados
-                DALConexao cx = new DALConexao(DadosDaConexao.StringDeConexao);
+                DALConexao cx = new DALConexao(ConnectionStringConfiguration.ConnectionString);
                 BLLOrcamento bll = new BLLOrcamento(cx);
                 dgvOcultoInformacaoPecas.DataSource = bll.LocalizarPeca(p.codigo);
                 dgvPeca.DataSource = bll.LocalizarOrcamentoPeca(Convert.ToInt32(txtOrcamentoId.Text));
@@ -218,7 +218,7 @@ namespace GUI
                     ModeloOrcamento modelo = new ModeloOrcamento();
                     modelo.COrcamentoId = Convert.ToInt32(txtOrcamentoId.Text);
                     modelo.CMaodeObraId = Convert.ToInt32(dgvOcultoGuardaInformacao.Rows[e.RowIndex].Cells["MaodeObraId"].Value);
-                    DALConexao cx = new DALConexao(DadosDaConexao.StringDeConexao);
+                    DALConexao cx = new DALConexao(ConnectionStringConfiguration.ConnectionString);
                     BLLOrcamento bll = new BLLOrcamento(cx);
                     bll.IncluirOrcamentoMaodeObra(modelo);
                 }
@@ -240,7 +240,7 @@ namespace GUI
                     ModeloOrcamento modelo = new ModeloOrcamento();
                     modelo.COrcamentoId = Convert.ToInt32(txtOrcamentoId.Text);
                     modelo.CPecaId = Convert.ToInt32(dgvOcultoInformacaoPecas.Rows[e.RowIndex].Cells["PecaId"].Value);
-                    DALConexao cx = new DALConexao(DadosDaConexao.StringDeConexao);
+                    DALConexao cx = new DALConexao(ConnectionStringConfiguration.ConnectionString);
                     BLLOrcamento bll = new BLLOrcamento(cx);
                     bll.IncluirOrcamentoPeca(modelo);
                 }
@@ -270,7 +270,7 @@ namespace GUI
                 modelo.CStatus = "ORÇAMENTO GERADO";
 
                 // objeto para gravar os dados no banco de dados
-                DALConexao cx = new DALConexao(DadosDaConexao.StringDeConexao);
+                DALConexao cx = new DALConexao(ConnectionStringConfiguration.ConnectionString);
                 BLLOrcamento bll = new BLLOrcamento(cx);
 
                 // Alterar uma categoria
@@ -362,7 +362,7 @@ namespace GUI
             if (y.codigo != 0)
             {
                 // objeto para gravar os dados no banco de dados
-                DALConexao cx = new DALConexao(DadosDaConexao.StringDeConexao);
+                DALConexao cx = new DALConexao(ConnectionStringConfiguration.ConnectionString);
                 BLLOrcamento bll = new BLLOrcamento(cx);
                 ModeloOrcamento modelo = bll.CarregaModeloOrcamento(y.codigo);
                 txtOrcamentoId.Text = Convert.ToString(modelo.COrcamentoId);

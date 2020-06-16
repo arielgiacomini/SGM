@@ -17,7 +17,7 @@ namespace GUI
         private void btnConsultaMaoDeObra_Click(object sender, EventArgs e)
         {
             // objeto para gravar os dados no banco de dados
-            DALConexao cx = new DALConexao(DadosDaConexao.StringDeConexao);
+            DALConexao cx = new DALConexao(ConnectionStringConfiguration.ConnectionString);
             BLLMaoDeObra bll = new BLLMaoDeObra(cx);
             dgvConsultaMaoDeObra.DataSource = bll.Localizar(txtConsultaMaoDeObra.Text);
         }

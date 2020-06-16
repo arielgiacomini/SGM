@@ -17,7 +17,7 @@ namespace GUI
 
         private void btnConsultaCliente_Click(object sender, EventArgs e)
         {
-            DALConexao cx = new DALConexao(DadosDaConexao.StringDeConexao);
+            DALConexao cx = new DALConexao(ConnectionStringConfiguration.ConnectionString);
             BLLCliente bll = new BLLCliente(cx);
             dgvConsultCliente.DataSource = bll.Localizar(txtConsultaCliente.Text);
         }
@@ -52,7 +52,7 @@ namespace GUI
 
         private void CarregandoGridViewFiltradoPorCliente(int clienteId)
         {
-            DALConexao cx = new DALConexao(DadosDaConexao.StringDeConexao);
+            DALConexao cx = new DALConexao(ConnectionStringConfiguration.ConnectionString);
             BLLCliente bll = new BLLCliente(cx);
 
             dgvConsultCliente.DataSource = bll.LocalizarClienteByClienteId(clienteId);

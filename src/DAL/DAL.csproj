@@ -50,6 +50,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.SQLite">
       <HintPath>..\dlls\System.Data.SQLite.dll</HintPath>
@@ -62,7 +63,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DadosDaConexao.cs" />
+    <Compile Include="ConnectionStringConfiguration.cs" />
     <Compile Include="DALCliente.cs" />
     <Compile Include="DALConexao.cs" />
     <Compile Include="DALMaoDeObra.cs" />

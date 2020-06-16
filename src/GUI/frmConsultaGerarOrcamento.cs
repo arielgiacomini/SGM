@@ -18,7 +18,7 @@ namespace GUI
         private void btnConsultaOrcamentosGerados_Click(object sender, EventArgs e)
         {
             // objeto para gravar os dados no banco de dados
-            DALConexao cx = new DALConexao(DadosDaConexao.StringDeConexao);
+            DALConexao cx = new DALConexao(ConnectionStringConfiguration.ConnectionString);
             BLLOrcamento bll = new BLLOrcamento(cx);
             dgvConsultaOrcamentoGerados.DataSource = bll.LocalizarFrmConsultaGerarOrcamento(txtConsultaOrcamentosGerados.Text);
         }

@@ -60,7 +60,7 @@ namespace GUI
         private void btnConsultaCliente_Click(object sender, EventArgs e)
         {
 
-            DALConexao cx = new DALConexao(DadosDaConexao.StringDeConexao);
+            DALConexao cx = new DALConexao(ConnectionStringConfiguration.ConnectionString);
             BLLServico bll = new BLLServico(cx);
             dgvCliente.DataSource = bll.LocalizarCliente(txtConsultaCliente.Text);
             dgvCliente.Columns[0].HeaderText = "Código";
@@ -112,7 +112,7 @@ namespace GUI
             ModeloServico modelo = new ModeloServico();
             modelo.CClienteId = Convert.ToInt32(txtClienteId.Text);
             modelo.CStatus = "ORÇAMENTO INICIADO";
-            DALConexao cx = new DALConexao(DadosDaConexao.StringDeConexao);
+            DALConexao cx = new DALConexao(ConnectionStringConfiguration.ConnectionString);
             BLLServico bll = new BLLServico(cx);
             bll.IncluirServico(modelo);
             txtServicoId.Text = Convert.ToString(modelo.CServicoId);
@@ -134,7 +134,7 @@ namespace GUI
 
                 if (r.codigo != 0)
                 {
-                    DALConexao cx = new DALConexao(DadosDaConexao.StringDeConexao);
+                    DALConexao cx = new DALConexao(ConnectionStringConfiguration.ConnectionString);
                     BLLServico bll = new BLLServico(cx);
                     dgvOcultoGuardaInformacao.DataSource = bll.LocalizarMaodeObra(r.codigo);
                     dgvMaodeObra.DataSource = bll.LocalizarOrcamentoMaodeObra(Convert.ToInt32(txtServicoId.Text));
@@ -176,7 +176,7 @@ namespace GUI
             if (p.codigo != 0)
             {
                 // objeto para gravar os dados no banco de dados
-                DALConexao cx = new DALConexao(DadosDaConexao.StringDeConexao);
+                DALConexao cx = new DALConexao(ConnectionStringConfiguration.ConnectionString);
                 BLLServico bll = new BLLServico(cx);
                 dgvOcultoInformacaoPecas.DataSource = bll.LocalizarPeca(p.codigo);
                 dgvPeca.DataSource = bll.LocalizarOrcamentoPeca(Convert.ToInt32(txtServicoId.Text));
@@ -220,7 +220,7 @@ namespace GUI
                     ModeloServico modelo = new ModeloServico();
                     modelo.CServicoId = Convert.ToInt32(txtServicoId.Text);
                     modelo.CMaodeObraId = Convert.ToInt32(dgvOcultoGuardaInformacao.Rows[e.RowIndex].Cells["MaodeObraId"].Value);
-                    DALConexao cx = new DALConexao(DadosDaConexao.StringDeConexao);
+                    DALConexao cx = new DALConexao(ConnectionStringConfiguration.ConnectionString);
                     BLLServico bll = new BLLServico(cx);
                     bll.IncluirServicoMaodeObra(modelo);
                 }
@@ -243,7 +243,7 @@ namespace GUI
                     ModeloServico modelo = new ModeloServico();
                     modelo.CServicoId = Convert.ToInt32(txtServicoId.Text);
                     modelo.CPecaId = Convert.ToInt32(dgvOcultoInformacaoPecas.Rows[e.RowIndex].Cells["PecaId"].Value);
-                    DALConexao cx = new DALConexao(DadosDaConexao.StringDeConexao);
+                    DALConexao cx = new DALConexao(ConnectionStringConfiguration.ConnectionString);
                     BLLServico bll = new BLLServico(cx);
                     bll.IncluirServicoPeca(modelo);
                 }
@@ -273,7 +273,7 @@ namespace GUI
                 modelo.CStatus = "ORÇAMENTO GERADO";
 
                 // objeto para gravar os dados no banco de dados
-                DALConexao cx = new DALConexao(DadosDaConexao.StringDeConexao);
+                DALConexao cx = new DALConexao(ConnectionStringConfiguration.ConnectionString);
                 BLLServico bll = new BLLServico(cx);
 
                 // Alterar uma categoria

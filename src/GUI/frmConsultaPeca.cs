@@ -18,7 +18,7 @@ namespace GUI
         private void btnConsultaPeca_Click(object sender, EventArgs e)
         {
             // objeto para gravar os dados no banco de dados
-            DALConexao cx = new DALConexao(DadosDaConexao.StringDeConexao);
+            DALConexao cx = new DALConexao(ConnectionStringConfiguration.ConnectionString);
             BLLPeca bll = new BLLPeca(cx);
             dgvConsultaPeca.DataSource = bll.Localizar(txtConsultaPeca.Text);
         }

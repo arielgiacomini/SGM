@@ -16,13 +16,13 @@
         "Entry"
         {
         "MsmKey" = "8:_2FDAD500A4790D64D83CC5B935123E36"
-        "OwnerKey" = "8:_DBF1FDAC62F6B0BDCB321538EF70AE8A"
+        "OwnerKey" = "8:_495ED0408326476B8EE5699D9E58D630"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_2FDAD500A4790D64D83CC5B935123E36"
-        "OwnerKey" = "8:_495ED0408326476B8EE5699D9E58D630"
+        "OwnerKey" = "8:_DBF1FDAC62F6B0BDCB321538EF70AE8A"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -35,6 +35,12 @@
         {
         "MsmKey" = "8:_51D9945A8FC30B99711F2027C0BA9A1B"
         "OwnerKey" = "8:_495ED0408326476B8EE5699D9E58D630"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_747F43A1CAD24D2691BFF453DD9C67E6"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -89,12 +95,6 @@
         {
         "MsmKey" = "8:_8EE2931E757181E1A3DE9726955602A2"
         "OwnerKey" = "8:_A6081032CC7F7FB17F561C519F87BEBC"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_913AD1F194F04408A6D8CDBBC46CCDE9"
-        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -123,12 +123,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_CDA39F7101334D4C8BEB79D48A61B07B"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_DBF1FDAC62F6B0BDCB321538EF70AE8A"
         "OwnerKey" = "8:_A6081032CC7F7FB17F561C519F87BEBC"
         "MsmSig" = "8:_UNDEFINED"
@@ -141,8 +135,14 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_DF58876DDD3D48349B74C46402E0A2C1"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_8EE2931E757181E1A3DE9726955602A2"
+        "OwnerKey" = "8:_2FDAD500A4790D64D83CC5B935123E36"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -196,7 +196,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_2FDAD500A4790D64D83CC5B935123E36"
+        "OwnerKey" = "8:_8EE2931E757181E1A3DE9726955602A2"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -217,6 +217,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
         "Release"
         {
@@ -233,6 +241,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
     }
     "Deployable"
@@ -322,6 +338,26 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_747F43A1CAD24D2691BFF453DD9C67E6"
+            {
+            "SourcePath" = "8:..\\..\\..\\SGM\\Imagens\\SGMInstalador.ico"
+            "TargetName" = "8:SGMInstalador.ico"
+            "Tag" = "8:"
+            "Folder" = "8:_6A1A87B77E904575B5F41474E8C227DE"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_79C2F7C9505A3E2ABCBE7F4DF92BD8B1"
@@ -417,26 +453,6 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_913AD1F194F04408A6D8CDBBC46CCDE9"
-            {
-            "SourcePath" = "8:..\\..\\..\\SGM\\Database\\SGL.db3"
-            "TargetName" = "8:SGL.db3"
-            "Tag" = "8:"
-            "Folder" = "8:_015960559A204DDEB3949155E4B16FEB"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_9806DA141D02265451D7997B26BD8025"
             {
             "AssemblyRegister" = "3:1"
@@ -530,26 +546,6 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_CDA39F7101334D4C8BEB79D48A61B07B"
-            {
-            "SourcePath" = "8:..\\..\\..\\SGM\\Imagens\\Cabriolet_Red_icon-icons.com_54906.ico"
-            "TargetName" = "8:Cabriolet_Red_icon-icons.com_54906.ico"
-            "Tag" = "8:"
-            "Folder" = "8:_6A1A87B77E904575B5F41474E8C227DE"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_DBF1FDAC62F6B0BDCB321538EF70AE8A"
             {
             "AssemblyRegister" = "3:1"
@@ -579,6 +575,26 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_DF58876DDD3D48349B74C46402E0A2C1"
+            {
+            "SourcePath" = "8:..\\..\\Database\\SGL.db3"
+            "TargetName" = "8:SGL.db3"
+            "Tag" = "8:"
+            "Folder" = "8:_015960559A204DDEB3949155E4B16FEB"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
         }
@@ -771,7 +787,7 @@
         {
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_29086C53F4C846EA9F81AA1D3BDE149A"
             {
-            "Name" = "8:SGMLoquinho"
+            "Name" = "8:SGM"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
@@ -780,7 +796,21 @@
             "Target" = "8:_495ED0408326476B8EE5699D9E58D630"
             "Folder" = "8:_D783DD5A71D2424FB3E219DEA2082911"
             "WorkingFolder" = "8:_6A1A87B77E904575B5F41474E8C227DE"
-            "Icon" = "8:_CDA39F7101334D4C8BEB79D48A61B07B"
+            "Icon" = "8:_747F43A1CAD24D2691BFF453DD9C67E6"
+            "Feature" = "8:"
+            }
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_F9CC5B45FA5B45A28F4BD11CD57B928E"
+            {
+            "Name" = "8:SGM"
+            "Arguments" = "8:"
+            "Description" = "8:"
+            "ShowCmd" = "3:1"
+            "IconIndex" = "3:0"
+            "Transitive" = "11:FALSE"
+            "Target" = "8:_495ED0408326476B8EE5699D9E58D630"
+            "Folder" = "8:_2E40A90D0A174FE2BA92EF5D697EE549"
+            "WorkingFolder" = "8:_6A1A87B77E904575B5F41474E8C227DE"
+            "Icon" = "8:_747F43A1CAD24D2691BFF453DD9C67E6"
             "Feature" = "8:"
             }
         }

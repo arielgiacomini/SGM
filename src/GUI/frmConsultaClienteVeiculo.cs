@@ -43,14 +43,14 @@ namespace GUI
 
         private void BtnPlacaClienteVeiculoConsulta_Click(object sender, EventArgs e)
         {
-            DALConexao cx = new DALConexao(DadosDaConexao.StringDeConexao);
+            DALConexao cx = new DALConexao(ConnectionStringConfiguration.ConnectionString);
             BLLVeiculoCliente bll = new BLLVeiculoCliente(cx);
             dgvClienteVeiculoConsulta.DataSource = bll.Localizar(txtPlacaClienteVeiculoConsulta.Text);
         }
 
         private void CarregandoGridViewFiltradoPorCliente(int clienteId)
         {
-            DALConexao cx = new DALConexao(DadosDaConexao.StringDeConexao);
+            DALConexao cx = new DALConexao(ConnectionStringConfiguration.ConnectionString);
             BLLVeiculoCliente bll = new BLLVeiculoCliente(cx);
 
             dgvClienteVeiculoConsulta.DataSource = bll.LocalizarTodosVeiculosCliente(clienteId);
