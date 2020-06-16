@@ -19,7 +19,7 @@ namespace GUI
         private void btnModeloMarcaConsulta_Click(object sender, EventArgs e)
         {
             // objeto para gravar os dados no banco de dados
-            DALConexao cx = new DALConexao(DadosDaConexao.StringDeConexao);
+            DALConexao cx = new DALConexao(ConnectionStringConfiguration.ConnectionString);
             BLLVeiculo bll = new BLLVeiculo(cx);
             dgvModeloMarcaConsulta.DataSource = bll.Localizar(txtModeloMarcaConsulta.Text);
         }

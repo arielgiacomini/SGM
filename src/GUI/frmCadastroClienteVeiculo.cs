@@ -34,7 +34,7 @@ namespace GUI
         private void FrmCadastroClienteVeiculo_Load(object sender, EventArgs e)
         {
 
-            DALConexao cx = new DALConexao(DadosDaConexao.StringDeConexao);
+            DALConexao cx = new DALConexao(ConnectionStringConfiguration.ConnectionString);
             BLLVeiculo bll = new BLLVeiculo(cx);
             BLLCliente bllC = new BLLCliente(cx);
             BLLVeiculoCliente veiculoClienteBLL = new BLLVeiculoCliente(cx);
@@ -124,7 +124,7 @@ namespace GUI
                     CKmRodados = Convert.ToInt32(txtKmVeiculo.Text)
                 };
 
-                DALConexao cx = new DALConexao(DadosDaConexao.StringDeConexao);
+                DALConexao cx = new DALConexao(ConnectionStringConfiguration.ConnectionString);
                 BLLVeiculoCliente bll = new BLLVeiculoCliente(cx);
 
                 if (this.operacao == "inserir")
@@ -164,7 +164,7 @@ namespace GUI
                 if (d.ToString() == "Yes")
                 {
                     // objeto para gravar os dados no banco de dados
-                    DALConexao cx = new DALConexao(DadosDaConexao.StringDeConexao);
+                    DALConexao cx = new DALConexao(ConnectionStringConfiguration.ConnectionString);
                     BLLVeiculoCliente bll = new BLLVeiculoCliente(cx);
                     bll.Excluir(Convert.ToInt32(txtClienteVeiculoId.Text));
                     this.LimpaTela();
@@ -194,7 +194,7 @@ namespace GUI
                 this.txtCliente.Enabled = false;
                 this.txtTelefoneCliente.Enabled = false;
 
-                DALConexao cx = new DALConexao(DadosDaConexao.StringDeConexao);
+                DALConexao cx = new DALConexao(ConnectionStringConfiguration.ConnectionString);
                 BLLVeiculoCliente bll = new BLLVeiculoCliente(cx);
                 BLLCliente bllC = new BLLCliente(cx);
                 ModeloVeiculoCliente modelo = bll.CarregaModeloVeiculoCliente(c.codigo);

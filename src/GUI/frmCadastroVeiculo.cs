@@ -49,7 +49,7 @@ namespace GUI
                 modelo.CMarca = txtMarca.Text;
                 modelo.CModelo = txtModelo.Text;
                 // objeto para gravar os dados no banco de dados
-                DALConexao cx = new DALConexao(DadosDaConexao.StringDeConexao);
+                DALConexao cx = new DALConexao(ConnectionStringConfiguration.ConnectionString);
                 BLLVeiculo bll = new BLLVeiculo(cx);
 
                 if (this.operacao == "inserir")
@@ -89,7 +89,7 @@ namespace GUI
                 if (d.ToString() == "Yes")
                 {
                     // objeto para gravar os dados no banco de dados
-                    DALConexao cx = new DALConexao(DadosDaConexao.StringDeConexao);
+                    DALConexao cx = new DALConexao(ConnectionStringConfiguration.ConnectionString);
                     BLLVeiculo bll = new BLLVeiculo(cx);
                     bll.Excluir(Convert.ToInt32(txtVeiculoid.Text));
                     this.LimpaTela();
@@ -111,7 +111,7 @@ namespace GUI
             if (c.codigo != 0)
             {
                 // objeto para gravar os dados no banco de dados
-                DALConexao cx = new DALConexao(DadosDaConexao.StringDeConexao);
+                DALConexao cx = new DALConexao(ConnectionStringConfiguration.ConnectionString);
                 BLLVeiculo bll = new BLLVeiculo(cx);
                 ModeloVeiculo modelo = bll.CarregaModeloVeiculo(c.codigo);
                 txtVeiculoid.Text = modelo.CVeiculoId.ToString();

@@ -57,7 +57,7 @@ namespace GUI
 
                 if (d.ToString() == "Yes")
                 {
-                    DALConexao cx = new DALConexao(DadosDaConexao.StringDeConexao);
+                    DALConexao cx = new DALConexao(ConnectionStringConfiguration.ConnectionString);
                     BLLCliente bll = new BLLCliente(cx);
                     bll.Excluir(Convert.ToInt32(txtClienteId.Text));
                     MessageBox.Show("Registro Excluído com Sucesso!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -97,7 +97,7 @@ namespace GUI
                     CLogradouroUF = txtUF.Text
                 };
 
-                DALConexao cx = new DALConexao(DadosDaConexao.StringDeConexao);
+                DALConexao cx = new DALConexao(ConnectionStringConfiguration.ConnectionString);
                 BLLCliente bll = new BLLCliente(cx);
                 BLLVeiculoCliente bllVeiculoCliente = new BLLVeiculoCliente(cx);
 
@@ -192,7 +192,7 @@ namespace GUI
             if (c.codigo != 0)
             {
                 // objeto para gravar os dados no banco de dados
-                DALConexao cx = new DALConexao(DadosDaConexao.StringDeConexao);
+                DALConexao cx = new DALConexao(ConnectionStringConfiguration.ConnectionString);
                 BLLCliente bll = new BLLCliente(cx);
                 ModeloCliente modelo = bll.CarregaModeloCliente(c.codigo);
                 txtClienteId.Text = Convert.ToString(modelo.CClienteId);
@@ -229,7 +229,7 @@ namespace GUI
             if (this.operacao == "inserir")
             {
                 // objeto para gravar os dados no banco de dados
-                DALConexao cx = new DALConexao(DadosDaConexao.StringDeConexao);
+                DALConexao cx = new DALConexao(ConnectionStringConfiguration.ConnectionString);
                 BLLCliente bll = new BLLCliente(cx);
                 int retorno = bll.VerificaCPFCliente(txtCPF.Text);
 
