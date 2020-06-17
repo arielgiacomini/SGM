@@ -60,6 +60,7 @@
             this.btnPrincipalOrcamento = new System.Windows.Forms.Button();
             this.btnPrincipalRealizaMaoDeObra = new System.Windows.Forms.Button();
             this.btnVeiculoCliente = new System.Windows.Forms.Button();
+            this.lblVersionSystem = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -99,7 +100,7 @@
             this.veiculosToolStripMenuItem.Name = "veiculosToolStripMenuItem";
             this.veiculosToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
             this.veiculosToolStripMenuItem.Text = "Veiculos";
-            this.veiculosToolStripMenuItem.Click += new System.EventHandler(this.veiculosToolStripMenuItem_Click);
+            this.veiculosToolStripMenuItem.Click += new System.EventHandler(this.VeiculosToolStripMenuItem_Click);
             // 
             // mãoDeObraToolStripMenuItem
             // 
@@ -107,7 +108,7 @@
             this.mãoDeObraToolStripMenuItem.Name = "mãoDeObraToolStripMenuItem";
             this.mãoDeObraToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
             this.mãoDeObraToolStripMenuItem.Text = "Mão-de-Obra/Serviços";
-            this.mãoDeObraToolStripMenuItem.Click += new System.EventHandler(this.mãoDeObraToolStripMenuItem_Click);
+            this.mãoDeObraToolStripMenuItem.Click += new System.EventHandler(this.MaoDeObraToolStripMenuItem_Click);
             // 
             // peçasToolStripMenuItem
             // 
@@ -115,7 +116,7 @@
             this.peçasToolStripMenuItem.Name = "peçasToolStripMenuItem";
             this.peçasToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
             this.peçasToolStripMenuItem.Text = "Peças/Produtos";
-            this.peçasToolStripMenuItem.Click += new System.EventHandler(this.peçasToolStripMenuItem_Click);
+            this.peçasToolStripMenuItem.Click += new System.EventHandler(this.PeçasToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
@@ -128,7 +129,7 @@
             this.clienteToolStripMenuItem.Name = "clienteToolStripMenuItem";
             this.clienteToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
             this.clienteToolStripMenuItem.Text = "Clientes";
-            this.clienteToolStripMenuItem.Click += new System.EventHandler(this.clienteToolStripMenuItem_Click);
+            this.clienteToolStripMenuItem.Click += new System.EventHandler(this.ClienteToolStripMenuItem_Click);
             // 
             // clienteVeículosToolStripMenuItem
             // 
@@ -136,7 +137,7 @@
             this.clienteVeículosToolStripMenuItem.Name = "clienteVeículosToolStripMenuItem";
             this.clienteVeículosToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
             this.clienteVeículosToolStripMenuItem.Text = "Cliente e seus Veículos";
-            this.clienteVeículosToolStripMenuItem.Click += new System.EventHandler(this.clienteVeículosToolStripMenuItem_Click);
+            this.clienteVeículosToolStripMenuItem.Click += new System.EventHandler(this.ClienteVeículosToolStripMenuItem_Click);
             // 
             // consultaToolStripMenuItem
             // 
@@ -156,21 +157,21 @@
             this.veiculoToolStripMenuItem.Name = "veiculoToolStripMenuItem";
             this.veiculoToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
             this.veiculoToolStripMenuItem.Text = "Veiculo";
-            this.veiculoToolStripMenuItem.Click += new System.EventHandler(this.veiculoToolStripMenuItem_Click);
+            this.veiculoToolStripMenuItem.Click += new System.EventHandler(this.VeiculoToolStripMenuItem_Click);
             // 
             // mãoDeObraToolStripMenuItem1
             // 
             this.mãoDeObraToolStripMenuItem1.Name = "mãoDeObraToolStripMenuItem1";
             this.mãoDeObraToolStripMenuItem1.Size = new System.Drawing.Size(197, 22);
             this.mãoDeObraToolStripMenuItem1.Text = "Mão de Obra/Serviços";
-            this.mãoDeObraToolStripMenuItem1.Click += new System.EventHandler(this.mãoDeObraToolStripMenuItem1_Click);
+            this.mãoDeObraToolStripMenuItem1.Click += new System.EventHandler(this.MaoDeObraToolStripMenuItem1_Click);
             // 
             // peçasToolStripMenuItem1
             // 
             this.peçasToolStripMenuItem1.Name = "peçasToolStripMenuItem1";
             this.peçasToolStripMenuItem1.Size = new System.Drawing.Size(197, 22);
             this.peçasToolStripMenuItem1.Text = "Peças/Produtos";
-            this.peçasToolStripMenuItem1.Click += new System.EventHandler(this.peçasToolStripMenuItem1_Click);
+            this.peçasToolStripMenuItem1.Click += new System.EventHandler(this.PecasToolStripMenuItem1_Click);
             // 
             // toolStripSeparator2
             // 
@@ -182,14 +183,14 @@
             this.clienteToolStripMenuItem1.Name = "clienteToolStripMenuItem1";
             this.clienteToolStripMenuItem1.Size = new System.Drawing.Size(197, 22);
             this.clienteToolStripMenuItem1.Text = "Cliente";
-            this.clienteToolStripMenuItem1.Click += new System.EventHandler(this.clienteToolStripMenuItem1_Click);
+            this.clienteToolStripMenuItem1.Click += new System.EventHandler(this.ClienteToolStripMenuItem1_Click);
             // 
             // fornecedorToolStripMenuItem1
             // 
             this.fornecedorToolStripMenuItem1.Name = "fornecedorToolStripMenuItem1";
             this.fornecedorToolStripMenuItem1.Size = new System.Drawing.Size(197, 22);
             this.fornecedorToolStripMenuItem1.Text = "Clientes e seus Veículos";
-            this.fornecedorToolStripMenuItem1.Click += new System.EventHandler(this.fornecedorToolStripMenuItem1_Click);
+            this.fornecedorToolStripMenuItem1.Click += new System.EventHandler(this.FornecedorToolStripMenuItem1_Click);
             // 
             // movimentaçãoToolStripMenuItem
             // 
@@ -200,21 +201,21 @@
             this.movimentaçãoToolStripMenuItem.Name = "movimentaçãoToolStripMenuItem";
             this.movimentaçãoToolStripMenuItem.Size = new System.Drawing.Size(104, 20);
             this.movimentaçãoToolStripMenuItem.Text = "Movimentações";
-            this.movimentaçãoToolStripMenuItem.Click += new System.EventHandler(this.movimentaçãoToolStripMenuItem_Click);
+            this.movimentaçãoToolStripMenuItem.Click += new System.EventHandler(this.MovimentaçãoToolStripMenuItem_Click);
             // 
             // realizarOrçamentoToolStripMenuItem
             // 
             this.realizarOrçamentoToolStripMenuItem.Name = "realizarOrçamentoToolStripMenuItem";
             this.realizarOrçamentoToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
             this.realizarOrçamentoToolStripMenuItem.Text = "Realizar Orçamento";
-            this.realizarOrçamentoToolStripMenuItem.Click += new System.EventHandler(this.realizarOrçamentoToolStripMenuItem_Click);
+            this.realizarOrçamentoToolStripMenuItem.Click += new System.EventHandler(this.RealizarOrçamentoToolStripMenuItem_Click);
             // 
             // realizaMãodeObraToolStripMenuItem
             // 
             this.realizaMãodeObraToolStripMenuItem.Name = "realizaMãodeObraToolStripMenuItem";
             this.realizaMãodeObraToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
             this.realizaMãodeObraToolStripMenuItem.Text = "Realizar Serviços";
-            this.realizaMãodeObraToolStripMenuItem.Click += new System.EventHandler(this.realizaMãodeObraToolStripMenuItem_Click);
+            this.realizaMãodeObraToolStripMenuItem.Click += new System.EventHandler(this.RealizaMãodeObraToolStripMenuItem_Click);
             // 
             // realizaNotaFiscalToolStripMenuItem
             // 
@@ -237,7 +238,7 @@
             this.imprimeNotaFiscalToolStripMenuItem.Name = "imprimeNotaFiscalToolStripMenuItem";
             this.imprimeNotaFiscalToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
             this.imprimeNotaFiscalToolStripMenuItem.Text = "Imprimir Nota Fiscal";
-            this.imprimeNotaFiscalToolStripMenuItem.Click += new System.EventHandler(this.imprimeNotaFiscalToolStripMenuItem_Click);
+            this.imprimeNotaFiscalToolStripMenuItem.Click += new System.EventHandler(this.ImprimeNotaFiscalToolStripMenuItem_Click);
             // 
             // imprimeOrçamentoToolStripMenuItem
             // 
@@ -270,7 +271,7 @@
             this.sobreToolStripMenuItem.Name = "sobreToolStripMenuItem";
             this.sobreToolStripMenuItem.Size = new System.Drawing.Size(49, 20);
             this.sobreToolStripMenuItem.Text = "Sobre";
-            this.sobreToolStripMenuItem.Click += new System.EventHandler(this.sobreToolStripMenuItem_Click);
+            this.sobreToolStripMenuItem.Click += new System.EventHandler(this.SobreToolStripMenuItem_Click);
             // 
             // btnPrincipalEmitirNotas
             // 
@@ -284,7 +285,7 @@
             this.btnPrincipalEmitirNotas.Text = "Impressão Relatórios";
             this.btnPrincipalEmitirNotas.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnPrincipalEmitirNotas.UseVisualStyleBackColor = true;
-            this.btnPrincipalEmitirNotas.Click += new System.EventHandler(this.btnPrincipalEmitirNotas_Click);
+            this.btnPrincipalEmitirNotas.Click += new System.EventHandler(this.BtnPrincipalEmitirNotas_Click);
             // 
             // btnPrincipalCadastroCliente
             // 
@@ -299,7 +300,7 @@
             this.btnPrincipalCadastroCliente.Text = "Cadastrar Cliente";
             this.btnPrincipalCadastroCliente.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnPrincipalCadastroCliente.UseVisualStyleBackColor = true;
-            this.btnPrincipalCadastroCliente.Click += new System.EventHandler(this.btnPrincipalCadastroCliente_Click);
+            this.btnPrincipalCadastroCliente.Click += new System.EventHandler(this.BtnPrincipalCadastroCliente_Click);
             // 
             // btnPrincipalOrcamento
             // 
@@ -313,7 +314,7 @@
             this.btnPrincipalOrcamento.Text = "Realizar Orçamento";
             this.btnPrincipalOrcamento.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnPrincipalOrcamento.UseVisualStyleBackColor = true;
-            this.btnPrincipalOrcamento.Click += new System.EventHandler(this.btnPrincipalOrcamento_Click);
+            this.btnPrincipalOrcamento.Click += new System.EventHandler(this.BtnPrincipalOrcamento_Click);
             // 
             // btnPrincipalRealizaMaoDeObra
             // 
@@ -327,7 +328,7 @@
             this.btnPrincipalRealizaMaoDeObra.Text = "Realizar Serviço";
             this.btnPrincipalRealizaMaoDeObra.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnPrincipalRealizaMaoDeObra.UseVisualStyleBackColor = true;
-            this.btnPrincipalRealizaMaoDeObra.Click += new System.EventHandler(this.btnPrincipalRealizaMaoDeObra_Click);
+            this.btnPrincipalRealizaMaoDeObra.Click += new System.EventHandler(this.BtnPrincipalRealizaMaoDeObra_Click);
             // 
             // btnVeiculoCliente
             // 
@@ -341,7 +342,16 @@
             this.btnVeiculoCliente.Text = "Veículos do Cliente";
             this.btnVeiculoCliente.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnVeiculoCliente.UseVisualStyleBackColor = true;
-            this.btnVeiculoCliente.Click += new System.EventHandler(this.btnVeiculoCliente_Click);
+            this.btnVeiculoCliente.Click += new System.EventHandler(this.BtnVeiculoCliente_Click);
+            // 
+            // lblVersionSystem
+            // 
+            this.lblVersionSystem.AutoSize = true;
+            this.lblVersionSystem.Location = new System.Drawing.Point(1260, 34);
+            this.lblVersionSystem.Name = "lblVersionSystem";
+            this.lblVersionSystem.Size = new System.Drawing.Size(46, 13);
+            this.lblVersionSystem.TabIndex = 9;
+            this.lblVersionSystem.Text = "Versão: ";
             // 
             // frmPrincipal
             // 
@@ -350,17 +360,20 @@
             this.BackgroundImage = global::GUI.Properties.Resources.frmPrincipal;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1350, 729);
+            this.Controls.Add(this.lblVersionSystem);
             this.Controls.Add(this.btnVeiculoCliente);
             this.Controls.Add(this.btnPrincipalEmitirNotas);
             this.Controls.Add(this.btnPrincipalCadastroCliente);
             this.Controls.Add(this.btnPrincipalOrcamento);
             this.Controls.Add(this.btnPrincipalRealizaMaoDeObra);
             this.Controls.Add(this.menuStrip1);
+            this.DoubleBuffered = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "frmPrincipal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Sistema de Gerenciamento Mecanica";
+            this.Load += new System.EventHandler(this.FrmPrincipal_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -401,5 +414,6 @@
         private System.Windows.Forms.ToolStripMenuItem imprimeMãoDeObraToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem calculadoraToolStripMenuItem;
         private System.Windows.Forms.Button btnVeiculoCliente;
+        private System.Windows.Forms.Label lblVersionSystem;
     }
 }
