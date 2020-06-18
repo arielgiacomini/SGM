@@ -194,3 +194,4 @@ C:\Clones\SGM-WindowsForms\src\GUI\obj\Debug\GUI.csproj.CopyComplete
 C:\Clones\SGM-WindowsForms\src\GUI\obj\Debug\GUI.exe
 C:\Clones\SGM-WindowsForms\src\GUI\obj\Debug\GUI.pdb
 C:\Clones\SGM-WindowsForms\src\GUI\obj\Debug\GUI.FrmDetalhesServicoGerado.resources
+C:\Clones\SGM-WindowsForms\src\GUI\obj\Debug\GUI.frmConsultaHistoricoOrcamentoClienteVeiculo.resources

@@ -351,14 +351,15 @@ namespace GUI
 
         private void BtnLocalizar_Click(object sender, EventArgs e)
         {
-            FrmConsultaGerarOrcamento y = new FrmConsultaGerarOrcamento();
-            y.ShowDialog();
-            if (y.codigo != 0)
+            Close();
+            frmConsultaHistoricoOrcamentoClienteVeiculo consultaHistoricoOrcamento = new frmConsultaHistoricoOrcamentoClienteVeiculo();
+            consultaHistoricoOrcamento.ShowDialog();
+            if (consultaHistoricoOrcamento.codigo != 0)
             {
                 DALConexao cx = new DALConexao(ConnectionStringConfiguration.ConnectionString);
                 BLLOrcamento bll = new BLLOrcamento(cx);
 
-                ModeloOrcamento modelo = bll.CarregaModeloOrcamento(y.codigo);
+                ModeloOrcamento modelo = bll.CarregaModeloOrcamento(consultaHistoricoOrcamento.codigo);
 
                 txtOrcamentoId.Text = Convert.ToString(modelo.COrcamentoId);
                 txtClienteId.Text = Convert.ToString(modelo.CClienteId);
@@ -375,7 +376,7 @@ namespace GUI
                 this.alteraBotoes(1);
             }
 
-            y.Dispose();
+            consultaHistoricoOrcamento.Dispose();
         }
     }
 }
