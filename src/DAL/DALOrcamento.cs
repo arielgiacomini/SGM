@@ -390,5 +390,33 @@ namespace DAL
             conexao.Desconectar();
             return tabela;
         }
+
+        public ModeloOrcamento BuscarDetalheOrcamentoGerado(int orcamentoId)
+        {
+            ModeloOrcamento modelo = new ModeloOrcamento();
+            SQLiteCommand cmd = new SQLiteCommand();
+            cmd.Connection = conexao.ObjetoConexao;
+            cmd.CommandText = "SELECT * FROM Orcamento WHERE OrcamentoId = @OrcamentoId";
+            cmd.Parameters.AddWithValue("@OrcamentoId", orcamentoId);
+            conexao.Conectar();
+            SQLiteDataReader registro = cmd.ExecuteReader();
+
+            if (registro.HasRows)
+            {
+                registro.Read();
+                modelo.COrcamentoId = Convert.ToInt32(registro["OrcamentoId"]);
+                modelo.CClienteId = Convert.ToInt32(registro["ClienteId"]);
+                modelo.CDescricao = Convert.ToString(registro["Descricao"]);
+                modelo.CValorAdicional = Convert.ToDecimal(registro["ValorAdicional"]);
+                modelo.CPercentualDesconto = Convert.ToDecimal(registro["PercentualDesconto"]);
+                modelo.CValorDesconto = Convert.ToDecimal(registro["ValorDesconto"]);
+                modelo.CValorTotal = Convert.ToDecimal(registro["ValorTotal"]);
+                modelo.CStatus = Convert.ToString(registro["Status"]);
+                modelo.CAtivo = Convert.ToBoolean(registro["Ativo"]);
+                modelo.CDataCadastro = Convert.ToDateTime(registro["DataCadastro"]);
+            }
+            conexao.Desconectar();
+            return modelo;
+        }
     }
 }

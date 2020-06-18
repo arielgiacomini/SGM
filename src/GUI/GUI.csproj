@@ -133,12 +133,6 @@
     <Compile Include="frmConsultaClienteVeiculo.Designer.cs">
       <DependentUpon>frmConsultaClienteVeiculo.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmConsultaGerarOrcamento.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmConsultaGerarOrcamento.Designer.cs">
-      <DependentUpon>frmConsultaGerarOrcamento.cs</DependentUpon>
-    </Compile>
     <Compile Include="frmConsultaHistoricoOrcamentoClienteVeiculo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -168,6 +162,12 @@
     </Compile>
     <Compile Include="frmConsultaVeiculo.Designer.cs">
       <DependentUpon>frmConsultaVeiculo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmDetalhesOrcamentoGerado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDetalhesOrcamentoGerado.Designer.cs">
+      <DependentUpon>frmDetalhesOrcamentoGerado.cs</DependentUpon>
     </Compile>
     <Compile Include="frmDetalhesServicoGerado.cs">
       <SubType>Form</SubType>
@@ -246,9 +246,6 @@
     <EmbeddedResource Include="frmConsultaClienteVeiculo.resx">
       <DependentUpon>frmConsultaClienteVeiculo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmConsultaGerarOrcamento.resx">
-      <DependentUpon>frmConsultaGerarOrcamento.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="frmConsultaHistoricoOrcamentoClienteVeiculo.resx">
       <DependentUpon>frmConsultaHistoricoOrcamentoClienteVeiculo.cs</DependentUpon>
     </EmbeddedResource>
@@ -263,6 +260,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmConsultaVeiculo.resx">
       <DependentUpon>frmConsultaVeiculo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDetalhesOrcamentoGerado.resx">
+      <DependentUpon>frmDetalhesOrcamentoGerado.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmDetalhesServicoGerado.resx">
       <DependentUpon>frmDetalhesServicoGerado.cs</DependentUpon>

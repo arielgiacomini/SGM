@@ -90,12 +90,12 @@ namespace GUI
                 this.placaVeiculo = Convert.ToString(dgvOrcamentoHistoricoClienteVeiculo.Rows[e.RowIndex].Cells[4].Value);
                 this.Close();
 
-                FrmDetalhesServicoGerado formDetalheServico = new FrmDetalhesServicoGerado
+                frmDetalhesOrcamentoGerado formDetahleOrcamento = new frmDetalhesOrcamentoGerado
                 {
-                    servicoId = codigo
+                    orcamentoId = codigo
                 };
 
-                formDetalheServico.ShowDialog();
+                formDetahleOrcamento.ShowDialog();
             }
         }
     }
