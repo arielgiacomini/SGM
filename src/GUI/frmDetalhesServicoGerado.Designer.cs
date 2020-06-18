@@ -282,7 +282,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrmDetalhesServicoGerado";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Sistema de Gerenciamento Mecânica - Detalhe de Serviço Gerado pelo Cliente";
+            this.Text = "Sistema de Gerenciamento Mecânica - Detalhe de Serviço Gerado para Cliente";
             this.Load += new System.EventHandler(this.FrmDetalhesServicoGerado_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvPecasServicosGerados)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMaodeObraServicoGerado)).EndInit();

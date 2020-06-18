@@ -175,7 +175,6 @@ C:\Clones\SGM-WindowsForms\src\GUI\obj\Debug\GUI.frmCadastroPeca.resources
 C:\Clones\SGM-WindowsForms\src\GUI\obj\Debug\GUI.frmCadastroVeiculo.resources
 C:\Clones\SGM-WindowsForms\src\GUI\obj\Debug\GUI.frmConsultaCliente.resources
 C:\Clones\SGM-WindowsForms\src\GUI\obj\Debug\GUI.frmConsultaClienteVeiculo.resources
-C:\Clones\SGM-WindowsForms\src\GUI\obj\Debug\GUI.frmConsultaGerarOrcamento.resources
 C:\Clones\SGM-WindowsForms\src\GUI\obj\Debug\GUI.frmConsultaHistoricoServicoClienteVeiculo.resources
 C:\Clones\SGM-WindowsForms\src\GUI\obj\Debug\GUI.frmConsultaMaoDeObra.resources
 C:\Clones\SGM-WindowsForms\src\GUI\obj\Debug\GUI.frmConsultaPeca.resources
@@ -195,3 +194,4 @@ C:\Clones\SGM-WindowsForms\src\GUI\obj\Debug\GUI.exe
 C:\Clones\SGM-WindowsForms\src\GUI\obj\Debug\GUI.pdb
 C:\Clones\SGM-WindowsForms\src\GUI\obj\Debug\GUI.FrmDetalhesServicoGerado.resources
 C:\Clones\SGM-WindowsForms\src\GUI\obj\Debug\GUI.frmConsultaHistoricoOrcamentoClienteVeiculo.resources
+C:\Clones\SGM-WindowsForms\src\GUI\obj\Debug\GUI.frmDetalhesOrcamentoGerado.resources

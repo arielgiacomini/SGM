@@ -14,7 +14,6 @@ namespace BLL
             this.conexao = cx;
         }
 
-        /* INSERE O REGISTRO NO BANCO DE DADOS */
         public void IncluirOrcamento(ModeloOrcamento modelo)
         {
             modelo.CStatus = modelo.CStatus.ToUpper();
@@ -34,7 +33,6 @@ namespace BLL
             DALobj.IncluirOrcamentoPeca(modelo);
         }
 
-        /* UPDATE NO REGISTRO DO BANCO DE DADOS */
         public void AlterarOrcamento(ModeloOrcamento modelo)
         {
             if (modelo.COrcamentoId <= 0)
@@ -75,8 +73,6 @@ namespace BLL
             return DALobj.LocalizarPeca(valor);
         }
 
-
-        /* PREENCHE OS DADOS NA GRIDVIEW DA TELA DE GERAÇÃO DE ORÇAMENTO */
         public DataTable LocalizarOrcamentoMaodeObra(int OrcamentoId)
         {
             DALOrcamento DALobj = new DALOrcamento(conexao);
@@ -111,6 +107,12 @@ namespace BLL
         {
             DALOrcamento DALobj = new DALOrcamento(conexao);
             return DALobj.BuscarHistoricoOrcamentoClienteByClienteId(clienteId);
+        }
+
+        public ModeloOrcamento BuscarDetalheOrcamentoGerado(int servicoId)
+        {
+            DALOrcamento DALobj = new DALOrcamento(conexao);
+            return DALobj.BuscarDetalheOrcamentoGerado(servicoId);
         }
     }
 }
