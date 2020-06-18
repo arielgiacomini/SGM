@@ -374,6 +374,7 @@ namespace GUI
                 this.LimpaTela();
                 this.alteraBotoes(1);
             }
+
             y.Dispose();
         }
     }

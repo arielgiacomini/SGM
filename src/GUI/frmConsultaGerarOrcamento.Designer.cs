@@ -43,19 +43,19 @@
             this.dgvConsultaOrcamentoGerados.AllowUserToAddRows = false;
             this.dgvConsultaOrcamentoGerados.AllowUserToDeleteRows = false;
             this.dgvConsultaOrcamentoGerados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvConsultaOrcamentoGerados.Location = new System.Drawing.Point(12, 71);
+            this.dgvConsultaOrcamentoGerados.Location = new System.Drawing.Point(12, 80);
             this.dgvConsultaOrcamentoGerados.Name = "dgvConsultaOrcamentoGerados";
             this.dgvConsultaOrcamentoGerados.ReadOnly = true;
             this.dgvConsultaOrcamentoGerados.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvConsultaOrcamentoGerados.Size = new System.Drawing.Size(760, 472);
             this.dgvConsultaOrcamentoGerados.TabIndex = 19;
-            this.dgvConsultaOrcamentoGerados.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvConsultaOrcamentoGerados_CellDoubleClick);
+            this.dgvConsultaOrcamentoGerados.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvConsultaOrcamentoGerados_CellDoubleClick);
             // 
             // btnConsultaOrcamentosGerados
             // 
             this.btnConsultaOrcamentosGerados.Image = global::GUI.Properties.Resources.LocalicarRedimensionado3;
             this.btnConsultaOrcamentosGerados.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnConsultaOrcamentosGerados.Location = new System.Drawing.Point(612, 30);
+            this.btnConsultaOrcamentosGerados.Location = new System.Drawing.Point(612, 41);
             this.btnConsultaOrcamentosGerados.Name = "btnConsultaOrcamentosGerados";
             this.btnConsultaOrcamentosGerados.Size = new System.Drawing.Size(160, 27);
             this.btnConsultaOrcamentosGerados.TabIndex = 18;
@@ -65,7 +65,7 @@
             // 
             // txtConsultaOrcamentosGerados
             // 
-            this.txtConsultaOrcamentosGerados.Location = new System.Drawing.Point(12, 34);
+            this.txtConsultaOrcamentosGerados.Location = new System.Drawing.Point(12, 45);
             this.txtConsultaOrcamentosGerados.Name = "txtConsultaOrcamentosGerados";
             this.txtConsultaOrcamentosGerados.Size = new System.Drawing.Size(594, 20);
             this.txtConsultaOrcamentosGerados.TabIndex = 17;
@@ -73,7 +73,7 @@
             // lblConsultaMaoDeObra
             // 
             this.lblConsultaMaoDeObra.AutoSize = true;
-            this.lblConsultaMaoDeObra.Location = new System.Drawing.Point(13, 18);
+            this.lblConsultaMaoDeObra.Location = new System.Drawing.Point(13, 29);
             this.lblConsultaMaoDeObra.Name = "lblConsultaMaoDeObra";
             this.lblConsultaMaoDeObra.Size = new System.Drawing.Size(227, 13);
             this.lblConsultaMaoDeObra.TabIndex = 16;
@@ -82,14 +82,14 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::GUI.Properties.Resources.LogotipoLoquinho;
-            this.pictureBox1.Location = new System.Drawing.Point(336, 1);
+            this.pictureBox1.Location = new System.Drawing.Point(336, 5);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(83, 30);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 35;
             this.pictureBox1.TabStop = false;
             // 
-            // frmConsultaGerarOrcamento
+            // FrmConsultaGerarOrcamento
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -100,7 +100,7 @@
             this.Controls.Add(this.txtConsultaOrcamentosGerados);
             this.Controls.Add(this.lblConsultaMaoDeObra);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "frmConsultaGerarOrcamento";
+            this.Name = "FrmConsultaGerarOrcamento";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Sistema de Gerenciamento Mecânica - Consulta de Orçamentos Gerados";
             this.Load += new System.EventHandler(this.FrmConsultaGerarOrcamento_Load);

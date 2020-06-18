@@ -351,7 +351,31 @@ namespace GUI
 
         private void BtnLocalizar_Click(object sender, EventArgs e)
         {
+            FrmConsultaHistoricoServicoClienteVeiculo consultaHistoricoServico = new FrmConsultaHistoricoServicoClienteVeiculo();
+            consultaHistoricoServico.ShowDialog();
+            if (consultaHistoricoServico.codigo != 0)
+            {
+                DALConexao cx = new DALConexao(ConnectionStringConfiguration.ConnectionString);
+                BLLServico bll = new BLLServico(cx);
 
+                ModeloServico modelo = bll.BuscarDetalheServicoGerado(consultaHistoricoServico.codigo);
+
+                txtServicoId.Text = Convert.ToString(modelo.CServicoId);
+                txtClienteId.Text = Convert.ToString(modelo.CClienteId);
+                txtDescricao.Text = Convert.ToString(modelo.CDescricao);
+                txtValorAdicional.Text = Convert.ToString(modelo.CValorAdicional);
+                txtPercentualDesconto.Text = Convert.ToString(modelo.CPercentualDesconto);
+                txtValorDesconto.Text = Convert.ToString(modelo.CValorDesconto);
+                txtValorTotal.Text = Convert.ToString(modelo.CValorTotal);
+                alteraBotoes(3);
+            }
+            else
+            {
+                this.LimpaTela();
+                this.alteraBotoes(1);
+            }
+
+            consultaHistoricoServico.Dispose();
         }
     }
 }

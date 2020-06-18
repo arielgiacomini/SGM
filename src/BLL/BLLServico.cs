@@ -33,8 +33,6 @@ namespace BLL
             DALobj.IncluirServicoPeca(modelo);
         }
 
-
-        /* ATUALIZA OS REGISTROS NO BANCO DE DADOS */
         public void AlterarServico(ModeloServico modelo)
         {
             if (modelo.CServicoId <= 0)
@@ -57,7 +55,6 @@ namespace BLL
             DALobj.AlterarServico(modelo);
         }
 
-
         public DataTable LocalizarCliente(String valor)
         {
             DALServico DALobj = new DALServico(conexao);
@@ -76,8 +73,6 @@ namespace BLL
             return DALobj.LocalizarPeca(valor);
         }
 
-
-        /* PREENCHE OS DADOS NA GRIDVIEW DA TELA DE GERAÇÃO DE ORÇAMENTO */
         public DataTable LocalizarServicoMaodeObra(int ServicoId)
         {
             DALServico DALobj = new DALServico(conexao);
