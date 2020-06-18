@@ -7,7 +7,6 @@ namespace GUI
 {
     public partial class FrmConsultaGerarOrcamento : Form
     {
-
         public int codigo = 0;
 
         public FrmConsultaGerarOrcamento()
@@ -19,7 +18,7 @@ namespace GUI
         {
             DALConexao cx = new DALConexao(ConnectionStringConfiguration.ConnectionString);
             BLLOrcamento bll = new BLLOrcamento(cx);
-            dgvConsultaOrcamentoGerados.DataSource = bll.LocalizarFrmConsultaGerarOrcamento(txtConsultaOrcamentosGerados.Text);
+            dgvConsultaOrcamentoGerados.DataSource = bll.BuscaHistoricoOrcamentoClientePorPlacaVeiculo(txtConsultaOrcamentosGerados.Text);
         }
 
         private void FrmConsultaGerarOrcamento_Load(object sender, EventArgs e)
@@ -36,7 +35,7 @@ namespace GUI
             dgvConsultaOrcamentoGerados.Columns[4].Width = 70;
         }
 
-        private void dgvConsultaOrcamentoGerados_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void DgvConsultaOrcamentoGerados_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0) // vai guardar a informação escolhida com duplo clique.
             {

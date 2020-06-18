@@ -251,21 +251,44 @@ namespace DAL
             return tabela;
         }
 
-        public DataTable LocalizarFrmConsultaGerarOrcamento(String Valor)
+        public DataTable BuscaHistoricoOrcamentoClientePorPlacaVeiculo(string placaVeiculo)
         {
-            Convert.ToString(Valor);
             DataTable tabela = new DataTable();
-            SQLiteDataAdapter da = new SQLiteDataAdapter("" +
-                "SELECT " +
-                "Orcamento.OrcamentoId, " +
-                "Cliente.Cliente, " +
-                "Orcamento.Descricao, " +
-                "Orcamento.ValorTotal, " +
-                "Orcamento.Status, " +
-                "Orcamento.DataCadastro " +
-                "FROM Orcamento " +
-                "INNER JOIN Cliente ON Cliente.ClienteId = Orcamento.ClienteId " +
-                "WHERE Cliente.Cliente LIKE '%" + Valor + "%' ORDER BY Orcamento.OrcamentoId DESC", conexao.StringConexao);
+            string newPlacaVeiculo;
+
+            if (placaVeiculo.Contains("-"))
+            {
+                newPlacaVeiculo = placaVeiculo.Replace("-", "");
+            }
+            else if (placaVeiculo.Length == 0)
+            {
+                return tabela;
+            }
+            else
+            {
+                newPlacaVeiculo = placaVeiculo;
+            }
+
+            SQLiteDataAdapter da = new SQLiteDataAdapter(
+            "SELECT " +
+            " Orcamento.OrcamentoId " +
+            ",Cliente.ClienteId " +
+            ",Orcamento.DataCadastro AS DataServico " +
+            ",Cliente.Cliente " +
+            ",Veiculo.Marca || ' - ' || Veiculo.Modelo AS MarcaModeloVeiculo " +
+            ",ClienteVeiculo.PlacaVeiculo " +
+            ",Orcamento.Descricao AS DescricaoServico " +
+            ",Orcamento.Status AS StatusServico " +
+            ",Orcamento.ValorAdicional " +
+            ",Orcamento.PercentualDesconto " +
+            ",Orcamento.ValorDesconto " +
+            ",Orcamento.ValorTotal " +
+            "FROM Cliente " +
+            "INNER JOIN ClienteVeiculo ON ClienteVeiculo.ClienteId = Cliente.ClienteId " +
+            "INNER JOIN Veiculo ON Veiculo.VeiculoId = ClienteVeiculo.VeiculoId " +
+            "INNER JOIN Orcamento ON Orcamento.ClienteId = Cliente.ClienteId " +
+            "WHERE 1=1 " +
+            "AND REPLACE(RTRIM(LTRIM(ClienteVeiculo.PlacaVeiculo)), '-', '') LIKE '%" + Convert.ToString(newPlacaVeiculo) + "%'", conexao.StringConexao);
             da.Fill(tabela);
             conexao.Desconectar();
             return tabela;

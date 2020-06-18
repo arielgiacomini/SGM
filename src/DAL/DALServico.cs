@@ -315,7 +315,7 @@ namespace DAL
         public DataTable BuscaHistoricoServicoClientePorPlacaVeiculo(string placaVeiculo)
         {
             DataTable tabela = new DataTable();
-            string newPlacaVeiculo = "";
+            string newPlacaVeiculo;
 
             if (placaVeiculo.Contains("-"))
             {
@@ -330,7 +330,6 @@ namespace DAL
                 newPlacaVeiculo = placaVeiculo;
             }
 
-            
             SQLiteDataAdapter da = new SQLiteDataAdapter(
             "SELECT " +
             " Servico.ServicoId " +

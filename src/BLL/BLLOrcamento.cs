@@ -95,10 +95,10 @@ namespace BLL
             return DALobj.LocalizarOrcamento(OrcamentoId);
         }
 
-        public DataTable LocalizarFrmConsultaGerarOrcamento(String Valor)
+        public DataTable BuscaHistoricoOrcamentoClientePorPlacaVeiculo(string placaVeiculo)
         {
             DALOrcamento DALobj = new DALOrcamento(conexao);
-            return DALobj.LocalizarFrmConsultaGerarOrcamento(Valor);
+            return DALobj.BuscaHistoricoOrcamentoClientePorPlacaVeiculo(placaVeiculo);
         }
 
         public ModeloOrcamento CarregaModeloOrcamento(int OrcamentoId)
