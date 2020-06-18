@@ -107,6 +107,10 @@ namespace BLL
             return DALobj.CarregaModeloOrcamento(OrcamentoId);
         }
 
-
+        public DataTable BuscarHistoricoOrcamentoClienteByClienteId(int clienteId)
+        {
+            DALOrcamento DALobj = new DALOrcamento(conexao);
+            return DALobj.BuscarHistoricoOrcamentoClienteByClienteId(clienteId);
+        }
     }
 }

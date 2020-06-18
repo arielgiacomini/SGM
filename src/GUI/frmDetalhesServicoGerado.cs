@@ -1,6 +1,7 @@
 ﻿using BLL;
 using DAL;
 using System;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace GUI
@@ -16,6 +17,7 @@ namespace GUI
 
         private void FrmDetalhesServicoGerado_Load(object sender, System.EventArgs e)
         {
+
             DALConexao cx = new DALConexao(ConnectionStringConfiguration.ConnectionString);
             BLLServico bll = new BLLServico(cx);
 
@@ -28,6 +30,8 @@ namespace GUI
             dgvMaodeObraServicoGerado.Columns[1].Width = 330;
             dgvMaodeObraServicoGerado.Columns[2].HeaderText = "Valor";
             dgvMaodeObraServicoGerado.Columns[2].Width = 70;
+            dgvMaodeObraServicoGerado.Columns[2].DefaultCellStyle.Format = "C2";
+            dgvMaodeObraServicoGerado.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
 
             dgvPecasServicosGerados.DataSource = bll.LocalizarServicoPeca(servicoId);
             dgvPecasServicosGerados.Columns[0].HeaderText = "Código";
@@ -36,6 +40,8 @@ namespace GUI
             dgvPecasServicosGerados.Columns[1].Width = 330;
             dgvPecasServicosGerados.Columns[2].HeaderText = "Valor";
             dgvPecasServicosGerados.Columns[2].Width = 70;
+            dgvPecasServicosGerados.Columns[2].DefaultCellStyle.Format = "C2";
+            dgvPecasServicosGerados.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
 
             var servicoGerado = bll.BuscarDetalheServicoGerado(servicoId);
 
@@ -46,6 +52,14 @@ namespace GUI
             txtValorDescontoTotal.Text = servicoGerado.CValorDesconto.ToString("C");
             txtValorTotal.Text = servicoGerado.CValorTotal.ToString("C");
 
+            lblQtdRegistrosMaodeObra.Text = "Quantidade de Registros: " + this.dgvMaodeObraServicoGerado.Rows.Count.ToString();
+            lblQtdRegistrosPecasProdutos.Text = "Quantidade de Registros: " + this.dgvPecasServicosGerados.Rows.Count.ToString();
+
+
+            decimal valorTotalGridMaodeObra = Convert.ToDecimal(dgvMaodeObraServicoGerado.Rows.Cast<DataGridViewRow>().Sum(i => Convert.ToDecimal(i.Cells["Valor"].Value)));
+            txtValorMaodeObraTotal.Text = (valorTotalGridMaodeObra.ToString("C"));
+            decimal valorTotalGridProdutosPecas = Convert.ToDecimal(dgvPecasServicosGerados.Rows.Cast<DataGridViewRow>().Sum(i => Convert.ToDecimal(i.Cells["ValorTotal"].Value)));
+            txtValorProdutosPecasTotal.Text = (valorTotalGridProdutosPecas.ToString("C"));
         }
     }
 }

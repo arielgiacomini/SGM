@@ -279,7 +279,7 @@
             this.btnPrincipalEmitirNotas.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPrincipalEmitirNotas.Image = global::GUI.Properties.Resources.Sales_report_icon;
             this.btnPrincipalEmitirNotas.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnPrincipalEmitirNotas.Location = new System.Drawing.Point(845, 393);
+            this.btnPrincipalEmitirNotas.Location = new System.Drawing.Point(1014, 393);
             this.btnPrincipalEmitirNotas.Name = "btnPrincipalEmitirNotas";
             this.btnPrincipalEmitirNotas.Size = new System.Drawing.Size(153, 188);
             this.btnPrincipalEmitirNotas.TabIndex = 7;
@@ -359,7 +359,7 @@
             this.btnBuscarHistoricoServicoCliente.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBuscarHistoricoServicoCliente.Image = global::GUI.Properties.Resources.Voltar1_fw;
             this.btnBuscarHistoricoServicoCliente.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnBuscarHistoricoServicoCliente.Location = new System.Drawing.Point(1004, 393);
+            this.btnBuscarHistoricoServicoCliente.Location = new System.Drawing.Point(847, 393);
             this.btnBuscarHistoricoServicoCliente.Name = "btnBuscarHistoricoServicoCliente";
             this.btnBuscarHistoricoServicoCliente.Size = new System.Drawing.Size(153, 188);
             this.btnBuscarHistoricoServicoCliente.TabIndex = 10;

@@ -362,5 +362,33 @@ namespace DAL
             conexao.Desconectar();
             return modelo;
         }
+
+        public DataTable BuscarHistoricoOrcamentoClienteByClienteId(int clienteId)
+        {
+            DataTable tabela = new DataTable();
+            SQLiteDataAdapter da = new SQLiteDataAdapter(
+            "SELECT " +
+            " Orcamento.OrcamentoId " +
+            ",Cliente.ClienteId " +
+            ",CAST(DATETIME(Servico.DataCadastro, '-3 hour') AS VARCHAR) AS DataOrcamento " +
+            ",Cliente.Cliente " +
+            ",Veiculo.Marca || ' - ' || Veiculo.Modelo AS MarcaModeloVeiculo " +
+            ",ClienteVeiculo.PlacaVeiculo " +
+            ",Orcamento.Descricao AS DescricaoOrcamento " +
+            ",Orcamento.Status AS StatusOrcamento " +
+            ",Orcamento.ValorAdicional " +
+            ",Orcamento.PercentualDesconto " +
+            ",Orcamento.ValorDesconto " +
+            ",Orcamento.ValorTotal " +
+            "FROM Cliente " +
+            "INNER JOIN ClienteVeiculo ON ClienteVeiculo.ClienteId = Cliente.ClienteId " +
+            "INNER JOIN Veiculo ON Veiculo.VeiculoId = ClienteVeiculo.VeiculoId " +
+            "INNER JOIN Orcamento ON Orcamento.ClienteId = Cliente.ClienteId " +
+            "WHERE 1=1 " +
+            "AND Cliente.ClienteId = " + Convert.ToString(clienteId), conexao.StringConexao);
+            da.Fill(tabela);
+            conexao.Desconectar();
+            return tabela;
+        }
     }
 }

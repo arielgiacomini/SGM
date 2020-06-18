@@ -366,7 +366,7 @@
             this.dgvCliente.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvCliente.Size = new System.Drawing.Size(741, 44);
             this.dgvCliente.TabIndex = 46;
-            this.dgvCliente.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCliente_CellDoubleClick);
+            this.dgvCliente.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvCliente_CellDoubleClick);
             // 
             // btnConsultaCliente
             // 
@@ -474,7 +474,7 @@
             this.ClientSize = new System.Drawing.Size(784, 651);
             this.Name = "frmGerarServico";
             this.Text = "Sistema de Gerenciamento Mecânica - Efetuar Serviço";
-            this.Load += new System.EventHandler(this.frmGerarServico_Load);
+            this.Load += new System.EventHandler(this.FrmGerarServico_Load);
             this.pnCadastro.ResumeLayout(false);
             this.pnCadastro.PerformLayout();
             this.pnBotoes.ResumeLayout(false);

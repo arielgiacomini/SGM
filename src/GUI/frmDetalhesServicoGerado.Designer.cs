@@ -47,6 +47,8 @@
             this.lblTextoPecaProduto = new System.Windows.Forms.Label();
             this.lblServicoId = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.lblQtdRegistrosPecasProdutos = new System.Windows.Forms.Label();
+            this.lblQtdRegistrosMaodeObra = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPecasServicosGerados)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMaodeObraServicoGerado)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -198,7 +200,7 @@
             // 
             this.lblTextoMaodeObra.AutoSize = true;
             this.lblTextoMaodeObra.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTextoMaodeObra.Location = new System.Drawing.Point(159, 23);
+            this.lblTextoMaodeObra.Location = new System.Drawing.Point(216, 33);
             this.lblTextoMaodeObra.Name = "lblTextoMaodeObra";
             this.lblTextoMaodeObra.Size = new System.Drawing.Size(132, 24);
             this.lblTextoMaodeObra.TabIndex = 14;
@@ -208,7 +210,7 @@
             // 
             this.lblTextoPecaProduto.AutoSize = true;
             this.lblTextoPecaProduto.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTextoPecaProduto.Location = new System.Drawing.Point(159, 264);
+            this.lblTextoPecaProduto.Location = new System.Drawing.Point(216, 271);
             this.lblTextoPecaProduto.Name = "lblTextoPecaProduto";
             this.lblTextoPecaProduto.Size = new System.Drawing.Size(156, 24);
             this.lblTextoPecaProduto.TabIndex = 15;
@@ -234,9 +236,31 @@
             this.pictureBox1.TabIndex = 75;
             this.pictureBox1.TabStop = false;
             // 
+            // lblQtdRegistrosPecasProdutos
+            // 
+            this.lblQtdRegistrosPecasProdutos.AutoSize = true;
+            this.lblQtdRegistrosPecasProdutos.Location = new System.Drawing.Point(12, 284);
+            this.lblQtdRegistrosPecasProdutos.Name = "lblQtdRegistrosPecasProdutos";
+            this.lblQtdRegistrosPecasProdutos.Size = new System.Drawing.Size(124, 13);
+            this.lblQtdRegistrosPecasProdutos.TabIndex = 76;
+            this.lblQtdRegistrosPecasProdutos.Text = "Quantidade de Registros";
+            this.lblQtdRegistrosPecasProdutos.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lblQtdRegistrosMaodeObra
+            // 
+            this.lblQtdRegistrosMaodeObra.AutoSize = true;
+            this.lblQtdRegistrosMaodeObra.Location = new System.Drawing.Point(12, 44);
+            this.lblQtdRegistrosMaodeObra.Name = "lblQtdRegistrosMaodeObra";
+            this.lblQtdRegistrosMaodeObra.Size = new System.Drawing.Size(124, 13);
+            this.lblQtdRegistrosMaodeObra.TabIndex = 77;
+            this.lblQtdRegistrosMaodeObra.Text = "Quantidade de Registros";
+            // 
             // FrmDetalhesServicoGerado
             // 
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
             this.ClientSize = new System.Drawing.Size(887, 521);
+            this.Controls.Add(this.lblQtdRegistrosMaodeObra);
+            this.Controls.Add(this.lblQtdRegistrosPecasProdutos);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.lblServicoId);
             this.Controls.Add(this.lblTextoPecaProduto);
@@ -288,5 +312,7 @@
         private System.Windows.Forms.Label lblTextoPecaProduto;
         private System.Windows.Forms.Label lblServicoId;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label lblQtdRegistrosPecasProdutos;
+        private System.Windows.Forms.Label lblQtdRegistrosMaodeObra;
     }
 }

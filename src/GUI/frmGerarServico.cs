@@ -49,8 +49,8 @@ namespace GUI
         }
 
         public int codigo = 0;
-        public String CellCliente = "";
-        public String VerificaOrcamento = "";
+        public string CellCliente = "";
+        public string VerificaOrcamento = "";
         public decimal txtVA = 0;
         public decimal txtVD = 0;
         public decimal txtVP = 0;
@@ -75,14 +75,14 @@ namespace GUI
             dgvCliente.Columns[4].Width = 182;
         }
 
-        private void frmGerarServico_Load(object sender, EventArgs e)
+        private void FrmGerarServico_Load(object sender, EventArgs e)
         {
 
         }
 
-        private void dgvCliente_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void DgvCliente_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0) // vai guardar a informação escolhida com duplo clique.
+            if (e.RowIndex >= 0)
             {
                 this.codigo = Convert.ToInt32(dgvCliente.Rows[e.RowIndex].Cells[0].Value);
                 this.CellCliente = Convert.ToString(dgvCliente.Rows[e.RowIndex].Cells[1].Value);
@@ -144,6 +144,8 @@ namespace GUI
                     dgvMaodeObra.Columns[1].Width = 330;
                     dgvMaodeObra.Columns[2].HeaderText = "Valor";
                     dgvMaodeObra.Columns[2].Width = 70;
+                    dgvMaodeObra.Columns[2].DefaultCellStyle.Format = "C2";
+                    dgvMaodeObra.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 }
             }
 
@@ -185,6 +187,8 @@ namespace GUI
                 dgvPeca.Columns[1].Width = 330;
                 dgvPeca.Columns[2].HeaderText = "Valor Integral";
                 dgvPeca.Columns[2].Width = 70;
+                dgvPeca.Columns[2].DefaultCellStyle.Format = "C2";
+                dgvPeca.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             }
 
             lblQtdRegistrosPecas.Text = "Quantidade de Registros: " + this.dgvPeca.Rows.Count.ToString();
@@ -351,6 +355,7 @@ namespace GUI
 
         private void BtnLocalizar_Click(object sender, EventArgs e)
         {
+            Close();
             FrmConsultaHistoricoServicoClienteVeiculo consultaHistoricoServico = new FrmConsultaHistoricoServicoClienteVeiculo();
             consultaHistoricoServico.ShowDialog();
             if (consultaHistoricoServico.codigo != 0)
