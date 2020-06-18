@@ -119,19 +119,19 @@
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            this.btnCancelar.Click += new System.EventHandler(this.BtnCancelar_Click);
             // 
             // btnLocalizar
             // 
-            this.btnLocalizar.Click += new System.EventHandler(this.btnLocalizar_Click);
+            this.btnLocalizar.Click += new System.EventHandler(this.BtnLocalizar_Click);
             // 
             // btnSalvar
             // 
-            this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click);
+            this.btnSalvar.Click += new System.EventHandler(this.BtnSalvar_Click);
             // 
             // btnInserir
             // 
-            this.btnInserir.Click += new System.EventHandler(this.btnInserir_Click);
+            this.btnInserir.Click += new System.EventHandler(this.BtnInserir_Click);
             // 
             // lblQtdRegistrosPecas
             // 
@@ -206,7 +206,7 @@
             this.btnAdicionarMaodeObra.TabIndex = 64;
             this.btnAdicionarMaodeObra.Text = "Lista de Mao-de-Obras";
             this.btnAdicionarMaodeObra.UseVisualStyleBackColor = true;
-            this.btnAdicionarMaodeObra.Click += new System.EventHandler(this.btnAdicionarMaodeObra_Click);
+            this.btnAdicionarMaodeObra.Click += new System.EventHandler(this.BtnAdicionarMaodeObra_Click);
             // 
             // btnAdicionarPeca
             // 
@@ -216,7 +216,7 @@
             this.btnAdicionarPeca.TabIndex = 63;
             this.btnAdicionarPeca.Text = "Lista de Produtos/Peças";
             this.btnAdicionarPeca.UseVisualStyleBackColor = true;
-            this.btnAdicionarPeca.Click += new System.EventHandler(this.btnAdicionarPeca_Click);
+            this.btnAdicionarPeca.Click += new System.EventHandler(this.BtnAdicionarPeca_Click);
             // 
             // lblInformativoPeca
             // 
@@ -237,7 +237,7 @@
             this.dgvPeca.ReadOnly = true;
             this.dgvPeca.Size = new System.Drawing.Size(494, 105);
             this.dgvPeca.TabIndex = 61;
-            this.dgvPeca.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dgvPeca_RowsAdded);
+            this.dgvPeca.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.DgvPeca_RowsAdded);
             // 
             // txtValorTotal
             // 
@@ -261,7 +261,7 @@
             this.txtPercentualDesconto.Name = "txtPercentualDesconto";
             this.txtPercentualDesconto.Size = new System.Drawing.Size(133, 20);
             this.txtPercentualDesconto.TabIndex = 57;
-            this.txtPercentualDesconto.Leave += new System.EventHandler(this.txtPercentualDesconto_Leave);
+            this.txtPercentualDesconto.Leave += new System.EventHandler(this.TxtPercentualDesconto_Leave);
             // 
             // txtValorAdicional
             // 
@@ -269,7 +269,7 @@
             this.txtValorAdicional.Name = "txtValorAdicional";
             this.txtValorAdicional.Size = new System.Drawing.Size(133, 20);
             this.txtValorAdicional.TabIndex = 56;
-            this.txtValorAdicional.Leave += new System.EventHandler(this.txtValorAdicional_Leave);
+            this.txtValorAdicional.Leave += new System.EventHandler(this.TxtValorAdicional_Leave);
             // 
             // lblValorTotal
             // 
@@ -420,7 +420,7 @@
             this.dgvOcultoInformacaoPecas.Name = "dgvOcultoInformacaoPecas";
             this.dgvOcultoInformacaoPecas.Size = new System.Drawing.Size(431, 77);
             this.dgvOcultoInformacaoPecas.TabIndex = 67;
-            this.dgvOcultoInformacaoPecas.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dgvOcultoInformacaoPecas_RowsAdded);
+            this.dgvOcultoInformacaoPecas.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.DgvOcultoInformacaoPecas_RowsAdded);
             // 
             // dgvMaodeObra
             // 
@@ -434,7 +434,7 @@
             this.dgvMaodeObra.ReadOnly = true;
             this.dgvMaodeObra.Size = new System.Drawing.Size(494, 105);
             this.dgvMaodeObra.TabIndex = 60;
-            this.dgvMaodeObra.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dgvMaodeObra_RowsAdded);
+            this.dgvMaodeObra.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.DgvMaodeObra_RowsAdded);
             // 
             // dgvOcultoGuardaInformacao
             // 

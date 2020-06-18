@@ -85,11 +85,11 @@
             this.lblPlacaClienteVeiculoConsulta.AutoSize = true;
             this.lblPlacaClienteVeiculoConsulta.Location = new System.Drawing.Point(13, 29);
             this.lblPlacaClienteVeiculoConsulta.Name = "lblPlacaClienteVeiculoConsulta";
-            this.lblPlacaClienteVeiculoConsulta.Size = new System.Drawing.Size(209, 13);
+            this.lblPlacaClienteVeiculoConsulta.Size = new System.Drawing.Size(161, 13);
             this.lblPlacaClienteVeiculoConsulta.TabIndex = 36;
-            this.lblPlacaClienteVeiculoConsulta.Text = "Digite: Placa, Veículo ou Nome do Cliente:";
+            this.lblPlacaClienteVeiculoConsulta.Text = "Busque pela PLACA do Veículo:";
             // 
-            // frmConsultaHistoricoServicoClienteVeiculo
+            // FrmConsultaHistoricoServicoClienteVeiculo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -100,7 +100,7 @@
             this.Controls.Add(this.lblPlacaClienteVeiculoConsulta);
             this.Controls.Add(this.dgvServicoHistoricoClienteVeiculo);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "frmConsultaHistoricoServicoClienteVeiculo";
+            this.Name = "FrmConsultaHistoricoServicoClienteVeiculo";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Sistema de Gerenciamento Mecãnica - Consulta de Histórico de Serviços";
             this.Load += new System.EventHandler(this.FrmConsultaHistoricoServicoClienteVeiculo_Load);

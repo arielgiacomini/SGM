@@ -15,7 +15,7 @@ namespace GUI
         public int codigo = 0;
         public string nomeCliente = "";
 
-        private void btnConsultaCliente_Click(object sender, EventArgs e)
+        private void BtnConsultaCliente_Click(object sender, EventArgs e)
         {
             DALConexao cx = new DALConexao(ConnectionStringConfiguration.ConnectionString);
             BLLCliente bll = new BLLCliente(cx);
@@ -30,7 +30,7 @@ namespace GUI
             }
             else
             {
-                btnConsultaCliente_Click(sender, e);
+                BtnConsultaCliente_Click(sender, e);
             }
 
            
@@ -58,7 +58,7 @@ namespace GUI
             dgvConsultCliente.DataSource = bll.LocalizarClienteByClienteId(clienteId);
         }
 
-        private void dgvConsultCliente_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void DgvConsultCliente_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0) // vai guardar a informação escolhida com duplo clique.
             {

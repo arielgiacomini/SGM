@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Reflection;
 using System.Windows.Forms;
 
 namespace GUI
@@ -77,12 +76,16 @@ namespace GUI
 
         private void MovimentaçãoToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            /* EM IMPLANTAÇÃO */
 
+            MessageBox.Show("Aguenta aí, que o bixo ta vindo... HAHAHA! \n Estou trabalhando para colocar essa tela no ar...", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
 
         private void ImprimeNotaFiscalToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            /* EM IMPLANTAÇÃO */
 
+            MessageBox.Show("Aguenta aí, que o bixo ta vindo... HAHAHA! \n Estou trabalhando para colocar essa tela no ar...", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
 
         private void FornecedorToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -139,7 +142,7 @@ namespace GUI
 
         private void MaoDeObraToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            frmConsultaMaoDeObra b = new frmConsultaMaoDeObra();
+            FrmConsultaMaoDeObra b = new FrmConsultaMaoDeObra();
             b.ShowDialog();
             b.Dispose();
         }
@@ -163,6 +166,13 @@ namespace GUI
             string texto = "Versão: ";
 
             lblVersionSystem.Text = texto + ProductVersion.ToString();
+        }
+
+        private void BtnBuscarHistoricoServicoCliente_Click(object sender, EventArgs e)
+        {
+            FrmConsultaHistoricoServicoClienteVeiculo consultaHistorico = new FrmConsultaHistoricoServicoClienteVeiculo();
+            consultaHistorico.ShowDialog();
+            consultaHistorico.Dispose();
         }
     }
 }

@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace GUI
 {
-    public partial class frmGerarServico : GUI.frmModeloDeFormularioDeCadastro
+    public partial class frmGerarServico : GUI.FrmModeloDeFormularioDeCadastro
     {
         public frmGerarServico()
         {
@@ -92,7 +92,7 @@ namespace GUI
             }
         }
 
-        private void btnInserir_Click(object sender, EventArgs e)
+        private void BtnInserir_Click(object sender, EventArgs e)
         {
             this.operacao = "inserir";
             this.alteraBotoes(2);
@@ -106,22 +106,22 @@ namespace GUI
             txtValorTotal.Text = Convert.ToDecimal("0").ToString("C");
             txtValorTotalMaodeObra.Text = Convert.ToDecimal("0").ToString("C");
             txtValorTotalPecas.Text = Convert.ToDecimal("0").ToString("C");
-            txtDescricao.Text = "PESQUISANDO";
+            txtDescricao.Text = "";
 
-            // leitura dos dados
-            ModeloServico modelo = new ModeloServico();
-            modelo.CClienteId = Convert.ToInt32(txtClienteId.Text);
-            modelo.CStatus = "ORÇAMENTO INICIADO";
+            ModeloServico modelo = new ModeloServico
+            {
+                CClienteId = Convert.ToInt32(txtClienteId.Text),
+                CStatus = "SERVIÇO INICIADO"
+            };
+
             DALConexao cx = new DALConexao(ConnectionStringConfiguration.ConnectionString);
             BLLServico bll = new BLLServico(cx);
             bll.IncluirServico(modelo);
             txtServicoId.Text = Convert.ToString(modelo.CServicoId);
-
         }
 
-        private void btnAdicionarMaodeObra_Click(object sender, EventArgs e)
+        private void BtnAdicionarMaodeObra_Click(object sender, EventArgs e)
         {
-
             if (txtClienteId.Text == "")
             {
                 MessageBox.Show("Você precisa primeiro incluir um cliente acima!", "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -129,7 +129,7 @@ namespace GUI
             }
             else
             {
-                frmConsultaMaoDeObra r = new frmConsultaMaoDeObra();
+                FrmConsultaMaoDeObra r = new FrmConsultaMaoDeObra();
                 r.ShowDialog();
 
                 if (r.codigo != 0)
@@ -137,7 +137,7 @@ namespace GUI
                     DALConexao cx = new DALConexao(ConnectionStringConfiguration.ConnectionString);
                     BLLServico bll = new BLLServico(cx);
                     dgvOcultoGuardaInformacao.DataSource = bll.LocalizarMaodeObra(r.codigo);
-                    dgvMaodeObra.DataSource = bll.LocalizarOrcamentoMaodeObra(Convert.ToInt32(txtServicoId.Text));
+                    dgvMaodeObra.DataSource = bll.LocalizarServicoMaodeObra(Convert.ToInt32(txtServicoId.Text));
                     dgvMaodeObra.Columns[0].HeaderText = "Código";
                     dgvMaodeObra.Columns[0].Width = 50;
                     dgvMaodeObra.Columns[1].HeaderText = "Mão de Obra";
@@ -168,18 +168,17 @@ namespace GUI
             txtValorTotal.Text = (txtVT.ToString("C"));
         }
 
-        private void btnAdicionarPeca_Click(object sender, EventArgs e)
+        private void BtnAdicionarPeca_Click(object sender, EventArgs e)
         {
             frmConsultaPeca p = new frmConsultaPeca();
             p.ShowDialog();
 
             if (p.codigo != 0)
             {
-                // objeto para gravar os dados no banco de dados
                 DALConexao cx = new DALConexao(ConnectionStringConfiguration.ConnectionString);
                 BLLServico bll = new BLLServico(cx);
                 dgvOcultoInformacaoPecas.DataSource = bll.LocalizarPeca(p.codigo);
-                dgvPeca.DataSource = bll.LocalizarOrcamentoPeca(Convert.ToInt32(txtServicoId.Text));
+                dgvPeca.DataSource = bll.LocalizarServicoPeca(Convert.ToInt32(txtServicoId.Text));
                 dgvPeca.Columns[0].HeaderText = "Código";
                 dgvPeca.Columns[0].Width = 50;
                 dgvPeca.Columns[1].HeaderText = "Peça";
@@ -212,11 +211,10 @@ namespace GUI
         /* GriewView OCULTO DA MÃO DE OBRA - PARA GUARDAR INFORMAÇÃO MOMENTANEA ATÉ INSERIR NA TABELA */
         private void dgvOcultoGuardaInformacao_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
         {
-            if (e.RowIndex >= 0) // vai guardar a informação escolhida com duplo clique.
+            if (e.RowIndex >= 0)
             {
                 if (Convert.ToInt32(dgvOcultoGuardaInformacao.Rows[e.RowIndex].Cells[0].Value) != 0)
                 {
-                    // leitura dos dados
                     ModeloServico modelo = new ModeloServico();
                     modelo.CServicoId = Convert.ToInt32(txtServicoId.Text);
                     modelo.CMaodeObraId = Convert.ToInt32(dgvOcultoGuardaInformacao.Rows[e.RowIndex].Cells["MaodeObraId"].Value);
@@ -227,22 +225,25 @@ namespace GUI
             }
         }
 
-        private void dgvMaodeObra_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
+        private void DgvMaodeObra_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
         {
             foreach (DataGridViewColumn coluna in dgvMaodeObra.Columns)
                 coluna.SortMode = DataGridViewColumnSortMode.NotSortable;
         }
 
         /* GriewView OCULTO DE PEÇAS - PARA GUARDAR INFORMAÇÃO MOMENTANEA ATÉ INSERIR NA TABELA */
-        private void dgvOcultoInformacaoPecas_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
+        private void DgvOcultoInformacaoPecas_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
         {
-            if (e.RowIndex >= 0) // vai guardar a informação escolhida com duplo clique.
+            if (e.RowIndex >= 0)
             {
                 if (Convert.ToInt32(dgvOcultoInformacaoPecas.Rows[e.RowIndex].Cells[0].Value) != 0)
                 {
-                    ModeloServico modelo = new ModeloServico();
-                    modelo.CServicoId = Convert.ToInt32(txtServicoId.Text);
-                    modelo.CPecaId = Convert.ToInt32(dgvOcultoInformacaoPecas.Rows[e.RowIndex].Cells["PecaId"].Value);
+                    ModeloServico modelo = new ModeloServico
+                    {
+                        CServicoId = Convert.ToInt32(txtServicoId.Text),
+                        CPecaId = Convert.ToInt32(dgvOcultoInformacaoPecas.Rows[e.RowIndex].Cells["PecaId"].Value)
+                    };
+
                     DALConexao cx = new DALConexao(ConnectionStringConfiguration.ConnectionString);
                     BLLServico bll = new BLLServico(cx);
                     bll.IncluirServicoPeca(modelo);
@@ -250,18 +251,16 @@ namespace GUI
             }
         }
 
-        private void dgvPeca_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
+        private void DgvPeca_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
         {
             foreach (DataGridViewColumn coluna in dgvPeca.Columns)
                 coluna.SortMode = DataGridViewColumnSortMode.NotSortable;
         }
 
-        private void btnSalvar_Click(object sender, EventArgs e)
+        private void BtnSalvar_Click(object sender, EventArgs e)
         {
             try
             {
-
-                // leitura dos dados
                 ModeloServico modelo = new ModeloServico();
                 modelo.CServicoId = Convert.ToInt32(txtServicoId.Text);
                 modelo.CClienteId = Convert.ToInt32(txtClienteId.Text);
@@ -270,13 +269,10 @@ namespace GUI
                 modelo.CValorDesconto = Convert.ToDecimal(txtValorDesconto.Text.Replace("R$ ", ""));
                 modelo.CValorTotal = Convert.ToDecimal(txtValorTotal.Text.Replace("R$ ", ""));
                 modelo.CDescricao = txtDescricao.Text;
-                modelo.CStatus = "ORÇAMENTO GERADO";
+                modelo.CStatus = "SERVIÇO GERADO";
 
-                // objeto para gravar os dados no banco de dados
                 DALConexao cx = new DALConexao(ConnectionStringConfiguration.ConnectionString);
                 BLLServico bll = new BLLServico(cx);
-
-                // Alterar uma categoria
 
                 bll.AlterarServico(modelo);
                 MessageBox.Show("Cadastro alterado com sucesso! Número da Ordem de Serviço: " + modelo.CServicoId.ToString(), "Status", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -286,6 +282,7 @@ namespace GUI
                 dgvPeca.DataSource = null;
                 dgvOcultoGuardaInformacao.DataSource = null;
                 dgvOcultoInformacaoPecas.DataSource = null;
+
                 this.LimpaTela();
                 this.alteraBotoes(1);
                 this.Close();
@@ -296,7 +293,7 @@ namespace GUI
             }
         }
 
-        private void txtValorAdicional_Leave(object sender, EventArgs e)
+        private void TxtValorAdicional_Leave(object sender, EventArgs e)
         {
             if (txtValorTotalMaodeObra.Text.Replace("R$ 0,00", "") != "")
             {
@@ -329,7 +326,7 @@ namespace GUI
             }
         }
 
-        private void txtPercentualDesconto_Leave(object sender, EventArgs e)
+        private void TxtPercentualDesconto_Leave(object sender, EventArgs e)
         {
             Decimal PDesc = Convert.ToDecimal(txtPercentualDesconto.Text.Replace("%", ""));
             Decimal VTota = Convert.ToDecimal(txtValorTotal.Text.Replace("R$ ", ""));
@@ -345,47 +342,16 @@ namespace GUI
             }
         }
 
-        private void btnCancelar_Click(object sender, EventArgs e)
+        private void BtnCancelar_Click(object sender, EventArgs e)
         {
             this.operacao = "cancelar";
             this.alteraBotoes(1);
             this.LimpaTela();
         }
 
-        private void btnLocalizar_Click(object sender, EventArgs e)
+        private void BtnLocalizar_Click(object sender, EventArgs e)
         {
-            /*
-                     A BRUXARIA AQUI É GRANDE, TEM QUE PREENCHER OS 3 GRIDS DA TELA E OS CAMPOS.
-                        MAS NA "DALOrcamento" O DESENVOLVIMENTO ESTÁ FEITO.
 
-                    COM A GRAÇA DE DEUS ISSO VAI SAIR
-            */
-
-            /*
-            
-            frmConsultaPeca l = new frmConsultaPeca();
-            l.ShowDialog();
-            if (l.codigo != 0)
-            {
-                // objeto para gravar os dados no banco de dados
-                DALConexao cx = new DALConexao(DadosDaConexao.StringDeConexao);
-                BLLPeca bll = new BLLPeca(cx);
-                ModeloPeca modelo = bll.CarregaModeloPeca(l.codigo);
-                txtPecaId.Text = Convert.ToString(modelo.CPecaId);
-                txtPeca.Text = Convert.ToString(modelo.CPeca);
-                txtFornecedor.Text = Convert.ToString(modelo.CFornecedor);
-                txtValorPeca.Text = Convert.ToString(modelo.CValor);
-                txtValorFrete.Text = Convert.ToString(modelo.CValorFrete);
-                alteraBotoes(3);
-            }
-            else
-            {
-                this.LimpaTela();
-                this.alteraBotoes(1);
-            }
-            l.Dispose(); //destrói o formulário de consulta, para não ocupar memória.
-
-            */
         }
     }
 }

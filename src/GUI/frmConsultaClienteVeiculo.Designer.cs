@@ -49,7 +49,7 @@
             this.dgvClienteVeiculoConsulta.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvClienteVeiculoConsulta.Size = new System.Drawing.Size(760, 472);
             this.dgvClienteVeiculoConsulta.TabIndex = 7;
-            this.dgvClienteVeiculoConsulta.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvClienteVeiculoConsulta_CellDoubleClick);
+            this.dgvClienteVeiculoConsulta.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvClienteVeiculoConsulta_CellDoubleClick);
             // 
             // txtPlacaClienteVeiculoConsulta
             // 

@@ -78,3 +78,4 @@ C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\GUI\obj\x86\Release\G
 C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\GUI\obj\x86\Release\GUI.csproj.CopyComplete
 C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\GUI\obj\x86\Release\GUI.exe
 C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\GUI\obj\x86\Release\GUI.pdb
+C:\Clones\SGM-WindowsForms\src\GUI\obj\x86\Release\GUI.FrmDetalhesServicoGerado.resources

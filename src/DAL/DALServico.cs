@@ -208,9 +208,9 @@ namespace DAL
             return tabela;
         }
 
-        public DataTable LocalizarServicoPeca(int ServicoIdId)
+        public DataTable LocalizarServicoPeca(int servicoId)
         {
-            Convert.ToString(ServicoIdId);
+            Convert.ToString(servicoId);
             DataTable tabela = new DataTable();
             SQLiteDataAdapter da = new SQLiteDataAdapter("" +
                 "SELECT " +
@@ -219,7 +219,7 @@ namespace DAL
                 "(Pecas.Valor + Pecas.ValorFrete) AS ValorTotal " +
                 "FROM ServicoPeca " +
                 "INNER JOIN Pecas ON Pecas.PecaId = ServicoPeca.PecaId " +
-                "WHERE ServicoPeca.ServicoId = " + ServicoIdId, conexao.StringConexao);
+                "WHERE ServicoPeca.ServicoId = " + servicoId, conexao.StringConexao);
             da.Fill(tabela);
             conexao.Desconectar();
             return tabela;
@@ -262,7 +262,7 @@ namespace DAL
             return tabela;
         }
 
-        public ModeloMaoDeObra CarregaModeloOrcamentoMaodeObra(int maodeobraid)
+        public ModeloMaoDeObra CarregaModeloServicoMaodeObra(int maodeobraid)
         {
             ModeloMaoDeObra modelo = new ModeloMaoDeObra();
             SQLiteCommand cmd = new SQLiteCommand();
@@ -312,9 +312,25 @@ namespace DAL
             return tabela;
         }
 
-        public DataTable BuscaHistoricoServicoClientePorPlacaVeiculo(string valor)
+        public DataTable BuscaHistoricoServicoClientePorPlacaVeiculo(string placaVeiculo)
         {
             DataTable tabela = new DataTable();
+            string newPlacaVeiculo = "";
+
+            if (placaVeiculo.Contains("-"))
+            {
+                newPlacaVeiculo = placaVeiculo.Replace("-", "");
+            }
+            else if (placaVeiculo.Length == 0)
+            {
+                return tabela;
+            }
+            else
+            {
+                newPlacaVeiculo = placaVeiculo;
+            }
+
+            
             SQLiteDataAdapter da = new SQLiteDataAdapter(
             "SELECT " +
             " Servico.ServicoId " +
@@ -334,10 +350,38 @@ namespace DAL
             "INNER JOIN Veiculo ON Veiculo.VeiculoId = ClienteVeiculo.VeiculoId " +
             "INNER JOIN Servico ON Servico.ClienteId = Cliente.ClienteId " +
             "WHERE 1=1 " +
-            "AND REPLACE(ClienteVeiculo.PlacaVeiculo, '-', '') = '" + Convert.ToString(valor) + "'", conexao.StringConexao);
+            "AND REPLACE(RTRIM(LTRIM(ClienteVeiculo.PlacaVeiculo)), '-', '') LIKE '%" + Convert.ToString(newPlacaVeiculo) + "%'", conexao.StringConexao);
             da.Fill(tabela);
             conexao.Desconectar();
             return tabela;
+        }
+
+        public ModeloServico BuscarDetalheServicoGerado(int servicoId)
+        {
+            ModeloServico modelo = new ModeloServico();
+            SQLiteCommand cmd = new SQLiteCommand();
+            cmd.Connection = conexao.ObjetoConexao;
+            cmd.CommandText = "SELECT * FROM Servico WHERE ServicoId = @ServicoId";
+            cmd.Parameters.AddWithValue("@ServicoId", servicoId);
+            conexao.Conectar();
+            SQLiteDataReader registro = cmd.ExecuteReader();
+
+            if (registro.HasRows)
+            {
+                registro.Read();
+                modelo.CServicoId = Convert.ToInt32(registro["ServicoId"]);
+                modelo.CClienteId = Convert.ToInt32(registro["ClienteId"]);
+                modelo.CDescricao = Convert.ToString(registro["Descricao"]);
+                modelo.CValorAdicional = Convert.ToDecimal(registro["ValorAdicional"]);
+                modelo.CPercentualDesconto = Convert.ToDecimal(registro["PercentualDesconto"]);
+                modelo.CValorDesconto = Convert.ToDecimal(registro["ValorDesconto"]);
+                modelo.CValorTotal = Convert.ToDecimal(registro["ValorTotal"]);
+                modelo.CStatus = Convert.ToString(registro["Status"]);
+                modelo.CAtivo = Convert.ToBoolean(registro["Ativo"]);
+                modelo.CDataCadastro = Convert.ToDateTime(registro["DataCadastro"]);
+            }
+            conexao.Desconectar();
+            return modelo;
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace GUI
 {
-    partial class frmModeloDeFormularioDeCadastro
+    partial class FrmModeloDeFormularioDeCadastro
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmModeloDeFormularioDeCadastro));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmModeloDeFormularioDeCadastro));
             this.pnCadastro = new System.Windows.Forms.Panel();
             this.pnBotoes = new System.Windows.Forms.Panel();
             this.btnCancelar = new System.Windows.Forms.Button();

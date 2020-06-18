@@ -5,12 +5,12 @@ using System.Windows.Forms;
 
 namespace GUI
 {
-    public partial class frmConsultaGerarOrcamento : Form
+    public partial class FrmConsultaGerarOrcamento : Form
     {
 
         public int codigo = 0;
 
-        public frmConsultaGerarOrcamento()
+        public FrmConsultaGerarOrcamento()
         {
             InitializeComponent();
         }

@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace GUI
 {
-    public partial class frmCadastroMaoDeObra : GUI.frmModeloDeFormularioDeCadastro
+    public partial class frmCadastroMaoDeObra : GUI.FrmModeloDeFormularioDeCadastro
     {
         public frmCadastroMaoDeObra()
         {
@@ -138,7 +138,7 @@ namespace GUI
         private void btnLocalizar_Click(object sender, EventArgs e)
         {
 
-            frmConsultaMaoDeObra m = new frmConsultaMaoDeObra();
+            FrmConsultaMaoDeObra m = new FrmConsultaMaoDeObra();
             m.ShowDialog();
             if (m.codigo != 0)
             {
