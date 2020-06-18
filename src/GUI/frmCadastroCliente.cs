@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace GUI
 {
-    public partial class FrmCadastroCliente : frmModeloDeFormularioDeCadastro
+    public partial class FrmCadastroCliente : FrmModeloDeFormularioDeCadastro
     {
         public FrmCadastroCliente()
         {

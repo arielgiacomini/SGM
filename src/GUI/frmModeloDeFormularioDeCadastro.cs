@@ -3,13 +3,13 @@ using System.Windows.Forms;
 
 namespace GUI
 {
-    public partial class frmModeloDeFormularioDeCadastro : Form
+    public partial class FrmModeloDeFormularioDeCadastro : Form
     {
 
         public String operacao;
 
 
-        public frmModeloDeFormularioDeCadastro()
+        public FrmModeloDeFormularioDeCadastro()
         {
             InitializeComponent();
         }

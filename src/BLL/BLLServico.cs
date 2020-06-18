@@ -14,7 +14,6 @@ namespace BLL
             this.conexao = cx;
         }
 
-        /* INSERE O REGISTRO NO BANCO DE DADOS */
         public void IncluirServico(ModeloServico modelo)
         {
             modelo.CStatus = modelo.CStatus.ToUpper();
@@ -79,13 +78,13 @@ namespace BLL
 
 
         /* PREENCHE OS DADOS NA GRIDVIEW DA TELA DE GERAÇÃO DE ORÇAMENTO */
-        public DataTable LocalizarOrcamentoMaodeObra(int ServicoId)
+        public DataTable LocalizarServicoMaodeObra(int ServicoId)
         {
             DALServico DALobj = new DALServico(conexao);
             return DALobj.LocalizarServicoMaodeObra(ServicoId);
         }
 
-        public DataTable LocalizarOrcamentoPeca(int ServicoId)
+        public DataTable LocalizarServicoPeca(int ServicoId)
         {
             DALServico DALobj = new DALServico(conexao);
             return DALobj.LocalizarServicoPeca(ServicoId);
@@ -107,6 +106,12 @@ namespace BLL
         {
             DALServico DALobj = new DALServico(conexao);
             return DALobj.BuscaHistoricoServicoClientePorPlacaVeiculo(valor);
+        }
+
+        public ModeloServico BuscarDetalheServicoGerado(int servicoId)
+        {
+            DALServico DALobj = new DALServico(conexao);
+            return DALobj.BuscarDetalheServicoGerado(servicoId);
         }
     }
 }

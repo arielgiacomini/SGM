@@ -49,7 +49,7 @@
             this.dgvConsultCliente.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvConsultCliente.Size = new System.Drawing.Size(760, 472);
             this.dgvConsultCliente.TabIndex = 7;
-            this.dgvConsultCliente.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvConsultCliente_CellDoubleClick);
+            this.dgvConsultCliente.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvConsultCliente_CellDoubleClick);
             // 
             // txtConsultaCliente
             // 
@@ -77,7 +77,7 @@
             this.btnConsultaCliente.TabIndex = 6;
             this.btnConsultaCliente.Text = "Consultar";
             this.btnConsultaCliente.UseVisualStyleBackColor = true;
-            this.btnConsultaCliente.Click += new System.EventHandler(this.btnConsultaCliente_Click);
+            this.btnConsultaCliente.Click += new System.EventHandler(this.BtnConsultaCliente_Click);
             // 
             // pictureBox1
             // 

@@ -61,6 +61,7 @@
             this.btnPrincipalRealizaMaoDeObra = new System.Windows.Forms.Button();
             this.btnVeiculoCliente = new System.Windows.Forms.Button();
             this.lblVersionSystem = new System.Windows.Forms.Label();
+            this.btnBuscarHistoricoServicoCliente = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -278,7 +279,7 @@
             this.btnPrincipalEmitirNotas.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPrincipalEmitirNotas.Image = global::GUI.Properties.Resources.Sales_report_icon;
             this.btnPrincipalEmitirNotas.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnPrincipalEmitirNotas.Location = new System.Drawing.Point(912, 380);
+            this.btnPrincipalEmitirNotas.Location = new System.Drawing.Point(845, 393);
             this.btnPrincipalEmitirNotas.Name = "btnPrincipalEmitirNotas";
             this.btnPrincipalEmitirNotas.Size = new System.Drawing.Size(153, 188);
             this.btnPrincipalEmitirNotas.TabIndex = 7;
@@ -293,7 +294,7 @@
             this.btnPrincipalCadastroCliente.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPrincipalCadastroCliente.Image = global::GUI.Properties.Resources.business_application_addmale_useradd_insert_add_user_client_2312;
             this.btnPrincipalCadastroCliente.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnPrincipalCadastroCliente.Location = new System.Drawing.Point(252, 380);
+            this.btnPrincipalCadastroCliente.Location = new System.Drawing.Point(185, 393);
             this.btnPrincipalCadastroCliente.Name = "btnPrincipalCadastroCliente";
             this.btnPrincipalCadastroCliente.Size = new System.Drawing.Size(153, 188);
             this.btnPrincipalCadastroCliente.TabIndex = 6;
@@ -307,7 +308,7 @@
             this.btnPrincipalOrcamento.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPrincipalOrcamento.Image = global::GUI.Properties.Resources._3925433_budget_money_stocks_icon_111559;
             this.btnPrincipalOrcamento.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnPrincipalOrcamento.Location = new System.Drawing.Point(582, 380);
+            this.btnPrincipalOrcamento.Location = new System.Drawing.Point(515, 393);
             this.btnPrincipalOrcamento.Name = "btnPrincipalOrcamento";
             this.btnPrincipalOrcamento.Size = new System.Drawing.Size(153, 188);
             this.btnPrincipalOrcamento.TabIndex = 4;
@@ -321,7 +322,7 @@
             this.btnPrincipalRealizaMaoDeObra.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPrincipalRealizaMaoDeObra.Image = global::GUI.Properties.Resources.cashier_icon_icons_com_53629;
             this.btnPrincipalRealizaMaoDeObra.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnPrincipalRealizaMaoDeObra.Location = new System.Drawing.Point(747, 380);
+            this.btnPrincipalRealizaMaoDeObra.Location = new System.Drawing.Point(680, 393);
             this.btnPrincipalRealizaMaoDeObra.Name = "btnPrincipalRealizaMaoDeObra";
             this.btnPrincipalRealizaMaoDeObra.Size = new System.Drawing.Size(153, 188);
             this.btnPrincipalRealizaMaoDeObra.TabIndex = 5;
@@ -335,7 +336,7 @@
             this.btnVeiculoCliente.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnVeiculoCliente.Image = global::GUI.Properties.Resources.Travel_BMV_icon2;
             this.btnVeiculoCliente.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnVeiculoCliente.Location = new System.Drawing.Point(417, 380);
+            this.btnVeiculoCliente.Location = new System.Drawing.Point(350, 393);
             this.btnVeiculoCliente.Name = "btnVeiculoCliente";
             this.btnVeiculoCliente.Size = new System.Drawing.Size(153, 188);
             this.btnVeiculoCliente.TabIndex = 8;
@@ -353,6 +354,20 @@
             this.lblVersionSystem.TabIndex = 9;
             this.lblVersionSystem.Text = "Versão: ";
             // 
+            // btnBuscarHistoricoServicoCliente
+            // 
+            this.btnBuscarHistoricoServicoCliente.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBuscarHistoricoServicoCliente.Image = global::GUI.Properties.Resources.Voltar1_fw;
+            this.btnBuscarHistoricoServicoCliente.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnBuscarHistoricoServicoCliente.Location = new System.Drawing.Point(1004, 393);
+            this.btnBuscarHistoricoServicoCliente.Name = "btnBuscarHistoricoServicoCliente";
+            this.btnBuscarHistoricoServicoCliente.Size = new System.Drawing.Size(153, 188);
+            this.btnBuscarHistoricoServicoCliente.TabIndex = 10;
+            this.btnBuscarHistoricoServicoCliente.Text = "Buscar Histórico de Serviços do Clientes";
+            this.btnBuscarHistoricoServicoCliente.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnBuscarHistoricoServicoCliente.UseVisualStyleBackColor = true;
+            this.btnBuscarHistoricoServicoCliente.Click += new System.EventHandler(this.BtnBuscarHistoricoServicoCliente_Click);
+            // 
             // frmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -360,6 +375,7 @@
             this.BackgroundImage = global::GUI.Properties.Resources.frmPrincipal;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1350, 729);
+            this.Controls.Add(this.btnBuscarHistoricoServicoCliente);
             this.Controls.Add(this.lblVersionSystem);
             this.Controls.Add(this.btnVeiculoCliente);
             this.Controls.Add(this.btnPrincipalEmitirNotas);
@@ -415,5 +431,6 @@
         private System.Windows.Forms.ToolStripMenuItem calculadoraToolStripMenuItem;
         private System.Windows.Forms.Button btnVeiculoCliente;
         private System.Windows.Forms.Label lblVersionSystem;
+        private System.Windows.Forms.Button btnBuscarHistoricoServicoCliente;
     }
 }

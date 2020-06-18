@@ -5,18 +5,17 @@ using System.Windows.Forms;
 
 namespace GUI
 {
-    public partial class frmConsultaMaoDeObra : Form
+    public partial class FrmConsultaMaoDeObra : Form
     {
         public int codigo = 0;
 
-        public frmConsultaMaoDeObra()
+        public FrmConsultaMaoDeObra()
         {
             InitializeComponent();
         }
 
         private void btnConsultaMaoDeObra_Click(object sender, EventArgs e)
         {
-            // objeto para gravar os dados no banco de dados
             DALConexao cx = new DALConexao(ConnectionStringConfiguration.ConnectionString);
             BLLMaoDeObra bll = new BLLMaoDeObra(cx);
             dgvConsultaMaoDeObra.DataSource = bll.Localizar(txtConsultaMaoDeObra.Text);
@@ -24,7 +23,7 @@ namespace GUI
 
         private void frmConsultaMaoDeObra_Load(object sender, EventArgs e)
         {
-            btnConsultaMaoDeObra_Click(sender, e); // para carregar o grid na chamada da tela
+            btnConsultaMaoDeObra_Click(sender, e);
             dgvConsultaMaoDeObra.Columns[0].HeaderText = "Código";
             dgvConsultaMaoDeObra.Columns[0].Width = 50;
             dgvConsultaMaoDeObra.Columns[1].HeaderText = "Mão-de-Obra/Serviço";
@@ -45,7 +44,7 @@ namespace GUI
 
         private void dgvConsultaMaoDeObra_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0) // vai guardar a informação escolhida com duplo clique.
+            if (e.RowIndex >= 0)
             {
                 this.codigo = Convert.ToInt32(dgvConsultaMaoDeObra.Rows[e.RowIndex].Cells[0].Value);
                 this.Close();

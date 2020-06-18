@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace GUI
 {
-    public partial class frmCadastroClienteVeiculo : GUI.frmModeloDeFormularioDeCadastro
+    public partial class frmCadastroClienteVeiculo : GUI.FrmModeloDeFormularioDeCadastro
     {
 
         public frmCadastroClienteVeiculo()
@@ -38,6 +38,8 @@ namespace GUI
             BLLVeiculo bll = new BLLVeiculo(cx);
             BLLCliente bllC = new BLLCliente(cx);
             BLLVeiculoCliente veiculoClienteBLL = new BLLVeiculoCliente(cx);
+
+
             ModeloVeiculoCliente modelo = veiculoClienteBLL.CarregaModeloVeiculoClienteByPlaca(placaVeiculo);
 
             if (modelo.CClienteVeiculoId.Equals(0)) 

@@ -1,6 +1,6 @@
 ﻿namespace GUI
 {
-    partial class frmConsultaGerarOrcamento
+    partial class FrmConsultaGerarOrcamento
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmConsultaGerarOrcamento));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmConsultaGerarOrcamento));
             this.dgvConsultaOrcamentoGerados = new System.Windows.Forms.DataGridView();
             this.btnConsultaOrcamentosGerados = new System.Windows.Forms.Button();
             this.txtConsultaOrcamentosGerados = new System.Windows.Forms.TextBox();

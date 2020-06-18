@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace GUI
 {
-    public partial class frmGerarOrcamento : GUI.frmModeloDeFormularioDeCadastro
+    public partial class frmGerarOrcamento : GUI.FrmModeloDeFormularioDeCadastro
     {
         public frmGerarOrcamento()
         {
@@ -126,7 +126,7 @@ namespace GUI
             }
             else
             {
-                frmConsultaMaoDeObra r = new frmConsultaMaoDeObra();
+                FrmConsultaMaoDeObra r = new FrmConsultaMaoDeObra();
                 r.ShowDialog();
 
                 if (r.codigo != 0)
@@ -349,22 +349,17 @@ namespace GUI
             this.LimpaTela();
         }
 
-        private void btnLocalizar_Click(object sender, EventArgs e)
+        private void BtnLocalizar_Click(object sender, EventArgs e)
         {
-            /*
-                     A BRUXARIA AQUI É GRANDE, TEM QUE PREENCHER OS 3 GRIDS DA TELA E OS CAMPOS.
-                        MAS NA "DALOrcamento" O DESENVOLVIMENTO ESTÁ FEITO.
-            */
-
-
-            frmConsultaGerarOrcamento y = new frmConsultaGerarOrcamento();
+            FrmConsultaGerarOrcamento y = new FrmConsultaGerarOrcamento();
             y.ShowDialog();
             if (y.codigo != 0)
             {
-                // objeto para gravar os dados no banco de dados
                 DALConexao cx = new DALConexao(ConnectionStringConfiguration.ConnectionString);
                 BLLOrcamento bll = new BLLOrcamento(cx);
+
                 ModeloOrcamento modelo = bll.CarregaModeloOrcamento(y.codigo);
+
                 txtOrcamentoId.Text = Convert.ToString(modelo.COrcamentoId);
                 txtClienteId.Text = Convert.ToString(modelo.CClienteId);
                 txtDescricao.Text = Convert.ToString(modelo.CDescricao);
@@ -379,8 +374,7 @@ namespace GUI
                 this.LimpaTela();
                 this.alteraBotoes(1);
             }
-            y.Dispose(); //destrói o formulário de consulta, para não ocupar memória.
-
+            y.Dispose();
         }
     }
 }

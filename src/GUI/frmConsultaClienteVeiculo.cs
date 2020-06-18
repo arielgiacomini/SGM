@@ -56,7 +56,7 @@ namespace GUI
             dgvClienteVeiculoConsulta.DataSource = bll.LocalizarTodosVeiculosCliente(clienteId);
         }
 
-        private void dgvClienteVeiculoConsulta_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void DgvClienteVeiculoConsulta_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0) // vai guardar a informação escolhida com duplo clique.
             {
