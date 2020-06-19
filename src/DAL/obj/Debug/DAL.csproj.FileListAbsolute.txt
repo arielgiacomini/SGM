@@ -35,14 +35,6 @@ C:\Clones\SGM\src\DAL\obj\Debug\DAL.csprojAssemblyReference.cache
 C:\Clones\SGM\src\DAL\obj\Debug\DAL.csproj.CopyComplete
 C:\Clones\SGM\src\DAL\obj\Debug\DAL.dll
 C:\Clones\SGM\src\DAL\obj\Debug\DAL.pdb
-C:\Clones\SGM-WindowsForms\src\DAL\bin\Debug\DAL.dll
-C:\Clones\SGM-WindowsForms\src\DAL\bin\Debug\DAL.pdb
-C:\Clones\SGM-WindowsForms\src\DAL\bin\Debug\Modelo.dll
-C:\Clones\SGM-WindowsForms\src\DAL\bin\Debug\Modelo.pdb
-C:\Clones\SGM-WindowsForms\src\DAL\obj\Debug\DAL.csprojAssemblyReference.cache
-C:\Clones\SGM-WindowsForms\src\DAL\obj\Debug\DAL.csproj.CopyComplete
-C:\Clones\SGM-WindowsForms\src\DAL\obj\Debug\DAL.dll
-C:\Clones\SGM-WindowsForms\src\DAL\obj\Debug\DAL.pdb
 C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\DAL\bin\Debug\DAL.dll
 C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\DAL\bin\Debug\DAL.pdb
 C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\DAL\bin\Debug\Modelo.dll
@@ -52,3 +44,11 @@ C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\DAL\obj\Debug\DAL.csp
 C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\DAL\obj\Debug\DAL.csproj.CopyComplete
 C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\DAL\obj\Debug\DAL.dll
 C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\DAL\obj\Debug\DAL.pdb
+C:\Clones\SGM-WindowsForms\src\DAL\bin\Debug\DAL.dll
+C:\Clones\SGM-WindowsForms\src\DAL\bin\Debug\DAL.pdb
+C:\Clones\SGM-WindowsForms\src\DAL\bin\Debug\Modelo.dll
+C:\Clones\SGM-WindowsForms\src\DAL\bin\Debug\Modelo.pdb
+C:\Clones\SGM-WindowsForms\src\DAL\obj\Debug\DAL.csprojAssemblyReference.cache
+C:\Clones\SGM-WindowsForms\src\DAL\obj\Debug\DAL.csproj.CopyComplete
+C:\Clones\SGM-WindowsForms\src\DAL\obj\Debug\DAL.dll
+C:\Clones\SGM-WindowsForms\src\DAL\obj\Debug\DAL.pdb

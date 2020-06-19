@@ -1,6 +1,7 @@
 ﻿using BLL;
 using DAL;
 using Modelo;
+using Modelo.Entities;
 using System;
 using System.Data;
 using System.Linq;
@@ -167,14 +168,22 @@ namespace GUI
             }
             else
             {
-                FrmConsultaMaoDeObra r = new FrmConsultaMaoDeObra();
-                r.ShowDialog();
+                FrmConsultaMaoDeObra consultaMaodeObra = new FrmConsultaMaoDeObra();
+                consultaMaodeObra.ShowDialog();
 
-                if (r.codigo != 0)
+                if (consultaMaodeObra.codigo != 0)
                 {
                     DALConexao cx = new DALConexao(ConnectionStringConfiguration.ConnectionString);
                     BLLServico bll = new BLLServico(cx);
-                    dgvOcultoGuardaInformacao.DataSource = bll.LocalizarMaodeObra(r.codigo);
+
+                    ServicoMaodeObra servicoMaodeObra = new ServicoMaodeObra()
+                    {
+                        ServicoId = Convert.ToInt32(txtServicoId.Text),
+                        MaodeObraId = consultaMaodeObra.codigo
+                    };
+
+                    bll.IncluirServicoMaodeObra(servicoMaodeObra);
+
                     dgvMaodeObra.DataSource = bll.LocalizarServicoMaodeObra(Convert.ToInt32(txtServicoId.Text));
                     dgvMaodeObra.Columns[0].HeaderText = "Código";
                     dgvMaodeObra.Columns[0].Width = 50;
@@ -210,14 +219,22 @@ namespace GUI
 
         private void BtnAdicionarPeca_Click(object sender, EventArgs e)
         {
-            frmConsultaPeca p = new frmConsultaPeca();
-            p.ShowDialog();
+            frmConsultaPeca consultaPeca = new frmConsultaPeca();
+            consultaPeca.ShowDialog();
 
-            if (p.codigo != 0)
+            if (consultaPeca.codigo != 0)
             {
                 DALConexao cx = new DALConexao(ConnectionStringConfiguration.ConnectionString);
                 BLLServico bll = new BLLServico(cx);
-                dgvOcultoInformacaoPecas.DataSource = bll.LocalizarPeca(p.codigo);
+
+                ServicoPeca servicoPeca = new ServicoPeca()
+                {
+                    ServicoId = Convert.ToInt32(txtServicoId.Text),
+                    PecaId = consultaPeca.codigo
+                };
+
+                bll.IncluirServicoPeca(servicoPeca);
+
                 dgvPeca.DataSource = bll.LocalizarServicoPeca(Convert.ToInt32(txtServicoId.Text));
                 dgvPeca.Columns[0].HeaderText = "Código";
                 dgvPeca.Columns[0].Width = 50;
@@ -250,47 +267,10 @@ namespace GUI
             txtValorTotal.Text = (txtVT.ToString("C"));
         }
 
-        /* GriewView OCULTO DA MÃO DE OBRA - PARA GUARDAR INFORMAÇÃO MOMENTANEA ATÉ INSERIR NA TABELA */
-        private void dgvOcultoGuardaInformacao_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
-        {
-            if (e.RowIndex >= 0)
-            {
-                if (Convert.ToInt32(dgvOcultoGuardaInformacao.Rows[e.RowIndex].Cells[0].Value) != 0)
-                {
-                    ModeloServico modelo = new ModeloServico();
-                    modelo.CServicoId = Convert.ToInt32(txtServicoId.Text);
-                    modelo.CMaodeObraId = Convert.ToInt32(dgvOcultoGuardaInformacao.Rows[e.RowIndex].Cells["MaodeObraId"].Value);
-                    DALConexao cx = new DALConexao(ConnectionStringConfiguration.ConnectionString);
-                    BLLServico bll = new BLLServico(cx);
-                    bll.IncluirServicoMaodeObra(modelo);
-                }
-            }
-        }
-
         private void DgvMaodeObra_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
         {
             foreach (DataGridViewColumn coluna in dgvMaodeObra.Columns)
                 coluna.SortMode = DataGridViewColumnSortMode.NotSortable;
-        }
-
-        /* GriewView OCULTO DE PEÇAS - PARA GUARDAR INFORMAÇÃO MOMENTANEA ATÉ INSERIR NA TABELA */
-        private void DgvOcultoInformacaoPecas_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
-        {
-            if (e.RowIndex >= 0)
-            {
-                if (Convert.ToInt32(dgvOcultoInformacaoPecas.Rows[e.RowIndex].Cells[0].Value) != 0)
-                {
-                    ModeloServico modelo = new ModeloServico
-                    {
-                        CServicoId = Convert.ToInt32(txtServicoId.Text),
-                        CPecaId = Convert.ToInt32(dgvOcultoInformacaoPecas.Rows[e.RowIndex].Cells["PecaId"].Value)
-                    };
-
-                    DALConexao cx = new DALConexao(ConnectionStringConfiguration.ConnectionString);
-                    BLLServico bll = new BLLServico(cx);
-                    bll.IncluirServicoPeca(modelo);
-                }
-            }
         }
 
         private void DgvPeca_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
@@ -322,8 +302,6 @@ namespace GUI
                 dgvCliente.DataSource = null;
                 dgvMaodeObra.DataSource = null;
                 dgvPeca.DataSource = null;
-                dgvOcultoGuardaInformacao.DataSource = null;
-                dgvOcultoInformacaoPecas.DataSource = null;
 
                 this.LimpaTela();
                 this.alteraBotoes(1);
@@ -419,6 +397,75 @@ namespace GUI
             }
 
             consultaHistoricoServico.Dispose();
+        }
+
+        private void DgvMaodeObra_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                int maoDeObraId = Convert.ToInt32(dgvMaodeObra.Rows[e.RowIndex].Cells[0].Value);
+
+                DALConexao cx = new DALConexao(ConnectionStringConfiguration.ConnectionString);
+                BLLServico bll = new BLLServico(cx);
+
+                DialogResult res = MessageBox.Show("Deseja realmente EXCLUIR este item?", "Pergunta", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (res.ToString() == "Yes")
+                {
+
+                    ServicoMaodeObra servicoMaodeObra = new ServicoMaodeObra()
+                    {
+                        ServicoId = Convert.ToInt32(txtServicoId.Text),
+                        MaodeObraId = maoDeObraId
+                    };
+
+                    bll.ExcluirServicoMaodeObra(servicoMaodeObra);
+
+                    dgvMaodeObra.DataSource = bll.LocalizarServicoMaodeObra(Convert.ToInt32(txtServicoId.Text));
+                    dgvMaodeObra.Columns[0].HeaderText = "Código";
+                    dgvMaodeObra.Columns[0].Width = 50;
+                    dgvMaodeObra.Columns[1].HeaderText = "Mão de Obra";
+                    dgvMaodeObra.Columns[1].Width = 330;
+                    dgvMaodeObra.Columns[2].HeaderText = "Valor";
+                    dgvMaodeObra.Columns[2].Width = 70;
+                    dgvMaodeObra.Columns[2].DefaultCellStyle.Format = "C2";
+                    dgvMaodeObra.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                }
+            }
+        }
+
+        private void DgvPeca_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                int pecaId = Convert.ToInt32(dgvPeca.Rows[e.RowIndex].Cells[0].Value);
+
+                DALConexao cx = new DALConexao(ConnectionStringConfiguration.ConnectionString);
+                BLLServico bll = new BLLServico(cx);
+
+                DialogResult res = MessageBox.Show("Deseja realmente EXCLUIR este item?", "Pergunta", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (res.ToString() == "Yes")
+                {
+                    ServicoPeca servicoPeca = new ServicoPeca()
+                    {
+                        ServicoId = Convert.ToInt32(txtServicoId.Text),
+                        PecaId = pecaId
+                    };
+
+                    bll.ExcluirServicoPeca(servicoPeca);
+
+                    dgvPeca.DataSource = bll.LocalizarServicoPeca(Convert.ToInt32(txtServicoId.Text));
+                    dgvPeca.Columns[0].HeaderText = "Código";
+                    dgvPeca.Columns[0].Width = 50;
+                    dgvPeca.Columns[1].HeaderText = "Peça";
+                    dgvPeca.Columns[1].Width = 330;
+                    dgvPeca.Columns[2].HeaderText = "Valor Integral";
+                    dgvPeca.Columns[2].Width = 70;
+                    dgvPeca.Columns[2].DefaultCellStyle.Format = "C2";
+                    dgvPeca.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                }
+            }
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using BLL;
 using DAL;
 using Modelo;
+using Modelo.Entities;
 using System;
 using System.Data;
 using System.Linq;
@@ -158,7 +159,6 @@ namespace GUI
 
         private void BtnAdicionarMaodeObra_Click(object sender, EventArgs e)
         {
-
             if (txtClienteId.Text == "")
             {
                 MessageBox.Show("Você precisa primeiro incluir um cliente acima!", "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -166,14 +166,22 @@ namespace GUI
             }
             else
             {
-                FrmConsultaMaoDeObra r = new FrmConsultaMaoDeObra();
-                r.ShowDialog();
+                FrmConsultaMaoDeObra consultaMaodeObra = new FrmConsultaMaoDeObra();
+                consultaMaodeObra.ShowDialog();
 
-                if (r.codigo != 0)
+                if (consultaMaodeObra.codigo != 0)
                 {
                     DALConexao cx = new DALConexao(ConnectionStringConfiguration.ConnectionString);
                     BLLOrcamento bll = new BLLOrcamento(cx);
-                    dgvOcultoGuardaInformacao.DataSource = bll.LocalizarMaodeObra(r.codigo);
+
+                    OrcamentoMaodeObra orcamentoMaodeObra = new OrcamentoMaodeObra()
+                    {
+                        OrcamentoId = Convert.ToInt32(txtOrcamentoId.Text),
+                        MaodeObraId = consultaMaodeObra.codigo
+                    };
+
+                    bll.IncluirOrcamentoMaodeObra(orcamentoMaodeObra);
+
                     dgvMaodeObra.DataSource = bll.LocalizarOrcamentoMaodeObra(Convert.ToInt32(txtOrcamentoId.Text));
                     dgvMaodeObra.Columns[0].HeaderText = "Código";
                     dgvMaodeObra.Columns[0].Width = 50;
@@ -209,15 +217,24 @@ namespace GUI
 
         private void BtnAdicionarPeca_Click(object sender, EventArgs e)
         {
-            frmConsultaPeca p = new frmConsultaPeca();
-            p.ShowDialog();
+            frmConsultaPeca consultaPeca = new frmConsultaPeca();
+            consultaPeca.ShowDialog();
 
-            if (p.codigo != 0)
+            if (consultaPeca.codigo != 0)
             {
                 DALConexao cx = new DALConexao(ConnectionStringConfiguration.ConnectionString);
                 BLLOrcamento bll = new BLLOrcamento(cx);
-                dgvOcultoInformacaoPecas.DataSource = bll.LocalizarPeca(p.codigo);
+
+                OrcamentoPeca orcamentoPeca = new OrcamentoPeca()
+                {
+                    OrcamentoId = Convert.ToInt32(txtOrcamentoId.Text),
+                    PecaId = consultaPeca.codigo
+                };
+
+                bll.IncluirOrcamentoPeca(orcamentoPeca);
+
                 dgvPeca.DataSource = bll.LocalizarOrcamentoPeca(Convert.ToInt32(txtOrcamentoId.Text));
+
                 dgvPeca.Columns[0].HeaderText = "Código";
                 dgvPeca.Columns[0].Width = 50;
                 dgvPeca.Columns[1].HeaderText = "Peça";
@@ -249,45 +266,10 @@ namespace GUI
             txtValorTotal.Text = (txtVT.ToString("C"));
         }
 
-
-        /* GriewView OCULTO DA MÃO DE OBRA - PARA GUARDAR INFORMAÇÃO MOMENTANEA ATÉ INSERIR NA TABELA */
-        private void DgvOcultoGuardaInformacao_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
-        {
-            if (e.RowIndex >= 0)
-            {
-                if (Convert.ToInt32(dgvOcultoGuardaInformacao.Rows[e.RowIndex].Cells[0].Value) != 0)
-                {
-                    ModeloOrcamento modelo = new ModeloOrcamento();
-                    modelo.COrcamentoId = Convert.ToInt32(txtOrcamentoId.Text);
-                    modelo.CMaodeObraId = Convert.ToInt32(dgvOcultoGuardaInformacao.Rows[e.RowIndex].Cells["MaodeObraId"].Value);
-                    DALConexao cx = new DALConexao(ConnectionStringConfiguration.ConnectionString);
-                    BLLOrcamento bll = new BLLOrcamento(cx);
-                    bll.IncluirOrcamentoMaodeObra(modelo);
-                }
-            }
-        }
-
-        private void dgvMaodeObra_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
+        private void DgvMaodeObra_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
         {
             foreach (DataGridViewColumn coluna in dgvMaodeObra.Columns)
                 coluna.SortMode = DataGridViewColumnSortMode.NotSortable;
-        }
-
-        /* GriewView OCULTO DE PRODUTOS/PEÇAS - PARA GUARDAR INFORMAÇÃO MOMENTANEA ATÉ INSERIR NA TABELA */
-        private void DgvOcultoInformacaoPecas_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
-        {
-            if (e.RowIndex >= 0) // vai guardar a informação escolhida com duplo clique.
-            {
-                if (Convert.ToInt32(dgvOcultoInformacaoPecas.Rows[e.RowIndex].Cells[0].Value) != 0)
-                {
-                    ModeloOrcamento modelo = new ModeloOrcamento();
-                    modelo.COrcamentoId = Convert.ToInt32(txtOrcamentoId.Text);
-                    modelo.CPecaId = Convert.ToInt32(dgvOcultoInformacaoPecas.Rows[e.RowIndex].Cells["PecaId"].Value);
-                    DALConexao cx = new DALConexao(ConnectionStringConfiguration.ConnectionString);
-                    BLLOrcamento bll = new BLLOrcamento(cx);
-                    bll.IncluirOrcamentoPeca(modelo);
-                }
-            }
         }
 
         private void DgvPeca_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
@@ -296,7 +278,7 @@ namespace GUI
                 coluna.SortMode = DataGridViewColumnSortMode.NotSortable;
         }
 
-        private void btnSalvar_Click(object sender, EventArgs e)
+        private void BtnSalvar_Click(object sender, EventArgs e)
         {
             try
             {
@@ -319,8 +301,6 @@ namespace GUI
                 dgvCliente.DataSource = null;
                 dgvMaodeObra.DataSource = null;
                 dgvPeca.DataSource = null;
-                dgvOcultoGuardaInformacao.DataSource = null;
-                dgvOcultoInformacaoPecas.DataSource = null;
                 this.LimpaTela();
                 this.alteraBotoes(1);
                 this.Close();
@@ -415,6 +395,76 @@ namespace GUI
             }
 
             consultaHistoricoOrcamento.Dispose();
+        }
+
+        private void DgvMaodeObra_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                int maoDeObraId = Convert.ToInt32(dgvMaodeObra.Rows[e.RowIndex].Cells[0].Value);
+
+                DALConexao cx = new DALConexao(ConnectionStringConfiguration.ConnectionString);
+                BLLOrcamento bll = new BLLOrcamento(cx);
+
+                DialogResult res = MessageBox.Show("Deseja realmente EXCLUIR este item?", "Pergunta", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (res.ToString() == "Yes")
+                {
+                    OrcamentoMaodeObra orcamentoMaodeObra = new OrcamentoMaodeObra()
+                    {
+                        OrcamentoId = Convert.ToInt32(txtOrcamentoId.Text),
+                        MaodeObraId = maoDeObraId
+                    };
+
+
+                    bll.ExcluirOrcamentoMaodeObra(orcamentoMaodeObra);
+
+                    dgvMaodeObra.DataSource = bll.LocalizarOrcamentoMaodeObra(Convert.ToInt32(txtOrcamentoId.Text));
+                    dgvMaodeObra.Columns[0].HeaderText = "Código";
+                    dgvMaodeObra.Columns[0].Width = 50;
+                    dgvMaodeObra.Columns[1].HeaderText = "Mão de Obra";
+                    dgvMaodeObra.Columns[1].Width = 330;
+                    dgvMaodeObra.Columns[2].HeaderText = "Valor";
+                    dgvMaodeObra.Columns[2].Width = 70;
+                    dgvMaodeObra.Columns[2].DefaultCellStyle.Format = "C2";
+                    dgvMaodeObra.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                }                
+            }
+        }
+
+        private void DgvPeca_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                int pecaId = Convert.ToInt32(dgvPeca.Rows[e.RowIndex].Cells[0].Value);
+
+                DALConexao cx = new DALConexao(ConnectionStringConfiguration.ConnectionString);
+                BLLOrcamento bll = new BLLOrcamento(cx);
+
+                DialogResult res = MessageBox.Show("Deseja realmente EXCLUIR este item?", "Pergunta", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (res.ToString() == "Yes")
+                {
+                    OrcamentoPeca orcamentoPeca = new OrcamentoPeca()
+                    {
+                        OrcamentoId = Convert.ToInt32(txtOrcamentoId.Text),
+                        PecaId = pecaId
+                    };
+
+                    bll.ExcluirOrcamentoPeca(orcamentoPeca);
+
+                    dgvPeca.DataSource = bll.LocalizarOrcamentoPeca(Convert.ToInt32(txtOrcamentoId.Text));
+
+                    dgvPeca.Columns[0].HeaderText = "Código";
+                    dgvPeca.Columns[0].Width = 50;
+                    dgvPeca.Columns[1].HeaderText = "Peça";
+                    dgvPeca.Columns[1].Width = 330;
+                    dgvPeca.Columns[2].HeaderText = "Valor Integral";
+                    dgvPeca.Columns[2].Width = 70;
+                    dgvPeca.Columns[2].DefaultCellStyle.Format = "C2";
+                    dgvPeca.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                }
+            }
         }
     }
 }
