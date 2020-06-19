@@ -1,4 +1,5 @@
 ﻿using Modelo;
+using Modelo.Entities;
 using System;
 using System.Data;
 using System.Data.SQLite;
@@ -52,30 +53,33 @@ namespace DAL
             conexao.Desconectar();
         }
 
-        public void IncluirOrcamentoMaodeObra(ModeloOrcamento modelo)
+        public void IncluirOrcamentoMaodeObra(OrcamentoMaodeObra modelo)
         {
-            SQLiteCommand cmd = new SQLiteCommand();
-            cmd.Connection = conexao.ObjetoConexao;
-            cmd.CommandText = "INSERT INTO OrcamentoMaodeObra " +
+            SQLiteCommand cmd = new SQLiteCommand
+            {
+                Connection = conexao.ObjetoConexao,
+                CommandText = "INSERT INTO OrcamentoMaodeObra " +
                 "(" +
                 "OrcamentoId," +
                 "MaodeObraId " +
                 ") VALUES (" +
                 "@OrcamentoId," +
                 "@MaodeObraId " +
-                "); ";
-            cmd.Parameters.AddWithValue("@OrcamentoId", modelo.COrcamentoId);
-            cmd.Parameters.AddWithValue("@MaodeObraId", modelo.CMaodeObraId);
+                "); "
+            };
+            cmd.Parameters.AddWithValue("@OrcamentoId", modelo.OrcamentoId);
+            cmd.Parameters.AddWithValue("@MaodeObraId", modelo.MaodeObraId);
             conexao.Conectar();
             cmd.ExecuteNonQuery();
             conexao.Desconectar();
         }
 
-        public void IncluirOrcamentoPeca(ModeloOrcamento modelo)
+        public void IncluirOrcamentoPeca(OrcamentoPeca modelo)
         {
-            SQLiteCommand cmd = new SQLiteCommand();
-            cmd.Connection = conexao.ObjetoConexao;
-            cmd.CommandText = "INSERT INTO OrcamentoPeca " +
+            SQLiteCommand cmd = new SQLiteCommand
+            {
+                Connection = conexao.ObjetoConexao,
+                CommandText = "INSERT INTO OrcamentoPeca " +
                 "(" +
                 "OrcamentoId," +
                 "PecaId " +
@@ -83,11 +87,12 @@ namespace DAL
                 "@OrcamentoId," +
                 "@PecaId " +
                 "); " +
-                "SELECT seq FROM sqlite_sequence WHERE name = 'Orcamento';";
-            cmd.Parameters.AddWithValue("@OrcamentoId", modelo.COrcamentoId);
-            cmd.Parameters.AddWithValue("@PecaId", modelo.CPecaId);
+                "SELECT seq FROM sqlite_sequence WHERE name = 'Orcamento';"
+            };
+            cmd.Parameters.AddWithValue("@OrcamentoId", modelo.OrcamentoId);
+            cmd.Parameters.AddWithValue("@PecaId", modelo.PecaId);
             conexao.Conectar();
-            modelo.COrcamentoId = Convert.ToInt32(cmd.ExecuteScalar());
+            modelo.OrcamentoId = Convert.ToInt32(cmd.ExecuteScalar());
             conexao.Desconectar();
         }
 
@@ -156,23 +161,37 @@ namespace DAL
             conexao.Desconectar();
         }
 
-        public void ExcluirOrcamentoMaodeObra(int MaodeObraId)
+        public void ExcluirOrcamentoMaodeObra(OrcamentoMaodeObra orcamentoMaodeObra)
         {
-            SQLiteCommand cmd = new SQLiteCommand();
-            cmd.Connection = conexao.ObjetoConexao;
-            cmd.CommandText = "DELETE FROM OrcamentoMaodeObra WHERE MaodeObraId = @MaodeObraId;";
-            cmd.Parameters.AddWithValue("@MaodeObraId", MaodeObraId);
+            int orcamentoId = orcamentoMaodeObra.OrcamentoId;
+            int maoDeObraId = orcamentoMaodeObra.MaodeObraId;
+
+            SQLiteCommand cmd = new SQLiteCommand
+            {
+                Connection = conexao.ObjetoConexao,
+                CommandText = "DELETE FROM OrcamentoMaodeObra WHERE OrcamentoId = @OrcamentoId AND MaodeObraId = @MaodeObraId;"
+            };
+
+            cmd.Parameters.AddWithValue("@OrcamentoId", orcamentoId);
+            cmd.Parameters.AddWithValue("@MaodeObraId", maoDeObraId);
             conexao.Conectar();
             cmd.ExecuteNonQuery();
             conexao.Desconectar();
         }
 
-        public void ExcluirOrcamentoPeca(int PecaId)
+        public void ExcluirOrcamentoPeca(OrcamentoPeca orcamentoPeca)
         {
-            SQLiteCommand cmd = new SQLiteCommand();
-            cmd.Connection = conexao.ObjetoConexao;
-            cmd.CommandText = "DELETE FROM OrcamentoPeca WHERE PecaId = @PecaId;";
-            cmd.Parameters.AddWithValue("@PecaId", PecaId);
+            int orcamentoId = orcamentoPeca.OrcamentoId;
+            int pecaId = orcamentoPeca.PecaId;
+
+            SQLiteCommand cmd = new SQLiteCommand
+            {
+                Connection = conexao.ObjetoConexao,
+                CommandText = "DELETE FROM OrcamentoPeca WHERE OrcamentoId = @OrcamentoId AND PecaId = @PecaId;"
+            };
+
+            cmd.Parameters.AddWithValue("@OrcamentoId", orcamentoId);
+            cmd.Parameters.AddWithValue("@PecaId", pecaId);
             conexao.Conectar();
             cmd.ExecuteNonQuery();
             conexao.Desconectar();

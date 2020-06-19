@@ -58,18 +58,14 @@
             this.txtConsultaCliente = new System.Windows.Forms.TextBox();
             this.txtServicoId = new System.Windows.Forms.TextBox();
             this.lblOrcamentoId = new System.Windows.Forms.Label();
-            this.dgvOcultoInformacaoPecas = new System.Windows.Forms.DataGridView();
             this.dgvMaodeObra = new System.Windows.Forms.DataGridView();
-            this.dgvOcultoGuardaInformacao = new System.Windows.Forms.DataGridView();
             this.lblServico = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pnCadastro.SuspendLayout();
             this.pnBotoes.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPeca)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCliente)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvOcultoInformacaoPecas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMaodeObra)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvOcultoGuardaInformacao)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -107,9 +103,7 @@
             this.pnCadastro.Controls.Add(this.txtServicoId);
             this.pnCadastro.Controls.Add(this.lblOrcamentoId);
             this.pnCadastro.Controls.Add(this.dgvMaodeObra);
-            this.pnCadastro.Controls.Add(this.dgvOcultoGuardaInformacao);
             this.pnCadastro.Controls.Add(this.dgvPeca);
-            this.pnCadastro.Controls.Add(this.dgvOcultoInformacaoPecas);
             this.pnCadastro.Location = new System.Drawing.Point(3, 2);
             this.pnCadastro.Size = new System.Drawing.Size(774, 528);
             // 
@@ -232,11 +226,12 @@
             this.dgvPeca.AllowUserToAddRows = false;
             this.dgvPeca.AllowUserToDeleteRows = false;
             this.dgvPeca.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvPeca.Location = new System.Drawing.Point(23, 321);
+            this.dgvPeca.Location = new System.Drawing.Point(23, 320);
             this.dgvPeca.Name = "dgvPeca";
             this.dgvPeca.ReadOnly = true;
             this.dgvPeca.Size = new System.Drawing.Size(494, 105);
             this.dgvPeca.TabIndex = 61;
+            this.dgvPeca.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvPeca_CellDoubleClick);
             this.dgvPeca.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.DgvPeca_RowsAdded);
             // 
             // txtValorTotal
@@ -413,15 +408,6 @@
             this.lblOrcamentoId.TabIndex = 41;
             this.lblOrcamentoId.Text = "Código: ";
             // 
-            // dgvOcultoInformacaoPecas
-            // 
-            this.dgvOcultoInformacaoPecas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvOcultoInformacaoPecas.Location = new System.Drawing.Point(47, 335);
-            this.dgvOcultoInformacaoPecas.Name = "dgvOcultoInformacaoPecas";
-            this.dgvOcultoInformacaoPecas.Size = new System.Drawing.Size(431, 77);
-            this.dgvOcultoInformacaoPecas.TabIndex = 67;
-            this.dgvOcultoInformacaoPecas.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.DgvOcultoInformacaoPecas_RowsAdded);
-            // 
             // dgvMaodeObra
             // 
             this.dgvMaodeObra.AllowUserToAddRows = false;
@@ -429,22 +415,13 @@
             this.dgvMaodeObra.AllowUserToResizeColumns = false;
             this.dgvMaodeObra.AllowUserToResizeRows = false;
             this.dgvMaodeObra.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvMaodeObra.Location = new System.Drawing.Point(23, 165);
+            this.dgvMaodeObra.Location = new System.Drawing.Point(23, 163);
             this.dgvMaodeObra.Name = "dgvMaodeObra";
             this.dgvMaodeObra.ReadOnly = true;
             this.dgvMaodeObra.Size = new System.Drawing.Size(494, 105);
             this.dgvMaodeObra.TabIndex = 60;
+            this.dgvMaodeObra.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvMaodeObra_CellDoubleClick);
             this.dgvMaodeObra.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.DgvMaodeObra_RowsAdded);
-            // 
-            // dgvOcultoGuardaInformacao
-            // 
-            this.dgvOcultoGuardaInformacao.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvOcultoGuardaInformacao.Enabled = false;
-            this.dgvOcultoGuardaInformacao.Location = new System.Drawing.Point(47, 184);
-            this.dgvOcultoGuardaInformacao.Name = "dgvOcultoGuardaInformacao";
-            this.dgvOcultoGuardaInformacao.Size = new System.Drawing.Size(439, 62);
-            this.dgvOcultoGuardaInformacao.TabIndex = 66;
-            this.dgvOcultoGuardaInformacao.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dgvOcultoGuardaInformacao_RowsAdded);
             // 
             // lblServico
             // 
@@ -467,12 +444,12 @@
             this.pictureBox1.TabIndex = 74;
             this.pictureBox1.TabStop = false;
             // 
-            // frmGerarServico
+            // FrmGerarServico
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
             this.ClientSize = new System.Drawing.Size(784, 651);
-            this.Name = "frmGerarServico";
+            this.Name = "FrmGerarServico";
             this.Text = "Sistema de Gerenciamento Mecânica - Efetuar Serviço";
             this.Load += new System.EventHandler(this.FrmGerarServico_Load);
             this.pnCadastro.ResumeLayout(false);
@@ -480,9 +457,7 @@
             this.pnBotoes.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvPeca)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCliente)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvOcultoInformacaoPecas)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMaodeObra)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvOcultoGuardaInformacao)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
@@ -520,9 +495,7 @@
         private System.Windows.Forms.TextBox txtConsultaCliente;
         private System.Windows.Forms.TextBox txtServicoId;
         private System.Windows.Forms.Label lblOrcamentoId;
-        private System.Windows.Forms.DataGridView dgvOcultoInformacaoPecas;
         private System.Windows.Forms.DataGridView dgvMaodeObra;
-        private System.Windows.Forms.DataGridView dgvOcultoGuardaInformacao;
         private System.Windows.Forms.Label lblServico;
         private System.Windows.Forms.PictureBox pictureBox1;
     }

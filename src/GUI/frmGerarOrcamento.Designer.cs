@@ -55,8 +55,6 @@ namespace GUI
             this.btnAdicionarPeca = new System.Windows.Forms.Button();
             this.btnAdicionarMaodeObra = new System.Windows.Forms.Button();
             this.lblInformativoMaoDeObra = new System.Windows.Forms.Label();
-            this.dgvOcultoGuardaInformacao = new System.Windows.Forms.DataGridView();
-            this.dgvOcultoInformacaoPecas = new System.Windows.Forms.DataGridView();
             this.lblQtdRegistrosMaoDeObra = new System.Windows.Forms.Label();
             this.txtValorTotalPecas = new System.Windows.Forms.TextBox();
             this.txtValorTotalMaodeObra = new System.Windows.Forms.TextBox();
@@ -70,8 +68,6 @@ namespace GUI
             ((System.ComponentModel.ISupportInitialize)(this.dgvCliente)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMaodeObra)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPeca)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvOcultoGuardaInformacao)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvOcultoInformacaoPecas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -109,9 +105,7 @@ namespace GUI
             this.pnCadastro.Controls.Add(this.txtConsultaCliente);
             this.pnCadastro.Controls.Add(this.txtOrcamentoId);
             this.pnCadastro.Controls.Add(this.lblOrcamentoId);
-            this.pnCadastro.Controls.Add(this.dgvOcultoInformacaoPecas);
             this.pnCadastro.Controls.Add(this.dgvMaodeObra);
-            this.pnCadastro.Controls.Add(this.dgvOcultoGuardaInformacao);
             this.pnCadastro.Location = new System.Drawing.Point(3, 2);
             this.pnCadastro.Size = new System.Drawing.Size(774, 528);
             // 
@@ -129,7 +123,7 @@ namespace GUI
             // 
             // btnSalvar
             // 
-            this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click);
+            this.btnSalvar.Click += new System.EventHandler(this.BtnSalvar_Click);
             // 
             // btnInserir
             // 
@@ -316,23 +310,25 @@ namespace GUI
             this.dgvMaodeObra.AllowUserToResizeColumns = false;
             this.dgvMaodeObra.AllowUserToResizeRows = false;
             this.dgvMaodeObra.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvMaodeObra.Location = new System.Drawing.Point(22, 171);
+            this.dgvMaodeObra.Location = new System.Drawing.Point(22, 170);
             this.dgvMaodeObra.Name = "dgvMaodeObra";
             this.dgvMaodeObra.ReadOnly = true;
             this.dgvMaodeObra.Size = new System.Drawing.Size(494, 105);
             this.dgvMaodeObra.TabIndex = 22;
-            this.dgvMaodeObra.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dgvMaodeObra_RowsAdded);
+            this.dgvMaodeObra.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DgvMaodeObra_CellMouseDoubleClick);
+            this.dgvMaodeObra.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.DgvMaodeObra_RowsAdded);
             // 
             // dgvPeca
             // 
             this.dgvPeca.AllowUserToAddRows = false;
             this.dgvPeca.AllowUserToDeleteRows = false;
             this.dgvPeca.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvPeca.Location = new System.Drawing.Point(22, 327);
+            this.dgvPeca.Location = new System.Drawing.Point(22, 326);
             this.dgvPeca.Name = "dgvPeca";
             this.dgvPeca.ReadOnly = true;
             this.dgvPeca.Size = new System.Drawing.Size(494, 105);
             this.dgvPeca.TabIndex = 23;
+            this.dgvPeca.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvPeca_CellDoubleClick);
             this.dgvPeca.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.DgvPeca_RowsAdded);
             // 
             // lblInformativoPeca
@@ -372,25 +368,6 @@ namespace GUI
             this.lblInformativoMaoDeObra.Size = new System.Drawing.Size(290, 13);
             this.lblInformativoMaoDeObra.TabIndex = 31;
             this.lblInformativoMaoDeObra.Text = "Ao clicar no botão, selecione o registro e clique duas vezes.";
-            // 
-            // dgvOcultoGuardaInformacao
-            // 
-            this.dgvOcultoGuardaInformacao.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvOcultoGuardaInformacao.Enabled = false;
-            this.dgvOcultoGuardaInformacao.Location = new System.Drawing.Point(46, 190);
-            this.dgvOcultoGuardaInformacao.Name = "dgvOcultoGuardaInformacao";
-            this.dgvOcultoGuardaInformacao.Size = new System.Drawing.Size(439, 62);
-            this.dgvOcultoGuardaInformacao.TabIndex = 32;
-            this.dgvOcultoGuardaInformacao.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.DgvOcultoGuardaInformacao_RowsAdded);
-            // 
-            // dgvOcultoInformacaoPecas
-            // 
-            this.dgvOcultoInformacaoPecas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvOcultoInformacaoPecas.Location = new System.Drawing.Point(46, 341);
-            this.dgvOcultoInformacaoPecas.Name = "dgvOcultoInformacaoPecas";
-            this.dgvOcultoInformacaoPecas.Size = new System.Drawing.Size(431, 77);
-            this.dgvOcultoInformacaoPecas.TabIndex = 33;
-            this.dgvOcultoInformacaoPecas.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.DgvOcultoInformacaoPecas_RowsAdded);
             // 
             // lblQtdRegistrosMaoDeObra
             // 
@@ -468,12 +445,12 @@ namespace GUI
             this.pictureBox1.TabIndex = 35;
             this.pictureBox1.TabStop = false;
             // 
-            // frmGerarOrcamento
+            // FrmGerarOrcamento
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.ClientSize = new System.Drawing.Size(784, 651);
-            this.Name = "frmGerarOrcamento";
+            this.Name = "FrmGerarOrcamento";
             this.Text = "Sistema de Gerenciamento Mecânica - Efetuar Orçamento";
             this.Load += new System.EventHandler(this.FrmGerarOrcamento_Load);
             this.pnCadastro.ResumeLayout(false);
@@ -482,8 +459,6 @@ namespace GUI
             ((System.ComponentModel.ISupportInitialize)(this.dgvCliente)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMaodeObra)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPeca)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvOcultoGuardaInformacao)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvOcultoInformacaoPecas)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
@@ -516,8 +491,6 @@ namespace GUI
         private System.Windows.Forms.DataGridView dgvMaodeObra;
         private System.Windows.Forms.Button btnAdicionarMaodeObra;
         private Label lblInformativoMaoDeObra;
-        private DataGridView dgvOcultoGuardaInformacao;
-        private DataGridView dgvOcultoInformacaoPecas;
         private Label lblQtdRegistrosMaoDeObra;
         private Label label2;
         private Label lblValorMaoDeObraTexto;

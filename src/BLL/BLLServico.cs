@@ -1,5 +1,6 @@
 ﻿using DAL;
 using Modelo;
+using Modelo.Entities;
 using System;
 using System.Data;
 
@@ -21,13 +22,13 @@ namespace BLL
             DALobj.IncluirServico(modelo);
         }
 
-        public void IncluirServicoMaodeObra(ModeloServico modelo)
+        public void IncluirServicoMaodeObra(ServicoMaodeObra modelo)
         {
             DALServico DALobj = new DALServico(conexao);
             DALobj.IncluirServicoMaodeObra(modelo);
         }
 
-        public void IncluirServicoPeca(ModeloServico modelo)
+        public void IncluirServicoPeca(ServicoPeca modelo)
         {
             DALServico DALobj = new DALServico(conexao);
             DALobj.IncluirServicoPeca(modelo);
@@ -53,6 +54,18 @@ namespace BLL
 
             DALServico DALobj = new DALServico(conexao);
             DALobj.AlterarServico(modelo);
+        }
+
+        public void ExcluirServicoMaodeObra(ServicoMaodeObra servicoMaodeObra)
+        {
+            DALServico DALobj = new DALServico(conexao);
+            DALobj.ExcluirServicoMaodeObra(servicoMaodeObra);
+        }
+
+        public void ExcluirServicoPeca(ServicoPeca servicoPeca)
+        {
+            DALServico DALobj = new DALServico(conexao);
+            DALobj.ExcluirServicoPeca(servicoPeca);
         }
 
         public DataTable LocalizarCliente(String valor)

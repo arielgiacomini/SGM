@@ -1,5 +1,6 @@
 ﻿using DAL;
 using Modelo;
+using Modelo.Entities;
 using System;
 using System.Data;
 
@@ -21,16 +22,28 @@ namespace BLL
             DALobj.IncluirOrcamento(modelo);
         }
 
-        public void IncluirOrcamentoMaodeObra(ModeloOrcamento modelo)
+        public void IncluirOrcamentoMaodeObra(OrcamentoMaodeObra modelo)
         {
             DALOrcamento DALobj = new DALOrcamento(conexao);
             DALobj.IncluirOrcamentoMaodeObra(modelo);
         }
 
-        public void IncluirOrcamentoPeca(ModeloOrcamento modelo)
+        public void IncluirOrcamentoPeca(OrcamentoPeca modelo)
         {
             DALOrcamento DALobj = new DALOrcamento(conexao);
             DALobj.IncluirOrcamentoPeca(modelo);
+        }
+
+        public void ExcluirOrcamentoMaodeObra(OrcamentoMaodeObra orcamentoMaodeObra)
+        {
+            DALOrcamento DALobj = new DALOrcamento(conexao);
+            DALobj.ExcluirOrcamentoMaodeObra(orcamentoMaodeObra);
+        }
+
+        public void ExcluirOrcamentoPeca(OrcamentoPeca orcamentoPeca)
+        {
+            DALOrcamento DALobj = new DALOrcamento(conexao);
+            DALobj.ExcluirOrcamentoPeca(orcamentoPeca);
         }
 
         public void AlterarOrcamento(ModeloOrcamento modelo)

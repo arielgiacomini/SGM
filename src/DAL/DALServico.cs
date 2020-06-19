@@ -1,4 +1,5 @@
 ﻿using Modelo;
+using Modelo.Entities;
 using System;
 using System.Data;
 using System.Data.SQLite;
@@ -53,30 +54,34 @@ namespace DAL
             conexao.Desconectar();
         }
 
-        public void IncluirServicoMaodeObra(ModeloServico modelo)
+        public void IncluirServicoMaodeObra(ServicoMaodeObra modelo)
         {
-            SQLiteCommand cmd = new SQLiteCommand();
-            cmd.Connection = conexao.ObjetoConexao;
-            cmd.CommandText = "INSERT INTO ServicoMaodeObra " +
+            SQLiteCommand cmd = new SQLiteCommand
+            {
+                Connection = conexao.ObjetoConexao,
+                CommandText = "INSERT INTO ServicoMaodeObra " +
                 "(" +
                 "ServicoId," +
                 "MaodeObraId " +
                 ") VALUES (" +
                 "@ServicoId," +
                 "@MaodeObraId " +
-                "); ";
-            cmd.Parameters.AddWithValue("@ServicoId", modelo.CServicoId);
-            cmd.Parameters.AddWithValue("@MaodeObraId", modelo.CMaodeObraId);
+                "); "
+            };
+
+            cmd.Parameters.AddWithValue("@ServicoId", modelo.ServicoId);
+            cmd.Parameters.AddWithValue("@MaodeObraId", modelo.MaodeObraId);
             conexao.Conectar();
             cmd.ExecuteNonQuery();
             conexao.Desconectar();
         }
 
-        public void IncluirServicoPeca(ModeloServico modelo)
+        public void IncluirServicoPeca(ServicoPeca modelo)
         {
-            SQLiteCommand cmd = new SQLiteCommand();
-            cmd.Connection = conexao.ObjetoConexao;
-            cmd.CommandText = "INSERT INTO ServicoPeca " +
+            SQLiteCommand cmd = new SQLiteCommand
+            {
+                Connection = conexao.ObjetoConexao,
+                CommandText = "INSERT INTO ServicoPeca " +
                 "(" +
                 "ServicoId," +
                 "PecaId " +
@@ -84,11 +89,13 @@ namespace DAL
                 "@ServicoId," +
                 "@PecaId " +
                 "); " +
-                "SELECT seq FROM sqlite_sequence WHERE name = 'Servico';";
-            cmd.Parameters.AddWithValue("@ServicoId", modelo.CServicoId);
-            cmd.Parameters.AddWithValue("@PecaId", modelo.CPecaId);
+                "SELECT seq FROM sqlite_sequence WHERE name = 'Servico';"
+            };
+
+            cmd.Parameters.AddWithValue("@ServicoId", modelo.ServicoId);
+            cmd.Parameters.AddWithValue("@PecaId", modelo.PecaId);
             conexao.Conectar();
-            modelo.CServicoId = Convert.ToInt32(cmd.ExecuteScalar());
+            modelo.ServicoId = Convert.ToInt32(cmd.ExecuteScalar());
             conexao.Desconectar();
         }
 
@@ -150,32 +157,49 @@ namespace DAL
 
         public void ExcluirServico(int ServicoId)
         {
-            SQLiteCommand cmd = new SQLiteCommand();
-            cmd.Connection = conexao.ObjetoConexao;
-            cmd.CommandText = "DELETE FROM Servico WHERE ServicoId = @ServicoId;";
+            SQLiteCommand cmd = new SQLiteCommand
+            {
+                Connection = conexao.ObjetoConexao,
+                CommandText = "DELETE FROM Servico WHERE ServicoId = @ServicoId;"
+            };
+
             cmd.Parameters.AddWithValue("@ServicoId", ServicoId);
             conexao.Conectar();
             cmd.ExecuteNonQuery();
             conexao.Desconectar();
         }
 
-        public void ExcluirServicoMaodeObra(int MaodeObraId)
+        public void ExcluirServicoMaodeObra(ServicoMaodeObra servicoMaodeObra)
         {
-            SQLiteCommand cmd = new SQLiteCommand();
-            cmd.Connection = conexao.ObjetoConexao;
-            cmd.CommandText = "DELETE FROM ServicoMaodeObra WHERE MaodeObraId = @MaodeObraId;";
-            cmd.Parameters.AddWithValue("@MaodeObraId", MaodeObraId);
+            int servicoId = servicoMaodeObra.ServicoId;
+            int maoDeObraId = servicoMaodeObra.MaodeObraId;
+
+            SQLiteCommand cmd = new SQLiteCommand
+            {
+                Connection = conexao.ObjetoConexao,
+                CommandText = "DELETE FROM ServicoMaodeObra WHERE ServicoId = @ServicoId AND MaodeObraId = @MaodeObraId;"
+            };
+
+            cmd.Parameters.AddWithValue("@ServicoId", servicoId);
+            cmd.Parameters.AddWithValue("@MaodeObraId", maoDeObraId);
             conexao.Conectar();
             cmd.ExecuteNonQuery();
             conexao.Desconectar();
         }
 
-        public void ExcluirServicoPeca(int PecaId)
+        public void ExcluirServicoPeca(ServicoPeca servicoPeca)
         {
-            SQLiteCommand cmd = new SQLiteCommand();
-            cmd.Connection = conexao.ObjetoConexao;
-            cmd.CommandText = "DELETE FROM ServicoPeca WHERE PecaId = @PecaId;";
-            cmd.Parameters.AddWithValue("@PecaId", PecaId);
+            int servicoId = servicoPeca.ServicoId;
+            int pecaId = servicoPeca.PecaId;
+
+            SQLiteCommand cmd = new SQLiteCommand
+            {
+                Connection = conexao.ObjetoConexao,
+                CommandText = "DELETE FROM ServicoPeca WHERE ServicoId = @ServicoId AND PecaId = @PecaId;"
+            };
+
+            cmd.Parameters.AddWithValue("@ServicoId", servicoId);
+            cmd.Parameters.AddWithValue("@PecaId", pecaId);
             conexao.Conectar();
             cmd.ExecuteNonQuery();
             conexao.Desconectar();
