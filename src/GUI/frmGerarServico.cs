@@ -8,9 +8,9 @@ using System.Windows.Forms;
 
 namespace GUI
 {
-    public partial class frmGerarServico : GUI.FrmModeloDeFormularioDeCadastro
+    public partial class FrmGerarServico : FrmModeloDeFormularioDeCadastro
     {
-        public frmGerarServico()
+        public FrmGerarServico()
         {
             InitializeComponent();
         }
@@ -49,6 +49,7 @@ namespace GUI
         }
 
         public int codigo = 0;
+        public int clienteId = 0;
         public string CellCliente = "";
         public string VerificaOrcamento = "";
         public decimal txtVA = 0;
@@ -57,7 +58,7 @@ namespace GUI
         public decimal txtVM = 0;
         public decimal txtVT = 0;
 
-        private void btnConsultaCliente_Click(object sender, EventArgs e)
+        private void BtnConsultaCliente_Click(object sender, EventArgs e)
         {
 
             DALConexao cx = new DALConexao(ConnectionStringConfiguration.ConnectionString);
@@ -77,7 +78,44 @@ namespace GUI
 
         private void FrmGerarServico_Load(object sender, EventArgs e)
         {
+            if (clienteId != 0)
+            {
+                DALConexao cx = new DALConexao(ConnectionStringConfiguration.ConnectionString);
+                BLLServico bll = new BLLServico(cx);
+                BLLCliente modeloCliente = new BLLCliente(cx);
 
+                var dadosCliente = modeloCliente.CarregaModeloCliente(clienteId);
+
+                this.operacao = "inserir";
+                this.alteraBotoes(2);
+
+                txtConsultaCliente.Enabled = false;
+                btnConsultaCliente.Enabled = false;
+                dgvCliente.Enabled = false;
+
+                txtValorAdicional.Enabled = true;
+                txtPercentualDesconto.Enabled = true;
+
+                txtClienteId.Text = dadosCliente.CClienteId.ToString();
+                txtClienteSelecionado.Text = dadosCliente.CCliente.ToString();
+                txtValorAdicional.Text = Convert.ToDecimal("0").ToString("C");
+                txtPercentualDesconto.Text = Convert.ToDecimal("0").ToString("P");
+                txtValorDesconto.Text = Convert.ToDecimal("0").ToString("C");
+                txtValorTotal.Text = Convert.ToDecimal("0").ToString("C");
+                txtValorTotalMaodeObra.Text = Convert.ToDecimal("0").ToString("C");
+                txtValorTotalPecas.Text = Convert.ToDecimal("0").ToString("C");
+                txtDescricao.Text = "PESQUISANDO";
+
+                ModeloServico modelo = new ModeloServico
+                {
+                    CClienteId = Convert.ToInt32(txtClienteId.Text),
+                    CStatus = "SERVIÇO INICIADO"
+                };
+
+
+                bll.IncluirServico(modelo);
+                txtServicoId.Text = Convert.ToString(modelo.CServicoId);
+            }
         }
 
         private void DgvCliente_CellDoubleClick(object sender, DataGridViewCellEventArgs e)

@@ -2,7 +2,7 @@
 
 namespace GUI
 {
-    partial class frmGerarOrcamento
+    partial class FrmGerarOrcamento
     {
         /// <summary>
         /// Variável de designer necessária.
@@ -133,7 +133,7 @@ namespace GUI
             // 
             // btnInserir
             // 
-            this.btnInserir.Click += new System.EventHandler(this.btnInserir_Click);
+            this.btnInserir.Click += new System.EventHandler(this.BtnInserir_Click);
             // 
             // lblOrcamentoId
             // 
@@ -193,7 +193,7 @@ namespace GUI
             this.dgvCliente.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvCliente.Size = new System.Drawing.Size(741, 44);
             this.dgvCliente.TabIndex = 8;
-            this.dgvCliente.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCliente_CellDoubleClick);
+            this.dgvCliente.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvCliente_CellDoubleClick);
             // 
             // txtClienteSelecionado
             // 
@@ -283,7 +283,7 @@ namespace GUI
             this.txtValorAdicional.Name = "txtValorAdicional";
             this.txtValorAdicional.Size = new System.Drawing.Size(133, 20);
             this.txtValorAdicional.TabIndex = 18;
-            this.txtValorAdicional.Leave += new System.EventHandler(this.txtValorAdicional_Leave);
+            this.txtValorAdicional.Leave += new System.EventHandler(this.TxtValorAdicional_Leave);
             // 
             // txtPercentualDesconto
             // 
@@ -291,7 +291,7 @@ namespace GUI
             this.txtPercentualDesconto.Name = "txtPercentualDesconto";
             this.txtPercentualDesconto.Size = new System.Drawing.Size(133, 20);
             this.txtPercentualDesconto.TabIndex = 19;
-            this.txtPercentualDesconto.Leave += new System.EventHandler(this.txtPercentualDesconto_Leave);
+            this.txtPercentualDesconto.Leave += new System.EventHandler(this.TxtPercentualDesconto_Leave);
             // 
             // txtValorDesconto
             // 
@@ -333,7 +333,7 @@ namespace GUI
             this.dgvPeca.ReadOnly = true;
             this.dgvPeca.Size = new System.Drawing.Size(494, 105);
             this.dgvPeca.TabIndex = 23;
-            this.dgvPeca.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dgvPeca_RowsAdded);
+            this.dgvPeca.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.DgvPeca_RowsAdded);
             // 
             // lblInformativoPeca
             // 
@@ -352,7 +352,7 @@ namespace GUI
             this.btnAdicionarPeca.TabIndex = 29;
             this.btnAdicionarPeca.Text = "Lista de Produtos/Peças";
             this.btnAdicionarPeca.UseVisualStyleBackColor = true;
-            this.btnAdicionarPeca.Click += new System.EventHandler(this.btnAdicionarPeca_Click);
+            this.btnAdicionarPeca.Click += new System.EventHandler(this.BtnAdicionarPeca_Click);
             // 
             // btnAdicionarMaodeObra
             // 
@@ -362,7 +362,7 @@ namespace GUI
             this.btnAdicionarMaodeObra.TabIndex = 30;
             this.btnAdicionarMaodeObra.Text = "Lista de Mao-de-Obras";
             this.btnAdicionarMaodeObra.UseVisualStyleBackColor = true;
-            this.btnAdicionarMaodeObra.Click += new System.EventHandler(this.btnAdicionarMaodeObra_Click);
+            this.btnAdicionarMaodeObra.Click += new System.EventHandler(this.BtnAdicionarMaodeObra_Click);
             // 
             // lblInformativoMaoDeObra
             // 
@@ -381,7 +381,7 @@ namespace GUI
             this.dgvOcultoGuardaInformacao.Name = "dgvOcultoGuardaInformacao";
             this.dgvOcultoGuardaInformacao.Size = new System.Drawing.Size(439, 62);
             this.dgvOcultoGuardaInformacao.TabIndex = 32;
-            this.dgvOcultoGuardaInformacao.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dgvOcultoGuardaInformacao_RowsAdded);
+            this.dgvOcultoGuardaInformacao.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.DgvOcultoGuardaInformacao_RowsAdded);
             // 
             // dgvOcultoInformacaoPecas
             // 
@@ -390,7 +390,7 @@ namespace GUI
             this.dgvOcultoInformacaoPecas.Name = "dgvOcultoInformacaoPecas";
             this.dgvOcultoInformacaoPecas.Size = new System.Drawing.Size(431, 77);
             this.dgvOcultoInformacaoPecas.TabIndex = 33;
-            this.dgvOcultoInformacaoPecas.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dgvOcultoInformacaoPecas_RowsAdded);
+            this.dgvOcultoInformacaoPecas.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.DgvOcultoInformacaoPecas_RowsAdded);
             // 
             // lblQtdRegistrosMaoDeObra
             // 

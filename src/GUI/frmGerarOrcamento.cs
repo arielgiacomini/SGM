@@ -8,9 +8,9 @@ using System.Windows.Forms;
 
 namespace GUI
 {
-    public partial class frmGerarOrcamento : GUI.FrmModeloDeFormularioDeCadastro
+    public partial class FrmGerarOrcamento : GUI.FrmModeloDeFormularioDeCadastro
     {
-        public frmGerarOrcamento()
+        public FrmGerarOrcamento()
         {
             InitializeComponent();
         }
@@ -49,8 +49,9 @@ namespace GUI
         }
 
         public int codigo = 0;
-        public String CellCliente = "";
-        public String VerificaOrcamento = "";
+        public int clienteId = 0;
+        public string CellCliente = "";
+        public string VerificaOrcamento = "";
         public decimal txtVA = 0;
         public decimal txtVD = 0;
         public decimal txtVP = 0;
@@ -74,10 +75,47 @@ namespace GUI
 
         private void FrmGerarOrcamento_Load(object sender, EventArgs e)
         {
+            if (clienteId != 0)
+            {
+                DALConexao cx = new DALConexao(ConnectionStringConfiguration.ConnectionString);
+                BLLOrcamento bll = new BLLOrcamento(cx);
+                BLLCliente modeloCliente = new BLLCliente(cx);
 
+                var dadosCliente = modeloCliente.CarregaModeloCliente(clienteId);
+
+                this.operacao = "inserir";
+                this.alteraBotoes(2);
+
+                txtConsultaCliente.Enabled = false;
+                btnConsultaCliente.Enabled = false;
+                dgvCliente.Enabled = false;
+
+                txtValorAdicional.Enabled = true;
+                txtPercentualDesconto.Enabled = true;
+
+                txtClienteId.Text = dadosCliente.CClienteId.ToString();
+                txtClienteSelecionado.Text = dadosCliente.CCliente.ToString();
+                txtValorAdicional.Text = Convert.ToDecimal("0").ToString("C");
+                txtPercentualDesconto.Text = Convert.ToDecimal("0").ToString("P");
+                txtValorDesconto.Text = Convert.ToDecimal("0").ToString("C");
+                txtValorTotal.Text = Convert.ToDecimal("0").ToString("C");
+                txtValorTotalMaodeObra.Text = Convert.ToDecimal("0").ToString("C");
+                txtValorTotalPecas.Text = Convert.ToDecimal("0").ToString("C");
+                txtDescricao.Text = "PESQUISANDO";
+
+                ModeloOrcamento modelo = new ModeloOrcamento
+                {
+                    CClienteId = Convert.ToInt32(txtClienteId.Text),
+                    CStatus = "ORÇAMENTO INICIADO"
+                };
+
+
+                bll.IncluirOrcamento(modelo);
+                txtOrcamentoId.Text = Convert.ToString(modelo.COrcamentoId);
+            }
         }
 
-        private void dgvCliente_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void DgvCliente_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0) // vai guardar a informação escolhida com duplo clique.
             {
@@ -89,7 +127,7 @@ namespace GUI
             }
         }
 
-        private void btnInserir_Click(object sender, EventArgs e)
+        private void BtnInserir_Click(object sender, EventArgs e)
         {
             this.operacao = "inserir";
             this.alteraBotoes(2);
@@ -105,10 +143,12 @@ namespace GUI
             txtValorTotalPecas.Text = Convert.ToDecimal("0").ToString("C");
             txtDescricao.Text = "PESQUISANDO";
 
-            // leitura dos dados
-            ModeloOrcamento modelo = new ModeloOrcamento();
-            modelo.CClienteId = Convert.ToInt32(txtClienteId.Text);
-            modelo.CStatus = "ORÇAMENTO INICIADO";
+            ModeloOrcamento modelo = new ModeloOrcamento
+            {
+                CClienteId = Convert.ToInt32(txtClienteId.Text),
+                CStatus = "ORÇAMENTO INICIADO"
+            };
+
             DALConexao cx = new DALConexao(ConnectionStringConfiguration.ConnectionString);
             BLLOrcamento bll = new BLLOrcamento(cx);
             bll.IncluirOrcamento(modelo);
@@ -116,7 +156,7 @@ namespace GUI
 
         }
 
-        private void btnAdicionarMaodeObra_Click(object sender, EventArgs e)
+        private void BtnAdicionarMaodeObra_Click(object sender, EventArgs e)
         {
 
             if (txtClienteId.Text == "")
@@ -141,6 +181,8 @@ namespace GUI
                     dgvMaodeObra.Columns[1].Width = 330;
                     dgvMaodeObra.Columns[2].HeaderText = "Valor";
                     dgvMaodeObra.Columns[2].Width = 70;
+                    dgvMaodeObra.Columns[2].DefaultCellStyle.Format = "C2";
+                    dgvMaodeObra.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 }
             }
 
@@ -165,14 +207,13 @@ namespace GUI
             txtValorTotal.Text = (txtVT.ToString("C"));
         }
 
-        private void btnAdicionarPeca_Click(object sender, EventArgs e)
+        private void BtnAdicionarPeca_Click(object sender, EventArgs e)
         {
             frmConsultaPeca p = new frmConsultaPeca();
             p.ShowDialog();
 
             if (p.codigo != 0)
             {
-                // objeto para gravar os dados no banco de dados
                 DALConexao cx = new DALConexao(ConnectionStringConfiguration.ConnectionString);
                 BLLOrcamento bll = new BLLOrcamento(cx);
                 dgvOcultoInformacaoPecas.DataSource = bll.LocalizarPeca(p.codigo);
@@ -183,6 +224,8 @@ namespace GUI
                 dgvPeca.Columns[1].Width = 330;
                 dgvPeca.Columns[2].HeaderText = "Valor Integral";
                 dgvPeca.Columns[2].Width = 70;
+                dgvPeca.Columns[2].DefaultCellStyle.Format = "C2";
+                dgvPeca.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             }
 
             lblQtdRegistrosPecas.Text = "Quantidade de Registros: " + this.dgvPeca.Rows.Count.ToString();
@@ -208,13 +251,12 @@ namespace GUI
 
 
         /* GriewView OCULTO DA MÃO DE OBRA - PARA GUARDAR INFORMAÇÃO MOMENTANEA ATÉ INSERIR NA TABELA */
-        private void dgvOcultoGuardaInformacao_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
+        private void DgvOcultoGuardaInformacao_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
         {
-            if (e.RowIndex >= 0) // vai guardar a informação escolhida com duplo clique.
+            if (e.RowIndex >= 0)
             {
                 if (Convert.ToInt32(dgvOcultoGuardaInformacao.Rows[e.RowIndex].Cells[0].Value) != 0)
                 {
-                    // leitura dos dados
                     ModeloOrcamento modelo = new ModeloOrcamento();
                     modelo.COrcamentoId = Convert.ToInt32(txtOrcamentoId.Text);
                     modelo.CMaodeObraId = Convert.ToInt32(dgvOcultoGuardaInformacao.Rows[e.RowIndex].Cells["MaodeObraId"].Value);
@@ -231,7 +273,8 @@ namespace GUI
                 coluna.SortMode = DataGridViewColumnSortMode.NotSortable;
         }
 
-        private void dgvOcultoInformacaoPecas_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
+        /* GriewView OCULTO DE PRODUTOS/PEÇAS - PARA GUARDAR INFORMAÇÃO MOMENTANEA ATÉ INSERIR NA TABELA */
+        private void DgvOcultoInformacaoPecas_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
         {
             if (e.RowIndex >= 0) // vai guardar a informação escolhida com duplo clique.
             {
@@ -247,7 +290,7 @@ namespace GUI
             }
         }
 
-        private void dgvPeca_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
+        private void DgvPeca_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
         {
             foreach (DataGridViewColumn coluna in dgvPeca.Columns)
                 coluna.SortMode = DataGridViewColumnSortMode.NotSortable;
@@ -257,8 +300,6 @@ namespace GUI
         {
             try
             {
-
-                // leitura dos dados
                 ModeloOrcamento modelo = new ModeloOrcamento();
                 modelo.COrcamentoId = Convert.ToInt32(txtOrcamentoId.Text);
                 modelo.CClienteId = Convert.ToInt32(txtClienteId.Text);
@@ -269,11 +310,8 @@ namespace GUI
                 modelo.CDescricao = txtDescricao.Text;
                 modelo.CStatus = "ORÇAMENTO GERADO";
 
-                // objeto para gravar os dados no banco de dados
                 DALConexao cx = new DALConexao(ConnectionStringConfiguration.ConnectionString);
                 BLLOrcamento bll = new BLLOrcamento(cx);
-
-                // Alterar uma categoria
 
                 bll.AlterarOrcamento(modelo);
                 MessageBox.Show("Cadastro alterado com sucesso! Número do Orçamento: " + modelo.COrcamentoId.ToString(), "Status", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -293,7 +331,7 @@ namespace GUI
             }
         }
 
-        private void txtValorAdicional_Leave(object sender, EventArgs e)
+        private void TxtValorAdicional_Leave(object sender, EventArgs e)
         {
             if (txtValorTotalMaodeObra.Text.Replace("R$ 0,00", "") != "")
             {
@@ -326,7 +364,7 @@ namespace GUI
             }
         }
 
-        private void txtPercentualDesconto_Leave(object sender, EventArgs e)
+        private void TxtPercentualDesconto_Leave(object sender, EventArgs e)
         {
             Decimal PDesc = Convert.ToDecimal(txtPercentualDesconto.Text.Replace("%", ""));
             Decimal VTota = Convert.ToDecimal(txtValorTotal.Text.Replace("R$ ", ""));

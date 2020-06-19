@@ -1,6 +1,6 @@
 ﻿namespace GUI
 {
-    partial class frmPerguntaQualItemAbrir
+    partial class FrmPerguntaQualItemAbrir
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPerguntaQualItemAbrir));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmPerguntaQualItemAbrir));
             this.btnRealizaOrcamento = new System.Windows.Forms.Button();
             this.btnRealizaMaoDeObra = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -45,7 +45,7 @@
             this.btnRealizaOrcamento.Text = "Realizar Orçamento";
             this.btnRealizaOrcamento.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnRealizaOrcamento.UseVisualStyleBackColor = true;
-            this.btnRealizaOrcamento.Click += new System.EventHandler(this.btnRealizaOrcamento_Click);
+            this.btnRealizaOrcamento.Click += new System.EventHandler(this.BtnRealizaOrcamento_Click);
             // 
             // btnRealizaMaoDeObra
             // 
@@ -59,7 +59,7 @@
             this.btnRealizaMaoDeObra.Text = "Realizar Serviço";
             this.btnRealizaMaoDeObra.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnRealizaMaoDeObra.UseVisualStyleBackColor = true;
-            this.btnRealizaMaoDeObra.Click += new System.EventHandler(this.btnRealizaMaoDeObra_Click);
+            this.btnRealizaMaoDeObra.Click += new System.EventHandler(this.BtnRealizaMaoDeObra_Click);
             // 
             // frmPerguntaQualItemAbrir
             // 
@@ -72,7 +72,7 @@
             this.Name = "frmPerguntaQualItemAbrir";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Sistema de Gerenciamento Mecânica - O que deseja fazer?";
-            this.Load += new System.EventHandler(this.frmPerguntaQualItemAbrir_Load);
+            this.Load += new System.EventHandler(this.FrmPerguntaQualItemAbrir_Load);
             this.ResumeLayout(false);
 
         }

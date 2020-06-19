@@ -40,14 +40,14 @@ namespace GUI
 
         private void BtnPrincipalOrcamento_Click(object sender, EventArgs e)
         {
-            frmGerarOrcamento g = new frmGerarOrcamento();
+            FrmGerarOrcamento g = new FrmGerarOrcamento();
             g.ShowDialog();
             g.Dispose();
         }
 
         private void BtnPrincipalRealizaMaoDeObra_Click(object sender, EventArgs e)
         {
-            frmGerarServico h = new frmGerarServico();
+            FrmGerarServico h = new FrmGerarServico();
             h.ShowDialog();
             h.Dispose();
         }
@@ -149,14 +149,14 @@ namespace GUI
 
         private void RealizarOrçamentoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmGerarOrcamento g = new frmGerarOrcamento();
+            FrmGerarOrcamento g = new FrmGerarOrcamento();
             g.ShowDialog();
             g.Dispose();
         }
 
         private void RealizaMãodeObraToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmGerarServico j = new frmGerarServico();
+            FrmGerarServico j = new FrmGerarServico();
             j.ShowDialog();
             j.Dispose();
         }

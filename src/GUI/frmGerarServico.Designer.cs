@@ -1,6 +1,6 @@
 ﻿namespace GUI
 {
-    partial class frmGerarServico
+    partial class FrmGerarServico
     {
         /// <summary>
         /// Variável de designer necessária.
@@ -378,7 +378,7 @@
             this.btnConsultaCliente.TabIndex = 45;
             this.btnConsultaCliente.Text = "Buscar Cliente";
             this.btnConsultaCliente.UseVisualStyleBackColor = true;
-            this.btnConsultaCliente.Click += new System.EventHandler(this.btnConsultaCliente_Click);
+            this.btnConsultaCliente.Click += new System.EventHandler(this.BtnConsultaCliente_Click);
             // 
             // lblCliente
             // 
