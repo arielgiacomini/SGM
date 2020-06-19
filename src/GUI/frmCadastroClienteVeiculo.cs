@@ -141,7 +141,11 @@ namespace GUI
                     MessageBox.Show("Cadastro alterado com sucesso!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
 
-                frmPerguntaQualItemAbrir questionItemAbrir = new frmPerguntaQualItemAbrir();
+                FrmPerguntaQualItemAbrir questionItemAbrir = new FrmPerguntaQualItemAbrir
+                {
+                    clienteId = Convert.ToInt32(txtClienteId.Text)
+                };
+
                 questionItemAbrir.ShowDialog();
                 questionItemAbrir.Dispose();
                 questionItemAbrir.Close();

@@ -3,30 +3,40 @@ using System.Windows.Forms;
 
 namespace GUI
 {
-    public partial class frmPerguntaQualItemAbrir : Form
+    public partial class FrmPerguntaQualItemAbrir : Form
     {
-        public frmPerguntaQualItemAbrir()
+        public FrmPerguntaQualItemAbrir()
         {
             InitializeComponent();
         }
+        
+        public int clienteId = 0;
 
-        private void frmPerguntaQualItemAbrir_Load(object sender, EventArgs e)
+        private void FrmPerguntaQualItemAbrir_Load(object sender, EventArgs e)
         {
 
         }
 
-        private void btnRealizaOrcamento_Click(object sender, EventArgs e)
+        private void BtnRealizaOrcamento_Click(object sender, EventArgs e)
         {
-            frmGerarOrcamento g = new frmGerarOrcamento();
-            g.ShowDialog();
-            g.Dispose();
+            FrmGerarOrcamento formGerarOrcamento = new FrmGerarOrcamento
+            {
+                clienteId = clienteId
+            };
+
+            formGerarOrcamento.ShowDialog();
+            formGerarOrcamento.Dispose();
         }
 
-        private void btnRealizaMaoDeObra_Click(object sender, EventArgs e)
+        private void BtnRealizaMaoDeObra_Click(object sender, EventArgs e)
         {
-            frmGerarServico h = new frmGerarServico();
-            h.ShowDialog();
-            h.Dispose();
+            FrmGerarServico formGerarServico = new FrmGerarServico
+            {
+                clienteId = clienteId
+            };
+
+            formGerarServico.ShowDialog();
+            formGerarServico.Dispose();
         }
     }
 }

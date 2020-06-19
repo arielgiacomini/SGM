@@ -19,7 +19,6 @@ C:\Clones\SGM-WindowsForms\src\GUI\obj\x86\Release\GUI.frmCadastroPeca.resources
 C:\Clones\SGM-WindowsForms\src\GUI\obj\x86\Release\GUI.frmCadastroVeiculo.resources
 C:\Clones\SGM-WindowsForms\src\GUI\obj\x86\Release\GUI.frmConsultaCliente.resources
 C:\Clones\SGM-WindowsForms\src\GUI\obj\x86\Release\GUI.frmConsultaClienteVeiculo.resources
-C:\Clones\SGM-WindowsForms\src\GUI\obj\x86\Release\GUI.frmConsultaGerarOrcamento.resources
 C:\Clones\SGM-WindowsForms\src\GUI\obj\x86\Release\GUI.frmConsultaHistoricoServicoClienteVeiculo.resources
 C:\Clones\SGM-WindowsForms\src\GUI\obj\x86\Release\GUI.frmConsultaMaoDeObra.resources
 C:\Clones\SGM-WindowsForms\src\GUI\obj\x86\Release\GUI.frmConsultaPeca.resources
@@ -79,3 +78,5 @@ C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\GUI\obj\x86\Release\G
 C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\GUI\obj\x86\Release\GUI.exe
 C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\GUI\obj\x86\Release\GUI.pdb
 C:\Clones\SGM-WindowsForms\src\GUI\obj\x86\Release\GUI.FrmDetalhesServicoGerado.resources
+C:\Clones\SGM-WindowsForms\src\GUI\obj\x86\Release\GUI.frmConsultaHistoricoOrcamentoClienteVeiculo.resources
+C:\Clones\SGM-WindowsForms\src\GUI\obj\x86\Release\GUI.frmDetalhesOrcamentoGerado.resources
