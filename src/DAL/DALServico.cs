@@ -315,7 +315,7 @@ namespace DAL
             "SELECT " +
             " Servico.ServicoId " +
             ",Cliente.ClienteId " +
-            ",CAST(DATETIME(Servico.DataCadastro, '-3 hour') AS VARCHAR) AS DataServico " +
+            ",Servico.DataCadastro AS DataServico " +
             ",Cliente.Cliente " +
             ",Veiculo.Marca || ' - ' || Veiculo.Modelo AS MarcaModeloVeiculo " +
             ",ClienteVeiculo.PlacaVeiculo " +
@@ -330,7 +330,7 @@ namespace DAL
             "INNER JOIN Veiculo ON Veiculo.VeiculoId = ClienteVeiculo.VeiculoId " +
             "INNER JOIN Servico ON Servico.ClienteId = Cliente.ClienteId " +
             "WHERE 1=1 " +
-            "AND Cliente.ClienteId = " + Convert.ToString(clienteId), conexao.StringConexao);
+            "AND Cliente.ClienteId = " + Convert.ToString(clienteId) + " ORDER BY Servico.ServicoId DESC; ", conexao.StringConexao);
             da.Fill(tabela);
             conexao.Desconectar();
             return tabela;
@@ -373,7 +373,7 @@ namespace DAL
             "INNER JOIN Veiculo ON Veiculo.VeiculoId = ClienteVeiculo.VeiculoId " +
             "INNER JOIN Servico ON Servico.ClienteId = Cliente.ClienteId " +
             "WHERE 1=1 " +
-            "AND REPLACE(RTRIM(LTRIM(ClienteVeiculo.PlacaVeiculo)), '-', '') LIKE '%" + Convert.ToString(newPlacaVeiculo) + "%'", conexao.StringConexao);
+            "AND REPLACE(RTRIM(LTRIM(ClienteVeiculo.PlacaVeiculo)), '-', '') LIKE '%" + Convert.ToString(newPlacaVeiculo) + "%'" + " ORDER BY Servico.ServicoId DESC; ", conexao.StringConexao);
             da.Fill(tabela);
             conexao.Desconectar();
             return tabela;

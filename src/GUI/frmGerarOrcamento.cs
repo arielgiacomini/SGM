@@ -346,9 +346,9 @@ namespace GUI
 
         private void TxtPercentualDesconto_Leave(object sender, EventArgs e)
         {
-            Decimal PDesc = Convert.ToDecimal(txtPercentualDesconto.Text.Replace("%", ""));
-            Decimal VTota = Convert.ToDecimal(txtValorTotal.Text.Replace("R$ ", ""));
-            Decimal VDesc = Convert.ToDecimal(txtValorDesconto.Text.Replace("R$ ", ""));
+            decimal PDesc = Convert.ToDecimal(txtPercentualDesconto.Text.Replace("%", ""));
+            decimal VTota = Convert.ToDecimal(txtValorTotal.Text.Replace("R$ ", ""));
+            decimal VDesc = Convert.ToDecimal(txtValorDesconto.Text.Replace("R$ ", ""));
             txtValorDesconto.Text = Convert.ToString(Convert.ToDecimal(((VTota / 100) * PDesc)).ToString("C"));
             VDesc = Convert.ToDecimal((VTota / 100) * PDesc);
             txtValorTotal.Text = Convert.ToString((VTota - VDesc).ToString("C"));
@@ -369,7 +369,6 @@ namespace GUI
 
         private void BtnLocalizar_Click(object sender, EventArgs e)
         {
-            Close();
             frmConsultaHistoricoOrcamentoClienteVeiculo consultaHistoricoOrcamento = new frmConsultaHistoricoOrcamentoClienteVeiculo();
             consultaHistoricoOrcamento.ShowDialog();
             if (consultaHistoricoOrcamento.codigo != 0)
@@ -388,6 +387,7 @@ namespace GUI
                 txtValorTotal.Text = Convert.ToString(modelo.CValorTotal);
                 alteraBotoes(3);
             }
+
             else
             {
                 this.LimpaTela();
