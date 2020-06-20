@@ -380,9 +380,9 @@
             this.lblCliente.AutoSize = true;
             this.lblCliente.Location = new System.Drawing.Point(20, 12);
             this.lblCliente.Name = "lblCliente";
-            this.lblCliente.Size = new System.Drawing.Size(183, 13);
+            this.lblCliente.Size = new System.Drawing.Size(186, 13);
             this.lblCliente.TabIndex = 44;
-            this.lblCliente.Text = "Digite o Nome ou Apelido do Cliente: ";
+            this.lblCliente.Text = "Nome, Apelido ou PLACA do Veículo:";
             // 
             // txtConsultaCliente
             // 

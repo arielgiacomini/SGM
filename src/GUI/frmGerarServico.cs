@@ -51,6 +51,8 @@ namespace GUI
 
         public int codigo = 0;
         public int clienteId = 0;
+        public int veiculoId = 0;
+        public string placaVeiculo = "";
         public string CellCliente = "";
         public string VerificaOrcamento = "";
         public decimal txtVA = 0;
@@ -69,12 +71,10 @@ namespace GUI
             dgvCliente.Columns[0].Width = 50;
             dgvCliente.Columns[1].HeaderText = "Cliente";
             dgvCliente.Columns[1].Width = 296;
-            dgvCliente.Columns[2].HeaderText = "CPF";
-            dgvCliente.Columns[2].Width = 90;
-            dgvCliente.Columns[3].HeaderText = "Sexo";
-            dgvCliente.Columns[3].Width = 80;
-            dgvCliente.Columns[4].HeaderText = "E-mail";
-            dgvCliente.Columns[4].Width = 182;
+            dgvCliente.Columns[2].HeaderText = "Placa Veículo";
+            dgvCliente.Columns[2].Width = 120;
+            dgvCliente.Columns[3].HeaderText = "Marca/Modelo";
+            dgvCliente.Columns[3].Width = 232;
         }
 
         private void FrmGerarServico_Load(object sender, EventArgs e)
@@ -89,6 +89,19 @@ namespace GUI
 
                 this.operacao = "inserir";
                 this.alteraBotoes(2);
+
+                if (placaVeiculo != "" && veiculoId != 0)
+                {
+                    dgvCliente.DataSource = bll.LocalizarCliente(txtConsultaCliente.Text);
+                    dgvCliente.Columns[0].HeaderText = "Código";
+                    dgvCliente.Columns[0].Width = 50;
+                    dgvCliente.Columns[1].HeaderText = "Cliente";
+                    dgvCliente.Columns[1].Width = 296;
+                    dgvCliente.Columns[2].HeaderText = "Placa Veículo";
+                    dgvCliente.Columns[2].Width = 120;
+                    dgvCliente.Columns[3].HeaderText = "Marca/Modelo";
+                    dgvCliente.Columns[3].Width = 232;
+                }
 
                 txtConsultaCliente.Enabled = false;
                 btnConsultaCliente.Enabled = false;

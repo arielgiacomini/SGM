@@ -260,7 +260,7 @@ namespace DAL
                 "Cliente.ClienteId, " +
                 "Cliente.Cliente, " +
                 "ClienteVeiculo.PlacaVeiculo, " +
-                "Veiculo.Marca + ' - ' + Veiculo.Modelo " +
+                "Veiculo.Marca || ' - ' || Veiculo.Modelo " +
                 "FROM Cliente " +
                 "INNER JOIN ClienteVeiculo ON ClienteVeiculo.ClienteId = Cliente.ClienteId " +
                 "INNER JOIN Veiculo ON Veiculo.VeiculoId = ClienteVeiculo.VeiculoId " +
