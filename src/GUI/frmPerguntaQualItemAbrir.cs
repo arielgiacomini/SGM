@@ -11,6 +11,8 @@ namespace GUI
         }
         
         public int clienteId = 0;
+        public int veiculoId = 0;
+        public string placaVeiculo = "";
 
         private void FrmPerguntaQualItemAbrir_Load(object sender, EventArgs e)
         {
@@ -21,7 +23,9 @@ namespace GUI
         {
             FrmGerarOrcamento formGerarOrcamento = new FrmGerarOrcamento
             {
-                clienteId = clienteId
+                clienteId = clienteId,
+                veiculoId = veiculoId,
+                placaVeiculo = placaVeiculo
             };
 
             formGerarOrcamento.ShowDialog();
@@ -32,7 +36,9 @@ namespace GUI
         {
             FrmGerarServico formGerarServico = new FrmGerarServico
             {
-                clienteId = clienteId
+                clienteId = clienteId,
+                veiculoId = veiculoId,
+                placaVeiculo = placaVeiculo
             };
 
             formGerarServico.ShowDialog();

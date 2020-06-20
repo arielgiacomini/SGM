@@ -51,6 +51,8 @@ namespace GUI
 
         public int codigo = 0;
         public int clienteId = 0;
+        public int veiculoId = 0;
+        public string placaVeiculo = "";
         public string CellCliente = "";
         public string VerificaOrcamento = "";
         public decimal txtVA = 0;
@@ -71,7 +73,7 @@ namespace GUI
             dgvCliente.Columns[2].HeaderText = "Placa Veículo";
             dgvCliente.Columns[2].Width = 120;
             dgvCliente.Columns[3].HeaderText = "Marca/Modelo";
-            dgvCliente.Columns[3].Width = 220;
+            dgvCliente.Columns[3].Width = 232;
         }
 
         private void FrmGerarOrcamento_Load(object sender, EventArgs e)
@@ -83,6 +85,19 @@ namespace GUI
                 BLLCliente modeloCliente = new BLLCliente(cx);
 
                 var dadosCliente = modeloCliente.CarregaModeloCliente(clienteId);
+
+                if (placaVeiculo != "" && veiculoId != 0)
+                {
+                    dgvCliente.DataSource = bll.LocalizarCliente(placaVeiculo);
+                    dgvCliente.Columns[0].HeaderText = "Código";
+                    dgvCliente.Columns[0].Width = 50;
+                    dgvCliente.Columns[1].HeaderText = "Cliente";
+                    dgvCliente.Columns[1].Width = 296;
+                    dgvCliente.Columns[2].HeaderText = "Placa Veículo";
+                    dgvCliente.Columns[2].Width = 120;
+                    dgvCliente.Columns[3].HeaderText = "Marca/Modelo";
+                    dgvCliente.Columns[3].Width = 232;
+                }
 
                 this.operacao = "inserir";
                 this.alteraBotoes(2);

@@ -143,7 +143,9 @@ namespace GUI
 
                 FrmPerguntaQualItemAbrir questionItemAbrir = new FrmPerguntaQualItemAbrir
                 {
-                    clienteId = Convert.ToInt32(txtClienteId.Text)
+                    clienteId = Convert.ToInt32(txtClienteId.Text),
+                    veiculoId = Convert.ToInt32(cboVeiculo.SelectedValue),
+                    placaVeiculo = Convert.ToString(txtPlacaVeiculo.Text)
                 };
 
                 questionItemAbrir.ShowDialog();

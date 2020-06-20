@@ -249,18 +249,19 @@ namespace DAL
             return tabela;
         }
 
-        public DataTable LocalizarCliente(String Valor)
+        public DataTable LocalizarCliente(string valor)
         {
             DataTable tabela = new DataTable();
             SQLiteDataAdapter da = new SQLiteDataAdapter("" +
                 "SELECT " +
-                "ClienteId, " +
-                "Cliente, " +
-                "DocumentoCliente, " +
-                "Sexo, " +
-                "Email " +
+                "Cliente.ClienteId, " +
+                "Cliente.Cliente, " +
+                "ClienteVeiculo.PlacaVeiculo, " +
+                "Veiculo.Marca || ' - ' || Veiculo.Modelo " +
                 "FROM Cliente " +
-                "WHERE Cliente.Cliente LIKE '%" + Valor + "%' OR Cliente.Apelido LIKE '%" + Valor + "%'", conexao.StringConexao);
+                "INNER JOIN ClienteVeiculo ON ClienteVeiculo.ClienteId = Cliente.ClienteId " +
+                "INNER JOIN Veiculo ON Veiculo.VeiculoId = ClienteVeiculo.VeiculoId " +
+                "WHERE Cliente.Cliente LIKE '%" + valor + "%' OR Cliente.Apelido LIKE '%" + valor + "%' OR ClienteVeiculo.PlacaVeiculo LIKE '%" + valor + "%'", conexao.StringConexao);
             da.Fill(tabela);
             conexao.Desconectar();
             return tabela;
