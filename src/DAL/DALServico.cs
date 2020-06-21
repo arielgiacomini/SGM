@@ -2,14 +2,13 @@
 using Modelo.Entities;
 using System;
 using System.Data;
-using System.Data.SQLite;
+using System.Data.SqlClient;
 
 namespace DAL
 {
     public class DALServico
     {
-
-        private DALConexao conexao;
+        private readonly DALConexao conexao;
 
         public DALServico(DALConexao cx)
         {
@@ -18,7 +17,7 @@ namespace DAL
 
         public void IncluirServico(ModeloServico modelo)
         {
-            SQLiteCommand cmd = new SQLiteCommand();
+            SqlCommand cmd = new SqlCommand();
             cmd.Connection = conexao.ObjetoConexao;
             cmd.CommandText = "INSERT INTO Servico " +
                 "(" +
@@ -39,8 +38,7 @@ namespace DAL
                 "@ValorTotal," +
                 "@Status," +
                 "@Ativo " +
-                "); " +
-                "SELECT seq FROM sqlite_sequence WHERE name = 'Servico';";
+                "); SELECT @@IDENTITY;";
             cmd.Parameters.AddWithValue("@ClienteId", modelo.CClienteId);
             cmd.Parameters.AddWithValue("@Descricao", modelo.CDescricao);
             cmd.Parameters.AddWithValue("@ValorAdicional", modelo.CValorAdicional);
@@ -56,7 +54,7 @@ namespace DAL
 
         public void IncluirServicoMaodeObra(ServicoMaodeObra modelo)
         {
-            SQLiteCommand cmd = new SQLiteCommand
+            SqlCommand cmd = new SqlCommand
             {
                 Connection = conexao.ObjetoConexao,
                 CommandText = "INSERT INTO ServicoMaodeObra " +
@@ -66,7 +64,7 @@ namespace DAL
                 ") VALUES (" +
                 "@ServicoId," +
                 "@MaodeObraId " +
-                "); "
+                ");"
             };
 
             cmd.Parameters.AddWithValue("@ServicoId", modelo.ServicoId);
@@ -78,7 +76,7 @@ namespace DAL
 
         public void IncluirServicoPeca(ServicoPeca modelo)
         {
-            SQLiteCommand cmd = new SQLiteCommand
+            SqlCommand cmd = new SqlCommand
             {
                 Connection = conexao.ObjetoConexao,
                 CommandText = "INSERT INTO ServicoPeca " +
@@ -88,8 +86,7 @@ namespace DAL
                 ") VALUES (" +
                 "@ServicoId," +
                 "@PecaId " +
-                "); " +
-                "SELECT seq FROM sqlite_sequence WHERE name = 'Servico';"
+                "); SELECT TOP 1 Servico.ServicoId FROM Servico ORDER BY ServicoId DESC;"
             };
 
             cmd.Parameters.AddWithValue("@ServicoId", modelo.ServicoId);
@@ -101,7 +98,7 @@ namespace DAL
 
         public void AlterarServico(ModeloServico modelo)
         {
-            SQLiteCommand cmd = new SQLiteCommand();
+            SqlCommand cmd = new SqlCommand();
             cmd.Connection = conexao.ObjetoConexao;
             cmd.CommandText = "UPDATE Servico SET " +
                 "ClienteId = @ClienteId," +
@@ -129,11 +126,13 @@ namespace DAL
 
         public void AlterarServicoMaodeObra(ModeloServico modelo)
         {
-            SQLiteCommand cmd = new SQLiteCommand();
-            cmd.Connection = conexao.ObjetoConexao;
-            cmd.CommandText = "UPDATE ServicoMaodeObra SET " +
+            SqlCommand cmd = new SqlCommand
+            {
+                Connection = conexao.ObjetoConexao,
+                CommandText = "UPDATE ServicoMaodeObra SET " +
                 "MaodeObraId = @MaodeObraId," +
-                "WHERE ServicoId = @ServicoId;";
+                "WHERE ServicoId = @ServicoId;"
+            };
             cmd.Parameters.AddWithValue("@ServicoId", modelo.CServicoId);
             cmd.Parameters.AddWithValue("@MaodeObraId", modelo.CMaodeObraId);
             conexao.Conectar();
@@ -143,7 +142,7 @@ namespace DAL
 
         public void AlterarServicoPeca(ModeloServico modelo)
         {
-            SQLiteCommand cmd = new SQLiteCommand();
+            SqlCommand cmd = new SqlCommand();
             cmd.Connection = conexao.ObjetoConexao;
             cmd.CommandText = "UPDATE ServicoPeca SET " +
                 "PecaId = @PecaId," +
@@ -157,7 +156,7 @@ namespace DAL
 
         public void ExcluirServico(int ServicoId)
         {
-            SQLiteCommand cmd = new SQLiteCommand
+            SqlCommand cmd = new SqlCommand
             {
                 Connection = conexao.ObjetoConexao,
                 CommandText = "DELETE FROM Servico WHERE ServicoId = @ServicoId;"
@@ -174,7 +173,7 @@ namespace DAL
             int servicoId = servicoMaodeObra.ServicoId;
             int maoDeObraId = servicoMaodeObra.MaodeObraId;
 
-            SQLiteCommand cmd = new SQLiteCommand
+            SqlCommand cmd = new SqlCommand
             {
                 Connection = conexao.ObjetoConexao,
                 CommandText = "DELETE FROM ServicoMaodeObra WHERE ServicoId = @ServicoId AND MaodeObraId = @MaodeObraId;"
@@ -192,7 +191,7 @@ namespace DAL
             int servicoId = servicoPeca.ServicoId;
             int pecaId = servicoPeca.PecaId;
 
-            SQLiteCommand cmd = new SQLiteCommand
+            SqlCommand cmd = new SqlCommand
             {
                 Connection = conexao.ObjetoConexao,
                 CommandText = "DELETE FROM ServicoPeca WHERE ServicoId = @ServicoId AND PecaId = @PecaId;"
@@ -209,7 +208,7 @@ namespace DAL
         {
             Convert.ToString(ServicoId);
             DataTable tabela = new DataTable();
-            SQLiteDataAdapter da = new SQLiteDataAdapter("SELECT * FROM Servico WHERE ServicoId = " + ServicoId, conexao.StringConexao);
+            SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM Servico WHERE ServicoId = " + ServicoId, conexao.StringConexao);
             da.Fill(tabela);
             conexao.Desconectar();
             return tabela;
@@ -219,10 +218,10 @@ namespace DAL
         {
             Convert.ToString(ServicoId);
             DataTable tabela = new DataTable();
-            SQLiteDataAdapter da = new SQLiteDataAdapter("" +
+            SqlDataAdapter da = new SqlDataAdapter("" +
                 "SELECT " +
                 "MaodeObra.MaodeObraId, " +
-                "MaodeObra.MaodeObra, " +
+                "MaodeObra.Descricao, " +
                 "MaodeObra.Valor " +
                 "FROM ServicoMaodeObra " +
                 "INNER JOIN MaodeObra ON MaodeObra.MaodeObraId = ServicoMaodeObra.MaodeObraId " +
@@ -236,13 +235,13 @@ namespace DAL
         {
             Convert.ToString(servicoId);
             DataTable tabela = new DataTable();
-            SQLiteDataAdapter da = new SQLiteDataAdapter("" +
+            SqlDataAdapter da = new SqlDataAdapter("" +
                 "SELECT " +
-                "Pecas.PecaId, " +
-                "Pecas.Peca, " +
-                "(Pecas.Valor + Pecas.ValorFrete) AS ValorTotal " +
+                "Peca.PecaId, " +
+                "Peca.Descricao, " +
+                "(Peca.Valor + Peca.ValorFrete) AS ValorTotal " +
                 "FROM ServicoPeca " +
-                "INNER JOIN Pecas ON Pecas.PecaId = ServicoPeca.PecaId " +
+                "INNER JOIN Peca ON Peca.PecaId = ServicoPeca.PecaId " +
                 "WHERE ServicoPeca.ServicoId = " + servicoId, conexao.StringConexao);
             da.Fill(tabela);
             conexao.Desconectar();
@@ -252,16 +251,16 @@ namespace DAL
         public DataTable LocalizarCliente(string valor)
         {
             DataTable tabela = new DataTable();
-            SQLiteDataAdapter da = new SQLiteDataAdapter("" +
+            SqlDataAdapter da = new SqlDataAdapter("" +
                 "SELECT " +
                 "Cliente.ClienteId, " +
-                "Cliente.Cliente, " +
+                "Cliente.NomeCliente, " +
                 "ClienteVeiculo.PlacaVeiculo, " +
-                "Veiculo.Marca || ' - ' || Veiculo.Modelo " +
+                "Veiculo.Marca + ' - ' + Veiculo.Modelo " +
                 "FROM Cliente " +
                 "INNER JOIN ClienteVeiculo ON ClienteVeiculo.ClienteId = Cliente.ClienteId " +
                 "INNER JOIN Veiculo ON Veiculo.VeiculoId = ClienteVeiculo.VeiculoId " +
-                "WHERE Cliente.Cliente LIKE '%" + valor + "%' OR Cliente.Apelido LIKE '%" + valor + "%' OR ClienteVeiculo.PlacaVeiculo LIKE '%" + valor + "%'", conexao.StringConexao);
+                "WHERE Cliente.NomeCliente LIKE '%" + valor + "%' OR Cliente.Apelido LIKE '%" + valor + "%' OR ClienteVeiculo.PlacaVeiculo LIKE '%" + valor + "%'", conexao.StringConexao);
             da.Fill(tabela);
             conexao.Desconectar();
             return tabela;
@@ -271,7 +270,7 @@ namespace DAL
         {
             Convert.ToString(valor);
             DataTable tabela = new DataTable();
-            SQLiteDataAdapter da = new SQLiteDataAdapter("SELECT MaodeObra.MaodeObraId, MaodeObra.MaodeObra, MaodeObra.Valor FROM MaodeObra WHERE MaodeObra.MaodeObraId = " + valor, conexao.StringConexao);
+            SqlDataAdapter da = new SqlDataAdapter("SELECT MaodeObra.MaodeObraId, MaodeObra.MaodeObra, MaodeObra.Valor FROM MaodeObra WHERE MaodeObra.MaodeObraId = " + valor, conexao.StringConexao);
             da.Fill(tabela);
             conexao.Desconectar();
             return tabela;
@@ -281,7 +280,7 @@ namespace DAL
         {
             Convert.ToString(valor);
             DataTable tabela = new DataTable();
-            SQLiteDataAdapter da = new SQLiteDataAdapter("SELECT Pecas.PecaId, Pecas.Peca, (Pecas.Valor + Pecas.ValorFrete) AS ValorTotal FROM Pecas WHERE Pecas.PecaId = " + valor, conexao.StringConexao);
+            SqlDataAdapter da = new SqlDataAdapter("SELECT Peca.PecaId, Peca.Descricao, (Peca.Valor + Peca.ValorFrete) AS ValorTotal FROM Peca WHERE Peca.PecaId = " + valor, conexao.StringConexao);
             da.Fill(tabela);
             conexao.Desconectar();
             return tabela;
@@ -290,18 +289,18 @@ namespace DAL
         public ModeloMaoDeObra CarregaModeloServicoMaodeObra(int maodeobraid)
         {
             ModeloMaoDeObra modelo = new ModeloMaoDeObra();
-            SQLiteCommand cmd = new SQLiteCommand();
+            SqlCommand cmd = new SqlCommand();
             cmd.Connection = conexao.ObjetoConexao;
             cmd.CommandText = "SELECT * FROM MaodeObra WHERE MaodeObraId = @MaodeObraId";
             cmd.Parameters.AddWithValue("@MaodeObraId", maodeobraid);
             conexao.Conectar();
-            SQLiteDataReader registro = cmd.ExecuteReader();
+            SqlDataReader registro = cmd.ExecuteReader();
 
             if (registro.HasRows)
             {
                 registro.Read();
                 modelo.CMaodeObraId = Convert.ToInt32(registro["MaodeObraId"]);
-                modelo.CMaodeObra = Convert.ToString(registro["MaodeObra"]);
+                modelo.CDescricao = Convert.ToString(registro["MaodeObra"]);
                 modelo.CTipo = Convert.ToString(registro["Tipo"]);
                 modelo.CValor = Convert.ToDecimal(registro["Valor"]);
             }
@@ -312,13 +311,13 @@ namespace DAL
         public DataTable BuscarHistoricoServicoClienteByClienteId(int clienteId)
         {
             DataTable tabela = new DataTable();
-            SQLiteDataAdapter da = new SQLiteDataAdapter(
+            SqlDataAdapter da = new SqlDataAdapter(
             "SELECT " +
             " Servico.ServicoId " +
             ",Cliente.ClienteId " +
             ",Servico.DataCadastro AS DataServico " +
-            ",Cliente.Cliente " +
-            ",Veiculo.Marca || ' - ' || Veiculo.Modelo AS MarcaModeloVeiculo " +
+            ",Cliente.NomeCliente " +
+            ",Veiculo.Marca + ' - ' + Veiculo.Modelo AS MarcaModeloVeiculo " +
             ",ClienteVeiculo.PlacaVeiculo " +
             ",Servico.Descricao AS DescricaoServico " +
             ",Servico.Status AS StatusServico " +
@@ -355,13 +354,13 @@ namespace DAL
                 newPlacaVeiculo = placaVeiculo;
             }
 
-            SQLiteDataAdapter da = new SQLiteDataAdapter(
+            SqlDataAdapter da = new SqlDataAdapter(
             "SELECT " +
             " Servico.ServicoId " +
             ",Cliente.ClienteId " +
             ",Servico.DataCadastro AS DataServico " +
-            ",Cliente.Cliente " +
-            ",Veiculo.Marca || ' - ' || Veiculo.Modelo AS MarcaModeloVeiculo " +
+            ",Cliente.NomeCliente " +
+            ",Veiculo.Marca + ' - ' + Veiculo.Modelo AS MarcaModeloVeiculo " +
             ",ClienteVeiculo.PlacaVeiculo " +
             ",Servico.Descricao AS DescricaoServico " +
             ",Servico.Status AS StatusServico " +
@@ -383,12 +382,12 @@ namespace DAL
         public ModeloServico BuscarDetalheServicoGerado(int servicoId)
         {
             ModeloServico modelo = new ModeloServico();
-            SQLiteCommand cmd = new SQLiteCommand();
+            SqlCommand cmd = new SqlCommand();
             cmd.Connection = conexao.ObjetoConexao;
             cmd.CommandText = "SELECT * FROM Servico WHERE ServicoId = @ServicoId";
             cmd.Parameters.AddWithValue("@ServicoId", servicoId);
             conexao.Conectar();
-            SQLiteDataReader registro = cmd.ExecuteReader();
+            SqlDataReader registro = cmd.ExecuteReader();
 
             if (registro.HasRows)
             {

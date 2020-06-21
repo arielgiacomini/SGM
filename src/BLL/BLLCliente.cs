@@ -16,7 +16,7 @@ namespace BLL
 
         public void Incluir(ModeloCliente modelo)
         {
-            if (modelo.CCliente.Trim().Length == 0 && modelo.CApelido.Trim().Length == 0)
+            if (modelo.CNomeCliente.Trim().Length == 0 && modelo.CApelido.Trim().Length == 0)
             {
                 throw new Exception("O nome do cliente ou Apelido é obrigatório.");
             }
@@ -28,7 +28,7 @@ namespace BLL
 
             modelo.CSexo = modelo.CSexo.ToUpper();
             modelo.CEmail = modelo.CEmail.ToLower();
-            modelo.CCliente = modelo.CCliente.ToUpper();
+            modelo.CNomeCliente = modelo.CNomeCliente.ToUpper();
             modelo.CApelido = modelo.CApelido.ToUpper();
             modelo.CEstadoCivil = modelo.CEstadoCivil.ToUpper();
             modelo.CLogradouroUF = modelo.CLogradouroUF.ToUpper();
@@ -47,7 +47,7 @@ namespace BLL
             {
                 throw new Exception("O código do Cliente é obrigatório!");
             }
-            if (modelo.CCliente.Trim().Length == 0 && modelo.CApelido.Trim().Length == 0)
+            if (modelo.CNomeCliente.Trim().Length == 0 && modelo.CApelido.Trim().Length == 0)
             {
                 throw new Exception("O nome do cliente ou Apelido é obrigatório.");
             }
@@ -58,7 +58,7 @@ namespace BLL
 
             modelo.CSexo = modelo.CSexo.ToUpper();
             modelo.CEmail = modelo.CEmail.ToLower();
-            modelo.CCliente = modelo.CCliente.ToUpper();
+            modelo.CNomeCliente = modelo.CNomeCliente.ToUpper();
             modelo.CApelido = modelo.CApelido.ToUpper();
             modelo.CEstadoCivil = modelo.CEstadoCivil.ToUpper();
             modelo.CLogradouroUF = modelo.CLogradouroUF.ToUpper();

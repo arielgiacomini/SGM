@@ -63,7 +63,7 @@ namespace GUI
                 ModeloCliente modeloCliente = bllC.CarregaModeloCliente(clienteId);
 
                 txtClienteId.Text = modeloCliente.CClienteId.ToString();
-                txtCliente.Text = modeloCliente.CCliente.ToString();
+                txtCliente.Text = modeloCliente.CNomeCliente.ToString();
                 txtTelefoneCliente.Text = modeloCliente.CTelefoneCelular.ToString();
 
                 this.txtClienteId.Enabled = false;
@@ -215,7 +215,7 @@ namespace GUI
                 txtCorVeiculo.Text = modelo.CCorVeiculo.ToString();
                 cboVeiculo.SelectedValue = modelo.CVeiculoId.ToString();
                 txtClienteId.Text = modeloCliente.CClienteId.ToString();
-                txtCliente.Text = modeloCliente.CCliente.ToString();
+                txtCliente.Text = modeloCliente.CNomeCliente.ToString();
                 txtTelefoneCliente.Text = modeloCliente.CTelefoneCelular.ToString();
                 alteraBotoes(3);
             }

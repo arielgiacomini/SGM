@@ -16,7 +16,7 @@ namespace BLL
 
         public void Incluir(ModeloMaoDeObra modelo)
         {
-            if (modelo.CMaodeObra.Trim().Length == 0)
+            if (modelo.CDescricao.Trim().Length == 0)
             {
                 throw new Exception("O nome da Mão-de-Obra é obrigatório.");
             }
@@ -26,7 +26,7 @@ namespace BLL
                 throw new Exception("O valor da Mão-de-Obra é obrigatório.");
             }
 
-            modelo.CMaodeObra = modelo.CMaodeObra.ToUpper();
+            modelo.CDescricao = modelo.CDescricao.ToUpper();
             modelo.CTipo = modelo.CTipo.ToUpper();
 
 
@@ -40,12 +40,12 @@ namespace BLL
             {
                 throw new Exception("O código da Mão-de-Obra é obrigatório!");
             }
-            if (modelo.CMaodeObra.Trim().Length == 0)
+            if (modelo.CDescricao.Trim().Length == 0)
             {
                 throw new Exception("O nome da Mão-de-Obra é obrigatório.");
             }
 
-            modelo.CMaodeObra = modelo.CMaodeObra.ToUpper();
+            modelo.CDescricao = modelo.CDescricao.ToUpper();
             modelo.CTipo = modelo.CTipo.ToUpper();
 
             DALMaoDeObra DALobj = new DALMaoDeObra(conexao);

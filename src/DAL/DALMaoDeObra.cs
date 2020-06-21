@@ -1,13 +1,13 @@
 ﻿using Modelo;
 using System;
 using System.Data;
-using System.Data.SQLite;
+using System.Data.SqlClient;
 
 namespace DAL
 {
     public class DALMaoDeObra
     {
-        private DALConexao conexao;
+        private readonly DALConexao conexao;
 
         public DALMaoDeObra(DALConexao cx)
         {
@@ -16,26 +16,28 @@ namespace DAL
 
         public void Incluir(ModeloMaoDeObra modelo)
         {
-            SQLiteCommand cmd = new SQLiteCommand();
-            cmd.Connection = conexao.ObjetoConexao;
-            cmd.CommandText = "INSERT INTO MaodeObra " +
+            SqlCommand cmd = new SqlCommand
+            {
+                Connection = conexao.ObjetoConexao,
+                CommandText = "INSERT INTO MaodeObra " +
                 "(" +
-                "MaodeObra," +
+                "MaodeObra.Descricao," +
                 "Tipo," +
                 "Valor," +
                 "VigenciaInicial," +
                 "VigenciaFinal, " +
                 "Ativo " +
                 ") VALUES (" +
-                "@MaodeObra," +
+                "@Descricao," +
                 "@Tipo," +
                 "@Valor," +
                 "@VigenciaInicial," +
                 "@VigenciaFinal, " +
                 "@Ativo " +
-                "); " +
-                "SELECT seq FROM sqlite_sequence WHERE name = 'MaodeObra';";
-            cmd.Parameters.AddWithValue("@MaodeObra", modelo.CMaodeObra);
+                "); "
+            };
+
+            cmd.Parameters.AddWithValue("@Descricao", modelo.CDescricao);
             cmd.Parameters.AddWithValue("@Tipo", modelo.CTipo);
             cmd.Parameters.AddWithValue("@Valor", modelo.CValor);
             cmd.Parameters.AddWithValue("@VigenciaInicial", modelo.CVigenciaInicial);
@@ -48,18 +50,21 @@ namespace DAL
 
         public void Alterar(ModeloMaoDeObra modelo)
         {
-            SQLiteCommand cmd = new SQLiteCommand();
-            cmd.Connection = conexao.ObjetoConexao;
-            cmd.CommandText = "UPDATE MaodeObra SET " +
-                "MaodeObra = @MaodeObra," +
+            SqlCommand cmd = new SqlCommand
+            {
+                Connection = conexao.ObjetoConexao,
+                CommandText = "UPDATE MaodeObra SET " +
+                "Descricao = @Descricao," +
                 "Tipo = @Tipo," +
                 "Valor = @Valor," +
                 "VigenciaInicial = @VigenciaInicial," +
                 "VigenciaFinal = @VigenciaFinal," +
                 "Ativo = @Ativo " +
-                "WHERE MaodeObraId = @MaodeObraId;";
+                "WHERE MaodeObraId = @MaodeObraId;"
+            };
+
             cmd.Parameters.AddWithValue("@MaodeObraId", modelo.CMaodeObraId);
-            cmd.Parameters.AddWithValue("@MaodeObra", modelo.CMaodeObra);
+            cmd.Parameters.AddWithValue("@Descricao", modelo.CDescricao);
             cmd.Parameters.AddWithValue("@Tipo", modelo.CTipo);
             cmd.Parameters.AddWithValue("@Valor", modelo.CValor);
             cmd.Parameters.AddWithValue("@VigenciaInicial", modelo.CVigenciaInicial);
@@ -72,9 +77,12 @@ namespace DAL
 
         public void Excluir(int maodeobraid)
         {
-            SQLiteCommand cmd = new SQLiteCommand();
-            cmd.Connection = conexao.ObjetoConexao;
-            cmd.CommandText = "DELETE FROM MaodeObra WHERE MaodeObraId = @MaodeObraId;";
+            SqlCommand cmd = new SqlCommand
+            {
+                Connection = conexao.ObjetoConexao,
+                CommandText = "DELETE FROM MaodeObra WHERE MaodeObraId = @MaodeObraId;"
+            };
+
             cmd.Parameters.AddWithValue("@MaodeObraId", maodeobraid);
             conexao.Conectar();
             cmd.ExecuteNonQuery();
@@ -85,7 +93,7 @@ namespace DAL
         {
 
             DataTable tabela = new DataTable();
-            SQLiteDataAdapter da = new SQLiteDataAdapter("SELECT * FROM MaodeObra WHERE MaodeObra LIKE '%" + valor + "%' OR Tipo LIKE '%" + valor + "%'", conexao.StringConexao);
+            SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM MaodeObra WHERE MaodeObra.Descricao LIKE '%" + valor + "%' OR Tipo LIKE '%" + valor + "%'", conexao.StringConexao);
             da.Fill(tabela);
             conexao.Desconectar();
             return tabela;
@@ -94,18 +102,21 @@ namespace DAL
         public ModeloMaoDeObra CarregaModeloMaoDeObra(int maodeobraid)
         {
             ModeloMaoDeObra modelo = new ModeloMaoDeObra();
-            SQLiteCommand cmd = new SQLiteCommand();
-            cmd.Connection = conexao.ObjetoConexao;
-            cmd.CommandText = "SELECT * FROM MaodeObra WHERE MaodeObraId = @MaodeObraId";
+            SqlCommand cmd = new SqlCommand
+            {
+                Connection = conexao.ObjetoConexao,
+                CommandText = "SELECT * FROM MaodeObra WHERE MaodeObraId = @MaodeObraId"
+            };
+
             cmd.Parameters.AddWithValue("@MaodeObraId", maodeobraid);
             conexao.Conectar();
-            SQLiteDataReader registro = cmd.ExecuteReader();
+            SqlDataReader registro = cmd.ExecuteReader();
 
             if (registro.HasRows)
             {
                 registro.Read();
                 modelo.CMaodeObraId = Convert.ToInt32(registro["MaodeObraId"]);
-                modelo.CMaodeObra = Convert.ToString(registro["MaodeObra"]);
+                modelo.CDescricao = Convert.ToString(registro["Descricao"]);
                 modelo.CTipo = Convert.ToString(registro["Tipo"]);
                 modelo.CValor = Convert.ToDecimal(registro["Valor"]);
                 modelo.CVigenciaInicial = Convert.ToDateTime(registro["VigenciaInicial"]);

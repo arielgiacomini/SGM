@@ -111,7 +111,7 @@ namespace GUI
                 txtPercentualDesconto.Enabled = true;
 
                 txtClienteId.Text = dadosCliente.CClienteId.ToString();
-                txtClienteSelecionado.Text = dadosCliente.CCliente.ToString();
+                txtClienteSelecionado.Text = dadosCliente.CNomeCliente.ToString();
                 txtValorAdicional.Text = Convert.ToDecimal("0").ToString("C");
                 txtPercentualDesconto.Text = Convert.ToDecimal("0").ToString("P");
                 txtValorDesconto.Text = Convert.ToDecimal("0").ToString("C");

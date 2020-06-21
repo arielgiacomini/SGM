@@ -90,7 +90,7 @@ namespace GUI
 
                 // leitura dos dados
                 ModeloMaoDeObra modelo = new ModeloMaoDeObra();
-                modelo.CMaodeObra = txtMaoDeObra.Text;
+                modelo.CDescricao = txtMaoDeObra.Text;
                 modelo.CTipo = cboTipo.Text;
                 modelo.CValor = Convert.ToDecimal(txtValor.Text.Replace("R$ ", ""));
                 modelo.CVigenciaInicial = Convert.ToDateTime(txtVigenciaInicial.Text);
@@ -105,7 +105,7 @@ namespace GUI
                 {
                     // Cadastrar uma categoria
                     bll.Incluir(modelo);
-                    MessageBox.Show("Cadastro inserido com sucesso! Mão-de-Obra/Serviço: " + modelo.CMaodeObra.ToString(), "Status", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Cadastro inserido com sucesso! Mão-de-Obra/Serviço: " + modelo.CDescricao.ToString(), "Status", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 }
                 else
@@ -113,7 +113,7 @@ namespace GUI
                     // Alterar uma categoria
                     modelo.CMaodeObraId = Convert.ToInt32(txtMaoDeObraId.Text);
                     bll.Alterar(modelo);
-                    MessageBox.Show("Cadastro alterado com sucesso! Mão-de-Obra/Serviço: " + modelo.CMaodeObra.ToString(), "Status", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Cadastro alterado com sucesso! Mão-de-Obra/Serviço: " + modelo.CDescricao.ToString(), "Status", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
 
                 this.LimpaTela();
@@ -147,7 +147,7 @@ namespace GUI
                 BLLMaoDeObra bll = new BLLMaoDeObra(cx);
                 ModeloMaoDeObra modelo = bll.CarregaModeloMaoDeObra(m.codigo);
                 txtMaoDeObraId.Text = Convert.ToString(modelo.CMaodeObraId);
-                txtMaoDeObra.Text = Convert.ToString(modelo.CMaodeObra);
+                txtMaoDeObra.Text = Convert.ToString(modelo.CDescricao);
                 cboTipo.Text = Convert.ToString(modelo.CTipo);
                 txtValor.Text = Convert.ToString(modelo.CValor);
                 txtVigenciaInicial.Text = Convert.ToString(modelo.CVigenciaInicial);

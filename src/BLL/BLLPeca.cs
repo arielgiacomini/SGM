@@ -16,7 +16,7 @@ namespace BLL
 
         public void Incluir(ModeloPeca modelo)
         {
-            if (modelo.CPeca.Trim().Length == 0)
+            if (modelo.CDescricao.Trim().Length == 0)
             {
                 throw new Exception("O nome da peça é obrigatório.");
             }
@@ -26,7 +26,7 @@ namespace BLL
                 throw new Exception("O valor da peça é obrigatório.");
             }
 
-            modelo.CPeca = modelo.CPeca.ToUpper();
+            modelo.CDescricao = modelo.CDescricao.ToUpper();
             modelo.CFornecedor = modelo.CFornecedor.ToUpper();
 
             DALPeca DALobj = new DALPeca(conexao);
@@ -39,12 +39,12 @@ namespace BLL
             {
                 throw new Exception("O código da Peça é obrigatório!");
             }
-            if (modelo.CPeca.Trim().Length == 0)
+            if (modelo.CDescricao.Trim().Length == 0)
             {
                 throw new Exception("O nome da Peça é obrigatório.");
             }
 
-            modelo.CPeca = modelo.CPeca.ToUpper();
+            modelo.CDescricao = modelo.CDescricao.ToUpper();
             modelo.CFornecedor = modelo.CFornecedor.ToUpper();
 
             DALPeca DALobj = new DALPeca(conexao);
