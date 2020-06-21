@@ -77,7 +77,7 @@ namespace Modelo
             set { this.ClienteId = value; }
         }
 
-        public string CCliente
+        public string CNomeCliente
         {
             get { return this.Cliente; }
             set { this.Cliente = value; }

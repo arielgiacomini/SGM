@@ -34,7 +34,7 @@ namespace Modelo
             set { this.PecaId = value; }
         }
 
-        public String CPeca
+        public String CDescricao
         {
             get { return this.Peca; }
             set { this.Peca = value; }

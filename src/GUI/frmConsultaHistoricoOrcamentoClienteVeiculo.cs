@@ -29,7 +29,7 @@ namespace GUI
 
             if (dgvOrcamentoHistoricoClienteVeiculo.Columns.Count > 0)
             {
-                dgvOrcamentoHistoricoClienteVeiculo.Columns[0].HeaderText = "Código Serviço";
+                dgvOrcamentoHistoricoClienteVeiculo.Columns[0].HeaderText = "Código Orçamento";
                 dgvOrcamentoHistoricoClienteVeiculo.Columns[0].Width = 50;
                 dgvOrcamentoHistoricoClienteVeiculo.Columns[1].HeaderText = "Código Cliente";
                 dgvOrcamentoHistoricoClienteVeiculo.Columns[1].Width = 50;

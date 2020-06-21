@@ -1,13 +1,13 @@
 ﻿using Modelo;
 using System;
 using System.Data;
-using System.Data.SQLite;
+using System.Data.SqlClient;
 
 namespace DAL
 {
     public class DALVeiculoCliente
     {
-        private DALConexao conexao;
+        private readonly DALConexao conexao;
 
         public DALVeiculoCliente(DALConexao cx)
         {
@@ -18,9 +18,11 @@ namespace DAL
         {
             try
             {
-                SQLiteCommand cmd = new SQLiteCommand();
-                cmd.Connection = conexao.ObjetoConexao;
-                cmd.CommandText = "INSERT INTO ClienteVeiculo (ClienteId, VeiculoId, AnoVeiculo, PlacaVeiculo, CorVeiculo, KmRodados) VALUES (@clienteid, @veiculoid, @anoveiculo, @placaveiculo, @corveiculo, @kmrodados); SELECT seq FROM sqlite_sequence WHERE name = 'ClienteVeiculo';";
+                SqlCommand cmd = new SqlCommand
+                {
+                    Connection = conexao.ObjetoConexao,
+                    CommandText = "INSERT INTO ClienteVeiculo (ClienteId, VeiculoId, AnoVeiculo, PlacaVeiculo, CorVeiculo, KmRodados) VALUES (@clienteid, @veiculoid, @anoveiculo, @placaveiculo, @corveiculo, @kmrodados);"
+                };
                 cmd.Parameters.AddWithValue("@clienteid", modelo.CClienteId);
                 cmd.Parameters.AddWithValue("@veiculoid", modelo.CVeiculoId);
                 cmd.Parameters.AddWithValue("@anoveiculo", modelo.CAnoVeiculo);
@@ -44,10 +46,10 @@ namespace DAL
         {
             try
             {
-                using (SQLiteConnection c = new SQLiteConnection(conexao.StringConexao))
+                using (SqlConnection c = new SqlConnection(conexao.StringConexao))
                 {
                     c.Open();
-                    using (SQLiteCommand cmd = new SQLiteCommand("UPDATE ClienteVeiculo SET ClienteId = @clienteid, VeiculoId = @veiculoid, AnoVeiculo = @anoveiculo, PlacaVeiculo = @placaveiculo, CorVeiculo = @corveiculo, KmRodados = @kmrodados WHERE ClienteVeiculoId = @clienteveiculoid;", c))
+                    using (SqlCommand cmd = new SqlCommand("UPDATE ClienteVeiculo SET ClienteId = @clienteid, VeiculoId = @veiculoid, AnoVeiculo = @anoveiculo, PlacaVeiculo = @placaveiculo, CorVeiculo = @corveiculo, KmRodados = @kmrodados WHERE ClienteVeiculoId = @clienteveiculoid;", c))
                     {
                         cmd.Parameters.AddWithValue("@clienteveiculoid", modelo.CClienteVeiculoId);
                         cmd.Parameters.AddWithValue("@clienteid", modelo.CClienteId);
@@ -70,9 +72,12 @@ namespace DAL
         {
             try
             {
-                SQLiteCommand cmd = new SQLiteCommand();
-                cmd.Connection = conexao.ObjetoConexao;
-                cmd.CommandText = "DELETE FROM ClienteVeiculo WHERE ClienteVeiculoId = @ClienteVeiculoId;";
+                SqlCommand cmd = new SqlCommand
+                {
+                    Connection = conexao.ObjetoConexao,
+                    CommandText = "DELETE FROM ClienteVeiculo WHERE ClienteVeiculoId = @ClienteVeiculoId;"
+                };
+
                 cmd.Parameters.AddWithValue("@ClienteVeiculoId", ClienteVeiculoId);
                 conexao.Conectar();
                 cmd.ExecuteNonQuery();
@@ -91,10 +96,10 @@ namespace DAL
         public DataTable Localizar(String valor)
         {
             DataTable tabela = new DataTable();
-            SQLiteDataAdapter da = new SQLiteDataAdapter("" +
+            SqlDataAdapter da = new SqlDataAdapter("" +
                 "SELECT " +
                 "ClienteVeiculo.ClienteVeiculoId, " +
-                "Cliente.Cliente, " +
+                "Cliente.NomeCliente, " +
                 "Veiculo.Modelo, " +
                 "ClienteVeiculo.AnoVeiculo, " +
                 "ClienteVeiculo.PlacaVeiculo, " +
@@ -106,7 +111,7 @@ namespace DAL
                 "INNER JOIN Cliente ON Cliente.ClienteId = ClienteVeiculo.ClienteId " +
                 "WHERE " +
                 "ClienteVeiculo.PlacaVeiculo LIKE '%" + Convert.ToString(valor) + "%' " +
-                "OR Cliente.Cliente LIKE '%" + Convert.ToString(valor) + "%'" +
+                "OR Cliente.NomeCliente LIKE '%" + Convert.ToString(valor) + "%'" +
                 "OR Veiculo.Modelo = '" + Convert.ToString(valor) + "'", conexao.StringConexao);
             da.Fill(tabela);
             conexao.Desconectar();
@@ -116,12 +121,14 @@ namespace DAL
         public ModeloVeiculoCliente CarregaModeloVeiculo(int ClienteVeiculoId)
         {
             ModeloVeiculoCliente modelo = new ModeloVeiculoCliente();
-            SQLiteCommand cmd = new SQLiteCommand();
-            cmd.Connection = conexao.ObjetoConexao;
-            cmd.CommandText = "SELECT ClienteVeiculoId, ClienteId, VeiculoId, AnoVeiculo, PlacaVeiculo, CorVeiculo, KmRodados FROM ClienteVeiculo WHERE ClienteVeiculoId = @ClienteVeiculoId";
+            SqlCommand cmd = new SqlCommand
+            {
+                Connection = conexao.ObjetoConexao,
+                CommandText = "SELECT ClienteVeiculoId, ClienteId, VeiculoId, AnoVeiculo, PlacaVeiculo, CorVeiculo, KmRodados FROM ClienteVeiculo WHERE ClienteVeiculoId = @ClienteVeiculoId"
+            };
             cmd.Parameters.AddWithValue("@ClienteVeiculoId", ClienteVeiculoId);
             conexao.Conectar();
-            SQLiteDataReader registro = cmd.ExecuteReader();
+            SqlDataReader registro = cmd.ExecuteReader();
             if (registro.HasRows)
             {
                 registro.Read();
@@ -141,14 +148,14 @@ namespace DAL
         public ModeloVeiculoCliente CarregaModeloVeiculoClienteByPlaca(string placaVeiculo)
         {
             ModeloVeiculoCliente modelo = new ModeloVeiculoCliente();
-            SQLiteCommand cmd = new SQLiteCommand
+            SqlCommand cmd = new SqlCommand
             {
                 Connection = conexao.ObjetoConexao,
                 CommandText = "SELECT * FROM ClienteVeiculo WHERE PlacaVeiculo = @PlacaVeiculo"
             };
             cmd.Parameters.AddWithValue("@PlacaVeiculo", placaVeiculo);
             conexao.Conectar();
-            SQLiteDataReader registro = cmd.ExecuteReader();
+            SqlDataReader registro = cmd.ExecuteReader();
             if (registro.HasRows)
             {
                 registro.Read();
@@ -167,14 +174,14 @@ namespace DAL
         public ModeloVeiculoCliente BuscarVeiculosCliente(int clienteId)
         {
             ModeloVeiculoCliente modelo = new ModeloVeiculoCliente();
-            SQLiteCommand cmd = new SQLiteCommand
+            SqlCommand cmd = new SqlCommand
             {
                 Connection = conexao.ObjetoConexao,
                 CommandText = "SELECT * FROM ClienteVeiculo WHERE ClienteId = @ClienteId"
             };
             cmd.Parameters.AddWithValue("@ClienteId", clienteId);
             conexao.Conectar();
-            SQLiteDataReader registro = cmd.ExecuteReader();
+            SqlDataReader registro = cmd.ExecuteReader();
             if (registro.HasRows)
             {
                 registro.Read();
@@ -193,10 +200,10 @@ namespace DAL
         public DataTable LocalizarTodosVeiculosCliente(int clienteId)
         {
             DataTable tabela = new DataTable();
-            SQLiteDataAdapter da = new SQLiteDataAdapter("" +
+            SqlDataAdapter da = new SqlDataAdapter("" +
                 "SELECT " +
                 "ClienteVeiculo.ClienteVeiculoId, " +
-                "Cliente.Cliente, " +
+                "Cliente.NomeCliente, " +
                 "Veiculo.Modelo, " +
                 "ClienteVeiculo.AnoVeiculo, " +
                 "ClienteVeiculo.PlacaVeiculo, " +

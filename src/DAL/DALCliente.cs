@@ -1,16 +1,13 @@
 ﻿using Modelo;
 using System;
 using System.Data;
-using System.Data.SQLite;
+using System.Data.SqlClient;
 
 namespace DAL
 {
     public class DALCliente
     {
-        private DALConexao conexao;
-        SQLiteConnection _sQLiteConnection;
-        SQLiteCommand _cmd;
-        string sql;
+        private readonly DALConexao conexao;
 
         public DALCliente(DALConexao cx)
         {
@@ -19,12 +16,12 @@ namespace DAL
 
         public void Incluir(ModeloCliente modelo)
         {
-            SQLiteCommand cmd = new SQLiteCommand
+            SqlCommand cmd = new SqlCommand
             {
                 Connection = conexao.ObjetoConexao,
                 CommandText = "INSERT INTO Cliente " +
                 "(" +
-                "Cliente," +
+                "NomeCliente," +
                 "Apelido," +
                 "DocumentoCliente," +
                 "Sexo," +
@@ -42,7 +39,7 @@ namespace DAL
                 "LogradouroBairro," +
                 "LogradouroUF" +
                 ") VALUES (" +
-                "@Cliente," +
+                "@NomeCliente," +
                 "@Apelido," +
                 "@DocumentoCliente," +
                 "@Sexo," +
@@ -59,10 +56,9 @@ namespace DAL
                 "@LogradouroMunicipio," +
                 "@LogradouroBairro," +
                 "@LogradouroUF" +
-                "); " +
-                "SELECT seq FROM sqlite_sequence WHERE name = 'Cliente';"
+                "); "
             };
-            cmd.Parameters.AddWithValue("@Cliente", modelo.CCliente);
+            cmd.Parameters.AddWithValue("@NomeCliente", modelo.CNomeCliente);
             cmd.Parameters.AddWithValue("@Apelido", modelo.CApelido);
             cmd.Parameters.AddWithValue("@DocumentoCliente", modelo.CDocumentoCliente);
             cmd.Parameters.AddWithValue("@Sexo", modelo.CSexo);
@@ -86,10 +82,11 @@ namespace DAL
 
         public void Alterar(ModeloCliente modelo)
         {
-            SQLiteCommand cmd = new SQLiteCommand();
-            cmd.Connection = conexao.ObjetoConexao;
-            cmd.CommandText = "UPDATE Cliente SET " +
-                "Cliente = @Cliente," +
+            SqlCommand cmd = new SqlCommand
+            {
+                Connection = conexao.ObjetoConexao,
+                CommandText = "UPDATE Cliente SET " +
+                "NomeCliente = @NomeCliente," +
                 "Apelido = @Apelido," +
                 "DocumentoCliente = @DocumentoCliente," +
                 "Sexo = @Sexo," +
@@ -106,9 +103,10 @@ namespace DAL
                 "LogradouroMunicipio = @LogradouroMunicipio," +
                 "LogradouroBairro = @LogradouroBairro," +
                 "LogradouroUF = @LogradouroUF " +
-                "WHERE ClienteId = @ClienteId;";
+                "WHERE ClienteId = @ClienteId;"
+            };
             cmd.Parameters.AddWithValue("@ClienteId", modelo.CClienteId);
-            cmd.Parameters.AddWithValue("@Cliente", modelo.CCliente);
+            cmd.Parameters.AddWithValue("@NomeCliente", modelo.CNomeCliente);
             cmd.Parameters.AddWithValue("@Apelido", modelo.CApelido);
             cmd.Parameters.AddWithValue("@DocumentoCliente", modelo.CDocumentoCliente);
             cmd.Parameters.AddWithValue("@Sexo", modelo.CSexo);
@@ -132,7 +130,7 @@ namespace DAL
 
         public void Excluir(int clienteid)
         {
-            SQLiteCommand cmd = new SQLiteCommand
+            SqlCommand cmd = new SqlCommand
             {
                 Connection = conexao.ObjetoConexao,
                 CommandText = "DELETE FROM Cliente WHERE ClienteId = @ClienteId;"
@@ -143,10 +141,10 @@ namespace DAL
             conexao.Desconectar();
         }
 
-        public DataTable Localizar(String valor)
+        public DataTable Localizar(string valor)
         {
             DataTable tabela = new DataTable();
-            SQLiteDataAdapter da = new SQLiteDataAdapter("SELECT * FROM Cliente WHERE Cliente LIKE '%" + valor + "%' OR Apelido LIKE '%" + valor + "%' OR DocumentoCliente = '" + valor + "'", conexao.StringConexao);
+            SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM Cliente WHERE NomeCliente LIKE '%" + valor + "%' OR Apelido LIKE '%" + valor + "%' OR DocumentoCliente = '" + valor + "'", conexao.StringConexao);
             da.Fill(tabela);
             return tabela;
         }
@@ -154,18 +152,21 @@ namespace DAL
         public ModeloCliente CarregaModeloCliente(int clienteid)
         {
             ModeloCliente modelo = new ModeloCliente();
-            SQLiteCommand cmd = new SQLiteCommand();
-            cmd.Connection = conexao.ObjetoConexao;
-            cmd.CommandText = "SELECT * FROM Cliente WHERE ClienteId = @ClienteId";
+            SqlCommand cmd = new SqlCommand
+            {
+                Connection = conexao.ObjetoConexao,
+                CommandText = "SELECT * FROM Cliente WHERE ClienteId = @ClienteId"
+            };
+
             cmd.Parameters.AddWithValue("@ClienteId", clienteid);
             conexao.Conectar();
-            SQLiteDataReader registro = cmd.ExecuteReader();
+            SqlDataReader registro = cmd.ExecuteReader();
 
             if (registro.HasRows)
             {
                 registro.Read();
                 modelo.CClienteId = Convert.ToInt32(registro["ClienteId"]);
-                modelo.CCliente = Convert.ToString(registro["Cliente"]);
+                modelo.CNomeCliente = Convert.ToString(registro["NomeCliente"]);
                 modelo.CApelido = Convert.ToString(registro["Apelido"]);
                 modelo.CDocumentoCliente = Convert.ToString(registro["DocumentoCliente"]);
                 modelo.CSexo = Convert.ToString(registro["Sexo"]);
@@ -193,14 +194,15 @@ namespace DAL
         public int VerificaCPFCliente(String cpf)
         {
             int retorno = 0; // 0 não existe
-            SQLiteCommand cmd = new SQLiteCommand
+            SqlCommand cmd = new SqlCommand
             {
                 Connection = conexao.ObjetoConexao,
                 CommandText = "SELECT * FROM Cliente WHERE DocumentoCliente = @documentoCliente"
             };
+
             cmd.Parameters.AddWithValue("@documentoCliente", cpf);
             conexao.Conectar();
-            SQLiteDataReader registro = cmd.ExecuteReader();
+            SqlDataReader registro = cmd.ExecuteReader();
 
             if (registro.HasRows)
             {
@@ -215,7 +217,7 @@ namespace DAL
         public DataTable LocalizarClienteById(int clienteId)
         {
             DataTable tabela = new DataTable();
-            SQLiteDataAdapter da = new SQLiteDataAdapter("SELECT * FROM Cliente WHERE ClienteId = " + Convert.ToString(clienteId), conexao.StringConexao);
+            SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM Cliente WHERE ClienteId = " + Convert.ToString(clienteId), conexao.StringConexao);
             da.Fill(tabela);
             return tabela;
         }

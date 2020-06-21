@@ -40,7 +40,7 @@ namespace Modelo
             set { this.MaodeObraId = value; }
         }
 
-        public String CMaodeObra
+        public String CDescricao
         {
             get { return this.MaodeObra; }
             set { this.MaodeObra = value; }

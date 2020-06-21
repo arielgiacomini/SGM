@@ -71,7 +71,7 @@ namespace GUI
             {
                 // leitura dos dados
                 ModeloPeca modelo = new ModeloPeca();
-                modelo.CPeca = txtPeca.Text;
+                modelo.CDescricao = txtPeca.Text;
                 modelo.CFornecedor = txtFornecedor.Text;
                 modelo.CValor = Convert.ToDecimal(txtValorPeca.Text.Replace("R$ ", ""));
                 modelo.CValorFrete = Convert.ToDecimal(txtValorFrete.Text.Replace("R$ ", ""));
@@ -84,7 +84,7 @@ namespace GUI
                 {
                     // Cadastrar uma categoria
                     bll.Incluir(modelo);
-                    MessageBox.Show("Cadastro inserido com sucesso! Peça/Produto: " + modelo.CPeca.ToString(), "Status", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Cadastro inserido com sucesso! Peça/Produto: " + modelo.CDescricao.ToString(), "Status", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 }
                 else
@@ -92,7 +92,7 @@ namespace GUI
                     // Alterar uma categoria
                     modelo.CPecaId = Convert.ToInt32(txtPecaId.Text);
                     bll.Alterar(modelo);
-                    MessageBox.Show("Cadastro alterado com sucesso! Peça/Produto: " + modelo.CPeca.ToString());
+                    MessageBox.Show("Cadastro alterado com sucesso! Peça/Produto: " + modelo.CDescricao.ToString());
                 }
 
                 this.LimpaTela();
@@ -124,7 +124,7 @@ namespace GUI
                 BLLPeca bll = new BLLPeca(cx);
                 ModeloPeca modelo = bll.CarregaModeloPeca(l.codigo);
                 txtPecaId.Text = Convert.ToString(modelo.CPecaId);
-                txtPeca.Text = Convert.ToString(modelo.CPeca);
+                txtPeca.Text = Convert.ToString(modelo.CDescricao);
                 txtFornecedor.Text = Convert.ToString(modelo.CFornecedor);
                 txtValorPeca.Text = Convert.ToString(modelo.CValor);
                 txtValorFrete.Text = Convert.ToString(modelo.CValorFrete);

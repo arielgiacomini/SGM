@@ -2,24 +2,25 @@
 using Modelo.Entities;
 using System;
 using System.Data;
-using System.Data.SQLite;
+using System.Data.SqlClient;
 
 namespace DAL
 {
     public class DALOrcamento
     {
-        private DALConexao conexao;
+        private readonly DALConexao conexao;
 
         public DALOrcamento(DALConexao cx)
         {
             this.conexao = cx;
         }
 
-        public void IncluirOrcamento(ModeloOrcamento modelo)
+        public void Incluir(ModeloOrcamento modelo)
         {
-            SQLiteCommand cmd = new SQLiteCommand();
-            cmd.Connection = conexao.ObjetoConexao;
-            cmd.CommandText = "INSERT INTO Orcamento " +
+            SqlCommand cmd = new SqlCommand
+            {
+                Connection = conexao.ObjetoConexao,
+                CommandText = "INSERT INTO Orcamento " +
                 "(" +
                 "ClienteId," +
                 "Descricao," +
@@ -38,8 +39,9 @@ namespace DAL
                 "@ValorTotal," +
                 "@Status," +
                 "@Ativo " +
-                "); " +
-                "SELECT seq FROM sqlite_sequence WHERE name = 'Orcamento';";
+                "); SELECT @@IDENTITY;"
+            };
+
             cmd.Parameters.AddWithValue("@ClienteId", modelo.CClienteId);
             cmd.Parameters.AddWithValue("@Descricao", modelo.CDescricao);
             cmd.Parameters.AddWithValue("@ValorAdicional", modelo.CValorAdicional);
@@ -55,7 +57,7 @@ namespace DAL
 
         public void IncluirOrcamentoMaodeObra(OrcamentoMaodeObra modelo)
         {
-            SQLiteCommand cmd = new SQLiteCommand
+            SqlCommand cmd = new SqlCommand
             {
                 Connection = conexao.ObjetoConexao,
                 CommandText = "INSERT INTO OrcamentoMaodeObra " +
@@ -76,7 +78,7 @@ namespace DAL
 
         public void IncluirOrcamentoPeca(OrcamentoPeca modelo)
         {
-            SQLiteCommand cmd = new SQLiteCommand
+            SqlCommand cmd = new SqlCommand
             {
                 Connection = conexao.ObjetoConexao,
                 CommandText = "INSERT INTO OrcamentoPeca " +
@@ -86,8 +88,7 @@ namespace DAL
                 ") VALUES (" +
                 "@OrcamentoId," +
                 "@PecaId " +
-                "); " +
-                "SELECT seq FROM sqlite_sequence WHERE name = 'Orcamento';"
+                "); SELECT TOP 1 Orcamento.OrcamentoId FROM Orcamento ORDER BY OrcamentoId DESC;"
             };
             cmd.Parameters.AddWithValue("@OrcamentoId", modelo.OrcamentoId);
             cmd.Parameters.AddWithValue("@PecaId", modelo.PecaId);
@@ -98,9 +99,10 @@ namespace DAL
 
         public void AlterarOrcamento(ModeloOrcamento modelo)
         {
-            SQLiteCommand cmd = new SQLiteCommand();
-            cmd.Connection = conexao.ObjetoConexao;
-            cmd.CommandText = "UPDATE Orcamento SET " +
+            SqlCommand cmd = new SqlCommand
+            {
+                Connection = conexao.ObjetoConexao,
+                CommandText = "UPDATE Orcamento SET " +
                 "ClienteId = @ClienteId," +
                 "Descricao = @Descricao," +
                 "ValorAdicional = @ValorAdicional," +
@@ -109,7 +111,9 @@ namespace DAL
                 "ValorTotal = @ValorTotal," +
                 "Status = @Status," +
                 "Ativo = @Ativo " +
-                "WHERE OrcamentoId = @OrcamentoId;";
+                "WHERE OrcamentoId = @OrcamentoId;"
+            };
+
             cmd.Parameters.AddWithValue("@OrcamentoId", modelo.COrcamentoId);
             cmd.Parameters.AddWithValue("@ClienteId", modelo.CClienteId);
             cmd.Parameters.AddWithValue("@Descricao", modelo.CDescricao);
@@ -126,11 +130,14 @@ namespace DAL
 
         public void AlterarOrcamentoMaodeObra(ModeloOrcamento modelo)
         {
-            SQLiteCommand cmd = new SQLiteCommand();
-            cmd.Connection = conexao.ObjetoConexao;
-            cmd.CommandText = "UPDATE OrcamentoMaodeObra SET " +
+            SqlCommand cmd = new SqlCommand
+            {
+                Connection = conexao.ObjetoConexao,
+                CommandText = "UPDATE OrcamentoMaodeObra SET " +
                 "MaodeObraId = @MaodeObraId," +
-                "WHERE OrcamentoId = @OrcamentoId;";
+                "WHERE OrcamentoId = @OrcamentoId;"
+            };
+
             cmd.Parameters.AddWithValue("@MaodeObraId", modelo.CMaodeObraId);
             conexao.Conectar();
             cmd.ExecuteNonQuery();
@@ -139,11 +146,14 @@ namespace DAL
 
         public void AlterarOrcamentoPeca(ModeloOrcamento modelo)
         {
-            SQLiteCommand cmd = new SQLiteCommand();
-            cmd.Connection = conexao.ObjetoConexao;
-            cmd.CommandText = "UPDATE OrcamentoPeca SET " +
+            SqlCommand cmd = new SqlCommand
+            {
+                Connection = conexao.ObjetoConexao,
+                CommandText = "UPDATE OrcamentoPeca SET " +
                 "PecaId = @PecaId," +
-                "WHERE OrcamentoId = @OrcamentoId;";
+                "WHERE OrcamentoId = @OrcamentoId;"
+            };
+
             cmd.Parameters.AddWithValue("@PecaId", modelo.CPecaId);
             conexao.Conectar();
             cmd.ExecuteNonQuery();
@@ -152,9 +162,12 @@ namespace DAL
 
         public void ExcluirOrcamento(int OrcamentoId)
         {
-            SQLiteCommand cmd = new SQLiteCommand();
-            cmd.Connection = conexao.ObjetoConexao;
-            cmd.CommandText = "DELETE FROM Orcamento WHERE OrcamentoId = @OrcamentoId;";
+            SqlCommand cmd = new SqlCommand
+            {
+                Connection = conexao.ObjetoConexao,
+                CommandText = "DELETE FROM Orcamento WHERE OrcamentoId = @OrcamentoId;"
+            };
+
             cmd.Parameters.AddWithValue("@ClienteId", OrcamentoId);
             conexao.Conectar();
             cmd.ExecuteNonQuery();
@@ -166,7 +179,7 @@ namespace DAL
             int orcamentoId = orcamentoMaodeObra.OrcamentoId;
             int maoDeObraId = orcamentoMaodeObra.MaodeObraId;
 
-            SQLiteCommand cmd = new SQLiteCommand
+            SqlCommand cmd = new SqlCommand
             {
                 Connection = conexao.ObjetoConexao,
                 CommandText = "DELETE FROM OrcamentoMaodeObra WHERE OrcamentoId = @OrcamentoId AND MaodeObraId = @MaodeObraId;"
@@ -184,7 +197,7 @@ namespace DAL
             int orcamentoId = orcamentoPeca.OrcamentoId;
             int pecaId = orcamentoPeca.PecaId;
 
-            SQLiteCommand cmd = new SQLiteCommand
+            SqlCommand cmd = new SqlCommand
             {
                 Connection = conexao.ObjetoConexao,
                 CommandText = "DELETE FROM OrcamentoPeca WHERE OrcamentoId = @OrcamentoId AND PecaId = @PecaId;"
@@ -201,10 +214,10 @@ namespace DAL
         {
             Convert.ToString(OrcamentoId);
             DataTable tabela = new DataTable();
-            SQLiteDataAdapter da = new SQLiteDataAdapter("" +
+            SqlDataAdapter da = new SqlDataAdapter("" +
                 "SELECT " +
                 "Orcamento.OrcamentoId, " +
-                "Cliente.Cliente, " +
+                "Cliente.NomeCliente, " +
                 "Orcamento.Descricao, " +
                 "Orcamento.ValorTotal, " +
                 "Orcamento.Status, " +
@@ -222,10 +235,10 @@ namespace DAL
         {
             Convert.ToString(OrcamentoId);
             DataTable tabela = new DataTable();
-            SQLiteDataAdapter da = new SQLiteDataAdapter("" +
+            SqlDataAdapter da = new SqlDataAdapter("" +
                 "SELECT " +
                 "MaodeObra.MaodeObraId, " +
-                "MaodeObra.MaodeObra, " +
+                "MaodeObra.Descricao AS MaodeObra, " +
                 "MaodeObra.Valor " +
                 "FROM OrcamentoMaodeObra " +
                 "INNER JOIN MaodeObra ON MaodeObra.MaodeObraId = OrcamentoMaodeObra.MaodeObraId " +
@@ -239,13 +252,13 @@ namespace DAL
         {
             Convert.ToString(OrcamentoId);
             DataTable tabela = new DataTable();
-            SQLiteDataAdapter da = new SQLiteDataAdapter("" +
+            SqlDataAdapter da = new SqlDataAdapter("" +
                 "SELECT " +
-                "Pecas.PecaId, " +
-                "Pecas.Peca, " +
-                "(Pecas.Valor + Pecas.ValorFrete) AS ValorTotal " +
+                "Peca.PecaId, " +
+                "Peca.Descricao, " +
+                "(Peca.Valor + Peca.ValorFrete) AS ValorTotal " +
                 "FROM OrcamentoPeca " +
-                "INNER JOIN Pecas ON Pecas.PecaId = OrcamentoPeca.PecaId " +
+                "INNER JOIN Peca ON Peca.PecaId = OrcamentoPeca.PecaId " +
                 "WHERE OrcamentoPeca.OrcamentoId = " + OrcamentoId, conexao.StringConexao);
             da.Fill(tabela);
             conexao.Desconectar();
@@ -255,16 +268,16 @@ namespace DAL
         public DataTable LocalizarCliente(String valor)
         {
             DataTable tabela = new DataTable();
-            SQLiteDataAdapter da = new SQLiteDataAdapter("" +
+            SqlDataAdapter da = new SqlDataAdapter("" +
                 "SELECT " +
                 "Cliente.ClienteId, " +
-                "Cliente.Cliente, " +
+                "Cliente.NomeCliente, " +
                 "ClienteVeiculo.PlacaVeiculo, " +
-                "Veiculo.Marca || ' - ' || Veiculo.Modelo " +
+                "Veiculo.Marca + ' - ' + Veiculo.Modelo " +
                 "FROM Cliente " +
                 "INNER JOIN ClienteVeiculo ON ClienteVeiculo.ClienteId = Cliente.ClienteId " +
                 "INNER JOIN Veiculo ON Veiculo.VeiculoId = ClienteVeiculo.VeiculoId " +
-                "WHERE Cliente.Cliente LIKE '%" + valor + "%' OR Cliente.Apelido LIKE '%" + valor + "%' OR ClienteVeiculo.PlacaVeiculo LIKE '%" + valor + "%'", conexao.StringConexao);
+                "WHERE Cliente.NomeCliente LIKE '%" + valor + "%' OR Cliente.Apelido LIKE '%" + valor + "%' OR ClienteVeiculo.PlacaVeiculo LIKE '%" + valor + "%'", conexao.StringConexao);
             da.Fill(tabela);
             conexao.Desconectar();
             return tabela;
@@ -274,7 +287,7 @@ namespace DAL
         {
             Convert.ToString(valor);
             DataTable tabela = new DataTable();
-            SQLiteDataAdapter da = new SQLiteDataAdapter("SELECT MaodeObra.MaodeObraId, MaodeObra.MaodeObra, MaodeObra.Valor FROM MaodeObra WHERE MaodeObra.MaodeObraId = " + valor, conexao.StringConexao);
+            SqlDataAdapter da = new SqlDataAdapter("SELECT MaodeObra.MaodeObraId, MaodeObra.MaodeObra, MaodeObra.Valor FROM MaodeObra WHERE MaodeObra.MaodeObraId = " + valor, conexao.StringConexao);
             da.Fill(tabela);
             conexao.Desconectar();
             return tabela;
@@ -284,7 +297,7 @@ namespace DAL
         {
             Convert.ToString(valor);
             DataTable tabela = new DataTable();
-            SQLiteDataAdapter da = new SQLiteDataAdapter("SELECT Pecas.PecaId, Pecas.Peca, (Pecas.Valor + Pecas.ValorFrete) AS ValorTotal FROM Pecas WHERE Pecas.PecaId = " + valor, conexao.StringConexao);
+            SqlDataAdapter da = new SqlDataAdapter("SELECT Peca.PecaId, Peca.Descricao, (Peca.Valor + Peca.ValorFrete) AS ValorTotal FROM Peca WHERE Peca.PecaId = " + valor, conexao.StringConexao);
             da.Fill(tabela);
             conexao.Desconectar();
             return tabela;
@@ -293,12 +306,14 @@ namespace DAL
         public ModeloOrcamento CarregaModeloOrcamento(int OrcamentoId)
         {
             ModeloOrcamento modelo = new ModeloOrcamento();
-            SQLiteCommand cmd = new SQLiteCommand();
-            cmd.Connection = conexao.ObjetoConexao;
-            cmd.CommandText = "SELECT * FROM Orcamento WHERE OrcamentoId = @OrcamentoId";
+            SqlCommand cmd = new SqlCommand
+            {
+                Connection = conexao.ObjetoConexao,
+                CommandText = "SELECT * FROM Orcamento WHERE OrcamentoId = @OrcamentoId"
+            };
             cmd.Parameters.AddWithValue("@OrcamentoId", OrcamentoId);
             conexao.Conectar();
-            SQLiteDataReader registro = cmd.ExecuteReader();
+            SqlDataReader registro = cmd.ExecuteReader();
 
             if (registro.HasRows)
             {
@@ -320,18 +335,21 @@ namespace DAL
         public ModeloMaoDeObra CarregaModeloOrcamentoMaodeObra(int maodeobraid)
         {
             ModeloMaoDeObra modelo = new ModeloMaoDeObra();
-            SQLiteCommand cmd = new SQLiteCommand();
-            cmd.Connection = conexao.ObjetoConexao;
-            cmd.CommandText = "SELECT * FROM MaodeObra WHERE MaodeObraId = @MaodeObraId";
+            SqlCommand cmd = new SqlCommand
+            {
+                Connection = conexao.ObjetoConexao,
+                CommandText = "SELECT * FROM MaodeObra WHERE MaodeObraId = @MaodeObraId"
+            };
+
             cmd.Parameters.AddWithValue("@MaodeObraId", maodeobraid);
             conexao.Conectar();
-            SQLiteDataReader registro = cmd.ExecuteReader();
+            SqlDataReader registro = cmd.ExecuteReader();
 
             if (registro.HasRows)
             {
                 registro.Read();
                 modelo.CMaodeObraId = Convert.ToInt32(registro["MaodeObraId"]);
-                modelo.CMaodeObra = Convert.ToString(registro["MaodeObra"]);
+                modelo.CDescricao = Convert.ToString(registro["MaodeObra"]);
                 modelo.CTipo = Convert.ToString(registro["Tipo"]);
                 modelo.CValor = Convert.ToDecimal(registro["Valor"]);
             }
@@ -342,13 +360,13 @@ namespace DAL
         public DataTable BuscarHistoricoOrcamentoClienteByClienteId(int clienteId)
         {
             DataTable tabela = new DataTable();
-            SQLiteDataAdapter da = new SQLiteDataAdapter(
+            SqlDataAdapter da = new SqlDataAdapter(
             "SELECT " +
             " Orcamento.OrcamentoId " +
             ",Cliente.ClienteId " +
             ",Orcamento.DataCadastro AS DataOrcamento " +
-            ",Cliente.Cliente " +
-            ",Veiculo.Marca || ' - ' || Veiculo.Modelo AS MarcaModeloVeiculo " +
+            ",Cliente.NomeCliente " +
+            ",Veiculo.Marca + ' - ' + Veiculo.Modelo AS MarcaModeloVeiculo " +
             ",ClienteVeiculo.PlacaVeiculo " +
             ",Orcamento.Descricao AS DescricaoOrcamento " +
             ",Orcamento.Status AS StatusOrcamento " +
@@ -385,13 +403,13 @@ namespace DAL
                 newPlacaVeiculo = placaVeiculo;
             }
 
-            SQLiteDataAdapter da = new SQLiteDataAdapter(
+            SqlDataAdapter da = new SqlDataAdapter(
             "SELECT " +
             " Orcamento.OrcamentoId " +
             ",Cliente.ClienteId " +
             ",Orcamento.DataCadastro AS DataOrcamento " +
-            ",Cliente.Cliente " +
-            ",Veiculo.Marca || ' - ' || Veiculo.Modelo AS MarcaModeloVeiculo " +
+            ",Cliente.NomeCliente " +
+            ",Veiculo.Marca + ' - ' + Veiculo.Modelo AS MarcaModeloVeiculo " +
             ",ClienteVeiculo.PlacaVeiculo " +
             ",Orcamento.Descricao AS DescricaoServico " +
             ",Orcamento.Status AS StatusServico " +
@@ -413,12 +431,15 @@ namespace DAL
         public ModeloOrcamento BuscarDetalheOrcamentoGerado(int orcamentoId)
         {
             ModeloOrcamento modelo = new ModeloOrcamento();
-            SQLiteCommand cmd = new SQLiteCommand();
-            cmd.Connection = conexao.ObjetoConexao;
-            cmd.CommandText = "SELECT * FROM Orcamento WHERE OrcamentoId = @OrcamentoId";
+            SqlCommand cmd = new SqlCommand
+            {
+                Connection = conexao.ObjetoConexao,
+                CommandText = "SELECT * FROM Orcamento WHERE OrcamentoId = @OrcamentoId"
+            };
+
             cmd.Parameters.AddWithValue("@OrcamentoId", orcamentoId);
             conexao.Conectar();
-            SQLiteDataReader registro = cmd.ExecuteReader();
+            SqlDataReader registro = cmd.ExecuteReader();
 
             if (registro.HasRows)
             {

@@ -79,7 +79,7 @@ namespace GUI
             {
                 ModeloCliente modelo = new ModeloCliente
                 {
-                    CCliente = txtCliente.Text,
+                    CNomeCliente = txtCliente.Text,
                     CApelido = txtApelido.Text,
                     CDocumentoCliente = txtCPF.Text,
                     CSexo = cboSexo.Text,
@@ -106,13 +106,13 @@ namespace GUI
                 {
                     // Cadastrar uma categoria
                     bll.Incluir(modelo);
-                    MessageBox.Show("Cadastro inserido com sucesso! Cliente: " + modelo.CCliente.ToString(), "Status", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Cadastro inserido com sucesso! Cliente: " + modelo.CNomeCliente.ToString(), "Status", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
                     modelo.CClienteId = Convert.ToInt32(txtClienteId.Text);
                     bll.Alterar(modelo);
-                    MessageBox.Show("Cadastro alterado com sucesso! Cliente: " + modelo.CCliente.ToString(), "Status", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Cadastro alterado com sucesso! Cliente: " + modelo.CNomeCliente.ToString(), "Status", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
 
                 var veiculosDoCliente = bllVeiculoCliente.BuscarVeiculosCliente(modelo.CClienteId);
@@ -197,7 +197,7 @@ namespace GUI
                 BLLCliente bll = new BLLCliente(cx);
                 ModeloCliente modelo = bll.CarregaModeloCliente(c.codigo);
                 txtClienteId.Text = Convert.ToString(modelo.CClienteId);
-                txtCliente.Text = modelo.CCliente;
+                txtCliente.Text = modelo.CNomeCliente;
                 txtApelido.Text = modelo.CApelido;
                 txtCPF.Text = modelo.CDocumentoCliente;
                 cboSexo.Text = modelo.CSexo;
@@ -244,7 +244,7 @@ namespace GUI
                         this.operacao = "alterar";
                         ModeloCliente modelo = bll.CarregaModeloCliente(retorno);
                         txtClienteId.Text = Convert.ToString(modelo.CClienteId);
-                        txtCliente.Text = modelo.CCliente;
+                        txtCliente.Text = modelo.CNomeCliente;
                         txtApelido.Text = modelo.CApelido;
                         txtCPF.Text = modelo.CDocumentoCliente;
                         cboSexo.Text = modelo.CSexo;

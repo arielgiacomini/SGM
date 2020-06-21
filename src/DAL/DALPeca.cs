@@ -1,13 +1,13 @@
 ﻿using Modelo;
 using System;
 using System.Data;
-using System.Data.SQLite;
+using System.Data.SqlClient;
 
 namespace DAL
 {
     public class DALPeca
     {
-        private DALConexao conexao;
+        private readonly DALConexao conexao;
 
         public DALPeca(DALConexao cx)
         {
@@ -16,22 +16,24 @@ namespace DAL
 
         public void Incluir(ModeloPeca modelo)
         {
-            SQLiteCommand cmd = new SQLiteCommand();
-            cmd.Connection = conexao.ObjetoConexao;
-            cmd.CommandText = "INSERT INTO Pecas " +
+            SqlCommand cmd = new SqlCommand
+            {
+                Connection = conexao.ObjetoConexao,
+                CommandText = "INSERT INTO Peca " +
                 "(" +
-                "Peca," +
+                "Descricao," +
                 "Fornecedor," +
                 "Valor," +
                 "ValorFrete " +
                 ") VALUES (" +
-                "@Peca," +
+                "@Descricao," +
                 "@Fornecedor," +
                 "@Valor," +
                 "@ValorFrete " +
-                "); " +
-                "SELECT seq FROM sqlite_sequence WHERE name = 'Pecas';";
-            cmd.Parameters.AddWithValue("@Peca", modelo.CPeca);
+                "); SELECT @@IDENTITY;"
+            };
+
+            cmd.Parameters.AddWithValue("@Descricao", modelo.CDescricao);
             cmd.Parameters.AddWithValue("@Fornecedor", modelo.CFornecedor);
             cmd.Parameters.AddWithValue("@Valor", modelo.CValor);
             cmd.Parameters.AddWithValue("@ValorFrete", modelo.CValorFrete);
@@ -42,16 +44,19 @@ namespace DAL
 
         public void Alterar(ModeloPeca modelo)
         {
-            SQLiteCommand cmd = new SQLiteCommand();
-            cmd.Connection = conexao.ObjetoConexao;
-            cmd.CommandText = "UPDATE Pecas SET " +
-                "Peca = @Peca," +
+            SqlCommand cmd = new SqlCommand
+            {
+                Connection = conexao.ObjetoConexao,
+                CommandText = "UPDATE Peca SET " +
+                "Descricao = @Descricao," +
                 "Fornecedor = @Fornecedor," +
                 "Valor = @Valor," +
                 "ValorFrete = @ValorFrete " +
-                "WHERE PecaId = @PecaId;";
+                "WHERE PecaId = @PecaId;"
+            };
+
             cmd.Parameters.AddWithValue("@PecaId", modelo.CPecaId);
-            cmd.Parameters.AddWithValue("@Peca", modelo.CPeca);
+            cmd.Parameters.AddWithValue("@Descricao", modelo.CDescricao);
             cmd.Parameters.AddWithValue("@Fornecedor", modelo.CFornecedor);
             cmd.Parameters.AddWithValue("@Valor", modelo.CValor);
             cmd.Parameters.AddWithValue("@ValorFrete", modelo.CValorFrete);
@@ -62,9 +67,12 @@ namespace DAL
 
         public void Excluir(int pecaid)
         {
-            SQLiteCommand cmd = new SQLiteCommand();
-            cmd.Connection = conexao.ObjetoConexao;
-            cmd.CommandText = "DELETE FROM Pecas WHERE PecaId = @PecaId;";
+            SqlCommand cmd = new SqlCommand
+            {
+                Connection = conexao.ObjetoConexao,
+                CommandText = "DELETE FROM Peca WHERE PecaId = @PecaId;"
+            };
+
             cmd.Parameters.AddWithValue("@PecaId", pecaid);
             conexao.Conectar();
             cmd.ExecuteNonQuery();
@@ -74,7 +82,7 @@ namespace DAL
         public DataTable Localizar(String valor)
         {
             DataTable tabela = new DataTable();
-            SQLiteDataAdapter da = new SQLiteDataAdapter("SELECT * FROM Pecas WHERE Peca LIKE '%" + valor + "%' OR Fornecedor LIKE '%" + valor + "%'", conexao.StringConexao);
+            SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM Peca WHERE Peca.Descricao LIKE '%" + valor + "%' OR Fornecedor LIKE '%" + valor + "%'", conexao.StringConexao);
             da.Fill(tabela);
             conexao.Desconectar();
             return tabela;
@@ -83,18 +91,21 @@ namespace DAL
         public ModeloPeca CarregaModeloPeca(int pecaid)
         {
             ModeloPeca modelo = new ModeloPeca();
-            SQLiteCommand cmd = new SQLiteCommand();
-            cmd.Connection = conexao.ObjetoConexao;
-            cmd.CommandText = "SELECT * FROM Pecas WHERE PecaId = @PecaId";
+            SqlCommand cmd = new SqlCommand
+            {
+                Connection = conexao.ObjetoConexao,
+                CommandText = "SELECT * FROM Peca WHERE PecaId = @PecaId"
+            };
+
             cmd.Parameters.AddWithValue("@PecaId", pecaid);
             conexao.Conectar();
-            SQLiteDataReader registro = cmd.ExecuteReader();
+            SqlDataReader registro = cmd.ExecuteReader();
 
             if (registro.HasRows)
             {
                 registro.Read();
                 modelo.CPecaId = Convert.ToInt32(registro["PecaId"]);
-                modelo.CPeca = Convert.ToString(registro["Peca"]);
+                modelo.CDescricao = Convert.ToString(registro["Descricao"]);
                 modelo.CFornecedor = Convert.ToString(registro["Fornecedor"]);
                 modelo.CValor = Convert.ToDecimal(registro["Valor"]);
                 modelo.CValorFrete = Convert.ToDecimal(registro["ValorFrete"]);

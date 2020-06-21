@@ -19,7 +19,7 @@ namespace BLL
         {
             modelo.CStatus = modelo.CStatus.ToUpper();
             DALOrcamento DALobj = new DALOrcamento(conexao);
-            DALobj.IncluirOrcamento(modelo);
+            DALobj.Incluir(modelo);
         }
 
         public void IncluirOrcamentoMaodeObra(OrcamentoMaodeObra modelo)
