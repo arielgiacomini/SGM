@@ -132,7 +132,7 @@ namespace GUI
 
                         if (c.codigo != 0)
                         {
-                            frmCadastroClienteVeiculo g = new frmCadastroClienteVeiculo();
+                            FrmCadastroClienteVeiculo g = new FrmCadastroClienteVeiculo();
                             g.alteraBotoes(1);
                             g.clienteId = c.codigo;
                             g.ShowDialog();
@@ -146,7 +146,7 @@ namespace GUI
 
                     if (clienteJaPossuiVeiculo.ToString() == "Yes")
                     {
-                        frmConsultaClienteVeiculo c = new frmConsultaClienteVeiculo
+                        FrmConsultaClienteVeiculo c = new FrmConsultaClienteVeiculo
                         {
                             clienteId = modelo.CClienteId
                         };
@@ -155,7 +155,7 @@ namespace GUI
 
                         if (c.clienteId != 0)
                         {
-                            frmCadastroClienteVeiculo g = new frmCadastroClienteVeiculo
+                            FrmCadastroClienteVeiculo g = new FrmCadastroClienteVeiculo
                             {
                                 clienteId = c.clienteId,
                                 clienteVeiculoId = c.codigo

@@ -6,10 +6,13 @@ using System.Windows.Forms;
 
 namespace GUI
 {
-    public partial class frmCadastroClienteVeiculo : GUI.FrmModeloDeFormularioDeCadastro
+    public partial class FrmCadastroClienteVeiculo : FrmModeloDeFormularioDeCadastro
     {
+        public int clienteId = 0;
+        public string placaVeiculo = "";
+        public int clienteVeiculoId = 0;
 
-        public frmCadastroClienteVeiculo()
+        public FrmCadastroClienteVeiculo()
         {
             InitializeComponent();
         }
@@ -27,22 +30,16 @@ namespace GUI
             cboVeiculo.SelectedIndex = -1;
         }
 
-        public int clienteId = 0;
-        public string placaVeiculo = "";
-        public int clienteVeiculoId = 0;
-
         private void FrmCadastroClienteVeiculo_Load(object sender, EventArgs e)
         {
-
             DALConexao cx = new DALConexao(ConnectionStringConfiguration.ConnectionString);
             BLLVeiculo bll = new BLLVeiculo(cx);
             BLLCliente bllC = new BLLCliente(cx);
             BLLVeiculoCliente veiculoClienteBLL = new BLLVeiculoCliente(cx);
 
-
             ModeloVeiculoCliente modelo = veiculoClienteBLL.CarregaModeloVeiculoClienteByPlaca(placaVeiculo);
 
-            if (modelo.CClienteVeiculoId.Equals(0)) 
+            if (modelo.CClienteVeiculoId.Equals(0))
             {
                 modelo = veiculoClienteBLL.CarregaModeloVeiculoCliente(clienteVeiculoId);
             }
@@ -90,20 +87,20 @@ namespace GUI
             }
         }
 
-        private void btnInserir_Click(object sender, EventArgs e)
+        private void BtnInserir_Click(object sender, EventArgs e)
         {
             this.alteraBotoes(2);
             this.operacao = "inserir";
         }
 
-        private void btnCancelar_Click(object sender, EventArgs e)
+        private void BtnCancelar_Click(object sender, EventArgs e)
         {
             this.alteraBotoes(1);
             this.LimpaTela();
 
         }
 
-        private void btnAlterar_Click(object sender, EventArgs e)
+        private void BtnAlterar_Click(object sender, EventArgs e)
         {
             this.alteraBotoes(2);
             this.operacao = "alterar";
@@ -164,7 +161,7 @@ namespace GUI
             }
         }
 
-        private void btnExcluir_Click(object sender, EventArgs e)
+        private void BtnExcluir_Click(object sender, EventArgs e)
         {
             try
             {
@@ -191,10 +188,9 @@ namespace GUI
             }
         }
 
-        private void btnLocalizar_Click(object sender, EventArgs e)
+        private void BtnLocalizar_Click(object sender, EventArgs e)
         {
-
-            frmConsultaClienteVeiculo c = new frmConsultaClienteVeiculo();
+            FrmConsultaClienteVeiculo c = new FrmConsultaClienteVeiculo();
             c.ShowDialog();
             if (c.codigo != 0)
             {
@@ -228,7 +224,7 @@ namespace GUI
             c.Dispose();
         }
 
-        private void label7_Click(object sender, EventArgs e)
+        private void Label7_Click(object sender, EventArgs e)
         {
 
         }
@@ -243,6 +239,11 @@ namespace GUI
             consultaHistorico.ShowDialog();
             consultaHistorico.Dispose();
             consultaHistorico.Close();
+        }
+
+        private void pnCadastro_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

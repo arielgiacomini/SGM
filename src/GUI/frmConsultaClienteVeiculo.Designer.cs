@@ -1,6 +1,6 @@
 ﻿namespace GUI
 {
-    partial class frmConsultaClienteVeiculo
+    partial class FrmConsultaClienteVeiculo
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmConsultaClienteVeiculo));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmConsultaClienteVeiculo));
             this.dgvClienteVeiculoConsulta = new System.Windows.Forms.DataGridView();
             this.txtPlacaClienteVeiculoConsulta = new System.Windows.Forms.TextBox();
             this.lblPlacaClienteVeiculoConsulta = new System.Windows.Forms.Label();
