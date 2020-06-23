@@ -1,6 +1,6 @@
 ﻿namespace GUI
 {
-    partial class frmCadastroClienteVeiculo
+    partial class FrmCadastroClienteVeiculo
     {
         /// <summary>
         /// Variável de designer necessária.
@@ -74,14 +74,15 @@
             this.pnCadastro.Controls.Add(this.label4);
             this.pnCadastro.Controls.Add(this.lblVeiculo);
             this.pnCadastro.Controls.Add(this.lblClienteVeiculoId);
+            this.pnCadastro.Paint += new System.Windows.Forms.PaintEventHandler(this.pnCadastro_Paint);
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            this.btnCancelar.Click += new System.EventHandler(this.BtnCancelar_Click);
             // 
             // btnLocalizar
             // 
-            this.btnLocalizar.Click += new System.EventHandler(this.btnLocalizar_Click);
+            this.btnLocalizar.Click += new System.EventHandler(this.BtnLocalizar_Click);
             // 
             // btnSalvar
             // 
@@ -89,122 +90,124 @@
             // 
             // btnExcluir
             // 
-            this.btnExcluir.Click += new System.EventHandler(this.btnExcluir_Click);
+            this.btnExcluir.Click += new System.EventHandler(this.BtnExcluir_Click);
             // 
             // btnAlterar
             // 
-            this.btnAlterar.Click += new System.EventHandler(this.btnAlterar_Click);
+            this.btnAlterar.Click += new System.EventHandler(this.BtnAlterar_Click);
             // 
             // btnInserir
             // 
-            this.btnInserir.Click += new System.EventHandler(this.btnInserir_Click);
+            this.btnInserir.Click += new System.EventHandler(this.BtnInserir_Click);
             // 
             // lblClienteVeiculoId
             // 
             this.lblClienteVeiculoId.AutoSize = true;
-            this.lblClienteVeiculoId.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblClienteVeiculoId.Location = new System.Drawing.Point(27, 28);
+            this.lblClienteVeiculoId.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblClienteVeiculoId.Location = new System.Drawing.Point(17, 21);
             this.lblClienteVeiculoId.Name = "lblClienteVeiculoId";
-            this.lblClienteVeiculoId.Size = new System.Drawing.Size(78, 25);
+            this.lblClienteVeiculoId.Size = new System.Drawing.Size(52, 20);
             this.lblClienteVeiculoId.TabIndex = 0;
-            this.lblClienteVeiculoId.Text = "Código: ";
+            this.lblClienteVeiculoId.Text = "Código:";
             // 
             // lblVeiculo
             // 
             this.lblVeiculo.AutoSize = true;
-            this.lblVeiculo.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblVeiculo.Location = new System.Drawing.Point(27, 75);
+            this.lblVeiculo.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblVeiculo.Location = new System.Drawing.Point(17, 72);
             this.lblVeiculo.Name = "lblVeiculo";
-            this.lblVeiculo.Size = new System.Drawing.Size(80, 25);
+            this.lblVeiculo.Size = new System.Drawing.Size(56, 20);
             this.lblVeiculo.TabIndex = 2;
             this.lblVeiculo.Text = "Veículo: ";
+            this.lblVeiculo.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(24, 130);
+            this.label4.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(17, 124);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(141, 25);
+            this.label4.Size = new System.Drawing.Size(97, 20);
             this.label4.TabIndex = 3;
             this.label4.Text = "Ano do Veículo: ";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(256, 130);
+            this.label5.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(152, 232);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(154, 25);
+            this.label5.Size = new System.Drawing.Size(119, 20);
             this.label5.TabIndex = 4;
             this.label5.Text = "Placa do Veículo: ";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(357, 182);
+            this.label6.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(19, 173);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(138, 25);
+            this.label6.Size = new System.Drawing.Size(96, 20);
             this.label6.TabIndex = 5;
             this.label6.Text = "Cor do Veículo: ";
             // 
             // lblKmVeiculo
             // 
             this.lblKmVeiculo.AutoSize = true;
-            this.lblKmVeiculo.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblKmVeiculo.Location = new System.Drawing.Point(20, 182);
+            this.lblKmVeiculo.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblKmVeiculo.Location = new System.Drawing.Point(289, 122);
             this.lblKmVeiculo.Name = "lblKmVeiculo";
-            this.lblKmVeiculo.Size = new System.Drawing.Size(209, 25);
+            this.lblKmVeiculo.Size = new System.Drawing.Size(148, 20);
             this.lblKmVeiculo.TabIndex = 6;
             this.lblKmVeiculo.Text = "Situação Odômetro: (km)";
             // 
             // cboVeiculo
             // 
             this.cboVeiculo.FormattingEnabled = true;
-            this.cboVeiculo.Location = new System.Drawing.Point(109, 77);
+            this.cboVeiculo.Location = new System.Drawing.Point(73, 71);
             this.cboVeiculo.Name = "cboVeiculo";
-            this.cboVeiculo.Size = new System.Drawing.Size(413, 21);
-            this.cboVeiculo.TabIndex = 2;
+            this.cboVeiculo.Size = new System.Drawing.Size(470, 21);
+            this.cboVeiculo.TabIndex = 1;
             // 
             // txtCorVeiculo
             // 
-            this.txtCorVeiculo.Location = new System.Drawing.Point(489, 185);
+            this.txtCorVeiculo.Location = new System.Drawing.Point(121, 173);
             this.txtCorVeiculo.Name = "txtCorVeiculo";
             this.txtCorVeiculo.Size = new System.Drawing.Size(224, 20);
-            this.txtCorVeiculo.TabIndex = 6;
+            this.txtCorVeiculo.TabIndex = 4;
             // 
             // txtKmVeiculo
             // 
-            this.txtKmVeiculo.Location = new System.Drawing.Point(235, 185);
+            this.txtKmVeiculo.Location = new System.Drawing.Point(443, 122);
             this.txtKmVeiculo.Name = "txtKmVeiculo";
             this.txtKmVeiculo.Size = new System.Drawing.Size(100, 20);
-            this.txtKmVeiculo.TabIndex = 5;
+            this.txtKmVeiculo.TabIndex = 3;
             // 
             // txtClienteVeiculoId
             // 
             this.txtClienteVeiculoId.Enabled = false;
-            this.txtClienteVeiculoId.Location = new System.Drawing.Point(109, 32);
+            this.txtClienteVeiculoId.Location = new System.Drawing.Point(73, 22);
             this.txtClienteVeiculoId.Name = "txtClienteVeiculoId";
-            this.txtClienteVeiculoId.Size = new System.Drawing.Size(132, 20);
+            this.txtClienteVeiculoId.ReadOnly = true;
+            this.txtClienteVeiculoId.Size = new System.Drawing.Size(93, 20);
             this.txtClienteVeiculoId.TabIndex = 0;
             // 
             // txtAnoVeiculo
             // 
-            this.txtAnoVeiculo.Location = new System.Drawing.Point(167, 133);
+            this.txtAnoVeiculo.Location = new System.Drawing.Point(121, 124);
             this.txtAnoVeiculo.MaxLength = 4;
             this.txtAnoVeiculo.Name = "txtAnoVeiculo";
-            this.txtAnoVeiculo.Size = new System.Drawing.Size(60, 20);
-            this.txtAnoVeiculo.TabIndex = 3;
+            this.txtAnoVeiculo.Size = new System.Drawing.Size(113, 20);
+            this.txtAnoVeiculo.TabIndex = 2;
             this.txtAnoVeiculo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtPlacaVeiculo
             // 
-            this.txtPlacaVeiculo.Location = new System.Drawing.Point(411, 134);
-            this.txtPlacaVeiculo.Mask = "AAA-0000";
+            this.txtPlacaVeiculo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPlacaVeiculo.Location = new System.Drawing.Point(277, 229);
             this.txtPlacaVeiculo.Name = "txtPlacaVeiculo";
-            this.txtPlacaVeiculo.Size = new System.Drawing.Size(63, 20);
-            this.txtPlacaVeiculo.TabIndex = 4;
+            this.txtPlacaVeiculo.Size = new System.Drawing.Size(139, 26);
+            this.txtPlacaVeiculo.TabIndex = 5;
             this.txtPlacaVeiculo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // gbInfoCliente
@@ -215,9 +218,9 @@
             this.gbInfoCliente.Controls.Add(this.txtCliente);
             this.gbInfoCliente.Controls.Add(this.label1);
             this.gbInfoCliente.Controls.Add(this.txtTelefoneCliente);
-            this.gbInfoCliente.Location = new System.Drawing.Point(29, 248);
+            this.gbInfoCliente.Location = new System.Drawing.Point(24, 283);
             this.gbInfoCliente.Name = "gbInfoCliente";
-            this.gbInfoCliente.Size = new System.Drawing.Size(519, 171);
+            this.gbInfoCliente.Size = new System.Drawing.Size(519, 109);
             this.gbInfoCliente.TabIndex = 7;
             this.gbInfoCliente.TabStop = false;
             this.gbInfoCliente.Text = "Informações do Cliente";
@@ -238,7 +241,7 @@
             this.label7.Size = new System.Drawing.Size(24, 20);
             this.label7.TabIndex = 8;
             this.label7.Text = "Id:";
-            this.label7.Click += new System.EventHandler(this.label7_Click);
+            this.label7.Click += new System.EventHandler(this.Label7_Click);
             // 
             // label2
             // 
@@ -278,18 +281,18 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(569, 269);
+            this.label3.Location = new System.Drawing.Point(589, 240);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(169, 20);
+            this.label3.Size = new System.Drawing.Size(130, 40);
             this.label3.TabIndex = 7;
-            this.label3.Text = "Buscar histórico do Cliente";
+            this.label3.Text = "Buscar Histórico de \r\nServiços do Cliente";
             // 
             // btnBuscarHistoricoCliente
             // 
             this.btnBuscarHistoricoCliente.BackgroundImage = global::GUI.Properties.Resources.localizar1;
             this.btnBuscarHistoricoCliente.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btnBuscarHistoricoCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBuscarHistoricoCliente.Location = new System.Drawing.Point(596, 301);
+            this.btnBuscarHistoricoCliente.Location = new System.Drawing.Point(593, 283);
             this.btnBuscarHistoricoCliente.Name = "btnBuscarHistoricoCliente";
             this.btnBuscarHistoricoCliente.Size = new System.Drawing.Size(128, 109);
             this.btnBuscarHistoricoCliente.TabIndex = 10;
@@ -300,18 +303,18 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::GUI.Properties.Resources.LogotipoLoquinho;
-            this.pictureBox1.Location = new System.Drawing.Point(558, 19);
+            this.pictureBox1.Location = new System.Drawing.Point(605, 8);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(191, 67);
+            this.pictureBox1.Size = new System.Drawing.Size(144, 50);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 34;
             this.pictureBox1.TabStop = false;
             // 
-            // frmCadastroClienteVeiculo
+            // FrmCadastroClienteVeiculo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.ClientSize = new System.Drawing.Size(784, 561);
-            this.Name = "frmCadastroClienteVeiculo";
+            this.Name = "FrmCadastroClienteVeiculo";
             this.Text = "Sistema de Gerenciamento Mecânica - Cadastro de Veículos de Clientes";
             this.Load += new System.EventHandler(this.FrmCadastroClienteVeiculo_Load);
             this.pnCadastro.ResumeLayout(false);

@@ -5,7 +5,7 @@ using System.Windows.Forms;
 
 namespace GUI
 {
-    public partial class frmConsultaClienteVeiculo : Form
+    public partial class FrmConsultaClienteVeiculo : Form
     {
 
         public int codigo = 0;
@@ -13,7 +13,7 @@ namespace GUI
         public string nomeCliente = "";
         public string placaVeiculo = "";
 
-        public frmConsultaClienteVeiculo()
+        public FrmConsultaClienteVeiculo()
         {
             InitializeComponent();
         }

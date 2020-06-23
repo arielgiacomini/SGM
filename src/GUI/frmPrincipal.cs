@@ -26,7 +26,7 @@ namespace GUI
 
         private void ClienteVeículosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmCadastroClienteVeiculo k = new frmCadastroClienteVeiculo();
+            FrmCadastroClienteVeiculo k = new FrmCadastroClienteVeiculo();
             k.ShowDialog();
             k.Dispose();
         }
@@ -90,18 +90,18 @@ namespace GUI
 
         private void FornecedorToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            frmConsultaClienteVeiculo p = new frmConsultaClienteVeiculo();
+            FrmConsultaClienteVeiculo p = new FrmConsultaClienteVeiculo();
             p.ShowDialog();
             p.Dispose();
         }
 
         private void BtnVeiculoCliente_Click(object sender, EventArgs e)
         {
-            frmConsultaClienteVeiculo x = new frmConsultaClienteVeiculo();
+            FrmConsultaClienteVeiculo x = new FrmConsultaClienteVeiculo();
             x.ShowDialog();
             if (x.codigo != 0)
             {
-                frmCadastroClienteVeiculo clivei = new frmCadastroClienteVeiculo
+                FrmCadastroClienteVeiculo clivei = new FrmCadastroClienteVeiculo
                 {
                     clienteId = x.clienteId,
                     placaVeiculo = x.placaVeiculo
