@@ -1,6 +1,8 @@
 ﻿using DAL;
 using Modelo;
+using Modelo.Entities;
 using System;
+using System.Collections.Generic;
 using System.Data;
 
 namespace BLL
@@ -52,7 +54,7 @@ namespace BLL
             DALobj.Excluir(veiculoid);
         }
 
-        public DataTable Localizar(String valor)
+        public DataTable Localizar(string valor)
         {
             DALVeiculo DALobj = new DALVeiculo(conexao);
             return DALobj.Localizar(valor);
@@ -62,6 +64,36 @@ namespace BLL
         {
             DALVeiculo DALobj = new DALVeiculo(conexao);
             return DALobj.CarregaModeloVeiculo(veiculoid);
+        }
+
+        public List<VeiculoMarca> BuscarMarcasVeiculo()
+        {
+            DALVeiculo DALobj = new DALVeiculo(conexao);
+            return DALobj.BuscarMarcaVeiculo();
+        }
+
+        public List<Veiculo> BuscarVeiculoByMarcaId(int marcaId)
+        {
+            DALVeiculo DALobj = new DALVeiculo(conexao);
+            return DALobj.BuscarVeiculoByMarcaId(marcaId);
+        }
+
+        public Veiculo BuscarVeiculoByVeiculoId(int veiculoId)
+        {
+            DALVeiculo DALobj = new DALVeiculo(conexao);
+            return DALobj.BuscarVeiculoByVeiculoId(veiculoId);
+        }
+
+        public VeiculoMarca BuscarMarcaVeiculoByMarcaId(int marcaId)
+        {
+            DALVeiculo DALobj = new DALVeiculo(conexao);
+            return DALobj.BuscarMarcaVeiculoByMarcaId(marcaId);
+        }
+
+        public List<Veiculo> BuscarVeiculoByMarcaAnoModeloAnoFabricacao(int marcaId, int anoModeloInicial, int anoModeloFinal)
+        {
+            DALVeiculo DALobj = new DALVeiculo(conexao);
+            return DALobj.BuscarVeiculoByMarcaAnoModeloAnoFabricacao(marcaId, anoModeloInicial, anoModeloFinal);
         }
     }
 }

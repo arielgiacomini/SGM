@@ -21,11 +21,10 @@ namespace DAL
                 SqlCommand cmd = new SqlCommand
                 {
                     Connection = conexao.ObjetoConexao,
-                    CommandText = "INSERT INTO ClienteVeiculo (ClienteId, VeiculoId, AnoVeiculo, PlacaVeiculo, CorVeiculo, KmRodados) VALUES (@clienteid, @veiculoid, @anoveiculo, @placaveiculo, @corveiculo, @kmrodados);"
+                    CommandText = "INSERT INTO ClienteVeiculo (ClienteId, VeiculoId, PlacaVeiculo, CorVeiculo, KmRodados) VALUES (@clienteid, @veiculoid, @placaveiculo, @corveiculo, @kmrodados);"
                 };
                 cmd.Parameters.AddWithValue("@clienteid", modelo.CClienteId);
                 cmd.Parameters.AddWithValue("@veiculoid", modelo.CVeiculoId);
-                cmd.Parameters.AddWithValue("@anoveiculo", modelo.CAnoVeiculo);
                 cmd.Parameters.AddWithValue("@placaveiculo", modelo.CPlacaVeiculo);
                 cmd.Parameters.AddWithValue("@corveiculo", modelo.CCorVeiculo);
                 cmd.Parameters.AddWithValue("@kmrodados", modelo.CKmRodados);
@@ -49,12 +48,11 @@ namespace DAL
                 using (SqlConnection c = new SqlConnection(conexao.StringConexao))
                 {
                     c.Open();
-                    using (SqlCommand cmd = new SqlCommand("UPDATE ClienteVeiculo SET ClienteId = @clienteid, VeiculoId = @veiculoid, AnoVeiculo = @anoveiculo, PlacaVeiculo = @placaveiculo, CorVeiculo = @corveiculo, KmRodados = @kmrodados WHERE ClienteVeiculoId = @clienteveiculoid;", c))
+                    using (SqlCommand cmd = new SqlCommand("UPDATE ClienteVeiculo SET ClienteId = @clienteid, VeiculoId = @veiculoid, PlacaVeiculo = @placaveiculo, CorVeiculo = @corveiculo, KmRodados = @kmrodados WHERE ClienteVeiculoId = @clienteveiculoid;", c))
                     {
                         cmd.Parameters.AddWithValue("@clienteveiculoid", modelo.CClienteVeiculoId);
                         cmd.Parameters.AddWithValue("@clienteid", modelo.CClienteId);
                         cmd.Parameters.AddWithValue("@veiculoid", modelo.CVeiculoId);
-                        cmd.Parameters.AddWithValue("@anoveiculo", modelo.CAnoVeiculo);
                         cmd.Parameters.AddWithValue("@placaveiculo", modelo.CPlacaVeiculo);
                         cmd.Parameters.AddWithValue("@corveiculo", modelo.CCorVeiculo);
                         cmd.Parameters.AddWithValue("@kmrodados", modelo.CKmRodados);
@@ -93,7 +91,7 @@ namespace DAL
             }
         }
 
-        public DataTable Localizar(String valor)
+        public DataTable Localizar(string valor)
         {
             DataTable tabela = new DataTable();
             SqlDataAdapter da = new SqlDataAdapter("" +
@@ -101,7 +99,6 @@ namespace DAL
                 "ClienteVeiculo.ClienteVeiculoId, " +
                 "Cliente.NomeCliente, " +
                 "Veiculo.Modelo, " +
-                "ClienteVeiculo.AnoVeiculo, " +
                 "ClienteVeiculo.PlacaVeiculo, " +
                 "ClienteVeiculo.CorVeiculo, " +
                 "ClienteVeiculo.KmRodados, " +
@@ -124,7 +121,7 @@ namespace DAL
             SqlCommand cmd = new SqlCommand
             {
                 Connection = conexao.ObjetoConexao,
-                CommandText = "SELECT ClienteVeiculoId, ClienteId, VeiculoId, AnoVeiculo, PlacaVeiculo, CorVeiculo, KmRodados FROM ClienteVeiculo WHERE ClienteVeiculoId = @ClienteVeiculoId"
+                CommandText = "SELECT ClienteVeiculoId, ClienteId, VeiculoId, PlacaVeiculo, CorVeiculo, KmRodados FROM ClienteVeiculo WHERE ClienteVeiculoId = @ClienteVeiculoId"
             };
             cmd.Parameters.AddWithValue("@ClienteVeiculoId", ClienteVeiculoId);
             conexao.Conectar();
@@ -135,7 +132,6 @@ namespace DAL
                 modelo.CClienteVeiculoId = Convert.ToInt32(registro["ClienteVeiculoId"]);
                 modelo.CClienteId = Convert.ToInt32(registro["ClienteId"]);
                 modelo.CVeiculoId = Convert.ToInt32(registro["VeiculoId"]);
-                modelo.CAnoVeiculo = Convert.ToInt32(registro["AnoVeiculo"]);
                 modelo.CPlacaVeiculo = Convert.ToString(registro["PlacaVeiculo"]);
                 modelo.CCorVeiculo = Convert.ToString(registro["CorVeiculo"]);
                 modelo.CKmRodados = Convert.ToInt32(registro["KmRodados"]);
@@ -162,7 +158,6 @@ namespace DAL
                 modelo.CClienteVeiculoId = Convert.ToInt32(registro["ClienteVeiculoId"]);
                 modelo.CClienteId = Convert.ToInt32(registro["ClienteId"]);
                 modelo.CVeiculoId = Convert.ToInt32(registro["VeiculoId"]);
-                modelo.CAnoVeiculo = Convert.ToInt32(registro["AnoVeiculo"]);
                 modelo.CPlacaVeiculo = Convert.ToString(registro["PlacaVeiculo"]);
                 modelo.CCorVeiculo = Convert.ToString(registro["CorVeiculo"]);
                 modelo.CKmRodados = Convert.ToInt32(registro["KmRodados"]);
@@ -188,7 +183,6 @@ namespace DAL
                 modelo.CClienteVeiculoId = Convert.ToInt32(registro["ClienteVeiculoId"]);
                 modelo.CClienteId = Convert.ToInt32(registro["ClienteId"]);
                 modelo.CVeiculoId = Convert.ToInt32(registro["VeiculoId"]);
-                modelo.CAnoVeiculo = Convert.ToInt32(registro["AnoVeiculo"]);
                 modelo.CPlacaVeiculo = Convert.ToString(registro["PlacaVeiculo"]);
                 modelo.CCorVeiculo = Convert.ToString(registro["CorVeiculo"]);
                 modelo.CKmRodados = Convert.ToInt32(registro["KmRodados"]);
@@ -205,7 +199,6 @@ namespace DAL
                 "ClienteVeiculo.ClienteVeiculoId, " +
                 "Cliente.NomeCliente, " +
                 "Veiculo.Modelo, " +
-                "ClienteVeiculo.AnoVeiculo, " +
                 "ClienteVeiculo.PlacaVeiculo, " +
                 "ClienteVeiculo.CorVeiculo, " +
                 "ClienteVeiculo.KmRodados, " +

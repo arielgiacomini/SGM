@@ -61,7 +61,7 @@ namespace GUI
             if (e.RowIndex >= 0) // vai guardar a informação escolhida com duplo clique.
             {
                 this.codigo = Convert.ToInt32(dgvClienteVeiculoConsulta.Rows[e.RowIndex].Cells[0].Value == null ? 0 : dgvClienteVeiculoConsulta.Rows[e.RowIndex].Cells[0].Value);
-                this.clienteId = Convert.ToInt32(dgvClienteVeiculoConsulta.Rows[e.RowIndex].Cells[7].Value);
+                this.clienteId = Convert.ToInt32(dgvClienteVeiculoConsulta.Rows[e.RowIndex].Cells[6].Value);
                 this.nomeCliente = Convert.ToString(dgvClienteVeiculoConsulta.Rows[e.RowIndex].Cells[1].Value);
                 this.placaVeiculo = Convert.ToString(dgvClienteVeiculoConsulta.Rows[e.RowIndex].Cells[4].Value);
                 this.Close();
