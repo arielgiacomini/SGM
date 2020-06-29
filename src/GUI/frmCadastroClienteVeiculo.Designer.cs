@@ -30,7 +30,6 @@
         {
             this.lblClienteVeiculoId = new System.Windows.Forms.Label();
             this.lblVeiculo = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.lblKmVeiculo = new System.Windows.Forms.Label();
@@ -38,7 +37,6 @@
             this.txtCorVeiculo = new System.Windows.Forms.TextBox();
             this.txtKmVeiculo = new System.Windows.Forms.TextBox();
             this.txtClienteVeiculoId = new System.Windows.Forms.TextBox();
-            this.txtAnoVeiculo = new System.Windows.Forms.TextBox();
             this.txtPlacaVeiculo = new System.Windows.Forms.MaskedTextBox();
             this.gbInfoCliente = new System.Windows.Forms.GroupBox();
             this.txtClienteId = new System.Windows.Forms.TextBox();
@@ -50,6 +48,12 @@
             this.label3 = new System.Windows.Forms.Label();
             this.btnBuscarHistoricoCliente = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.lblMarca = new System.Windows.Forms.Label();
+            this.cboMarcaVeiculo = new System.Windows.Forms.ComboBox();
+            this.lblAnoFabricacao = new System.Windows.Forms.Label();
+            this.lblAnoModelo = new System.Windows.Forms.Label();
+            this.txtAnoModeloInicial = new System.Windows.Forms.TextBox();
+            this.txtAnoModeloFinal = new System.Windows.Forms.TextBox();
             this.pnCadastro.SuspendLayout();
             this.pnBotoes.SuspendLayout();
             this.gbInfoCliente.SuspendLayout();
@@ -58,11 +62,16 @@
             // 
             // pnCadastro
             // 
+            this.pnCadastro.Controls.Add(this.txtAnoModeloFinal);
+            this.pnCadastro.Controls.Add(this.txtAnoModeloInicial);
+            this.pnCadastro.Controls.Add(this.lblAnoModelo);
+            this.pnCadastro.Controls.Add(this.lblAnoFabricacao);
+            this.pnCadastro.Controls.Add(this.cboMarcaVeiculo);
+            this.pnCadastro.Controls.Add(this.lblMarca);
             this.pnCadastro.Controls.Add(this.pictureBox1);
             this.pnCadastro.Controls.Add(this.gbInfoCliente);
             this.pnCadastro.Controls.Add(this.label3);
             this.pnCadastro.Controls.Add(this.txtPlacaVeiculo);
-            this.pnCadastro.Controls.Add(this.txtAnoVeiculo);
             this.pnCadastro.Controls.Add(this.btnBuscarHistoricoCliente);
             this.pnCadastro.Controls.Add(this.txtClienteVeiculoId);
             this.pnCadastro.Controls.Add(this.txtKmVeiculo);
@@ -71,10 +80,9 @@
             this.pnCadastro.Controls.Add(this.lblKmVeiculo);
             this.pnCadastro.Controls.Add(this.label6);
             this.pnCadastro.Controls.Add(this.label5);
-            this.pnCadastro.Controls.Add(this.label4);
             this.pnCadastro.Controls.Add(this.lblVeiculo);
             this.pnCadastro.Controls.Add(this.lblClienteVeiculoId);
-            this.pnCadastro.Paint += new System.Windows.Forms.PaintEventHandler(this.pnCadastro_Paint);
+            this.pnCadastro.Paint += new System.Windows.Forms.PaintEventHandler(this.PnCadastro_Paint);
             // 
             // btnCancelar
             // 
@@ -114,28 +122,18 @@
             // 
             this.lblVeiculo.AutoSize = true;
             this.lblVeiculo.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblVeiculo.Location = new System.Drawing.Point(17, 72);
+            this.lblVeiculo.Location = new System.Drawing.Point(21, 130);
             this.lblVeiculo.Name = "lblVeiculo";
             this.lblVeiculo.Size = new System.Drawing.Size(56, 20);
             this.lblVeiculo.TabIndex = 2;
             this.lblVeiculo.Text = "Veículo: ";
             this.lblVeiculo.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(17, 124);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(97, 20);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "Ano do Veículo: ";
-            // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(152, 232);
+            this.label5.Location = new System.Drawing.Point(169, 240);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(119, 20);
             this.label5.TabIndex = 4;
@@ -145,7 +143,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(19, 173);
+            this.label6.Location = new System.Drawing.Point(337, 178);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(96, 20);
             this.label6.TabIndex = 5;
@@ -155,7 +153,7 @@
             // 
             this.lblKmVeiculo.AutoSize = true;
             this.lblKmVeiculo.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblKmVeiculo.Location = new System.Drawing.Point(289, 122);
+            this.lblKmVeiculo.Location = new System.Drawing.Point(38, 178);
             this.lblKmVeiculo.Name = "lblKmVeiculo";
             this.lblKmVeiculo.Size = new System.Drawing.Size(148, 20);
             this.lblKmVeiculo.TabIndex = 6;
@@ -163,22 +161,25 @@
             // 
             // cboVeiculo
             // 
+            this.cboVeiculo.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboVeiculo.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboVeiculo.FormattingEnabled = true;
-            this.cboVeiculo.Location = new System.Drawing.Point(73, 71);
+            this.cboVeiculo.Location = new System.Drawing.Point(77, 129);
             this.cboVeiculo.Name = "cboVeiculo";
             this.cboVeiculo.Size = new System.Drawing.Size(470, 21);
             this.cboVeiculo.TabIndex = 1;
+            this.cboVeiculo.SelectedValueChanged += new System.EventHandler(this.CboVeiculo_SelectedValueChanged);
             // 
             // txtCorVeiculo
             // 
-            this.txtCorVeiculo.Location = new System.Drawing.Point(121, 173);
+            this.txtCorVeiculo.Location = new System.Drawing.Point(439, 178);
             this.txtCorVeiculo.Name = "txtCorVeiculo";
             this.txtCorVeiculo.Size = new System.Drawing.Size(224, 20);
             this.txtCorVeiculo.TabIndex = 4;
             // 
             // txtKmVeiculo
             // 
-            this.txtKmVeiculo.Location = new System.Drawing.Point(443, 122);
+            this.txtKmVeiculo.Location = new System.Drawing.Point(192, 178);
             this.txtKmVeiculo.Name = "txtKmVeiculo";
             this.txtKmVeiculo.Size = new System.Drawing.Size(100, 20);
             this.txtKmVeiculo.TabIndex = 3;
@@ -192,19 +193,10 @@
             this.txtClienteVeiculoId.Size = new System.Drawing.Size(93, 20);
             this.txtClienteVeiculoId.TabIndex = 0;
             // 
-            // txtAnoVeiculo
-            // 
-            this.txtAnoVeiculo.Location = new System.Drawing.Point(121, 124);
-            this.txtAnoVeiculo.MaxLength = 4;
-            this.txtAnoVeiculo.Name = "txtAnoVeiculo";
-            this.txtAnoVeiculo.Size = new System.Drawing.Size(113, 20);
-            this.txtAnoVeiculo.TabIndex = 2;
-            this.txtAnoVeiculo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
             // txtPlacaVeiculo
             // 
             this.txtPlacaVeiculo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPlacaVeiculo.Location = new System.Drawing.Point(277, 229);
+            this.txtPlacaVeiculo.Location = new System.Drawing.Point(294, 237);
             this.txtPlacaVeiculo.Name = "txtPlacaVeiculo";
             this.txtPlacaVeiculo.Size = new System.Drawing.Size(139, 26);
             this.txtPlacaVeiculo.TabIndex = 5;
@@ -303,12 +295,70 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::GUI.Properties.Resources.LogotipoLoquinho;
-            this.pictureBox1.Location = new System.Drawing.Point(605, 8);
+            this.pictureBox1.Location = new System.Drawing.Point(640, 8);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(144, 50);
+            this.pictureBox1.Size = new System.Drawing.Size(109, 45);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 34;
             this.pictureBox1.TabStop = false;
+            // 
+            // lblMarca
+            // 
+            this.lblMarca.AutoSize = true;
+            this.lblMarca.Font = new System.Drawing.Font("Arial Narrow", 11.25F);
+            this.lblMarca.Location = new System.Drawing.Point(26, 83);
+            this.lblMarca.Name = "lblMarca";
+            this.lblMarca.Size = new System.Drawing.Size(48, 20);
+            this.lblMarca.TabIndex = 35;
+            this.lblMarca.Text = "Marca:";
+            // 
+            // cboMarcaVeiculo
+            // 
+            this.cboMarcaVeiculo.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboMarcaVeiculo.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cboMarcaVeiculo.FormattingEnabled = true;
+            this.cboMarcaVeiculo.Location = new System.Drawing.Point(78, 82);
+            this.cboMarcaVeiculo.Name = "cboMarcaVeiculo";
+            this.cboMarcaVeiculo.Size = new System.Drawing.Size(226, 21);
+            this.cboMarcaVeiculo.TabIndex = 36;
+            this.cboMarcaVeiculo.SelectedValueChanged += new System.EventHandler(this.CboMarcaVeiculo_SelectedValueChanged);
+            this.cboMarcaVeiculo.MouseClick += new System.Windows.Forms.MouseEventHandler(this.CboMarcaVeiculo_MouseClick);
+            // 
+            // lblAnoFabricacao
+            // 
+            this.lblAnoFabricacao.AutoSize = true;
+            this.lblAnoFabricacao.Font = new System.Drawing.Font("Arial Narrow", 11.25F);
+            this.lblAnoFabricacao.Location = new System.Drawing.Point(321, 83);
+            this.lblAnoFabricacao.Name = "lblAnoFabricacao";
+            this.lblAnoFabricacao.Size = new System.Drawing.Size(117, 20);
+            this.lblAnoFabricacao.TabIndex = 37;
+            this.lblAnoFabricacao.Text = "Ano de Fabricação:";
+            // 
+            // lblAnoModelo
+            // 
+            this.lblAnoModelo.AutoSize = true;
+            this.lblAnoModelo.Font = new System.Drawing.Font("Arial Narrow", 11.25F);
+            this.lblAnoModelo.Location = new System.Drawing.Point(556, 83);
+            this.lblAnoModelo.Name = "lblAnoModelo";
+            this.lblAnoModelo.Size = new System.Drawing.Size(78, 20);
+            this.lblAnoModelo.TabIndex = 39;
+            this.lblAnoModelo.Text = "Ano Modelo:";
+            // 
+            // txtAnoModeloInicial
+            // 
+            this.txtAnoModeloInicial.Location = new System.Drawing.Point(438, 82);
+            this.txtAnoModeloInicial.Name = "txtAnoModeloInicial";
+            this.txtAnoModeloInicial.Size = new System.Drawing.Size(109, 20);
+            this.txtAnoModeloInicial.TabIndex = 40;
+            this.txtAnoModeloInicial.Leave += new System.EventHandler(this.TxtAnoModeloInicial_Leave);
+            // 
+            // txtAnoModeloFinal
+            // 
+            this.txtAnoModeloFinal.Location = new System.Drawing.Point(636, 82);
+            this.txtAnoModeloFinal.Name = "txtAnoModeloFinal";
+            this.txtAnoModeloFinal.Size = new System.Drawing.Size(100, 20);
+            this.txtAnoModeloFinal.TabIndex = 41;
+            this.txtAnoModeloFinal.Leave += new System.EventHandler(this.TxtAnoModeloFinal_Leave);
             // 
             // FrmCadastroClienteVeiculo
             // 
@@ -328,8 +378,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.TextBox txtAnoVeiculo;
         private System.Windows.Forms.TextBox txtClienteVeiculoId;
         private System.Windows.Forms.TextBox txtKmVeiculo;
         private System.Windows.Forms.TextBox txtCorVeiculo;
@@ -337,7 +385,6 @@
         private System.Windows.Forms.Label lblKmVeiculo;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label lblVeiculo;
         private System.Windows.Forms.Label lblClienteVeiculoId;
         private System.Windows.Forms.MaskedTextBox txtPlacaVeiculo;
@@ -351,5 +398,11 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox txtClienteId;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label lblAnoModelo;
+        private System.Windows.Forms.Label lblAnoFabricacao;
+        private System.Windows.Forms.ComboBox cboMarcaVeiculo;
+        private System.Windows.Forms.Label lblMarca;
+        private System.Windows.Forms.TextBox txtAnoModeloFinal;
+        private System.Windows.Forms.TextBox txtAnoModeloInicial;
     }
 }

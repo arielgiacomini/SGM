@@ -4,16 +4,14 @@ namespace Modelo
 {
     public class ModeloVeiculo
     {
-
         public ModeloVeiculo()
         {
             this.VeiculoId = 0;
             this.Marca = "";
             this.Modelo = "";
-
         }
 
-        public ModeloVeiculo(int veiculoid, String marca, String modelo)
+        public ModeloVeiculo(int veiculoid, string marca, string modelo)
         {
             this.VeiculoId = veiculoid;
             this.Marca = marca;
