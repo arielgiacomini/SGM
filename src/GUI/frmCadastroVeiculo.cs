@@ -1,6 +1,7 @@
 ﻿using BLL;
 using DAL;
 using Modelo;
+using Modelo.Entities;
 using System;
 using System.Windows.Forms;
 
@@ -39,15 +40,22 @@ namespace GUI
             this.LimpaTela();
         }
 
-        private void btnSalvar_Click(object sender, EventArgs e)
+        private void BtnSalvar_Click(object sender, EventArgs e)
         {
             try
             {
 
                 // leitura dos dados
-                ModeloVeiculo modelo = new ModeloVeiculo();
-                modelo.CMarca = txtMarca.Text;
-                modelo.CModelo = txtModelo.Text;
+                Veiculo modelo = new Veiculo
+                {
+                    CodigoFipe = 0,
+                    MarcaId = 0,
+                    Modelo = txtModelo.Text,
+                    AnoModeloInicial = 0,
+                    AnoModeloFinal = 0,
+                    VeiculoAtivo = true,
+                    DataCadastro = DateTime.Now
+                };
                 // objeto para gravar os dados no banco de dados
                 DALConexao cx = new DALConexao(ConnectionStringConfiguration.ConnectionString);
                 BLLVeiculo bll = new BLLVeiculo(cx);
@@ -55,16 +63,16 @@ namespace GUI
                 if (this.operacao == "inserir")
                 {
                     // Cadastrar uma categoria
-                    bll.Incluir(modelo);
-                    MessageBox.Show("Cadastro inserido com sucesso! Código: " + modelo.CVeiculoId.ToString());
+                    int veiculoId = bll.Incluir(modelo);
+                    MessageBox.Show("Cadastro inserido com sucesso! Código: " + veiculoId.ToString());
                 }
-                else
-                {
-                    // Alterar uma categoria
-                    modelo.CVeiculoId = Convert.ToInt32(txtVeiculoid.Text);
-                    bll.Alterar(modelo);
-                    MessageBox.Show("Cadastro alterado com sucesso!");
-                }
+                //else
+                //{
+                //    // Alterar uma categoria
+                //    modelo.CVeiculoId = Convert.ToInt32(txtVeiculoid.Text);
+                //    bll.Alterar(modelo);
+                //    MessageBox.Show("Cadastro alterado com sucesso!");
+                //}
                 this.LimpaTela();
                 this.alteraBotoes(1);
             }

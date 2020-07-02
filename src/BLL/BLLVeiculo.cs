@@ -16,18 +16,17 @@ namespace BLL
             this.conexao = cx;
         }
 
-        public void Incluir(ModeloVeiculo modelo)
+        public int Incluir(Veiculo modelo)
         {
-            if (modelo.CMarca.Trim().Length == 0 || modelo.CModelo.Trim().Length == 0)
+            if (modelo.MarcaId == 0 || modelo.Modelo.Trim().Length == 0)
             {
                 throw new Exception("O nome da Marca/Modelo é obrigatório");
             }
 
-            modelo.CMarca = modelo.CMarca.ToUpper();
-            modelo.CModelo = modelo.CModelo.ToUpper();
+            modelo.Modelo = modelo.Modelo.ToUpper();
 
             DALVeiculo DALobj = new DALVeiculo(conexao);
-            DALobj.Incluir(modelo);
+            return DALobj.Incluir(modelo);
         }
 
         public void Alterar(ModeloVeiculo modelo)
