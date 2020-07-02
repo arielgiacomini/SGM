@@ -16,18 +16,24 @@ namespace DAL
             this.conexao = cx;
         }
 
-        public void Incluir(ModeloVeiculo modelo)
+        public int Incluir(Veiculo modelo)
         {
             SqlCommand cmd = new SqlCommand
             {
                 Connection = conexao.ObjetoConexao,
-                CommandText = "INSERT INTO Veiculo (Marca, Modelo) VALUES (@marca, @modelo);"
+                CommandText = "INSERT INTO Veiculo (CodigoFipe, MarcaId, Modelo, AnoModeloInicial, AnoModeloFinal, VeiculoAtivo, DataCadastro) VALUES (@codigoFipe, @marcaId, @modelo, @anoModeloInicial, @anoModeloFinal, @veiculoAtivo, @DataCadastro);"
             };
 
-            cmd.Parameters.AddWithValue("@marca", modelo.CMarca);
-            cmd.Parameters.AddWithValue("@modelo", modelo.CModelo);
+            cmd.Parameters.AddWithValue("@codigoFipe", modelo.CodigoFipe);
+            cmd.Parameters.AddWithValue("@marcaId", modelo.MarcaId);
+            cmd.Parameters.AddWithValue("@modelo", modelo.Modelo);
+            cmd.Parameters.AddWithValue("@anoModeloInicial", modelo.AnoModeloInicial);
+            cmd.Parameters.AddWithValue("@anoModeloFinal", modelo.AnoModeloFinal);
+            cmd.Parameters.AddWithValue("@veiculoAtivo", modelo.VeiculoAtivo);
+            cmd.Parameters.AddWithValue("@DataCadastro", modelo.DataCadastro);
+
             conexao.Conectar();
-            modelo.CVeiculoId = Convert.ToInt32(cmd.ExecuteScalar());
+            return modelo.VeiculoId = Convert.ToInt32(cmd.ExecuteScalar());
             conexao.Desconectar();
         }
 
@@ -220,12 +226,12 @@ namespace DAL
             SqlCommand cmd = new SqlCommand
             {
                 Connection = conexao.ObjetoConexao,
-                CommandText = "SELECT * FROM Veiculo WHERE MarcaId = @marcaId AND AnoModeloInicial = @anoModeloInicial AND AnoModeloFinal = @anoModeloFinal"
+                CommandText = "SELECT * FROM Veiculo WHERE MarcaId = @marcaId "
             };
 
             cmd.Parameters.AddWithValue("@marcaId", marcaId);
-            cmd.Parameters.AddWithValue("@anoModeloInicial", anoModelo);
-            cmd.Parameters.AddWithValue("@anoModeloFinal", anoFabricacao);
+            //cmd.Parameters.AddWithValue("@anoModeloInicial", anoModelo);
+            //cmd.Parameters.AddWithValue("@anoModeloFinal", anoFabricacao);
             conexao.Conectar();
             SqlDataReader registro = cmd.ExecuteReader();
 

@@ -35,10 +35,14 @@ namespace GUI
             dgvClienteVeiculoConsulta.Columns[1].Width = 250;
             dgvClienteVeiculoConsulta.Columns[2].HeaderText = "Veículo";
             dgvClienteVeiculoConsulta.Columns[2].Width = 265;
-            dgvClienteVeiculoConsulta.Columns[3].HeaderText = "Ano Veículo";
-            dgvClienteVeiculoConsulta.Columns[3].Width = 70;
-            dgvClienteVeiculoConsulta.Columns[4].HeaderText = "Placa";
+            dgvClienteVeiculoConsulta.Columns[3].HeaderText = "Placa";
+            dgvClienteVeiculoConsulta.Columns[3].Width = 80;
+            dgvClienteVeiculoConsulta.Columns[4].HeaderText = "Cor";
             dgvClienteVeiculoConsulta.Columns[4].Width = 80;
+            dgvClienteVeiculoConsulta.Columns[5].HeaderText = "Km Rodados";
+            dgvClienteVeiculoConsulta.Columns[5].Width = 80;
+            dgvClienteVeiculoConsulta.Columns[6].HeaderText = "Cliente ID";
+            dgvClienteVeiculoConsulta.Columns[6].Width = 80;
         }
 
         private void BtnPlacaClienteVeiculoConsulta_Click(object sender, EventArgs e)
@@ -63,7 +67,7 @@ namespace GUI
                 this.codigo = Convert.ToInt32(dgvClienteVeiculoConsulta.Rows[e.RowIndex].Cells[0].Value == null ? 0 : dgvClienteVeiculoConsulta.Rows[e.RowIndex].Cells[0].Value);
                 this.clienteId = Convert.ToInt32(dgvClienteVeiculoConsulta.Rows[e.RowIndex].Cells[6].Value);
                 this.nomeCliente = Convert.ToString(dgvClienteVeiculoConsulta.Rows[e.RowIndex].Cells[1].Value);
-                this.placaVeiculo = Convert.ToString(dgvClienteVeiculoConsulta.Rows[e.RowIndex].Cells[4].Value);
+                this.placaVeiculo = Convert.ToString(dgvClienteVeiculoConsulta.Rows[e.RowIndex].Cells[3].Value);
                 this.Close();
             }
         }

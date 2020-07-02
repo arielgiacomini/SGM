@@ -30,8 +30,8 @@
         {
             this.lblClienteVeiculoId = new System.Windows.Forms.Label();
             this.lblVeiculo = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
+            this.lblPlacaVeiculo = new System.Windows.Forms.Label();
+            this.lblCorVeiculo = new System.Windows.Forms.Label();
             this.lblKmVeiculo = new System.Windows.Forms.Label();
             this.cboVeiculo = new System.Windows.Forms.ComboBox();
             this.txtCorVeiculo = new System.Windows.Forms.TextBox();
@@ -40,12 +40,12 @@
             this.txtPlacaVeiculo = new System.Windows.Forms.MaskedTextBox();
             this.gbInfoCliente = new System.Windows.Forms.GroupBox();
             this.txtClienteId = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lblClienteId = new System.Windows.Forms.Label();
+            this.lblNomeCliente = new System.Windows.Forms.Label();
             this.txtCliente = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblTelefone = new System.Windows.Forms.Label();
             this.txtTelefoneCliente = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
+            this.lblBuscarHistoricoServicoCliente = new System.Windows.Forms.Label();
             this.btnBuscarHistoricoCliente = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lblMarca = new System.Windows.Forms.Label();
@@ -70,7 +70,7 @@
             this.pnCadastro.Controls.Add(this.lblMarca);
             this.pnCadastro.Controls.Add(this.pictureBox1);
             this.pnCadastro.Controls.Add(this.gbInfoCliente);
-            this.pnCadastro.Controls.Add(this.label3);
+            this.pnCadastro.Controls.Add(this.lblBuscarHistoricoServicoCliente);
             this.pnCadastro.Controls.Add(this.txtPlacaVeiculo);
             this.pnCadastro.Controls.Add(this.btnBuscarHistoricoCliente);
             this.pnCadastro.Controls.Add(this.txtClienteVeiculoId);
@@ -78,11 +78,10 @@
             this.pnCadastro.Controls.Add(this.txtCorVeiculo);
             this.pnCadastro.Controls.Add(this.cboVeiculo);
             this.pnCadastro.Controls.Add(this.lblKmVeiculo);
-            this.pnCadastro.Controls.Add(this.label6);
-            this.pnCadastro.Controls.Add(this.label5);
+            this.pnCadastro.Controls.Add(this.lblCorVeiculo);
+            this.pnCadastro.Controls.Add(this.lblPlacaVeiculo);
             this.pnCadastro.Controls.Add(this.lblVeiculo);
             this.pnCadastro.Controls.Add(this.lblClienteVeiculoId);
-            this.pnCadastro.Paint += new System.Windows.Forms.PaintEventHandler(this.PnCadastro_Paint);
             // 
             // btnCancelar
             // 
@@ -129,25 +128,25 @@
             this.lblVeiculo.Text = "Veículo: ";
             this.lblVeiculo.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // label5
+            // lblPlacaVeiculo
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(169, 240);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(119, 20);
-            this.label5.TabIndex = 4;
-            this.label5.Text = "Placa do Veículo: ";
+            this.lblPlacaVeiculo.AutoSize = true;
+            this.lblPlacaVeiculo.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPlacaVeiculo.Location = new System.Drawing.Point(169, 240);
+            this.lblPlacaVeiculo.Name = "lblPlacaVeiculo";
+            this.lblPlacaVeiculo.Size = new System.Drawing.Size(119, 20);
+            this.lblPlacaVeiculo.TabIndex = 4;
+            this.lblPlacaVeiculo.Text = "Placa do Veículo: ";
             // 
-            // label6
+            // lblCorVeiculo
             // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(337, 178);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(96, 20);
-            this.label6.TabIndex = 5;
-            this.label6.Text = "Cor do Veículo: ";
+            this.lblCorVeiculo.AutoSize = true;
+            this.lblCorVeiculo.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCorVeiculo.Location = new System.Drawing.Point(337, 178);
+            this.lblCorVeiculo.Name = "lblCorVeiculo";
+            this.lblCorVeiculo.Size = new System.Drawing.Size(96, 20);
+            this.lblCorVeiculo.TabIndex = 5;
+            this.lblCorVeiculo.Text = "Cor do Veículo: ";
             // 
             // lblKmVeiculo
             // 
@@ -168,7 +167,6 @@
             this.cboVeiculo.Name = "cboVeiculo";
             this.cboVeiculo.Size = new System.Drawing.Size(470, 21);
             this.cboVeiculo.TabIndex = 1;
-            this.cboVeiculo.SelectedValueChanged += new System.EventHandler(this.CboVeiculo_SelectedValueChanged);
             // 
             // txtCorVeiculo
             // 
@@ -205,10 +203,10 @@
             // gbInfoCliente
             // 
             this.gbInfoCliente.Controls.Add(this.txtClienteId);
-            this.gbInfoCliente.Controls.Add(this.label7);
-            this.gbInfoCliente.Controls.Add(this.label2);
+            this.gbInfoCliente.Controls.Add(this.lblClienteId);
+            this.gbInfoCliente.Controls.Add(this.lblNomeCliente);
             this.gbInfoCliente.Controls.Add(this.txtCliente);
-            this.gbInfoCliente.Controls.Add(this.label1);
+            this.gbInfoCliente.Controls.Add(this.lblTelefone);
             this.gbInfoCliente.Controls.Add(this.txtTelefoneCliente);
             this.gbInfoCliente.Location = new System.Drawing.Point(24, 283);
             this.gbInfoCliente.Name = "gbInfoCliente";
@@ -224,26 +222,25 @@
             this.txtClienteId.Size = new System.Drawing.Size(48, 20);
             this.txtClienteId.TabIndex = 9;
             // 
-            // label7
+            // lblClienteId
             // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(6, 33);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(24, 20);
-            this.label7.TabIndex = 8;
-            this.label7.Text = "Id:";
-            this.label7.Click += new System.EventHandler(this.Label7_Click);
+            this.lblClienteId.AutoSize = true;
+            this.lblClienteId.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblClienteId.Location = new System.Drawing.Point(6, 33);
+            this.lblClienteId.Name = "lblClienteId";
+            this.lblClienteId.Size = new System.Drawing.Size(24, 20);
+            this.lblClienteId.TabIndex = 8;
+            this.lblClienteId.Text = "Id:";
             // 
-            // label2
+            // lblNomeCliente
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(86, 33);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(114, 20);
-            this.label2.TabIndex = 6;
-            this.label2.Text = "Nome do Cliente:";
+            this.lblNomeCliente.AutoSize = true;
+            this.lblNomeCliente.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNomeCliente.Location = new System.Drawing.Point(86, 33);
+            this.lblNomeCliente.Name = "lblNomeCliente";
+            this.lblNomeCliente.Size = new System.Drawing.Size(114, 20);
+            this.lblNomeCliente.TabIndex = 6;
+            this.lblNomeCliente.Text = "Nome do Cliente:";
             // 
             // txtCliente
             // 
@@ -252,15 +249,15 @@
             this.txtCliente.Size = new System.Drawing.Size(295, 20);
             this.txtCliente.TabIndex = 4;
             // 
-            // label1
+            // lblTelefone
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(6, 70);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(65, 20);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Telefone:";
+            this.lblTelefone.AutoSize = true;
+            this.lblTelefone.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTelefone.Location = new System.Drawing.Point(6, 70);
+            this.lblTelefone.Name = "lblTelefone";
+            this.lblTelefone.Size = new System.Drawing.Size(65, 20);
+            this.lblTelefone.TabIndex = 3;
+            this.lblTelefone.Text = "Telefone:";
             // 
             // txtTelefoneCliente
             // 
@@ -269,15 +266,15 @@
             this.txtTelefoneCliente.Size = new System.Drawing.Size(119, 20);
             this.txtTelefoneCliente.TabIndex = 2;
             // 
-            // label3
+            // lblBuscarHistoricoServicoCliente
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(589, 240);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(130, 40);
-            this.label3.TabIndex = 7;
-            this.label3.Text = "Buscar Histórico de \r\nServiços do Cliente";
+            this.lblBuscarHistoricoServicoCliente.AutoSize = true;
+            this.lblBuscarHistoricoServicoCliente.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBuscarHistoricoServicoCliente.Location = new System.Drawing.Point(589, 240);
+            this.lblBuscarHistoricoServicoCliente.Name = "lblBuscarHistoricoServicoCliente";
+            this.lblBuscarHistoricoServicoCliente.Size = new System.Drawing.Size(130, 40);
+            this.lblBuscarHistoricoServicoCliente.TabIndex = 7;
+            this.lblBuscarHistoricoServicoCliente.Text = "Buscar Histórico de \r\nServiços do Cliente";
             // 
             // btnBuscarHistoricoCliente
             // 
@@ -321,8 +318,7 @@
             this.cboMarcaVeiculo.Name = "cboMarcaVeiculo";
             this.cboMarcaVeiculo.Size = new System.Drawing.Size(226, 21);
             this.cboMarcaVeiculo.TabIndex = 36;
-            this.cboMarcaVeiculo.SelectedValueChanged += new System.EventHandler(this.CboMarcaVeiculo_SelectedValueChanged);
-            this.cboMarcaVeiculo.MouseClick += new System.Windows.Forms.MouseEventHandler(this.CboMarcaVeiculo_MouseClick);
+            this.cboMarcaVeiculo.SelectedValueChanged += new System.EventHandler(this.ComboBoxMarcaVeiculoAlteracaoValor);
             // 
             // lblAnoFabricacao
             // 
@@ -350,7 +346,7 @@
             this.txtAnoModeloInicial.Name = "txtAnoModeloInicial";
             this.txtAnoModeloInicial.Size = new System.Drawing.Size(109, 20);
             this.txtAnoModeloInicial.TabIndex = 40;
-            this.txtAnoModeloInicial.Leave += new System.EventHandler(this.TxtAnoModeloInicial_Leave);
+            this.txtAnoModeloInicial.Leave += new System.EventHandler(this.TextBoxAnoFabricacaoSaidaCampo);
             // 
             // txtAnoModeloFinal
             // 
@@ -358,7 +354,7 @@
             this.txtAnoModeloFinal.Name = "txtAnoModeloFinal";
             this.txtAnoModeloFinal.Size = new System.Drawing.Size(100, 20);
             this.txtAnoModeloFinal.TabIndex = 41;
-            this.txtAnoModeloFinal.Leave += new System.EventHandler(this.TxtAnoModeloFinal_Leave);
+            this.txtAnoModeloFinal.Leave += new System.EventHandler(this.TextBoxAnoModeloSaidaCampo);
             // 
             // FrmCadastroClienteVeiculo
             // 
@@ -383,19 +379,19 @@
         private System.Windows.Forms.TextBox txtCorVeiculo;
         private System.Windows.Forms.ComboBox cboVeiculo;
         private System.Windows.Forms.Label lblKmVeiculo;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lblCorVeiculo;
+        private System.Windows.Forms.Label lblPlacaVeiculo;
         private System.Windows.Forms.Label lblVeiculo;
         private System.Windows.Forms.Label lblClienteVeiculoId;
         private System.Windows.Forms.MaskedTextBox txtPlacaVeiculo;
         private System.Windows.Forms.GroupBox gbInfoCliente;
         private System.Windows.Forms.TextBox txtCliente;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblTelefone;
         private System.Windows.Forms.TextBox txtTelefoneCliente;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblBuscarHistoricoServicoCliente;
+        private System.Windows.Forms.Label lblNomeCliente;
         protected System.Windows.Forms.Button btnBuscarHistoricoCliente;
-        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label lblClienteId;
         private System.Windows.Forms.TextBox txtClienteId;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label lblAnoModelo;

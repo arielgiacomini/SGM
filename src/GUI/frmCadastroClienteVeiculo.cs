@@ -49,6 +49,13 @@ namespace GUI
             BLLCliente cliente = new BLLCliente(conexao);
             BLLVeiculoCliente clienteVeiculos = new BLLVeiculoCliente(conexao);
 
+            if (cboMarcaVeiculo.DataSource == null)
+            {
+                cboMarcaVeiculo.DataSource = veiculo.BuscarMarcasVeiculo();
+                cboMarcaVeiculo.DisplayMember = "Marca";
+                cboMarcaVeiculo.ValueMember = "MarcaId";
+            }
+
             ModeloVeiculoCliente dadosVeiculoCliente = new ModeloVeiculoCliente();
             ModeloCliente dadosCliente = new ModeloCliente();
             Veiculo dadosVeiculo = new Veiculo();
@@ -63,6 +70,9 @@ namespace GUI
                 dadosMarcaVeiculo = veiculo.BuscarMarcaVeiculoByMarcaId(dadosVeiculo.MarcaId);
 
                 PreencheInformacoesNaTela(dadosCliente, dadosVeiculoCliente, dadosVeiculo, dadosMarcaVeiculo);
+
+                this.alteraBotoes(2);
+                this.operacao = "alterar";
             }
 
             if (clienteVeiculoId != 0)
@@ -73,6 +83,9 @@ namespace GUI
                 dadosMarcaVeiculo = veiculo.BuscarMarcaVeiculoByMarcaId(dadosVeiculo.MarcaId);
 
                 PreencheInformacoesNaTela(dadosCliente, dadosVeiculoCliente, dadosVeiculo, dadosMarcaVeiculo);
+
+                this.alteraBotoes(2);
+                this.operacao = "alterar";
             }
 
             if (clienteId != 0)
@@ -80,8 +93,10 @@ namespace GUI
                 dadosCliente = cliente.CarregaModeloCliente(clienteId);
 
                 PreencheInformacoesNaTela(dadosCliente, dadosVeiculoCliente, dadosVeiculo, dadosMarcaVeiculo);
-            }
 
+                this.alteraBotoes(2);
+                this.operacao = "alterar";
+            }
             else
             {
                 this.alteraBotoes(1);
@@ -110,7 +125,17 @@ namespace GUI
             {
                 txtAnoModeloInicial.Text = veiculo.AnoModeloInicial.ToString();
                 txtAnoModeloFinal.Text = veiculo.AnoModeloFinal.ToString();
-                cboVeiculo.DisplayMember = veiculo.Modelo.ToString();
+                cboMarcaVeiculo.SelectedValue = veiculoMarca.MarcaId;
+                
+                if (cboMarcaVeiculo.SelectedIndex > 0)
+                {
+                    DALConexao conexao = new DALConexao(ConnectionStringConfiguration.ConnectionString);
+                    BLLVeiculo veaquinho = new BLLVeiculo(conexao);
+                    cboVeiculo.DataSource = veaquinho.BuscarVeiculoByMarcaId(veiculoMarca.MarcaId);
+                    cboVeiculo.DisplayMember = "Modelo";
+                    cboVeiculo.ValueMember = "VeiculoId";
+                    cboVeiculo.SelectedValue = veiculoCliente.CVeiculoId;
+                }
             }
 
             if (veiculoMarca != null && veiculoMarca.MarcaId != 0)
@@ -161,33 +186,67 @@ namespace GUI
         {
             try
             {
-                if (txtKmVeiculo.Text.Length == 0)
-                {
-                    MessageBox.Show("O ano ou km do veículo serão preenchidos como vazios", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
+                int veiculoId = 0;
 
+                DALConexao cx = new DALConexao(ConnectionStringConfiguration.ConnectionString);
+                BLLVeiculoCliente bll = new BLLVeiculoCliente(cx);
+                BLLVeiculo veiculo = new BLLVeiculo(cx);
+                
+                if (Convert.ToInt32(cboVeiculo.SelectedValue) == 0)
+                {
+                    Veiculo novoVeiculo = new Veiculo()
+                    {
+                        CodigoFipe = 0,
+                        MarcaId = Convert.ToInt32(cboMarcaVeiculo.SelectedValue),
+                        Modelo = cboVeiculo.Text,
+                        AnoModeloInicial = Convert.ToInt64(txtAnoModeloInicial.Text),
+                        AnoModeloFinal = Convert.ToInt64(txtAnoModeloFinal.Text),
+                        VeiculoAtivo = true,
+                        DataCadastro = DateTime.Now
+                    };
+                    try
+                    {
+                        veiculoId = veiculo.Incluir(novoVeiculo);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("HOUVE ALGUM ERRO AO CADASTRAR O VEICULO: " + Convert.ToString(ex), "ERRO!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                
                 ModeloVeiculoCliente modelo = new ModeloVeiculoCliente
                 {
                     CClienteId = Convert.ToInt32(txtClienteId.Text),
-                    CVeiculoId = Convert.ToInt32(cboVeiculo.SelectedValue),
+                    CVeiculoId = veiculoId == 0 ? Convert.ToInt32(cboVeiculo.SelectedValue) : veiculoId,
                     CCorVeiculo = txtCorVeiculo.Text,
                     CPlacaVeiculo = txtPlacaVeiculo.Text,
                     CKmRodados = txtKmVeiculo.Text.Length == 0 ? 0 : Convert.ToInt32(txtKmVeiculo.Text)
                 };
 
-                DALConexao cx = new DALConexao(ConnectionStringConfiguration.ConnectionString);
-                BLLVeiculoCliente bll = new BLLVeiculoCliente(cx);
-
                 if (this.operacao == "inserir")
                 {
-                    bll.Incluir(modelo);
-                    MessageBox.Show("Cadastro inserido com sucesso! Código: " + modelo.CVeiculoId.ToString(), "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    try
+                    {
+                        bll.Incluir(modelo);
+                        MessageBox.Show("Cadastro inserido com sucesso!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("HOUVE ALGUM ERRO AO CADASTRAR: " + Convert.ToString(ex), "ERRO!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
                 else
                 {
-                    modelo.CClienteVeiculoId = Convert.ToInt32(txtClienteVeiculoId.Text);
-                    bll.Alterar(modelo);
-                    MessageBox.Show("Cadastro alterado com sucesso!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    try
+                    {
+                        modelo.CClienteVeiculoId = Convert.ToInt32(txtClienteVeiculoId.Text);
+                        bll.Alterar(modelo);
+                        MessageBox.Show("Cadastro alterado com sucesso!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("HOUVE ALGUM ERRO AO ALTERAR: " + Convert.ToString(ex), "ERRO!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
 
                 FrmPerguntaQualItemAbrir questionItemAbrir = new FrmPerguntaQualItemAbrir
@@ -287,17 +346,7 @@ namespace GUI
             consultaHistorico.Close();
         }
 
-        private void PnCadastro_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void Label7_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void CboMarcaVeiculo_SelectedValueChanged(object sender, EventArgs e)
+        private void ComboBoxMarcaVeiculoAlteracaoValor(object sender, EventArgs e)
         {
             VeiculoMarca marcaVeiculo = (VeiculoMarca)cboMarcaVeiculo.SelectedItem;
             if (marcaVeiculo != null && marcaVeiculo.Marca != "Escolher Item")
@@ -312,17 +361,16 @@ namespace GUI
             }
         }
 
-        private void CboVeiculo_SelectedValueChanged(object sender, EventArgs e)
+        private void TextBoxAnoFabricacaoSaidaCampo(object sender, EventArgs e)
         {
-
+            if (Utils.VerificaSeEhNumero(txtAnoModeloInicial.Text))
+            {
+                this.txtAnoModeloFinal.Enabled = true;
+                txtAnoModeloFinal.Focus();
+            }
         }
 
-        private void CboMarcaVeiculo_MouseClick(object sender, MouseEventArgs e)
-        {
-
-        }
-
-        private void TxtAnoModeloFinal_Leave(object sender, EventArgs e)
+        private void TextBoxAnoModeloSaidaCampo(object sender, EventArgs e)
         {
             var anoModelo = txtAnoModeloInicial.Text;
             var anoModeloFabricacao = txtAnoModeloFinal.Text;
@@ -345,15 +393,6 @@ namespace GUI
                 cboVeiculo.DataSource = veiculo.BuscarVeiculoByMarcaAnoModeloAnoFabricacao(marcaId, Convert.ToInt32(anoModelo), Convert.ToInt32(anoModeloFabricacao));
                 cboVeiculo.DisplayMember = "Modelo";
                 cboVeiculo.ValueMember = "VeiculoId";
-            }
-        }
-
-        private void TxtAnoModeloInicial_Leave(object sender, EventArgs e)
-        {
-            if (Utils.VerificaSeEhNumero(txtAnoModeloInicial.Text))
-            {
-                this.txtAnoModeloFinal.Enabled = true;
-                txtAnoModeloFinal.Focus();
             }
         }
     }

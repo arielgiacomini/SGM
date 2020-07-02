@@ -273,10 +273,11 @@ namespace DAL
                 "Cliente.ClienteId, " +
                 "Cliente.NomeCliente, " +
                 "ClienteVeiculo.PlacaVeiculo, " +
-                "Veiculo.Marca + ' - ' + Veiculo.Modelo " +
+                "VeiculoMarca.Marca + ' - ' + Veiculo.Modelo " +
                 "FROM Cliente " +
                 "INNER JOIN ClienteVeiculo ON ClienteVeiculo.ClienteId = Cliente.ClienteId " +
                 "INNER JOIN Veiculo ON Veiculo.VeiculoId = ClienteVeiculo.VeiculoId " +
+                "INNER JOIN VeiculoMarca ON VeiculoMarca.MarcaId = Veiculo.MarcaId " +
                 "WHERE Cliente.NomeCliente LIKE '%" + valor + "%' OR Cliente.Apelido LIKE '%" + valor + "%' OR ClienteVeiculo.PlacaVeiculo LIKE '%" + valor + "%'", conexao.StringConexao);
             da.Fill(tabela);
             conexao.Desconectar();
