@@ -6,9 +6,9 @@ using System.Windows.Forms;
 
 namespace GUI
 {
-    public partial class frmCadastroPeca : GUI.FrmModeloDeFormularioDeCadastro
+    public partial class FrmCadastroPeca : GUI.FrmModeloDeFormularioDeCadastro
     {
-        public frmCadastroPeca()
+        public FrmCadastroPeca()
         {
             InitializeComponent();
         }
@@ -22,26 +22,19 @@ namespace GUI
             txtValorFrete.Clear();
         }
 
-        private void frmCadastroPeca_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnInserir_Click(object sender, EventArgs e)
+        private void BtnInserir_Click(object sender, EventArgs e)
         {
             this.operacao = "inserir";
             this.alteraBotoes(2);
-            //txtValorPeca.Text = Convert.ToDecimal("0").ToString("C");
-            //txtValorFrete.Text = Convert.ToDecimal("0").ToString("C");
         }
 
-        private void btnAlterar_Click(object sender, EventArgs e)
+        private void BtnAlterar_Click(object sender, EventArgs e)
         {
             this.operacao = "alterar";
             this.alteraBotoes(2);
         }
 
-        private void btnExcluir_Click(object sender, EventArgs e)
+        private void BtnExcluir_Click(object sender, EventArgs e)
         {
             try
             {
@@ -49,7 +42,6 @@ namespace GUI
 
                 if (d.ToString() == "Yes")
                 {
-                    // objeto para gravar os dados no banco de dados
                     DALConexao cx = new DALConexao(ConnectionStringConfiguration.ConnectionString);
                     BLLPeca bll = new BLLPeca(cx);
                     bll.Excluir(Convert.ToInt32(txtPecaId.Text));
@@ -65,39 +57,33 @@ namespace GUI
             }
         }
 
-        private void btnSalvar_Click(object sender, EventArgs e)
+        private void BtnSalvar_Click(object sender, EventArgs e)
         {
             try
             {
-                // leitura dos dados
                 ModeloPeca modelo = new ModeloPeca();
                 modelo.CDescricao = txtPeca.Text;
                 modelo.CFornecedor = txtFornecedor.Text;
                 modelo.CValor = Convert.ToDecimal(txtValorPeca.Text.Replace("R$ ", ""));
                 modelo.CValorFrete = Convert.ToDecimal(txtValorFrete.Text.Replace("R$ ", ""));
 
-                // objeto para gravar os dados no banco de dados
                 DALConexao cx = new DALConexao(ConnectionStringConfiguration.ConnectionString);
                 BLLPeca bll = new BLLPeca(cx);
 
                 if (this.operacao == "inserir")
                 {
-                    // Cadastrar uma categoria
                     bll.Incluir(modelo);
                     MessageBox.Show("Cadastro inserido com sucesso! Peça/Produto: " + modelo.CDescricao.ToString(), "Status", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
                 }
                 else
                 {
-                    // Alterar uma categoria
                     modelo.CPecaId = Convert.ToInt32(txtPecaId.Text);
                     bll.Alterar(modelo);
                     MessageBox.Show("Cadastro alterado com sucesso! Peça/Produto: " + modelo.CDescricao.ToString());
                 }
 
                 this.LimpaTela();
-                this.alteraBotoes(1);
-                this.Close();
+                this.alteraBotoes(2);
             }
             catch (Exception erro)
             {
@@ -105,14 +91,14 @@ namespace GUI
             }
         }
 
-        private void btnCancelar_Click(object sender, EventArgs e)
+        private void BtnCancelar_Click(object sender, EventArgs e)
         {
             this.operacao = "cancelar";
             this.alteraBotoes(1);
             this.LimpaTela();
         }
 
-        private void btnLocalizar_Click(object sender, EventArgs e)
+        private void BtnLocalizar_Click(object sender, EventArgs e)
         {
 
             frmConsultaPeca l = new frmConsultaPeca();
@@ -139,7 +125,7 @@ namespace GUI
 
         }
 
-        private void txtValorPeca_Leave(object sender, EventArgs e)
+        private void TxtValorPeca_Leave(object sender, EventArgs e)
         {
             try
             {
@@ -156,7 +142,7 @@ namespace GUI
 
         }
 
-        private void txtValorFrete_Leave(object sender, EventArgs e)
+        private void TxtValorFrete_Leave(object sender, EventArgs e)
         {
             try
             {

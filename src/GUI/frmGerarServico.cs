@@ -112,8 +112,6 @@ namespace GUI
 
                 txtClienteId.Text = dadosCliente.CClienteId.ToString();
                 txtClienteSelecionado.Text = dadosCliente.CNomeCliente.ToString();
-                txtValorAdicional.Text = Convert.ToDecimal("0").ToString("C");
-                txtPercentualDesconto.Text = Convert.ToDecimal("0").ToString("P");
                 txtValorDesconto.Text = Convert.ToDecimal("0").ToString("C");
                 txtValorTotal.Text = Convert.ToDecimal("0").ToString("C");
                 txtValorTotalMaodeObra.Text = Convert.ToDecimal("0").ToString("C");
@@ -125,7 +123,6 @@ namespace GUI
                     CClienteId = Convert.ToInt32(txtClienteId.Text),
                     CStatus = "SERVIÇO INICIADO"
                 };
-
 
                 bll.IncluirServico(modelo);
                 txtServicoId.Text = Convert.ToString(modelo.CServicoId);
@@ -152,8 +149,6 @@ namespace GUI
             txtPercentualDesconto.Enabled = true;
             txtClienteId.Text = Convert.ToString(1);
             txtClienteSelecionado.Text = Convert.ToString("SEM CLIENTE");
-            txtValorAdicional.Text = Convert.ToDecimal("0").ToString("C");
-            txtPercentualDesconto.Text = Convert.ToDecimal("0").ToString("P");
             txtValorDesconto.Text = Convert.ToDecimal("0").ToString("C");
             txtValorTotal.Text = Convert.ToDecimal("0").ToString("C");
             txtValorTotalMaodeObra.Text = Convert.ToDecimal("0").ToString("C");
@@ -361,9 +356,9 @@ namespace GUI
 
         private void TxtPercentualDesconto_Leave(object sender, EventArgs e)
         {
-            Decimal PDesc = Convert.ToDecimal(txtPercentualDesconto.Text.Replace("%", ""));
-            Decimal VTota = Convert.ToDecimal(txtValorTotal.Text.Replace("R$ ", ""));
-            Decimal VDesc = Convert.ToDecimal(txtValorDesconto.Text.Replace("R$ ", ""));
+            decimal PDesc = Convert.ToDecimal(txtPercentualDesconto.Text.Replace("%", ""));
+            decimal VTota = Convert.ToDecimal(txtValorTotal.Text.Replace("R$ ", ""));
+            decimal VDesc = Convert.ToDecimal(txtValorDesconto.Text.Replace("R$ ", ""));
             txtValorDesconto.Text = Convert.ToString(Convert.ToDecimal(((VTota / 100) * PDesc)).ToString("C"));
             VDesc = Convert.ToDecimal((VTota / 100) * PDesc);
             txtValorTotal.Text = Convert.ToString((VTota - VDesc).ToString("C"));

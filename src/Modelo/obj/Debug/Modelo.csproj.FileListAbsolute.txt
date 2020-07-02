@@ -3,8 +3,3 @@ C:\Clones\SGM-WindowsForms\src\Modelo\bin\Debug\Modelo.pdb
 C:\Clones\SGM-WindowsForms\src\Modelo\obj\Debug\Modelo.csprojAssemblyReference.cache
 C:\Clones\SGM-WindowsForms\src\Modelo\obj\Debug\Modelo.dll
 C:\Clones\SGM-WindowsForms\src\Modelo\obj\Debug\Modelo.pdb
-C:\Clones\GITHUB.arielgiacomini\SGM-WindowsForms\src\Modelo\bin\Debug\Modelo.dll
-C:\Clones\GITHUB.arielgiacomini\SGM-WindowsForms\src\Modelo\bin\Debug\Modelo.pdb
-C:\Clones\GITHUB.arielgiacomini\SGM-WindowsForms\src\Modelo\obj\Debug\Modelo.csprojAssemblyReference.cache
-C:\Clones\GITHUB.arielgiacomini\SGM-WindowsForms\src\Modelo\obj\Debug\Modelo.dll
-C:\Clones\GITHUB.arielgiacomini\SGM-WindowsForms\src\Modelo\obj\Debug\Modelo.pdb

@@ -121,7 +121,7 @@ namespace GUI
 
         private void PeçasToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmCadastroPeca o = new frmCadastroPeca();
+            FrmCadastroPeca o = new FrmCadastroPeca();
             o.ShowDialog();
             o.Dispose();
         }
@@ -135,7 +135,7 @@ namespace GUI
 
         private void MaoDeObraToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmCadastroMaoDeObra u = new frmCadastroMaoDeObra();
+            FrmCadastroMaoDeObra u = new FrmCadastroMaoDeObra();
             u.ShowDialog();
             u.Dispose();
         }

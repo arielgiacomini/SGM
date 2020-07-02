@@ -111,8 +111,6 @@ namespace GUI
 
                 txtClienteId.Text = dadosCliente.CClienteId.ToString();
                 txtClienteSelecionado.Text = dadosCliente.CNomeCliente.ToString();
-                txtValorAdicional.Text = Convert.ToDecimal("0").ToString("C");
-                txtPercentualDesconto.Text = Convert.ToDecimal("0").ToString("P");
                 txtValorDesconto.Text = Convert.ToDecimal("0").ToString("C");
                 txtValorTotal.Text = Convert.ToDecimal("0").ToString("C");
                 txtValorTotalMaodeObra.Text = Convert.ToDecimal("0").ToString("C");
@@ -124,7 +122,6 @@ namespace GUI
                     CClienteId = Convert.ToInt32(txtClienteId.Text),
                     CStatus = "ORÇAMENTO INICIADO"
                 };
-
 
                 bll.IncluirOrcamento(modelo);
                 txtOrcamentoId.Text = Convert.ToString(modelo.COrcamentoId);
@@ -152,8 +149,6 @@ namespace GUI
             txtPercentualDesconto.Enabled = true;
             txtClienteId.Text = Convert.ToString(1);
             txtClienteSelecionado.Text = Convert.ToString("SEM CLIENTE");
-            txtValorAdicional.Text = Convert.ToDecimal("0").ToString("C");
-            txtPercentualDesconto.Text = Convert.ToDecimal("0").ToString("P");
             txtValorDesconto.Text = Convert.ToDecimal("0").ToString("C");
             txtValorTotal.Text = Convert.ToDecimal("0").ToString("C");
             txtValorTotalMaodeObra.Text = Convert.ToDecimal("0").ToString("C");
@@ -170,7 +165,6 @@ namespace GUI
             BLLOrcamento bll = new BLLOrcamento(cx);
             bll.IncluirOrcamento(modelo);
             txtOrcamentoId.Text = Convert.ToString(modelo.COrcamentoId);
-
         }
 
         private void BtnAdicionarMaodeObra_Click(object sender, EventArgs e)
@@ -376,7 +370,7 @@ namespace GUI
             }
         }
 
-        private void btnCancelar_Click(object sender, EventArgs e)
+        private void BtnCancelar_Click(object sender, EventArgs e)
         {
             this.operacao = "cancelar";
             this.alteraBotoes(1);

@@ -95,52 +95,12 @@ namespace GUI
                 PreencheInformacoesNaTela(dadosCliente, dadosVeiculoCliente, dadosVeiculo, dadosMarcaVeiculo);
 
                 this.alteraBotoes(2);
-                this.operacao = "alterar";
+                this.operacao = "inserir";
             }
             else
             {
                 this.alteraBotoes(1);
                 this.operacao = "inserir";
-            }
-        }
-
-        public void PreencheInformacoesNaTela(ModeloCliente cliente, ModeloVeiculoCliente veiculoCliente, Veiculo veiculo, VeiculoMarca veiculoMarca)
-        {
-            if (cliente != null && cliente.CClienteId != 0)
-            {
-                txtClienteId.Text = cliente.CClienteId.ToString();
-                txtCliente.Text = cliente.CNomeCliente.ToString();
-                txtTelefoneCliente.Text = cliente.CTelefoneCelular.ToString();
-            }
-
-            if (veiculoCliente != null && veiculoCliente.CClienteVeiculoId != 0)
-            {
-                txtClienteVeiculoId.Text = veiculoCliente.CClienteVeiculoId.ToString();
-                txtPlacaVeiculo.Text = veiculoCliente.CPlacaVeiculo.ToString();
-                txtKmVeiculo.Text = veiculoCliente.CKmRodados.ToString();
-                txtCorVeiculo.Text = veiculoCliente.CCorVeiculo.ToString();
-            }
-
-            if (veiculo != null && veiculo.VeiculoId != 0)
-            {
-                txtAnoModeloInicial.Text = veiculo.AnoModeloInicial.ToString();
-                txtAnoModeloFinal.Text = veiculo.AnoModeloFinal.ToString();
-                cboMarcaVeiculo.SelectedValue = veiculoMarca.MarcaId;
-                
-                if (cboMarcaVeiculo.SelectedIndex > 0)
-                {
-                    DALConexao conexao = new DALConexao(ConnectionStringConfiguration.ConnectionString);
-                    BLLVeiculo veaquinho = new BLLVeiculo(conexao);
-                    cboVeiculo.DataSource = veaquinho.BuscarVeiculoByMarcaId(veiculoMarca.MarcaId);
-                    cboVeiculo.DisplayMember = "Modelo";
-                    cboVeiculo.ValueMember = "VeiculoId";
-                    cboVeiculo.SelectedValue = veiculoCliente.CVeiculoId;
-                }
-            }
-
-            if (veiculoMarca != null && veiculoMarca.MarcaId != 0)
-            {
-                cboMarcaVeiculo.DisplayMember = veiculoMarca.Marca.ToString();
             }
         }
 
@@ -191,7 +151,7 @@ namespace GUI
                 DALConexao cx = new DALConexao(ConnectionStringConfiguration.ConnectionString);
                 BLLVeiculoCliente bll = new BLLVeiculoCliente(cx);
                 BLLVeiculo veiculo = new BLLVeiculo(cx);
-                
+
                 if (Convert.ToInt32(cboVeiculo.SelectedValue) == 0)
                 {
                     Veiculo novoVeiculo = new Veiculo()
@@ -213,7 +173,7 @@ namespace GUI
                         MessageBox.Show("HOUVE ALGUM ERRO AO CADASTRAR O VEICULO: " + Convert.ToString(ex), "ERRO!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
-                
+
                 ModeloVeiculoCliente modelo = new ModeloVeiculoCliente
                 {
                     CClienteId = Convert.ToInt32(txtClienteId.Text),
@@ -229,6 +189,8 @@ namespace GUI
                     {
                         bll.Incluir(modelo);
                         MessageBox.Show("Cadastro inserido com sucesso!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        AbrirPerguntaQualItemDesejaEfetuarParaCliente(Convert.ToInt32(txtClienteId.Text), Convert.ToInt32(cboVeiculo.SelectedValue), Convert.ToString(txtPlacaVeiculo.Text));
                     }
                     catch (Exception ex)
                     {
@@ -242,29 +204,14 @@ namespace GUI
                         modelo.CClienteVeiculoId = Convert.ToInt32(txtClienteVeiculoId.Text);
                         bll.Alterar(modelo);
                         MessageBox.Show("Cadastro alterado com sucesso!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        AbrirPerguntaQualItemDesejaEfetuarParaCliente(Convert.ToInt32(txtClienteId.Text), Convert.ToInt32(cboVeiculo.SelectedValue), Convert.ToString(txtPlacaVeiculo.Text));
                     }
                     catch (Exception ex)
                     {
                         MessageBox.Show("HOUVE ALGUM ERRO AO ALTERAR: " + Convert.ToString(ex), "ERRO!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
-
-                FrmPerguntaQualItemAbrir questionItemAbrir = new FrmPerguntaQualItemAbrir
-                {
-                    clienteId = Convert.ToInt32(txtClienteId.Text),
-                    veiculoId = Convert.ToInt32(cboVeiculo.SelectedValue),
-                    placaVeiculo = Convert.ToString(txtPlacaVeiculo.Text)
-                };
-
-                questionItemAbrir.ShowDialog();
-                questionItemAbrir.Dispose();
-                questionItemAbrir.Close();
-
-                this.LimpaTela();
-                Dispose();
-                this.alteraBotoes(1);
-                Close();
-
             }
             catch (Exception erro)
             {
@@ -394,6 +341,58 @@ namespace GUI
                 cboVeiculo.DisplayMember = "Modelo";
                 cboVeiculo.ValueMember = "VeiculoId";
             }
+        }
+
+        public void PreencheInformacoesNaTela(ModeloCliente cliente, ModeloVeiculoCliente veiculoCliente, Veiculo veiculo, VeiculoMarca veiculoMarca)
+        {
+            if (cliente != null && cliente.CClienteId != 0)
+            {
+                txtClienteId.Text = cliente.CClienteId.ToString();
+                txtCliente.Text = cliente.CNomeCliente.ToString();
+                txtTelefoneCliente.Text = cliente.CTelefoneCelular.ToString();
+            }
+
+            if (veiculoCliente != null && veiculoCliente.CClienteVeiculoId != 0)
+            {
+                txtClienteVeiculoId.Text = veiculoCliente.CClienteVeiculoId.ToString();
+                txtPlacaVeiculo.Text = veiculoCliente.CPlacaVeiculo.ToString();
+                txtKmVeiculo.Text = veiculoCliente.CKmRodados.ToString();
+                txtCorVeiculo.Text = veiculoCliente.CCorVeiculo.ToString();
+            }
+
+            if (veiculo != null && veiculo.VeiculoId != 0)
+            {
+                txtAnoModeloInicial.Text = veiculo.AnoModeloInicial.ToString();
+                txtAnoModeloFinal.Text = veiculo.AnoModeloFinal.ToString();
+                cboMarcaVeiculo.SelectedValue = veiculoMarca.MarcaId;
+
+                if (cboMarcaVeiculo.SelectedIndex > 0)
+                {
+                    DALConexao conexao = new DALConexao(ConnectionStringConfiguration.ConnectionString);
+                    BLLVeiculo veaquinho = new BLLVeiculo(conexao);
+                    cboVeiculo.DataSource = veaquinho.BuscarVeiculoByMarcaId(veiculoMarca.MarcaId);
+                    cboVeiculo.DisplayMember = "Modelo";
+                    cboVeiculo.ValueMember = "VeiculoId";
+                    cboVeiculo.SelectedValue = veiculoCliente.CVeiculoId;
+                }
+            }
+
+            if (veiculoMarca != null && veiculoMarca.MarcaId != 0)
+            {
+                cboMarcaVeiculo.DisplayMember = veiculoMarca.Marca.ToString();
+            }
+        }
+
+        private void AbrirPerguntaQualItemDesejaEfetuarParaCliente(int clienteId, int veiculoId, string placaVeiculo)
+        {
+            FrmPerguntaQualItemAbrir questionItemAbrir = new FrmPerguntaQualItemAbrir
+            {
+                clienteId = clienteId,
+                veiculoId = veiculoId,
+                placaVeiculo = placaVeiculo
+            };
+
+            questionItemAbrir.ShowDialog();
         }
     }
 }

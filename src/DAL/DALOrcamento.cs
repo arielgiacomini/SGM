@@ -367,7 +367,7 @@ namespace DAL
             ",Cliente.ClienteId " +
             ",Orcamento.DataCadastro AS DataOrcamento " +
             ",Cliente.NomeCliente " +
-            ",Veiculo.Marca + ' - ' + Veiculo.Modelo AS MarcaModeloVeiculo " +
+            ",VeiculoMarca.Marca + ' - ' + Veiculo.Modelo AS MarcaModeloVeiculo " +
             ",ClienteVeiculo.PlacaVeiculo " +
             ",Orcamento.Descricao AS DescricaoOrcamento " +
             ",Orcamento.Status AS StatusOrcamento " +
@@ -378,6 +378,7 @@ namespace DAL
             "FROM Cliente " +
             "INNER JOIN ClienteVeiculo ON ClienteVeiculo.ClienteId = Cliente.ClienteId " +
             "INNER JOIN Veiculo ON Veiculo.VeiculoId = ClienteVeiculo.VeiculoId " +
+            "INNER JOIN VeiculoMarca ON VeiculoMarca.MarcaId = Veiculo.MarcaId " +
             "INNER JOIN Orcamento ON Orcamento.ClienteId = Cliente.ClienteId " +
             "WHERE 1=1 " +
             "AND Cliente.ClienteId = " + Convert.ToString(clienteId) + " ORDER BY Orcamento.DataCadastro DESC; ", conexao.StringConexao);
@@ -410,7 +411,7 @@ namespace DAL
             ",Cliente.ClienteId " +
             ",Orcamento.DataCadastro AS DataOrcamento " +
             ",Cliente.NomeCliente " +
-            ",Veiculo.Marca + ' - ' + Veiculo.Modelo AS MarcaModeloVeiculo " +
+            ",VeiculoMarca.Marca + ' - ' + Veiculo.Modelo AS MarcaModeloVeiculo " +
             ",ClienteVeiculo.PlacaVeiculo " +
             ",Orcamento.Descricao AS DescricaoServico " +
             ",Orcamento.Status AS StatusServico " +
@@ -421,6 +422,7 @@ namespace DAL
             "FROM Cliente " +
             "INNER JOIN ClienteVeiculo ON ClienteVeiculo.ClienteId = Cliente.ClienteId " +
             "INNER JOIN Veiculo ON Veiculo.VeiculoId = ClienteVeiculo.VeiculoId " +
+            "INNER JOIN VeiculoMarca ON VeiculoMarca.MarcaId = Veiculo.MarcaId " +
             "INNER JOIN Orcamento ON Orcamento.ClienteId = Cliente.ClienteId " +
             "WHERE 1=1 " +
             "AND REPLACE(RTRIM(LTRIM(ClienteVeiculo.PlacaVeiculo)), '-', '') LIKE '%" + Convert.ToString(newPlacaVeiculo) + "%'" + " ORDER BY Orcamento.DataCadastro DESC; ", conexao.StringConexao);
