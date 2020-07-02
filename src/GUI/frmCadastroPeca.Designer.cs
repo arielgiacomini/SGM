@@ -1,6 +1,6 @@
 ﻿namespace GUI
 {
-    partial class frmCadastroPeca
+    partial class FrmCadastroPeca
     {
         /// <summary>
         /// Variável de designer necessária.
@@ -60,27 +60,27 @@
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            this.btnCancelar.Click += new System.EventHandler(this.BtnCancelar_Click);
             // 
             // btnLocalizar
             // 
-            this.btnLocalizar.Click += new System.EventHandler(this.btnLocalizar_Click);
+            this.btnLocalizar.Click += new System.EventHandler(this.BtnLocalizar_Click);
             // 
             // btnSalvar
             // 
-            this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click);
+            this.btnSalvar.Click += new System.EventHandler(this.BtnSalvar_Click);
             // 
             // btnExcluir
             // 
-            this.btnExcluir.Click += new System.EventHandler(this.btnExcluir_Click);
+            this.btnExcluir.Click += new System.EventHandler(this.BtnExcluir_Click);
             // 
             // btnAlterar
             // 
-            this.btnAlterar.Click += new System.EventHandler(this.btnAlterar_Click);
+            this.btnAlterar.Click += new System.EventHandler(this.BtnAlterar_Click);
             // 
             // btnInserir
             // 
-            this.btnInserir.Click += new System.EventHandler(this.btnInserir_Click);
+            this.btnInserir.Click += new System.EventHandler(this.BtnInserir_Click);
             // 
             // lblPecaId
             // 
@@ -150,7 +150,7 @@
             this.txtValorPeca.Name = "txtValorPeca";
             this.txtValorPeca.Size = new System.Drawing.Size(80, 20);
             this.txtValorPeca.TabIndex = 8;
-            this.txtValorPeca.Leave += new System.EventHandler(this.txtValorPeca_Leave);
+            this.txtValorPeca.Leave += new System.EventHandler(this.TxtValorPeca_Leave);
             // 
             // txtValorFrete
             // 
@@ -158,7 +158,7 @@
             this.txtValorFrete.Name = "txtValorFrete";
             this.txtValorFrete.Size = new System.Drawing.Size(80, 20);
             this.txtValorFrete.TabIndex = 9;
-            this.txtValorFrete.Leave += new System.EventHandler(this.txtValorFrete_Leave);
+            this.txtValorFrete.Leave += new System.EventHandler(this.TxtValorFrete_Leave);
             // 
             // txtFornecedor
             // 
@@ -183,7 +183,6 @@
             this.ClientSize = new System.Drawing.Size(784, 561);
             this.Name = "frmCadastroPeca";
             this.Text = "Sistema de Gerenciamento Mecânica - Cadastro de Peças/Produtos";
-            this.Load += new System.EventHandler(this.frmCadastroPeca_Load);
             this.pnCadastro.ResumeLayout(false);
             this.pnCadastro.PerformLayout();
             this.pnBotoes.ResumeLayout(false);

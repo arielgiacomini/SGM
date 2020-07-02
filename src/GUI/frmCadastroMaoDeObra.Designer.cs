@@ -1,6 +1,6 @@
 ﻿namespace GUI
 {
-    partial class frmCadastroMaoDeObra
+    partial class FrmCadastroMaoDeObra
     {
         /// <summary>
         /// Variável de designer necessária.
@@ -69,32 +69,32 @@
             // btnCancelar
             // 
             this.btnCancelar.TabIndex = 16;
-            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            this.btnCancelar.Click += new System.EventHandler(this.BtnCancelar_Click);
             // 
             // btnLocalizar
             // 
             this.btnLocalizar.TabIndex = 13;
-            this.btnLocalizar.Click += new System.EventHandler(this.btnLocalizar_Click);
+            this.btnLocalizar.Click += new System.EventHandler(this.BtnLocalizar_Click);
             // 
             // btnSalvar
             // 
             this.btnSalvar.TabIndex = 17;
-            this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click);
+            this.btnSalvar.Click += new System.EventHandler(this.BtnSalvar_Click);
             // 
             // btnExcluir
             // 
             this.btnExcluir.TabIndex = 15;
-            this.btnExcluir.Click += new System.EventHandler(this.btnExcluir_Click);
+            this.btnExcluir.Click += new System.EventHandler(this.BtnExcluir_Click);
             // 
             // btnAlterar
             // 
             this.btnAlterar.TabIndex = 14;
-            this.btnAlterar.Click += new System.EventHandler(this.btnAlterar_Click);
+            this.btnAlterar.Click += new System.EventHandler(this.BtnAlterar_Click);
             // 
             // btnInserir
             // 
             this.btnInserir.TabIndex = 12;
-            this.btnInserir.Click += new System.EventHandler(this.btnInserir_Click);
+            this.btnInserir.Click += new System.EventHandler(this.BtnInserir_Click);
             // 
             // lblMaoDeObraId
             // 
@@ -191,7 +191,7 @@
             this.txtValor.Name = "txtValor";
             this.txtValor.Size = new System.Drawing.Size(100, 20);
             this.txtValor.TabIndex = 9;
-            this.txtValor.Leave += new System.EventHandler(this.txtValor_Leave);
+            this.txtValor.Leave += new System.EventHandler(this.TxtValor_Leave);
             // 
             // txtVigenciaInicial
             // 
@@ -248,7 +248,7 @@
             this.ClientSize = new System.Drawing.Size(784, 561);
             this.Name = "frmCadastroMaoDeObra";
             this.Text = "Sistema de Gerenciamento Mecânica - Cadastro de Mão de Obra (Serviços)";
-            this.Load += new System.EventHandler(this.frmCadastroMaoDeObra_Load);
+            this.Load += new System.EventHandler(this.FrmCadastroMaoDeObra_Load);
             this.pnCadastro.ResumeLayout(false);
             this.pnCadastro.PerformLayout();
             this.pnBotoes.ResumeLayout(false);

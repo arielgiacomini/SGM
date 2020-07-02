@@ -98,9 +98,10 @@ namespace DAL
 
         public void AlterarServico(ModeloServico modelo)
         {
-            SqlCommand cmd = new SqlCommand();
-            cmd.Connection = conexao.ObjetoConexao;
-            cmd.CommandText = "UPDATE Servico SET " +
+            SqlCommand cmd = new SqlCommand
+            {
+                Connection = conexao.ObjetoConexao,
+                CommandText = "UPDATE Servico SET " +
                 "ClienteId = @ClienteId," +
                 "Descricao = @Descricao," +
                 "ValorAdicional = @ValorAdicional," +
@@ -109,7 +110,9 @@ namespace DAL
                 "ValorTotal = @ValorTotal," +
                 "Status = @Status," +
                 "Ativo = @Ativo " +
-                "WHERE ServicoId = @ServicoId;";
+                "WHERE ServicoId = @ServicoId;"
+            };
+
             cmd.Parameters.AddWithValue("@ServicoId", modelo.CServicoId);
             cmd.Parameters.AddWithValue("@ClienteId", modelo.CClienteId);
             cmd.Parameters.AddWithValue("@Descricao", modelo.CDescricao);
@@ -119,6 +122,7 @@ namespace DAL
             cmd.Parameters.AddWithValue("@ValorTotal", modelo.CValorTotal);
             cmd.Parameters.AddWithValue("@Status", modelo.CStatus);
             cmd.Parameters.AddWithValue("@Ativo", modelo.CAtivo);
+
             conexao.Conectar();
             cmd.ExecuteNonQuery();
             conexao.Desconectar();
@@ -256,10 +260,11 @@ namespace DAL
                 "Cliente.ClienteId, " +
                 "Cliente.NomeCliente, " +
                 "ClienteVeiculo.PlacaVeiculo, " +
-                "Veiculo.Marca + ' - ' + Veiculo.Modelo " +
+                "VeiculoMarca.Marca + ' - ' + Veiculo.Modelo " +
                 "FROM Cliente " +
                 "INNER JOIN ClienteVeiculo ON ClienteVeiculo.ClienteId = Cliente.ClienteId " +
                 "INNER JOIN Veiculo ON Veiculo.VeiculoId = ClienteVeiculo.VeiculoId " +
+                "INNER JOIN VeiculoMarca ON Veiculo.MarcaId = VeiculoMarca.MarcaId " +
                 "WHERE Cliente.NomeCliente LIKE '%" + valor + "%' OR Cliente.Apelido LIKE '%" + valor + "%' OR ClienteVeiculo.PlacaVeiculo LIKE '%" + valor + "%'", conexao.StringConexao);
             da.Fill(tabela);
             conexao.Desconectar();
@@ -317,7 +322,7 @@ namespace DAL
             ",Cliente.ClienteId " +
             ",Servico.DataCadastro AS DataServico " +
             ",Cliente.NomeCliente " +
-            ",Veiculo.Marca + ' - ' + Veiculo.Modelo AS MarcaModeloVeiculo " +
+            ",VeiculoMarca.Marca + ' - ' + Veiculo.Modelo AS MarcaModeloVeiculo " +
             ",ClienteVeiculo.PlacaVeiculo " +
             ",Servico.Descricao AS DescricaoServico " +
             ",Servico.Status AS StatusServico " +
@@ -328,6 +333,7 @@ namespace DAL
             "FROM Cliente " +
             "INNER JOIN ClienteVeiculo ON ClienteVeiculo.ClienteId = Cliente.ClienteId " +
             "INNER JOIN Veiculo ON Veiculo.VeiculoId = ClienteVeiculo.VeiculoId " +
+            "INNER JOIN VeiculoMarca ON VeiculoMarca.MarcaId = Veiculo.MarcaId " +
             "INNER JOIN Servico ON Servico.ClienteId = Cliente.ClienteId " +
             "WHERE 1=1 " +
             "AND Cliente.ClienteId = " + Convert.ToString(clienteId) + " ORDER BY Servico.ServicoId DESC; ", conexao.StringConexao);
@@ -360,7 +366,7 @@ namespace DAL
             ",Cliente.ClienteId " +
             ",Servico.DataCadastro AS DataServico " +
             ",Cliente.NomeCliente " +
-            ",Veiculo.Marca + ' - ' + Veiculo.Modelo AS MarcaModeloVeiculo " +
+            ",VeiculoMarca.Marca + ' - ' + Veiculo.Modelo AS MarcaModeloVeiculo " +
             ",ClienteVeiculo.PlacaVeiculo " +
             ",Servico.Descricao AS DescricaoServico " +
             ",Servico.Status AS StatusServico " +
@@ -371,6 +377,7 @@ namespace DAL
             "FROM Cliente " +
             "INNER JOIN ClienteVeiculo ON ClienteVeiculo.ClienteId = Cliente.ClienteId " +
             "INNER JOIN Veiculo ON Veiculo.VeiculoId = ClienteVeiculo.VeiculoId " +
+            "INNER JOIN VeiculoMarca ON VeiculoMarca.MarcaId = Veiculo.MarcaId " +
             "INNER JOIN Servico ON Servico.ClienteId = Cliente.ClienteId " +
             "WHERE 1=1 " +
             "AND REPLACE(RTRIM(LTRIM(ClienteVeiculo.PlacaVeiculo)), '-', '') LIKE '%" + Convert.ToString(newPlacaVeiculo) + "%'" + " ORDER BY Servico.ServicoId DESC; ", conexao.StringConexao);

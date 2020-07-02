@@ -115,7 +115,7 @@ namespace GUI
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            this.btnCancelar.Click += new System.EventHandler(this.BtnCancelar_Click);
             // 
             // btnLocalizar
             // 
