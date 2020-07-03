@@ -18,3 +18,14 @@ C:\Clones\GITHUB.arielgiacomini\SGM-WindowsForms\src\BLL\obj\x86\Release\BLL.csp
 C:\Clones\GITHUB.arielgiacomini\SGM-WindowsForms\src\BLL\obj\x86\Release\BLL.csproj.CopyComplete
 C:\Clones\GITHUB.arielgiacomini\SGM-WindowsForms\src\BLL\obj\x86\Release\BLL.dll
 C:\Clones\GITHUB.arielgiacomini\SGM-WindowsForms\src\BLL\obj\x86\Release\BLL.pdb
+C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\BLL\bin\x86\Release\BLL.dll
+C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\BLL\bin\x86\Release\BLL.pdb
+C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\BLL\bin\x86\Release\DAL.dll
+C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\BLL\bin\x86\Release\Modelo.dll
+C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\BLL\bin\x86\Release\DAL.pdb
+C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\BLL\bin\x86\Release\Modelo.pdb
+C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\BLL\obj\x86\Release\BLL.csprojAssemblyReference.cache
+C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\BLL\obj\x86\Release\BLL.csproj.CoreCompileInputs.cache
+C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\BLL\obj\x86\Release\BLL.csproj.CopyComplete
+C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\BLL\obj\x86\Release\BLL.dll
+C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\BLL\obj\x86\Release\BLL.pdb
