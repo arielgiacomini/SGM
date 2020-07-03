@@ -9,7 +9,7 @@ namespace BLL
 {
     public class BLLVeiculo
     {
-        private DALConexao conexao;
+        private readonly DALConexao conexao;
 
         public BLLVeiculo(DALConexao cx)
         {
@@ -87,12 +87,6 @@ namespace BLL
         {
             DALVeiculo DALobj = new DALVeiculo(conexao);
             return DALobj.BuscarMarcaVeiculoByMarcaId(marcaId);
-        }
-
-        public List<Veiculo> BuscarVeiculoByMarcaAnoModeloAnoFabricacao(int marcaId, int anoModeloInicial, int anoModeloFinal)
-        {
-            DALVeiculo DALobj = new DALVeiculo(conexao);
-            return DALobj.BuscarVeiculoByMarcaAnoModeloAnoFabricacao(marcaId, anoModeloInicial, anoModeloFinal);
         }
     }
 }

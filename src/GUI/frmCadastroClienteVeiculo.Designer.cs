@@ -50,10 +50,8 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lblMarca = new System.Windows.Forms.Label();
             this.cboMarcaVeiculo = new System.Windows.Forms.ComboBox();
-            this.lblAnoFabricacao = new System.Windows.Forms.Label();
             this.lblAnoModelo = new System.Windows.Forms.Label();
-            this.txtAnoModeloInicial = new System.Windows.Forms.TextBox();
-            this.txtAnoModeloFinal = new System.Windows.Forms.TextBox();
+            this.txtAnoModeloVeiculo = new System.Windows.Forms.TextBox();
             this.pnCadastro.SuspendLayout();
             this.pnBotoes.SuspendLayout();
             this.gbInfoCliente.SuspendLayout();
@@ -62,10 +60,8 @@
             // 
             // pnCadastro
             // 
-            this.pnCadastro.Controls.Add(this.txtAnoModeloFinal);
-            this.pnCadastro.Controls.Add(this.txtAnoModeloInicial);
+            this.pnCadastro.Controls.Add(this.txtAnoModeloVeiculo);
             this.pnCadastro.Controls.Add(this.lblAnoModelo);
-            this.pnCadastro.Controls.Add(this.lblAnoFabricacao);
             this.pnCadastro.Controls.Add(this.cboMarcaVeiculo);
             this.pnCadastro.Controls.Add(this.lblMarca);
             this.pnCadastro.Controls.Add(this.pictureBox1);
@@ -93,6 +89,7 @@
             // 
             // btnSalvar
             // 
+            this.btnSalvar.TabIndex = 7;
             this.btnSalvar.Click += new System.EventHandler(this.BtnSalvar_Click);
             // 
             // btnExcluir
@@ -166,21 +163,22 @@
             this.cboVeiculo.Location = new System.Drawing.Point(77, 129);
             this.cboVeiculo.Name = "cboVeiculo";
             this.cboVeiculo.Size = new System.Drawing.Size(470, 21);
-            this.cboVeiculo.TabIndex = 1;
+            this.cboVeiculo.TabIndex = 3;
+            this.cboVeiculo.Leave += new System.EventHandler(this.cboVeiculo_Leave);
             // 
             // txtCorVeiculo
             // 
             this.txtCorVeiculo.Location = new System.Drawing.Point(439, 178);
             this.txtCorVeiculo.Name = "txtCorVeiculo";
             this.txtCorVeiculo.Size = new System.Drawing.Size(224, 20);
-            this.txtCorVeiculo.TabIndex = 4;
+            this.txtCorVeiculo.TabIndex = 5;
             // 
             // txtKmVeiculo
             // 
             this.txtKmVeiculo.Location = new System.Drawing.Point(192, 178);
             this.txtKmVeiculo.Name = "txtKmVeiculo";
             this.txtKmVeiculo.Size = new System.Drawing.Size(100, 20);
-            this.txtKmVeiculo.TabIndex = 3;
+            this.txtKmVeiculo.TabIndex = 4;
             // 
             // txtClienteVeiculoId
             // 
@@ -197,7 +195,7 @@
             this.txtPlacaVeiculo.Location = new System.Drawing.Point(294, 237);
             this.txtPlacaVeiculo.Name = "txtPlacaVeiculo";
             this.txtPlacaVeiculo.Size = new System.Drawing.Size(139, 26);
-            this.txtPlacaVeiculo.TabIndex = 5;
+            this.txtPlacaVeiculo.TabIndex = 6;
             this.txtPlacaVeiculo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // gbInfoCliente
@@ -316,45 +314,27 @@
             this.cboMarcaVeiculo.FormattingEnabled = true;
             this.cboMarcaVeiculo.Location = new System.Drawing.Point(78, 82);
             this.cboMarcaVeiculo.Name = "cboMarcaVeiculo";
-            this.cboMarcaVeiculo.Size = new System.Drawing.Size(226, 21);
-            this.cboMarcaVeiculo.TabIndex = 36;
+            this.cboMarcaVeiculo.Size = new System.Drawing.Size(297, 21);
+            this.cboMarcaVeiculo.TabIndex = 1;
             this.cboMarcaVeiculo.SelectedValueChanged += new System.EventHandler(this.ComboBoxMarcaVeiculoAlteracaoValor);
-            // 
-            // lblAnoFabricacao
-            // 
-            this.lblAnoFabricacao.AutoSize = true;
-            this.lblAnoFabricacao.Font = new System.Drawing.Font("Arial Narrow", 11.25F);
-            this.lblAnoFabricacao.Location = new System.Drawing.Point(321, 83);
-            this.lblAnoFabricacao.Name = "lblAnoFabricacao";
-            this.lblAnoFabricacao.Size = new System.Drawing.Size(117, 20);
-            this.lblAnoFabricacao.TabIndex = 37;
-            this.lblAnoFabricacao.Text = "Ano de Fabricação:";
             // 
             // lblAnoModelo
             // 
             this.lblAnoModelo.AutoSize = true;
             this.lblAnoModelo.Font = new System.Drawing.Font("Arial Narrow", 11.25F);
-            this.lblAnoModelo.Location = new System.Drawing.Point(556, 83);
+            this.lblAnoModelo.Location = new System.Drawing.Point(407, 83);
             this.lblAnoModelo.Name = "lblAnoModelo";
             this.lblAnoModelo.Size = new System.Drawing.Size(78, 20);
             this.lblAnoModelo.TabIndex = 39;
             this.lblAnoModelo.Text = "Ano Modelo:";
             // 
-            // txtAnoModeloInicial
+            // txtAnoModeloVeiculo
             // 
-            this.txtAnoModeloInicial.Location = new System.Drawing.Point(438, 82);
-            this.txtAnoModeloInicial.Name = "txtAnoModeloInicial";
-            this.txtAnoModeloInicial.Size = new System.Drawing.Size(109, 20);
-            this.txtAnoModeloInicial.TabIndex = 40;
-            this.txtAnoModeloInicial.Leave += new System.EventHandler(this.TextBoxAnoFabricacaoSaidaCampo);
-            // 
-            // txtAnoModeloFinal
-            // 
-            this.txtAnoModeloFinal.Location = new System.Drawing.Point(636, 82);
-            this.txtAnoModeloFinal.Name = "txtAnoModeloFinal";
-            this.txtAnoModeloFinal.Size = new System.Drawing.Size(100, 20);
-            this.txtAnoModeloFinal.TabIndex = 41;
-            this.txtAnoModeloFinal.Leave += new System.EventHandler(this.TextBoxAnoModeloSaidaCampo);
+            this.txtAnoModeloVeiculo.Location = new System.Drawing.Point(487, 82);
+            this.txtAnoModeloVeiculo.Name = "txtAnoModeloVeiculo";
+            this.txtAnoModeloVeiculo.Size = new System.Drawing.Size(100, 20);
+            this.txtAnoModeloVeiculo.TabIndex = 2;
+            this.txtAnoModeloVeiculo.Leave += new System.EventHandler(this.TextBoxAnoModeloSaidaCampo);
             // 
             // FrmCadastroClienteVeiculo
             // 
@@ -395,10 +375,8 @@
         private System.Windows.Forms.TextBox txtClienteId;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label lblAnoModelo;
-        private System.Windows.Forms.Label lblAnoFabricacao;
         private System.Windows.Forms.ComboBox cboMarcaVeiculo;
         private System.Windows.Forms.Label lblMarca;
-        private System.Windows.Forms.TextBox txtAnoModeloFinal;
-        private System.Windows.Forms.TextBox txtAnoModeloInicial;
+        private System.Windows.Forms.TextBox txtAnoModeloVeiculo;
     }
 }

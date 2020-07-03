@@ -17,9 +17,10 @@ namespace DAL
 
         public void IncluirServico(ModeloServico modelo)
         {
-            SqlCommand cmd = new SqlCommand();
-            cmd.Connection = conexao.ObjetoConexao;
-            cmd.CommandText = "INSERT INTO Servico " +
+            SqlCommand cmd = new SqlCommand
+            {
+                Connection = conexao.ObjetoConexao,
+                CommandText = "INSERT INTO Servico " +
                 "(" +
                 "ClienteId," +
                 "Descricao," +
@@ -38,7 +39,8 @@ namespace DAL
                 "@ValorTotal," +
                 "@Status," +
                 "@Ativo " +
-                "); SELECT @@IDENTITY;";
+                "); SELECT @@IDENTITY;"
+            };
             cmd.Parameters.AddWithValue("@ClienteId", modelo.CClienteId);
             cmd.Parameters.AddWithValue("@Descricao", modelo.CDescricao);
             cmd.Parameters.AddWithValue("@ValorAdicional", modelo.CValorAdicional);
@@ -146,11 +148,14 @@ namespace DAL
 
         public void AlterarServicoPeca(ModeloServico modelo)
         {
-            SqlCommand cmd = new SqlCommand();
-            cmd.Connection = conexao.ObjetoConexao;
-            cmd.CommandText = "UPDATE ServicoPeca SET " +
+            SqlCommand cmd = new SqlCommand
+            {
+                Connection = conexao.ObjetoConexao,
+                CommandText = "UPDATE ServicoPeca SET " +
                 "PecaId = @PecaId," +
-                "WHERE ServicoId = @ServicoId;";
+                "WHERE ServicoId = @ServicoId;"
+            };
+
             cmd.Parameters.AddWithValue("@ServicoId", modelo.CServicoId);
             cmd.Parameters.AddWithValue("@PecaId", modelo.CPecaId);
             conexao.Conectar();
@@ -294,9 +299,12 @@ namespace DAL
         public ModeloMaoDeObra CarregaModeloServicoMaodeObra(int maodeobraid)
         {
             ModeloMaoDeObra modelo = new ModeloMaoDeObra();
-            SqlCommand cmd = new SqlCommand();
-            cmd.Connection = conexao.ObjetoConexao;
-            cmd.CommandText = "SELECT * FROM MaodeObra WHERE MaodeObraId = @MaodeObraId";
+            SqlCommand cmd = new SqlCommand
+            {
+                Connection = conexao.ObjetoConexao,
+                CommandText = "SELECT * FROM MaodeObra WHERE MaodeObraId = @MaodeObraId"
+            };
+
             cmd.Parameters.AddWithValue("@MaodeObraId", maodeobraid);
             conexao.Conectar();
             SqlDataReader registro = cmd.ExecuteReader();
@@ -389,9 +397,12 @@ namespace DAL
         public ModeloServico BuscarDetalheServicoGerado(int servicoId)
         {
             ModeloServico modelo = new ModeloServico();
-            SqlCommand cmd = new SqlCommand();
-            cmd.Connection = conexao.ObjetoConexao;
-            cmd.CommandText = "SELECT * FROM Servico WHERE ServicoId = @ServicoId";
+            SqlCommand cmd = new SqlCommand
+            {
+                Connection = conexao.ObjetoConexao,
+                CommandText = "SELECT * FROM Servico WHERE ServicoId = @ServicoId"
+            };
+
             cmd.Parameters.AddWithValue("@ServicoId", servicoId);
             conexao.Conectar();
             SqlDataReader registro = cmd.ExecuteReader();

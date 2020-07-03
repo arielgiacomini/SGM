@@ -6,13 +6,13 @@ C:\Clones\SGM-WindowsForms\src\DAL\obj\x86\Release\DAL.csprojAssemblyReference.c
 C:\Clones\SGM-WindowsForms\src\DAL\obj\x86\Release\DAL.csproj.CopyComplete
 C:\Clones\SGM-WindowsForms\src\DAL\obj\x86\Release\DAL.dll
 C:\Clones\SGM-WindowsForms\src\DAL\obj\x86\Release\DAL.pdb
-C:\Clones\GITHUB.arielgiacomini\SGM-WindowsForms\src\DAL\obj\x86\Release\DAL.csprojAssemblyReference.cache
-C:\Clones\GITHUB.arielgiacomini\SGM-WindowsForms\src\DAL\obj\x86\Release\DAL.dll
-C:\Clones\GITHUB.arielgiacomini\SGM-WindowsForms\src\DAL\obj\x86\Release\DAL.pdb
 C:\Clones\GITHUB.arielgiacomini\SGM-WindowsForms\src\DAL\bin\x86\Release\DAL.dll
 C:\Clones\GITHUB.arielgiacomini\SGM-WindowsForms\src\DAL\bin\x86\Release\DAL.pdb
 C:\Clones\GITHUB.arielgiacomini\SGM-WindowsForms\src\DAL\bin\x86\Release\Modelo.dll
 C:\Clones\GITHUB.arielgiacomini\SGM-WindowsForms\src\DAL\bin\x86\Release\System.Data.SqlClient.dll
 C:\Clones\GITHUB.arielgiacomini\SGM-WindowsForms\src\DAL\bin\x86\Release\Modelo.pdb
 C:\Clones\GITHUB.arielgiacomini\SGM-WindowsForms\src\DAL\bin\x86\Release\System.Data.SqlClient.xml
+C:\Clones\GITHUB.arielgiacomini\SGM-WindowsForms\src\DAL\obj\x86\Release\DAL.csprojAssemblyReference.cache
 C:\Clones\GITHUB.arielgiacomini\SGM-WindowsForms\src\DAL\obj\x86\Release\DAL.csproj.CopyComplete
+C:\Clones\GITHUB.arielgiacomini\SGM-WindowsForms\src\DAL\obj\x86\Release\DAL.dll
+C:\Clones\GITHUB.arielgiacomini\SGM-WindowsForms\src\DAL\obj\x86\Release\DAL.pdb

@@ -95,12 +95,12 @@ C:\Clones\GITHUB.arielgiacomini\SGM-WindowsForms\src\GUI\bin\x86\Release\DAL.pdb
 C:\Clones\GITHUB.arielgiacomini\SGM-WindowsForms\src\GUI\bin\x86\Release\Modelo.pdb
 C:\Clones\GITHUB.arielgiacomini\SGM-WindowsForms\src\GUI\obj\x86\Release\GUI.csprojAssemblyReference.cache
 C:\Clones\GITHUB.arielgiacomini\SGM-WindowsForms\src\GUI\obj\x86\Release\GUI.FrmCadastroCliente.resources
-C:\Clones\GITHUB.arielgiacomini\SGM-WindowsForms\src\GUI\obj\x86\Release\GUI.frmCadastroClienteVeiculo.resources
-C:\Clones\GITHUB.arielgiacomini\SGM-WindowsForms\src\GUI\obj\x86\Release\GUI.frmCadastroMaoDeObra.resources
-C:\Clones\GITHUB.arielgiacomini\SGM-WindowsForms\src\GUI\obj\x86\Release\GUI.frmCadastroPeca.resources
+C:\Clones\GITHUB.arielgiacomini\SGM-WindowsForms\src\GUI\obj\x86\Release\GUI.FrmCadastroClienteVeiculo.resources
+C:\Clones\GITHUB.arielgiacomini\SGM-WindowsForms\src\GUI\obj\x86\Release\GUI.FrmCadastroMaoDeObra.resources
+C:\Clones\GITHUB.arielgiacomini\SGM-WindowsForms\src\GUI\obj\x86\Release\GUI.FrmCadastroPeca.resources
 C:\Clones\GITHUB.arielgiacomini\SGM-WindowsForms\src\GUI\obj\x86\Release\GUI.frmCadastroVeiculo.resources
 C:\Clones\GITHUB.arielgiacomini\SGM-WindowsForms\src\GUI\obj\x86\Release\GUI.frmConsultaCliente.resources
-C:\Clones\GITHUB.arielgiacomini\SGM-WindowsForms\src\GUI\obj\x86\Release\GUI.frmConsultaClienteVeiculo.resources
+C:\Clones\GITHUB.arielgiacomini\SGM-WindowsForms\src\GUI\obj\x86\Release\GUI.FrmConsultaClienteVeiculo.resources
 C:\Clones\GITHUB.arielgiacomini\SGM-WindowsForms\src\GUI\obj\x86\Release\GUI.frmConsultaHistoricoOrcamentoClienteVeiculo.resources
 C:\Clones\GITHUB.arielgiacomini\SGM-WindowsForms\src\GUI\obj\x86\Release\GUI.FrmConsultaHistoricoServicoClienteVeiculo.resources
 C:\Clones\GITHUB.arielgiacomini\SGM-WindowsForms\src\GUI\obj\x86\Release\GUI.FrmConsultaMaoDeObra.resources

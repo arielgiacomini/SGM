@@ -108,6 +108,7 @@ namespace GUI
                     bll.Incluir(modelo);
                     MessageBox.Show("Cadastro inserido com sucesso! Cliente: " + modelo.CNomeCliente.ToString(), "Status", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
+
                 else
                 {
                     modelo.CClienteId = Convert.ToInt32(txtClienteId.Text);
