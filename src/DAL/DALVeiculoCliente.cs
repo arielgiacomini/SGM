@@ -1,4 +1,5 @@
 ﻿using Modelo;
+using Modelo.Entities;
 using System;
 using System.Data;
 using System.Data.SqlClient;
@@ -14,22 +15,23 @@ namespace DAL
             this.conexao = cx;
         }
 
-        public void Incluir(ModeloVeiculoCliente modelo)
+        public void Incluir(ClienteVeiculo modelo)
         {
             try
             {
                 SqlCommand cmd = new SqlCommand
                 {
                     Connection = conexao.ObjetoConexao,
-                    CommandText = "INSERT INTO ClienteVeiculo (ClienteId, VeiculoId, PlacaVeiculo, CorVeiculo, KmRodados) VALUES (@clienteid, @veiculoid, @placaveiculo, @corveiculo, @kmrodados);"
+                    CommandText = "INSERT INTO ClienteVeiculo (ClienteId, VeiculoId, PlacaVeiculo, CorVeiculo, KmRodados, AnoVeiculo) VALUES (@clienteid, @veiculoid, @placaveiculo, @corveiculo, @kmrodados, @anoVeiculo);"
                 };
-                cmd.Parameters.AddWithValue("@clienteid", modelo.CClienteId);
-                cmd.Parameters.AddWithValue("@veiculoid", modelo.CVeiculoId);
-                cmd.Parameters.AddWithValue("@placaveiculo", modelo.CPlacaVeiculo);
-                cmd.Parameters.AddWithValue("@corveiculo", modelo.CCorVeiculo);
-                cmd.Parameters.AddWithValue("@kmrodados", modelo.CKmRodados);
+                cmd.Parameters.AddWithValue("@clienteid", modelo.ClienteId);
+                cmd.Parameters.AddWithValue("@veiculoid", modelo.VeiculoId);
+                cmd.Parameters.AddWithValue("@placaveiculo", modelo.PlacaVeiculo);
+                cmd.Parameters.AddWithValue("@corveiculo", modelo.CorVeiculo);
+                cmd.Parameters.AddWithValue("@kmrodados", modelo.KmRodados);
+                cmd.Parameters.AddWithValue("@anoVeiculo", modelo.AnoVeiculo);
                 conexao.Conectar();
-                modelo.CVeiculoId = Convert.ToInt32(cmd.ExecuteScalar()); // sempre assim, porque retorna registro
+                modelo.VeiculoId = Convert.ToInt32(cmd.ExecuteScalar());
             }
             catch (Exception erro)
             {
@@ -41,21 +43,22 @@ namespace DAL
             }
         }
 
-        public void Alterar(ModeloVeiculoCliente modelo)
+        public void Alterar(ClienteVeiculo modelo)
         {
             try
             {
                 using (SqlConnection c = new SqlConnection(conexao.StringConexao))
                 {
                     c.Open();
-                    using (SqlCommand cmd = new SqlCommand("UPDATE ClienteVeiculo SET ClienteId = @clienteid, VeiculoId = @veiculoid, PlacaVeiculo = @placaveiculo, CorVeiculo = @corveiculo, KmRodados = @kmrodados WHERE ClienteVeiculoId = @clienteveiculoid;", c))
+                    using (SqlCommand cmd = new SqlCommand("UPDATE ClienteVeiculo SET ClienteId = @clienteid, VeiculoId = @veiculoid, PlacaVeiculo = @placaveiculo, CorVeiculo = @corveiculo, KmRodados = @kmrodados, AnoVeiculo = @anoVeiculo WHERE ClienteVeiculoId = @clienteveiculoid;", c))
                     {
-                        cmd.Parameters.AddWithValue("@clienteveiculoid", modelo.CClienteVeiculoId);
-                        cmd.Parameters.AddWithValue("@clienteid", modelo.CClienteId);
-                        cmd.Parameters.AddWithValue("@veiculoid", modelo.CVeiculoId);
-                        cmd.Parameters.AddWithValue("@placaveiculo", modelo.CPlacaVeiculo);
-                        cmd.Parameters.AddWithValue("@corveiculo", modelo.CCorVeiculo);
-                        cmd.Parameters.AddWithValue("@kmrodados", modelo.CKmRodados);
+                        cmd.Parameters.AddWithValue("@clienteveiculoid", modelo.ClienteVeiculoId);
+                        cmd.Parameters.AddWithValue("@clienteid", modelo.ClienteId);
+                        cmd.Parameters.AddWithValue("@veiculoid", modelo.VeiculoId);
+                        cmd.Parameters.AddWithValue("@placaveiculo", modelo.PlacaVeiculo);
+                        cmd.Parameters.AddWithValue("@corveiculo", modelo.CorVeiculo);
+                        cmd.Parameters.AddWithValue("@kmrodados", modelo.KmRodados);
+                        cmd.Parameters.AddWithValue("@anoVeiculo", modelo.AnoVeiculo);
                         cmd.ExecuteNonQuery();
                     }
                 }
@@ -115,53 +118,61 @@ namespace DAL
             return tabela;
         }
 
-        public ModeloVeiculoCliente CarregaModeloVeiculo(int ClienteVeiculoId)
+        public ClienteVeiculo CarregaModeloVeiculo(int ClienteVeiculoId)
         {
-            ModeloVeiculoCliente modelo = new ModeloVeiculoCliente();
+            ClienteVeiculo modelo = new ClienteVeiculo();
             SqlCommand cmd = new SqlCommand
             {
                 Connection = conexao.ObjetoConexao,
-                CommandText = "SELECT ClienteVeiculoId, ClienteId, VeiculoId, PlacaVeiculo, CorVeiculo, KmRodados FROM ClienteVeiculo WHERE ClienteVeiculoId = @ClienteVeiculoId"
+                CommandText = "SELECT ClienteVeiculoId, ClienteId, VeiculoId, PlacaVeiculo, CorVeiculo, KmRodados, AnoVeiculo FROM ClienteVeiculo WHERE ClienteVeiculoId = @ClienteVeiculoId"
             };
+
             cmd.Parameters.AddWithValue("@ClienteVeiculoId", ClienteVeiculoId);
             conexao.Conectar();
+
             SqlDataReader registro = cmd.ExecuteReader();
+
             if (registro.HasRows)
             {
                 registro.Read();
-                modelo.CClienteVeiculoId = Convert.ToInt32(registro["ClienteVeiculoId"]);
-                modelo.CClienteId = Convert.ToInt32(registro["ClienteId"]);
-                modelo.CVeiculoId = Convert.ToInt32(registro["VeiculoId"]);
-                modelo.CPlacaVeiculo = Convert.ToString(registro["PlacaVeiculo"]);
-                modelo.CCorVeiculo = Convert.ToString(registro["CorVeiculo"]);
-                modelo.CKmRodados = Convert.ToInt32(registro["KmRodados"]);
-
+                modelo.ClienteVeiculoId = Convert.ToInt32(registro["ClienteVeiculoId"]);
+                modelo.ClienteId = Convert.ToInt32(registro["ClienteId"]);
+                modelo.VeiculoId = Convert.ToInt32(registro["VeiculoId"]);
+                modelo.PlacaVeiculo = Convert.ToString(registro["PlacaVeiculo"]);
+                modelo.CorVeiculo = Convert.ToString(registro["CorVeiculo"]);
+                modelo.KmRodados = Convert.ToInt32(registro["KmRodados"]);
+                modelo.AnoVeiculo = Convert.ToInt32(registro["AnoVeiculo"]);
             }
+
             conexao.Desconectar();
             return modelo;
         }
 
-        public ModeloVeiculoCliente CarregaModeloVeiculoClienteByPlaca(string placaVeiculo)
+        public ClienteVeiculo CarregaModeloVeiculoClienteByPlaca(string placaVeiculo)
         {
-            ModeloVeiculoCliente modelo = new ModeloVeiculoCliente();
+            ClienteVeiculo modelo = new ClienteVeiculo();
             SqlCommand cmd = new SqlCommand
             {
                 Connection = conexao.ObjetoConexao,
                 CommandText = "SELECT * FROM ClienteVeiculo WHERE PlacaVeiculo = @PlacaVeiculo"
             };
+
             cmd.Parameters.AddWithValue("@PlacaVeiculo", placaVeiculo);
             conexao.Conectar();
+
             SqlDataReader registro = cmd.ExecuteReader();
             if (registro.HasRows)
             {
                 registro.Read();
-                modelo.CClienteVeiculoId = Convert.ToInt32(registro["ClienteVeiculoId"]);
-                modelo.CClienteId = Convert.ToInt32(registro["ClienteId"]);
-                modelo.CVeiculoId = Convert.ToInt32(registro["VeiculoId"]);
-                modelo.CPlacaVeiculo = Convert.ToString(registro["PlacaVeiculo"]);
-                modelo.CCorVeiculo = Convert.ToString(registro["CorVeiculo"]);
-                modelo.CKmRodados = Convert.ToInt32(registro["KmRodados"]);
+                modelo.ClienteVeiculoId = Convert.ToInt32(registro["ClienteVeiculoId"]);
+                modelo.ClienteId = Convert.ToInt32(registro["ClienteId"]);
+                modelo.VeiculoId = Convert.ToInt32(registro["VeiculoId"]);
+                modelo.PlacaVeiculo = Convert.ToString(registro["PlacaVeiculo"]);
+                modelo.CorVeiculo = Convert.ToString(registro["CorVeiculo"]);
+                modelo.KmRodados = Convert.ToInt32(registro["KmRodados"]);
+                modelo.AnoVeiculo = Convert.ToInt32(registro["AnoVeiculo"]);
             }
+
             conexao.Desconectar();
             return modelo;
         }

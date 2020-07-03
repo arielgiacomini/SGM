@@ -44,15 +44,11 @@ namespace GUI
         {
             try
             {
-
-                // leitura dos dados
                 Veiculo modelo = new Veiculo
                 {
                     CodigoFipe = 0,
                     MarcaId = 0,
                     Modelo = txtModelo.Text,
-                    AnoModeloInicial = 0,
-                    AnoModeloFinal = 0,
                     VeiculoAtivo = true,
                     DataCadastro = DateTime.Now
                 };

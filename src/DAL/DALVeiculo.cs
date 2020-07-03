@@ -27,14 +27,13 @@ namespace DAL
             cmd.Parameters.AddWithValue("@codigoFipe", modelo.CodigoFipe);
             cmd.Parameters.AddWithValue("@marcaId", modelo.MarcaId);
             cmd.Parameters.AddWithValue("@modelo", modelo.Modelo);
-            cmd.Parameters.AddWithValue("@anoModeloInicial", modelo.AnoModeloInicial);
-            cmd.Parameters.AddWithValue("@anoModeloFinal", modelo.AnoModeloFinal);
             cmd.Parameters.AddWithValue("@veiculoAtivo", modelo.VeiculoAtivo);
             cmd.Parameters.AddWithValue("@DataCadastro", modelo.DataCadastro);
 
             conexao.Conectar();
-            return modelo.VeiculoId = Convert.ToInt32(cmd.ExecuteScalar());
+            modelo.VeiculoId = Convert.ToInt32(cmd.ExecuteScalar());
             conexao.Desconectar();
+            return modelo.VeiculoId;
         }
 
         public void Alterar(ModeloVeiculo modelo)
@@ -151,8 +150,6 @@ namespace DAL
                         CodigoFipe = Convert.ToInt32(registro["CodigoFipe"]),
                         MarcaId = Convert.ToInt32(registro["MarcaId"]),
                         Modelo = Convert.ToString(registro["Modelo"]),
-                        AnoModeloInicial = Convert.ToInt32(registro["AnoModeloInicial"]),
-                        AnoModeloFinal = Convert.ToInt32(registro["AnoModeloFinal"]),
                         VeiculoAtivo = Convert.ToBoolean(registro["VeiculoAtivo"]),
                         DataCadastro = Convert.ToDateTime(registro["DataCadastro"])
                     });
@@ -183,12 +180,11 @@ namespace DAL
                     veiculo.CodigoFipe = Convert.ToInt32(registro["CodigoFipe"]);
                     veiculo.MarcaId = Convert.ToInt32(registro["MarcaId"]);
                     veiculo.Modelo = Convert.ToString(registro["Modelo"]);
-                    veiculo.AnoModeloInicial = Convert.ToInt32(registro["AnoModeloInicial"]);
-                    veiculo.AnoModeloFinal = Convert.ToInt32(registro["AnoModeloFinal"]);
                     veiculo.VeiculoAtivo = Convert.ToBoolean(registro["VeiculoAtivo"]);
                     veiculo.DataCadastro = Convert.ToDateTime(registro["DataCadastro"]);
                 }
             }
+
             conexao.Desconectar();
             return veiculo;
         }
@@ -218,42 +214,6 @@ namespace DAL
 
             conexao.Desconectar();
             return marca;
-        }
-
-        public List<Veiculo> BuscarVeiculoByMarcaAnoModeloAnoFabricacao(int marcaId, int anoModelo, int anoFabricacao)
-        {
-            List<Veiculo> veiculoMarca = new List<Veiculo>();
-            SqlCommand cmd = new SqlCommand
-            {
-                Connection = conexao.ObjetoConexao,
-                CommandText = "SELECT * FROM Veiculo WHERE MarcaId = @marcaId "
-            };
-
-            cmd.Parameters.AddWithValue("@marcaId", marcaId);
-            //cmd.Parameters.AddWithValue("@anoModeloInicial", anoModelo);
-            //cmd.Parameters.AddWithValue("@anoModeloFinal", anoFabricacao);
-            conexao.Conectar();
-            SqlDataReader registro = cmd.ExecuteReader();
-
-            if (registro.HasRows)
-            {
-                while (registro.Read())
-                {
-                    veiculoMarca.Add(new Veiculo()
-                    {
-                        VeiculoId = Convert.ToInt32(registro["VeiculoId"]),
-                        CodigoFipe = Convert.ToInt32(registro["CodigoFipe"]),
-                        MarcaId = Convert.ToInt32(registro["MarcaId"]),
-                        Modelo = Convert.ToString(registro["Modelo"]),
-                        AnoModeloInicial = Convert.ToInt32(registro["AnoModeloInicial"]),
-                        AnoModeloFinal = Convert.ToInt32(registro["AnoModeloFinal"]),
-                        VeiculoAtivo = Convert.ToBoolean(registro["VeiculoAtivo"]),
-                        DataCadastro = Convert.ToDateTime(registro["DataCadastro"])
-                    });
-                }
-            }
-            conexao.Desconectar();
-            return veiculoMarca;
         }
     }
 }

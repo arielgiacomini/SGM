@@ -40,6 +40,7 @@ namespace GUI
                 pnCadastro.Enabled = true;
                 btnSalvar.Enabled = true;
                 btnCancelar.Enabled = true;
+                btnExcluir.Enabled = true;
             }
             if (op == 3)
             {

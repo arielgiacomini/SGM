@@ -1,5 +1,6 @@
 ﻿using DAL;
 using Modelo;
+using Modelo.Entities;
 using System;
 using System.Data;
 
@@ -7,48 +8,48 @@ namespace BLL
 {
     public class BLLVeiculoCliente
     {
-        private DALConexao conexao;
+        private readonly DALConexao conexao;
 
         public BLLVeiculoCliente(DALConexao cx)
         {
             this.conexao = cx;
         }
 
-        public void Incluir(ModeloVeiculoCliente modelo)
+        public void Incluir(ClienteVeiculo modelo)
         {
-            if (modelo.CPlacaVeiculo.Trim().Length == 0 || modelo.CCorVeiculo.Trim().Length == 0)
+            if (modelo.PlacaVeiculo.Trim().Length == 0 || modelo.CorVeiculo.Trim().Length == 0)
             {
                 throw new Exception("A Placa e a Cor do veículo são obrigatórios!");
             }
-            if (modelo.CVeiculoId <= 0 && modelo.CClienteId <= 0)
+            if (modelo.VeiculoId <= 0 && modelo.ClienteId <= 0)
             {
                 throw new Exception("O cliente e seu veículo são campos obrigatórios!");
             }
 
-            modelo.CPlacaVeiculo = modelo.CPlacaVeiculo.ToUpper();
-            modelo.CCorVeiculo = modelo.CCorVeiculo.ToUpper();
+            modelo.PlacaVeiculo = modelo.PlacaVeiculo.ToUpper();
+            modelo.CorVeiculo = modelo.CorVeiculo.ToUpper();
 
             DALVeiculoCliente DALobj = new DALVeiculoCliente(conexao);
             DALobj.Incluir(modelo);
         }
 
-        public void Alterar(ModeloVeiculoCliente modelo)
+        public void Alterar(ClienteVeiculo modelo)
         {
-            if (modelo.CPlacaVeiculo.Trim().Length == 0 || modelo.CCorVeiculo.Trim().Length == 0)
+            if (modelo.PlacaVeiculo.Trim().Length == 0 || modelo.CorVeiculo.Trim().Length == 0)
             {
                 throw new Exception("A Placa e a Cor do veículo são obrigatórios!");
             }
-            if (modelo.CVeiculoId <= 0 && modelo.CClienteId <= 0)
+            if (modelo.VeiculoId <= 0 && modelo.ClienteId <= 0)
             {
                 throw new Exception("O cliente e seu veículo são campos obrigatórios!");
             }
-            if (modelo.CClienteVeiculoId <= 0)
+            if (modelo.ClienteVeiculoId <= 0)
             {
                 throw new Exception("Você precisa selecionar o registro que deseja alterar!");
             }
 
-            modelo.CPlacaVeiculo = modelo.CPlacaVeiculo.ToUpper();
-            modelo.CCorVeiculo = modelo.CCorVeiculo.ToUpper();
+            modelo.PlacaVeiculo = modelo.PlacaVeiculo.ToUpper();
+            modelo.CorVeiculo = modelo.CorVeiculo.ToUpper();
 
             DALVeiculoCliente DALobj = new DALVeiculoCliente(conexao);
             DALobj.Alterar(modelo);
@@ -66,13 +67,13 @@ namespace BLL
             return DALobj.Localizar(valor);
         }
 
-        public ModeloVeiculoCliente CarregaModeloVeiculoCliente(int ClienteVeiculoId)
+        public ClienteVeiculo CarregaModeloVeiculoCliente(int ClienteVeiculoId)
         {
             DALVeiculoCliente DALobj = new DALVeiculoCliente(conexao);
             return DALobj.CarregaModeloVeiculo(ClienteVeiculoId);
         }
 
-        public ModeloVeiculoCliente CarregaModeloVeiculoClienteByPlaca(string placaVeiculo)
+        public ClienteVeiculo CarregaModeloVeiculoClienteByPlaca(string placaVeiculo)
         {
             DALVeiculoCliente DALobj = new DALVeiculoCliente(conexao);
             return DALobj.CarregaModeloVeiculoClienteByPlaca(placaVeiculo);
