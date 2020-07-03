@@ -292,15 +292,17 @@ namespace GUI
         {
             try
             {
-                ModeloOrcamento modelo = new ModeloOrcamento();
-                modelo.COrcamentoId = Convert.ToInt32(txtOrcamentoId.Text);
-                modelo.CClienteId = Convert.ToInt32(txtClienteId.Text);
-                modelo.CValorAdicional = Convert.ToDecimal(txtValorAdicional.Text.Replace("R$ ", ""));
-                modelo.CPercentualDesconto = (Convert.ToDecimal(txtPercentualDesconto.Text.Replace("%", "")) / 100);
-                modelo.CValorDesconto = Convert.ToDecimal(txtValorDesconto.Text.Replace("R$ ", ""));
-                modelo.CValorTotal = Convert.ToDecimal(txtValorTotal.Text.Replace("R$ ", ""));
-                modelo.CDescricao = txtDescricao.Text;
-                modelo.CStatus = "ORÇAMENTO GERADO";
+                ModeloOrcamento modelo = new ModeloOrcamento
+                {
+                    COrcamentoId = Convert.ToInt32(txtOrcamentoId.Text),
+                    CClienteId = Convert.ToInt32(txtClienteId.Text),
+                    CValorAdicional = txtValorAdicional.Text == "" ? 0 : Convert.ToDecimal(txtValorAdicional.Text.Replace("R$ ", "")),
+                    CPercentualDesconto = txtValorAdicional.Text == "" ? 0 : (Convert.ToDecimal(txtPercentualDesconto.Text.Replace("%", "")) / 100),
+                    CValorDesconto = Convert.ToDecimal(txtValorDesconto.Text.Replace("R$ ", "")),
+                    CValorTotal = Convert.ToDecimal(txtValorTotal.Text.Replace("R$ ", "")),
+                    CDescricao = txtDescricao.Text,
+                    CStatus = "ORÇAMENTO GERADO"
+                };
 
                 DALConexao cx = new DALConexao(ConnectionStringConfiguration.ConnectionString);
                 BLLOrcamento bll = new BLLOrcamento(cx);

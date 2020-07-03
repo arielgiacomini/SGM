@@ -295,8 +295,8 @@ namespace GUI
                 {
                     CServicoId = Convert.ToInt32(txtServicoId.Text),
                     CClienteId = Convert.ToInt32(txtClienteId.Text),
-                    CValorAdicional = Convert.ToDecimal(txtValorAdicional.Text.Replace("R$ ", "")),
-                    CPercentualDesconto = (Convert.ToDecimal(txtPercentualDesconto.Text.Replace("%", "")) / 100),
+                    CValorAdicional = txtValorAdicional.Text == "" ? 0 : Convert.ToDecimal(txtValorAdicional.Text.Replace("R$ ", "")),
+                    CPercentualDesconto = txtValorAdicional.Text == "" ? 0 : (Convert.ToDecimal(txtPercentualDesconto.Text.Replace("%", "")) / 100),
                     CValorDesconto = Convert.ToDecimal(txtValorDesconto.Text.Replace("R$ ", "")),
                     CValorTotal = Convert.ToDecimal(txtValorTotal.Text.Replace("R$ ", "")),
                     CDescricao = txtDescricao.Text,

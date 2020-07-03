@@ -7,3 +7,8 @@ C:\Clones\GITHUB.arielgiacomini\SGM-WindowsForms\src\Modelo\bin\x86\Release\Mode
 C:\Clones\GITHUB.arielgiacomini\SGM-WindowsForms\src\Modelo\bin\x86\Release\Modelo.pdb
 C:\Clones\GITHUB.arielgiacomini\SGM-WindowsForms\src\Modelo\obj\x86\Release\Modelo.dll
 C:\Clones\GITHUB.arielgiacomini\SGM-WindowsForms\src\Modelo\obj\x86\Release\Modelo.pdb
+C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\Modelo\bin\x86\Release\Modelo.dll
+C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\Modelo\bin\x86\Release\Modelo.pdb
+C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\Modelo\obj\x86\Release\Modelo.csproj.CoreCompileInputs.cache
+C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\Modelo\obj\x86\Release\Modelo.dll
+C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\Modelo\obj\x86\Release\Modelo.pdb
