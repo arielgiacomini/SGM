@@ -41,13 +41,13 @@ namespace GUI
         private void BtnInserir_Click(object sender, EventArgs e)
         {
             this.operacao = "inserir";
-            this.alteraBotoes(2);
+            this.AlteraBotoes(2);
         }
 
         private void BtnAlterar_Click(object sender, EventArgs e)
         {
             this.operacao = "alterar";
-            this.alteraBotoes(2);
+            this.AlteraBotoes(2);
         }
 
         private void BtnExcluir_Click(object sender, EventArgs e)
@@ -63,13 +63,13 @@ namespace GUI
                     bll.Excluir(Convert.ToInt32(txtClienteId.Text));
                     MessageBox.Show("Registro Excluído com Sucesso!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.LimpaTela();
-                    this.alteraBotoes(1);
+                    this.AlteraBotoes(1);
                 }
             }
             catch
             {
                 MessageBox.Show("Impossível excluir o registro. \n O registro está sendo utilizado em outro local.", "Erro!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                this.alteraBotoes(3);
+                this.AlteraBotoes(3);
             }
         }
 
@@ -134,7 +134,7 @@ namespace GUI
                         if (c.codigo != 0)
                         {
                             FrmCadastroClienteVeiculo g = new FrmCadastroClienteVeiculo();
-                            g.alteraBotoes(1);
+                            g.AlteraBotoes(1);
                             g.clienteId = c.codigo;
                             g.ShowDialog();
                             g.Dispose();
@@ -162,7 +162,7 @@ namespace GUI
                                 clienteVeiculoId = c.codigo
                             };
 
-                            g.alteraBotoes(3);
+                            g.AlteraBotoes(3);
                             g.ShowDialog();
                             g.Dispose();
                         }
@@ -170,7 +170,7 @@ namespace GUI
                 }
 
                 this.LimpaTela();
-                this.alteraBotoes(1);
+                this.AlteraBotoes(1);
                 this.Close();
             }
             catch (Exception erro)
@@ -182,7 +182,7 @@ namespace GUI
         private void BtnCancelar_Click(object sender, EventArgs e)
         {
             this.operacao = "cancelar";
-            this.alteraBotoes(1);
+            this.AlteraBotoes(1);
             this.LimpaTela();
         }
 
@@ -216,12 +216,12 @@ namespace GUI
                 txtBairro.Text = modelo.CLogradouroBairro;
                 txtUF.Text = modelo.CLogradouroUF;
                 txtDataCadastro.Text = Convert.ToString(modelo.CDataCadastro);
-                alteraBotoes(3);
+                AlteraBotoes(3);
             }
             else
             {
                 this.LimpaTela();
-                this.alteraBotoes(1);
+                this.AlteraBotoes(1);
             }
             c.Dispose(); //destrói o formulário de consulta, para não ocupar memória.
         }

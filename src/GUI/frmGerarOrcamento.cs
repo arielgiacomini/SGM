@@ -100,7 +100,7 @@ namespace GUI
                 }
 
                 this.operacao = "inserir";
-                this.alteraBotoes(2);
+                this.AlteraBotoes(2);
 
                 txtConsultaCliente.Enabled = false;
                 btnConsultaCliente.Enabled = false;
@@ -143,7 +143,7 @@ namespace GUI
         private void BtnInserir_Click(object sender, EventArgs e)
         {
             this.operacao = "inserir";
-            this.alteraBotoes(2);
+            this.AlteraBotoes(2);
 
             txtValorAdicional.Enabled = true;
             txtPercentualDesconto.Enabled = true;
@@ -314,7 +314,7 @@ namespace GUI
                 dgvMaodeObra.DataSource = null;
                 dgvPeca.DataSource = null;
                 this.LimpaTela();
-                this.alteraBotoes(1);
+                this.AlteraBotoes(1);
                 this.Close();
             }
             catch (Exception erro)
@@ -375,7 +375,7 @@ namespace GUI
         private void BtnCancelar_Click(object sender, EventArgs e)
         {
             this.operacao = "cancelar";
-            this.alteraBotoes(1);
+            this.AlteraBotoes(1);
             this.LimpaTela();
         }
 
@@ -397,13 +397,13 @@ namespace GUI
                 txtPercentualDesconto.Text = Convert.ToString(modelo.CPercentualDesconto);
                 txtValorDesconto.Text = Convert.ToString(modelo.CValorDesconto);
                 txtValorTotal.Text = Convert.ToString(modelo.CValorTotal);
-                alteraBotoes(3);
+                AlteraBotoes(3);
             }
 
             else
             {
                 this.LimpaTela();
-                this.alteraBotoes(1);
+                this.AlteraBotoes(1);
             }
 
             consultaHistoricoOrcamento.Dispose();

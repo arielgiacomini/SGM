@@ -25,13 +25,13 @@ namespace GUI
         private void BtnInserir_Click(object sender, EventArgs e)
         {
             this.operacao = "inserir";
-            this.alteraBotoes(2);
+            this.AlteraBotoes(2);
         }
 
         private void BtnAlterar_Click(object sender, EventArgs e)
         {
             this.operacao = "alterar";
-            this.alteraBotoes(2);
+            this.AlteraBotoes(2);
         }
 
         private void BtnExcluir_Click(object sender, EventArgs e)
@@ -47,13 +47,13 @@ namespace GUI
                     bll.Excluir(Convert.ToInt32(txtPecaId.Text));
                     MessageBox.Show("Registro Excluído com Sucesso!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.LimpaTela();
-                    this.alteraBotoes(1);
+                    this.AlteraBotoes(1);
                 }
             }
             catch
             {
                 MessageBox.Show("Impossível excluir o registro. \n O registro está sendo utilizado em outro local.", "ERRO!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                this.alteraBotoes(3);
+                this.AlteraBotoes(3);
             }
         }
 
@@ -83,7 +83,7 @@ namespace GUI
                 }
 
                 this.LimpaTela();
-                this.alteraBotoes(2);
+                this.AlteraBotoes(2);
             }
             catch (Exception erro)
             {
@@ -94,7 +94,7 @@ namespace GUI
         private void BtnCancelar_Click(object sender, EventArgs e)
         {
             this.operacao = "cancelar";
-            this.alteraBotoes(1);
+            this.AlteraBotoes(1);
             this.LimpaTela();
         }
 
@@ -114,12 +114,12 @@ namespace GUI
                 txtFornecedor.Text = Convert.ToString(modelo.CFornecedor);
                 txtValorPeca.Text = Convert.ToString(modelo.CValor);
                 txtValorFrete.Text = Convert.ToString(modelo.CValorFrete);
-                alteraBotoes(3);
+                AlteraBotoes(3);
             }
             else
             {
                 this.LimpaTela();
-                this.alteraBotoes(1);
+                this.AlteraBotoes(1);
             }
             l.Dispose(); //destrói o formulário de consulta, para não ocupar memória.
 

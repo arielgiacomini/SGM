@@ -88,7 +88,7 @@ namespace GUI
                 var dadosCliente = modeloCliente.CarregaModeloCliente(clienteId);
 
                 this.operacao = "inserir";
-                this.alteraBotoes(2);
+                this.AlteraBotoes(2);
 
                 if (placaVeiculo != "" && veiculoId != 0)
                 {
@@ -144,7 +144,7 @@ namespace GUI
         private void BtnInserir_Click(object sender, EventArgs e)
         {
             this.operacao = "inserir";
-            this.alteraBotoes(2);
+            this.AlteraBotoes(2);
             txtValorAdicional.Enabled = true;
             txtPercentualDesconto.Enabled = true;
             txtClienteId.Text = Convert.ToString(1);
@@ -314,7 +314,7 @@ namespace GUI
                 dgvPeca.DataSource = null;
 
                 this.LimpaTela();
-                this.alteraBotoes(1);
+                this.AlteraBotoes(1);
             }
             catch (Exception erro)
             {
@@ -374,7 +374,7 @@ namespace GUI
         private void BtnCancelar_Click(object sender, EventArgs e)
         {
             this.operacao = "cancelar";
-            this.alteraBotoes(1);
+            this.AlteraBotoes(1);
             this.LimpaTela();
         }
 
@@ -397,12 +397,12 @@ namespace GUI
                 txtPercentualDesconto.Text = Convert.ToString(modelo.CPercentualDesconto);
                 txtValorDesconto.Text = Convert.ToString(modelo.CValorDesconto);
                 txtValorTotal.Text = Convert.ToString(modelo.CValorTotal);
-                alteraBotoes(3);
+                AlteraBotoes(3);
             }
             else
             {
                 this.LimpaTela();
-                this.alteraBotoes(1);
+                this.AlteraBotoes(1);
             }
 
             consultaHistoricoServico.Dispose();

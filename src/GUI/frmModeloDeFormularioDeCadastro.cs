@@ -6,7 +6,7 @@ namespace GUI
     public partial class FrmModeloDeFormularioDeCadastro : Form
     {
 
-        public String operacao;
+        public string operacao;
 
 
         public FrmModeloDeFormularioDeCadastro()
@@ -14,7 +14,7 @@ namespace GUI
             InitializeComponent();
         }
 
-        public void alteraBotoes(int op)
+        public void AlteraBotoes(int op)
         {
             // op = Operações que serão feitas com os botões
             //  1 = Prepara os botões para inserir e localizar
@@ -72,12 +72,12 @@ namespace GUI
             }
         }
 
-        private void frmModeloDeFormularioDeCadastro_Load(object sender, EventArgs e)
+        private void FrmModeloDeFormularioDeCadastro_Load(object sender, EventArgs e)
         {
-            this.alteraBotoes(1);
+            this.AlteraBotoes(1);
         }
 
-        private void frmModeloDeFormularioDeCadastro_KeyDown(object sender, KeyEventArgs e)
+        private void FrmModeloDeFormularioDeCadastro_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
