@@ -150,8 +150,8 @@
             this.Name = "frmModeloDeFormularioDeCadastro";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Sistema de Gerenciamento Mecânica";
-            this.Load += new System.EventHandler(this.frmModeloDeFormularioDeCadastro_Load);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmModeloDeFormularioDeCadastro_KeyDown);
+            this.Load += new System.EventHandler(this.FrmModeloDeFormularioDeCadastro_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FrmModeloDeFormularioDeCadastro_KeyDown);
             this.pnBotoes.ResumeLayout(false);
             this.ResumeLayout(false);
 

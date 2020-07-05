@@ -23,20 +23,20 @@ namespace GUI
 
         private void frmCadastroVeiculo_Load(object sender, EventArgs e)
         {
-            this.alteraBotoes(1);
+            this.AlteraBotoes(1);
         }
 
         private void btnInserir_Click(object sender, EventArgs e)
         {
             this.operacao = "inserir";
-            this.alteraBotoes(2);
+            this.AlteraBotoes(2);
 
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             this.operacao = "cancelar";
-            this.alteraBotoes(1);
+            this.AlteraBotoes(1);
             this.LimpaTela();
         }
 
@@ -70,7 +70,7 @@ namespace GUI
                 //    MessageBox.Show("Cadastro alterado com sucesso!");
                 //}
                 this.LimpaTela();
-                this.alteraBotoes(1);
+                this.AlteraBotoes(1);
             }
             catch (Exception erro)
             {
@@ -81,7 +81,7 @@ namespace GUI
         private void btnAlterar_Click(object sender, EventArgs e)
         {
             this.operacao = "alterar";
-            this.alteraBotoes(2);
+            this.AlteraBotoes(2);
         }
 
         private void btnExcluir_Click(object sender, EventArgs e)
@@ -97,14 +97,14 @@ namespace GUI
                     BLLVeiculo bll = new BLLVeiculo(cx);
                     bll.Excluir(Convert.ToInt32(txtVeiculoid.Text));
                     this.LimpaTela();
-                    this.alteraBotoes(1);
+                    this.AlteraBotoes(1);
                     MessageBox.Show("Registro Excluído com Sucesso!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch
             {
                 MessageBox.Show("Impossível excluir o registro. \n O registro está sendo utilizado em outro local.");
-                this.alteraBotoes(3);
+                this.AlteraBotoes(3);
             }
         }
 
@@ -121,12 +121,12 @@ namespace GUI
                 txtVeiculoid.Text = modelo.CVeiculoId.ToString();
                 txtMarca.Text = modelo.CMarca;
                 txtModelo.Text = modelo.CModelo;
-                alteraBotoes(3);
+                AlteraBotoes(3);
             }
             else
             {
                 this.LimpaTela();
-                this.alteraBotoes(1);
+                this.AlteraBotoes(1);
             }
             c.Dispose(); //destrói o formulário de consulta, para não ocupar memória.
         }

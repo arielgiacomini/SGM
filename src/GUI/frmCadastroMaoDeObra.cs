@@ -34,7 +34,7 @@ namespace GUI
         private void BtnInserir_Click(object sender, EventArgs e)
         {
             this.operacao = "inserir";
-            this.alteraBotoes(2);
+            this.AlteraBotoes(2);
             txtVigenciaInicial.Text = Convert.ToString(DateTime.Today);
             txtVigenciaFinal.Text = Convert.ToString(DateTime.Today.AddDays(365));
             cboAtivo.Text = Convert.ToString("Ativo");
@@ -44,7 +44,7 @@ namespace GUI
         private void BtnAlterar_Click(object sender, EventArgs e)
         {
             this.operacao = "alterar";
-            this.alteraBotoes(2);
+            this.AlteraBotoes(2);
             cboAtivo.Enabled = true;
         }
 
@@ -61,13 +61,13 @@ namespace GUI
                     bll.Excluir(Convert.ToInt32(txtMaoDeObraId.Text));
                     MessageBox.Show("Registro Excluído com Sucesso!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.LimpaTela();
-                    this.alteraBotoes(1);
+                    this.AlteraBotoes(1);
                 }
             }
             catch
             {
                 MessageBox.Show("Impossível excluir o registro. \n O registro está sendo utilizado em outro local.");
-                this.alteraBotoes(3);
+                this.AlteraBotoes(3);
             }
         }
 
@@ -112,7 +112,7 @@ namespace GUI
                 }
 
                 this.LimpaTela();
-                this.alteraBotoes(2);
+                this.AlteraBotoes(2);
                 this.operacao = "inserir";
             }
             catch (Exception erro)
@@ -124,7 +124,7 @@ namespace GUI
         private void BtnCancelar_Click(object sender, EventArgs e)
         {
             this.operacao = "cancelar";
-            this.alteraBotoes(1);
+            this.AlteraBotoes(1);
             this.LimpaTela();
             txtVigenciaInicial.Text = Convert.ToString(DateTime.Today);
             txtVigenciaFinal.Text = Convert.ToString(DateTime.Today.AddDays(365));
@@ -148,12 +148,12 @@ namespace GUI
                 txtVigenciaInicial.Text = Convert.ToString(modelo.CVigenciaInicial);
                 txtVigenciaFinal.Text = Convert.ToString(modelo.CVigenciaFinal);
 
-                alteraBotoes(2);
+                AlteraBotoes(2);
             }
             else
             {
                 this.LimpaTela();
-                this.alteraBotoes(1);
+                this.AlteraBotoes(1);
             }
 
             m.Dispose();

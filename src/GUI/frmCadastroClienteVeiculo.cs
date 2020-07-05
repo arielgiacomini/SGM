@@ -40,7 +40,7 @@ namespace GUI
             this.txtAnoModeloVeiculo.Enabled = false;
 
             this.LimpaTela();
-            this.alteraBotoes(1);
+            this.AlteraBotoes(1);
 
             DALConexao conexao = new DALConexao(ConnectionStringConfiguration.ConnectionString);
             BLLVeiculo veiculo = new BLLVeiculo(conexao);
@@ -69,7 +69,7 @@ namespace GUI
 
                 PreencheInformacoesNaTela(dadosCliente, dadosVeiculoCliente, dadosVeiculo, dadosMarcaVeiculo);
 
-                this.alteraBotoes(3);
+                this.AlteraBotoes(3);
                 this.operacao = "alterar";
             }
 
@@ -82,7 +82,7 @@ namespace GUI
 
                 PreencheInformacoesNaTela(dadosCliente, dadosVeiculoCliente, dadosVeiculo, dadosMarcaVeiculo);
 
-                this.alteraBotoes(3);
+                this.AlteraBotoes(3);
                 this.operacao = "alterar";
             }
 
@@ -92,12 +92,12 @@ namespace GUI
 
                 PreencheInformacoesNaTela(dadosCliente, dadosVeiculoCliente, dadosVeiculo, dadosMarcaVeiculo);
 
-                this.alteraBotoes(2);
+                this.AlteraBotoes(2);
                 this.operacao = "inserir";
             }
             else
             {
-                this.alteraBotoes(1);
+                this.AlteraBotoes(1);
                 this.operacao = "inserir";
             }
         }
@@ -115,14 +115,14 @@ namespace GUI
                 cboMarcaVeiculo.ValueMember = "MarcaId";
             }
 
-            this.alteraBotoes(2);
+            this.AlteraBotoes(2);
             this.operacao = "inserir";
         }
 
         private void BtnCancelar_Click(object sender, EventArgs e)
         {
             this.txtAnoModeloVeiculo.Enabled = false;
-            this.alteraBotoes(1);
+            this.AlteraBotoes(1);
             this.LimpaTela();
         }
 
@@ -130,7 +130,7 @@ namespace GUI
         {
             this.txtAnoModeloVeiculo.Enabled = false;
 
-            this.alteraBotoes(3);
+            this.AlteraBotoes(3);
             this.operacao = "alterar";
             txtCliente.Enabled = false;
             txtClienteId.Enabled = false;
@@ -142,6 +142,11 @@ namespace GUI
             try
             {
                 int veiculoId = 0;
+
+                if (Convert.ToInt32(txtClienteVeiculoId.Text) > 0)
+                {
+                    this.operacao = "alterar";
+                }
 
                 DALConexao cx = new DALConexao(ConnectionStringConfiguration.ConnectionString);
                 BLLVeiculoCliente bll = new BLLVeiculoCliente(cx);
@@ -224,7 +229,7 @@ namespace GUI
                     BLLVeiculoCliente bll = new BLLVeiculoCliente(cx);
                     bll.Excluir(Convert.ToInt32(txtClienteVeiculoId.Text));
                     this.LimpaTela();
-                    this.alteraBotoes(1);
+                    this.AlteraBotoes(1);
 
                     MessageBox.Show("Registro Excluído com sucesso!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
@@ -232,7 +237,7 @@ namespace GUI
             catch
             {
                 MessageBox.Show("Impossível excluir o registro. \n O registro está sendo utilizado em outro local.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                this.alteraBotoes(3);
+                this.AlteraBotoes(3);
             }
         }
 
@@ -267,14 +272,14 @@ namespace GUI
 
                     PreencheInformacoesNaTela(dadosCliente, dadosVeiculoCliente, dadosVeiculo, dadosMarcaVeiculo);
 
-                    this.alteraBotoes(2);
+                    this.AlteraBotoes(2);
                     this.operacao = "alterar";
                 }
             }
             else
             {
                 this.LimpaTela();
-                this.alteraBotoes(1);
+                this.AlteraBotoes(1);
             }
 
             c.Dispose();
