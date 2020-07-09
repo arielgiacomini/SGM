@@ -1,0 +1,7 @@
+C:\Clones\GITHUB.arielgiacomini\SGM-WindowsForms\src\SGM.Domain\bin\Debug\netstandard2.0\SGM.Domain.deps.json
+C:\Clones\GITHUB.arielgiacomini\SGM-WindowsForms\src\SGM.Domain\bin\Debug\netstandard2.0\SGM.Domain.dll
+C:\Clones\GITHUB.arielgiacomini\SGM-WindowsForms\src\SGM.Domain\bin\Debug\netstandard2.0\SGM.Domain.pdb
+C:\Clones\GITHUB.arielgiacomini\SGM-WindowsForms\src\SGM.Domain\obj\Debug\netstandard2.0\SGM.Domain.AssemblyInfoInputs.cache
+C:\Clones\GITHUB.arielgiacomini\SGM-WindowsForms\src\SGM.Domain\obj\Debug\netstandard2.0\SGM.Domain.AssemblyInfo.cs
+C:\Clones\GITHUB.arielgiacomini\SGM-WindowsForms\src\SGM.Domain\obj\Debug\netstandard2.0\SGM.Domain.dll
+C:\Clones\GITHUB.arielgiacomini\SGM-WindowsForms\src\SGM.Domain\obj\Debug\netstandard2.0\SGM.Domain.pdb

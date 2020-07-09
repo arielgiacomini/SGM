@@ -1,0 +1,11 @@
+C:\Clones\GITHUB.arielgiacomini\SGM-WindowsForms\src\SGM.ApplicationServices\bin\Debug\netstandard2.0\SGM.ApplicationServices.deps.json
+C:\Clones\GITHUB.arielgiacomini\SGM-WindowsForms\src\SGM.ApplicationServices\bin\Debug\netstandard2.0\SGM.ApplicationServices.dll
+C:\Clones\GITHUB.arielgiacomini\SGM-WindowsForms\src\SGM.ApplicationServices\bin\Debug\netstandard2.0\SGM.ApplicationServices.pdb
+C:\Clones\GITHUB.arielgiacomini\SGM-WindowsForms\src\SGM.ApplicationServices\bin\Debug\netstandard2.0\SGM.Domain.dll
+C:\Clones\GITHUB.arielgiacomini\SGM-WindowsForms\src\SGM.ApplicationServices\bin\Debug\netstandard2.0\SGM.Domain.pdb
+C:\Clones\GITHUB.arielgiacomini\SGM-WindowsForms\src\SGM.ApplicationServices\obj\Debug\netstandard2.0\SGM.ApplicationServices.csprojAssemblyReference.cache
+C:\Clones\GITHUB.arielgiacomini\SGM-WindowsForms\src\SGM.ApplicationServices\obj\Debug\netstandard2.0\SGM.ApplicationServices.AssemblyInfoInputs.cache
+C:\Clones\GITHUB.arielgiacomini\SGM-WindowsForms\src\SGM.ApplicationServices\obj\Debug\netstandard2.0\SGM.ApplicationServices.AssemblyInfo.cs
+C:\Clones\GITHUB.arielgiacomini\SGM-WindowsForms\src\SGM.ApplicationServices\obj\Debug\netstandard2.0\SGM.ApplicationServices.csproj.CopyComplete
+C:\Clones\GITHUB.arielgiacomini\SGM-WindowsForms\src\SGM.ApplicationServices\obj\Debug\netstandard2.0\SGM.ApplicationServices.dll
+C:\Clones\GITHUB.arielgiacomini\SGM-WindowsForms\src\SGM.ApplicationServices\obj\Debug\netstandard2.0\SGM.ApplicationServices.pdb

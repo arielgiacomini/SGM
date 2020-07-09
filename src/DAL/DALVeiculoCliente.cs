@@ -15,15 +15,15 @@ namespace DAL
             this.conexao = cx;
         }
 
-        public void Incluir(ClienteVeiculo modelo)
+        public int Incluir(ClienteVeiculo modelo)
         {
             try
             {
                 SqlCommand cmd = new SqlCommand
                 {
                     Connection = conexao.ObjetoConexao,
-                    CommandText = "INSERT INTO ClienteVeiculo (ClienteId, VeiculoId, PlacaVeiculo, CorVeiculo, KmRodados, AnoVeiculo) VALUES (@clienteid, @veiculoid, @placaveiculo, @corveiculo, @kmrodados, @anoVeiculo);"
-                };
+                    CommandText = "INSERT INTO ClienteVeiculo (ClienteId, VeiculoId, PlacaVeiculo, CorVeiculo, KmRodados, AnoVeiculo) VALUES (@clienteid, @veiculoid, @placaveiculo, @corveiculo, @kmrodados, @anoVeiculo); " + "SELECT CAST(SCOPE_IDENTITY() AS INT); "
+            };
                 cmd.Parameters.AddWithValue("@clienteid", modelo.ClienteId);
                 cmd.Parameters.AddWithValue("@veiculoid", modelo.VeiculoId);
                 cmd.Parameters.AddWithValue("@placaveiculo", modelo.PlacaVeiculo);
@@ -31,15 +31,14 @@ namespace DAL
                 cmd.Parameters.AddWithValue("@kmrodados", modelo.KmRodados);
                 cmd.Parameters.AddWithValue("@anoVeiculo", modelo.AnoVeiculo);
                 conexao.Conectar();
-                modelo.VeiculoId = Convert.ToInt32(cmd.ExecuteScalar());
+                int veiculoId = Convert.ToInt32(cmd.ExecuteScalar());
+                conexao.Desconectar();
+                return veiculoId;
             }
             catch (Exception erro)
             {
-                throw new Exception(erro.Message);
-            }
-            finally
-            {
                 conexao.Desconectar();
+                throw new Exception(erro.Message);
             }
         }
 

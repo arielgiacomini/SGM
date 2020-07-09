@@ -21,7 +21,7 @@ namespace DAL
             SqlCommand cmd = new SqlCommand
             {
                 Connection = conexao.ObjetoConexao,
-                CommandText = "INSERT INTO Veiculo (CodigoFipe, MarcaId, Modelo, AnoModeloInicial, AnoModeloFinal, VeiculoAtivo, DataCadastro) VALUES (@codigoFipe, @marcaId, @modelo, @anoModeloInicial, @anoModeloFinal, @veiculoAtivo, @DataCadastro);"
+                CommandText = "INSERT INTO Veiculo (CodigoFipe, MarcaId, Modelo, VeiculoAtivo, DataCadastro) VALUES (@codigoFipe, @marcaId, @modelo, @veiculoAtivo, @DataCadastro); " + "SELECT CAST(SCOPE_IDENTITY() AS INT); "
             };
 
             cmd.Parameters.AddWithValue("@codigoFipe", modelo.CodigoFipe);
