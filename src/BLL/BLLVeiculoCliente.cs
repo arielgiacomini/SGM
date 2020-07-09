@@ -15,7 +15,7 @@ namespace BLL
             this.conexao = cx;
         }
 
-        public void Incluir(ClienteVeiculo modelo)
+        public int Incluir(ClienteVeiculo modelo)
         {
             if (modelo.PlacaVeiculo.Trim().Length == 0 || modelo.CorVeiculo.Trim().Length == 0)
             {
@@ -30,7 +30,7 @@ namespace BLL
             modelo.CorVeiculo = modelo.CorVeiculo.ToUpper();
 
             DALVeiculoCliente DALobj = new DALVeiculoCliente(conexao);
-            DALobj.Incluir(modelo);
+            return DALobj.Incluir(modelo);
         }
 
         public void Alterar(ClienteVeiculo modelo)
