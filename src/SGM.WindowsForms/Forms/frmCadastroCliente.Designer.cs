@@ -403,7 +403,7 @@
             this.txtCPF.Size = new System.Drawing.Size(90, 20);
             this.txtCPF.TabIndex = 24;
             this.txtCPF.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtCPF.Leave += new System.EventHandler(this.TxtCPF_Leave);
+            this.txtCPF.Leave += new System.EventHandler(this.VerificaSeCPFJaExisteNaBaseDados_Leave);
             // 
             // cboSexo
             // 
@@ -507,7 +507,6 @@
             this.ClientSize = new System.Drawing.Size(784, 561);
             this.Name = "FrmCadastroCliente";
             this.Text = "Sistema de Gerenciamento Mecânica - Cadastro de Clientes";
-            this.Load += new System.EventHandler(this.FrmCadastroCliente_Load);
             this.pnCadastro.ResumeLayout(false);
             this.pnCadastro.PerformLayout();
             this.pnBotoes.ResumeLayout(false);

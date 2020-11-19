@@ -1,9 +1,7 @@
-﻿using BLL;
-using DAL;
-using Modelo;
-using SGM.ApplicationServices.Application.Interface;
+﻿using SGM.ApplicationServices.Application.Interface;
 using SGM.Domain.Entities;
 using System;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace SGM.WindowsForms
@@ -39,11 +37,6 @@ namespace SGM.WindowsForms
             txtDataCadastro.Clear();
         }
 
-        private void FrmCadastroCliente_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void BtnInserir_Click(object sender, EventArgs e)
         {
             this.operacao = "inserir";
@@ -64,9 +57,8 @@ namespace SGM.WindowsForms
 
                 if (d.ToString() == "Yes")
                 {
-                    DALConexao cx = new DALConexao(ConnectionStringConfiguration.ConnectionString);
-                    BLLCliente bll = new BLLCliente(cx);
-                    bll.Excluir(Convert.ToInt32(txtClienteId.Text));
+                    _clienteApplication.InativarCliente(Convert.ToInt32(txtClienteId.Text));
+
                     MessageBox.Show("Registro Excluído com Sucesso!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.LimpaTela();
                     this.AlteraBotoes(1);
@@ -83,7 +75,7 @@ namespace SGM.WindowsForms
         {
             try
             {
-                Cliente modelo = new Cliente
+                Cliente cliente = new Cliente
                 {
                     NomeCliente = txtCliente.Text,
                     Apelido = txtApelido.Text,
@@ -106,26 +98,23 @@ namespace SGM.WindowsForms
                     DataAlteracao = null
                 };
 
-                DALConexao cx = new DALConexao(ConnectionStringConfiguration.ConnectionString);
-                BLLCliente bll = new BLLCliente(cx);
-                BLLVeiculoCliente bllVeiculoCliente = new BLLVeiculoCliente(cx);
-
                 if (this.operacao == "inserir")
                 {
-                    //bll.Incluir(modelo);
-                    MessageBox.Show("Cadastro inserido com sucesso! Cliente: " + modelo.NomeCliente.ToString(), "Status", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    _clienteApplication.SalvarCliente(cliente);
+                    MessageBox.Show("Cadastro inserido com sucesso! Cliente: " + cliente.NomeCliente.ToString(), "Status", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-
                 else
                 {
-                    modelo.ClienteId = Convert.ToInt32(txtClienteId.Text);
-                    //bll.Alterar(modelo);
-                    MessageBox.Show("Cadastro alterado com sucesso! Cliente: " + modelo.NomeCliente.ToString(), "Status", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    cliente.ClienteId = Convert.ToInt32(txtClienteId.Text);
+                    _clienteApplication.AtualizarCliente(cliente);
+                    MessageBox.Show("Cadastro alterado com sucesso! Cliente: " + cliente.NomeCliente.ToString(), "Status", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
 
-                var veiculosDoCliente = bllVeiculoCliente.BuscarVeiculosCliente(modelo.ClienteId);
+                var veiculosDoCliente = _clienteApplication.GetVeiculosClienteByClienteId(cliente.ClienteId);
 
-                if (veiculosDoCliente.CClienteVeiculoId == 0)
+                bool existeVeiculoCliente = veiculosDoCliente.Any();
+
+                if (existeVeiculoCliente)
                 {
                     DialogResult res = MessageBox.Show("Deseja incluir o veículo dele agora? \n Clicando em (Sim), será aberto uma lista de clientes você escolhe o cliente que você acabou de cadastrar \n e clicando duas vezes você automáticamente poderá cadastrar o veículo dele.", "Cadastro de Veículo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
@@ -133,7 +122,7 @@ namespace SGM.WindowsForms
                     {
                         frmConsultaCliente c = new frmConsultaCliente
                         {
-                            codigo = modelo.ClienteId
+                            codigo = cliente.ClienteId
                         };
 
                         c.ShowDialog();
@@ -156,7 +145,7 @@ namespace SGM.WindowsForms
                     {
                         FrmConsultaClienteVeiculo c = new FrmConsultaClienteVeiculo
                         {
-                            clienteId = modelo.ClienteId
+                            clienteId = cliente.ClienteId
                         };
 
                         c.ShowDialog();
@@ -232,44 +221,39 @@ namespace SGM.WindowsForms
             c.Dispose(); //destrói o formulário de consulta, para não ocupar memória.
         }
 
-        /* ABAIXO O EVENTO QUE VERIFICA SE JÁ EXISTE O CLIENTE NA BASE DE DADOS.*/
-        private void TxtCPF_Leave(object sender, EventArgs e)
+        private void VerificaSeCPFJaExisteNaBaseDados_Leave(object sender, EventArgs e)
         {
             if (this.operacao == "inserir")
             {
-                // objeto para gravar os dados no banco de dados
-                DALConexao cx = new DALConexao(ConnectionStringConfiguration.ConnectionString);
-                BLLCliente bll = new BLLCliente(cx);
-                int retorno = bll.VerificaCPFCliente(txtCPF.Text);
+                var cliente = _clienteApplication.GetClienteByDocumentoCliente(txtCPF.Text);
 
-                if (retorno > 0)
+                if (cliente != null)
                 {
                     DialogResult res = MessageBox.Show("Esse CPF já existe em nossa base de dados. Deseja alterar o registro?", "Aviso IMPORTANTE", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
                     if (res.ToString() == "Yes")
                     {
                         this.operacao = "alterar";
-                        ModeloCliente modelo = bll.CarregaModeloCliente(retorno);
-                        txtClienteId.Text = Convert.ToString(modelo.CClienteId);
-                        txtCliente.Text = modelo.CNomeCliente;
-                        txtApelido.Text = modelo.CApelido;
-                        txtCPF.Text = modelo.CDocumentoCliente;
-                        cboSexo.Text = modelo.CSexo;
-                        cboEstadoCivil.Text = modelo.CEstadoCivil;
-                        dtpDataNascimento.Value = Convert.ToDateTime(modelo.CDataNascimento);
-                        txtEmail.Text = modelo.CEmail;
-                        txtTelefoneFixo.Text = modelo.CTelefoneFixo;
-                        txtCelular.Text = modelo.CTelefoneCelular;
-                        txtTelefoneOutros.Text = modelo.CTelefoneOutros;
-                        txtCEP.Text = modelo.CLogradouroCEP;
-                        txtEndereco.Text = modelo.CLogradouroNome;
-                        txtNumero.Text = modelo.CLogradouroNumero;
-                        txtComplemento.Text = modelo.CLogradouroComplemento;
-                        txtCidade.Text = modelo.CLogradouroMunicipio;
-                        txtBairro.Text = modelo.CLogradouroBairro;
-                        txtUF.Text = modelo.CLogradouroUF;
-                        txtDataCadastro.Text = Convert.ToString(modelo.CDataCadastro);
-                        //alteraBotoes(3);
+
+                        txtClienteId.Text = Convert.ToString(cliente.ClienteId);
+                        txtCliente.Text = cliente.NomeCliente;
+                        txtApelido.Text = cliente.Apelido;
+                        txtCPF.Text = cliente.DocumentoCliente;
+                        cboSexo.Text = cliente.Sexo;
+                        cboEstadoCivil.Text = cliente.EstadoCivil;
+                        dtpDataNascimento.Value = Convert.ToDateTime(cliente.DataNascimento);
+                        txtEmail.Text = cliente.Email;
+                        txtTelefoneFixo.Text = cliente.TelefoneFixo;
+                        txtCelular.Text = cliente.TelefoneCelular;
+                        txtTelefoneOutros.Text = cliente.TelefoneOutros;
+                        txtCEP.Text = cliente.LogradouroCEP;
+                        txtEndereco.Text = cliente.LogradouroNome;
+                        txtNumero.Text = cliente.LogradouroNumero;
+                        txtComplemento.Text = cliente.LogradouroComplemento;
+                        txtCidade.Text = cliente.LogradouroMunicipio;
+                        txtBairro.Text = cliente.LogradouroBairro;
+                        txtUF.Text = cliente.LogradouroUF;
+                        txtDataCadastro.Text = Convert.ToString(cliente.DataCadastro);
                     }
                 }
             }
