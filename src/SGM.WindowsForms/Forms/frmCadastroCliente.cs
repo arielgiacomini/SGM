@@ -83,7 +83,7 @@ namespace SGM.WindowsForms
         {
             try
             {
-                Cliente modelo = new Cliente
+                Cliente cliente = new Cliente
                 {
                     NomeCliente = txtCliente.Text,
                     Apelido = txtApelido.Text,
@@ -112,18 +112,18 @@ namespace SGM.WindowsForms
 
                 if (this.operacao == "inserir")
                 {
-                    //bll.Incluir(modelo);
-                    MessageBox.Show("Cadastro inserido com sucesso! Cliente: " + modelo.NomeCliente.ToString(), "Status", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    _clienteApplication.SalvarCliente(cliente);
+                    MessageBox.Show("Cadastro inserido com sucesso! Cliente: " + cliente.NomeCliente.ToString(), "Status", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
 
                 else
                 {
-                    modelo.ClienteId = Convert.ToInt32(txtClienteId.Text);
-                    //bll.Alterar(modelo);
-                    MessageBox.Show("Cadastro alterado com sucesso! Cliente: " + modelo.NomeCliente.ToString(), "Status", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    cliente.ClienteId = Convert.ToInt32(txtClienteId.Text);
+                    //bll.Alterar(cliente);
+                    MessageBox.Show("Cadastro alterado com sucesso! Cliente: " + cliente.NomeCliente.ToString(), "Status", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
 
-                var veiculosDoCliente = bllVeiculoCliente.BuscarVeiculosCliente(modelo.ClienteId);
+                var veiculosDoCliente = bllVeiculoCliente.BuscarVeiculosCliente(cliente.ClienteId);
 
                 if (veiculosDoCliente.CClienteVeiculoId == 0)
                 {
@@ -133,7 +133,7 @@ namespace SGM.WindowsForms
                     {
                         frmConsultaCliente c = new frmConsultaCliente
                         {
-                            codigo = modelo.ClienteId
+                            codigo = cliente.ClienteId
                         };
 
                         c.ShowDialog();
@@ -156,7 +156,7 @@ namespace SGM.WindowsForms
                     {
                         FrmConsultaClienteVeiculo c = new FrmConsultaClienteVeiculo
                         {
-                            clienteId = modelo.ClienteId
+                            clienteId = cliente.ClienteId
                         };
 
                         c.ShowDialog();

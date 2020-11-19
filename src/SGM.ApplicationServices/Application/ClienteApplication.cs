@@ -21,5 +21,10 @@ namespace SGM.ApplicationServices.Application
 
             return cliente;
         }
+
+        public void SalvarCliente(Cliente cliente)
+        {
+            _clienteCommand.SalvarCliente(cliente);
+        }
     }
 }
