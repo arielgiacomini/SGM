@@ -440,7 +440,7 @@ namespace SGM.WindowsForms
                     dgvMaodeObra.Columns[2].Width = 70;
                     dgvMaodeObra.Columns[2].DefaultCellStyle.Format = "C2";
                     dgvMaodeObra.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                }                
+                }
             }
         }
 

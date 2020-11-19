@@ -28,7 +28,7 @@ namespace SGM.WindowsForms
             {
                 BtnPlacaClienteVeiculoConsulta_Click(sender, e);
             }
-            
+
             dgvClienteVeiculoConsulta.Columns[0].HeaderText = "Código";
             dgvClienteVeiculoConsulta.Columns[0].Width = 50;
             dgvClienteVeiculoConsulta.Columns[1].HeaderText = "Cliente";

@@ -23,7 +23,7 @@ namespace DAL
                 {
                     Connection = conexao.ObjetoConexao,
                     CommandText = "INSERT INTO ClienteVeiculo (ClienteId, VeiculoId, PlacaVeiculo, CorVeiculo, KmRodados, AnoVeiculo) VALUES (@clienteid, @veiculoid, @placaveiculo, @corveiculo, @kmrodados, @anoVeiculo); " + "SELECT CAST(SCOPE_IDENTITY() AS INT); "
-            };
+                };
                 cmd.Parameters.AddWithValue("@clienteid", modelo.ClienteId);
                 cmd.Parameters.AddWithValue("@veiculoid", modelo.VeiculoId);
                 cmd.Parameters.AddWithValue("@placaveiculo", modelo.PlacaVeiculo);

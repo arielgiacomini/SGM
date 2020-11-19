@@ -9,7 +9,7 @@ namespace SGM.WindowsForms
         {
             InitializeComponent();
         }
-        
+
         public int clienteId = 0;
         public int veiculoId = 0;
         public string placaVeiculo = "";
