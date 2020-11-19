@@ -20,7 +20,7 @@ namespace SGM.ApplicationServices.Queries
         {
             using (var client = new HttpClient())
             {
-                var result = client.GetAsync($"{_sGMConfiguration.SGMWebApiUrl}SGM/Cliente/{clienteId}").Result;
+                var result = client.GetAsync($"{_sGMConfiguration.SGMWebApiUrl}SGM/cliente/{clienteId}").Result;
                 if (result.IsSuccessStatusCode)
                 {
                     return JsonConvert.DeserializeObject<Cliente>(result.Content.ReadAsStringAsync().Result);

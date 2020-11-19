@@ -276,7 +276,7 @@
             // 
             // btnBuscarHistoricoCliente
             // 
-            this.btnBuscarHistoricoCliente.BackgroundImage = global::SGM.WindowsForms.Properties.Resources.localizar1;
+            this.btnBuscarHistoricoCliente.BackgroundImage = global::GUI.Properties.Resources.localizar1;
             this.btnBuscarHistoricoCliente.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btnBuscarHistoricoCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBuscarHistoricoCliente.Location = new System.Drawing.Point(593, 283);
@@ -289,7 +289,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::SGM.WindowsForms.Properties.Resources.LogotipoLoquinho;
+            this.pictureBox1.Image = global::GUI.Properties.Resources.LogotipoLoquinho;
             this.pictureBox1.Location = new System.Drawing.Point(640, 8);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(109, 45);

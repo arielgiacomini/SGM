@@ -475,7 +475,7 @@
             // 
             // imgLogoTipo
             // 
-            this.imgLogoTipo.Image = global::SGM.WindowsForms.Properties.Resources.LogotipoLoquinho;
+            this.imgLogoTipo.Image = global::GUI.Properties.Resources.LogotipoLoquinho1;
             this.imgLogoTipo.Location = new System.Drawing.Point(545, 77);
             this.imgLogoTipo.Name = "imgLogoTipo";
             this.imgLogoTipo.Size = new System.Drawing.Size(191, 67);
