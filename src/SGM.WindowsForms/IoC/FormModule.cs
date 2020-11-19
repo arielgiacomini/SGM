@@ -15,6 +15,7 @@ namespace SGM.WindowsForms.IoC
         public override void Load()
         {
             Bind<IClienteQuery>().To<ClienteQuery>();
+            Bind<IClienteVeiculoQuery>().To<ClienteVeiculoQuery>();
             Bind<IClienteCommand>().To<ClienteCommand>();
             Bind<IClienteApplication>().To<ClienteApplication>();
             Bind<ISGMConfiguration>().To<SGMConfiguration>();

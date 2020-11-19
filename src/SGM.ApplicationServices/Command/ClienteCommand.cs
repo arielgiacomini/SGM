@@ -25,7 +25,32 @@ namespace SGM.ApplicationServices.Command
                 var result = client.PostAsync($"{_sGMConfiguration.SGMWebApiUrl}SGM/cliente", content).Result;
                 if (!result.IsSuccessStatusCode)
                 {
-                    throw new ApplicationException($"Problema ao adicionar o atendimento. DocumentoCliente: {cliente.DocumentoCliente}");
+                    throw new ApplicationException($"Problema ao SALVAR cliente. DocumentoCliente: {cliente.DocumentoCliente}");
+                }
+            }
+        }
+
+        public void AtualizarCliente(Cliente cliente)
+        {
+            using (var client = new HttpClient())
+            {
+                var content = new StringContent(JsonConvert.SerializeObject(cliente), Encoding.UTF8, "application/json");
+                var result = client.PutAsync($"{_sGMConfiguration.SGMWebApiUrl}SGM/cliente/{cliente.ClienteId}", content).Result;
+                if (!result.IsSuccessStatusCode)
+                {
+                    throw new ApplicationException($"Problema ao ATUALIZAR cliente. DocumentoCliente: {cliente.DocumentoCliente}");
+                }
+            }
+        }
+
+        public void InativarCliente(int clienteId)
+        {
+            using (var client = new HttpClient())
+            {
+                var result = client.PutAsync($"{_sGMConfiguration.SGMWebApiUrl}SGM/cliente/inativar/{clienteId}", null).Result;
+                if (!result.IsSuccessStatusCode)
+                {
+                    throw new ApplicationException($"Problema ao INATIVAR cliente. ClienteId: {clienteId}");
                 }
             }
         }

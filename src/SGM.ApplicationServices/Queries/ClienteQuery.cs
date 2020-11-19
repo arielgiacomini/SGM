@@ -31,5 +31,22 @@ namespace SGM.ApplicationServices.Queries
                 }
             }
         }
+
+        public Cliente GetClienteByDocumentoCliente(string documentoCliente)
+        {
+            using (var client = new HttpClient())
+            {
+                var result = client.GetAsync($"{_sGMConfiguration.SGMWebApiUrl}SGM/cliente/documento-cliente?documentoCliente={documentoCliente}").Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    return JsonConvert.DeserializeObject<Cliente>(result.Content.ReadAsStringAsync().Result);
+                }
+                else
+                {
+                    throw new ApplicationException($"Problema ao consumir a API, resultado: {result.Content.ReadAsStringAsync().Result}");
+                }
+            }
+        }
+
     }
 }
