@@ -97,7 +97,7 @@
             // 
             // veiculosToolStripMenuItem
             // 
-            this.veiculosToolStripMenuItem.Image = global::SGM.WindowsForms.Properties.Resources.Cabriolet_Red_icon_icons_com_54906;
+            this.veiculosToolStripMenuItem.Image = global::GUI.Properties.Resources.Cabriolet_Red_icon_icons_com_54906;
             this.veiculosToolStripMenuItem.Name = "veiculosToolStripMenuItem";
             this.veiculosToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
             this.veiculosToolStripMenuItem.Text = "Veiculos";
@@ -105,7 +105,7 @@
             // 
             // mãoDeObraToolStripMenuItem
             // 
-            this.mãoDeObraToolStripMenuItem.Image = global::SGM.WindowsForms.Properties.Resources.cashier_icon_icons_com_53629;
+            this.mãoDeObraToolStripMenuItem.Image = global::GUI.Properties.Resources.cashier_icon_icons_com_53629;
             this.mãoDeObraToolStripMenuItem.Name = "mãoDeObraToolStripMenuItem";
             this.mãoDeObraToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
             this.mãoDeObraToolStripMenuItem.Text = "Mão-de-Obra/Serviços";
@@ -113,7 +113,7 @@
             // 
             // peçasToolStripMenuItem
             // 
-            this.peçasToolStripMenuItem.Image = global::SGM.WindowsForms.Properties.Resources.Yahoo_Widget_Engine_icon;
+            this.peçasToolStripMenuItem.Image = global::GUI.Properties.Resources.Yahoo_Widget_Engine_icon;
             this.peçasToolStripMenuItem.Name = "peçasToolStripMenuItem";
             this.peçasToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
             this.peçasToolStripMenuItem.Text = "Peças/Produtos";
@@ -126,7 +126,7 @@
             // 
             // clienteToolStripMenuItem
             // 
-            this.clienteToolStripMenuItem.Image = global::SGM.WindowsForms.Properties.Resources.business_application_addmale_useradd_insert_add_user_client_2312;
+            this.clienteToolStripMenuItem.Image = global::GUI.Properties.Resources.business_application_addmale_useradd_insert_add_user_client_2312;
             this.clienteToolStripMenuItem.Name = "clienteToolStripMenuItem";
             this.clienteToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
             this.clienteToolStripMenuItem.Text = "Clientes";
@@ -134,7 +134,7 @@
             // 
             // clienteVeículosToolStripMenuItem
             // 
-            this.clienteVeículosToolStripMenuItem.Image = global::SGM.WindowsForms.Properties.Resources.Travel_BMV_icon;
+            this.clienteVeículosToolStripMenuItem.Image = global::GUI.Properties.Resources.Travel_BMV_icon;
             this.clienteVeículosToolStripMenuItem.Name = "clienteVeículosToolStripMenuItem";
             this.clienteVeículosToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
             this.clienteVeículosToolStripMenuItem.Text = "Cliente e seus Veículos";
@@ -277,7 +277,7 @@
             // btnPrincipalEmitirNotas
             // 
             this.btnPrincipalEmitirNotas.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPrincipalEmitirNotas.Image = global::SGM.WindowsForms.Properties.Resources.Sales_report_icon;
+            this.btnPrincipalEmitirNotas.Image = global::GUI.Properties.Resources.Sales_report_icon;
             this.btnPrincipalEmitirNotas.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnPrincipalEmitirNotas.Location = new System.Drawing.Point(1014, 393);
             this.btnPrincipalEmitirNotas.Name = "btnPrincipalEmitirNotas";
@@ -292,7 +292,7 @@
             // 
             this.btnPrincipalCadastroCliente.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnPrincipalCadastroCliente.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPrincipalCadastroCliente.Image = global::SGM.WindowsForms.Properties.Resources.business_application_addmale_useradd_insert_add_user_client_2312;
+            this.btnPrincipalCadastroCliente.Image = global::GUI.Properties.Resources.business_application_addmale_useradd_insert_add_user_client_2312;
             this.btnPrincipalCadastroCliente.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnPrincipalCadastroCliente.Location = new System.Drawing.Point(185, 393);
             this.btnPrincipalCadastroCliente.Name = "btnPrincipalCadastroCliente";
@@ -306,7 +306,7 @@
             // btnPrincipalOrcamento
             // 
             this.btnPrincipalOrcamento.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPrincipalOrcamento.Image = global::SGM.WindowsForms.Properties.Resources._3925433_budget_money_stocks_icon_111559;
+            this.btnPrincipalOrcamento.Image = global::GUI.Properties.Resources._3925433_budget_money_stocks_icon_111559;
             this.btnPrincipalOrcamento.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnPrincipalOrcamento.Location = new System.Drawing.Point(515, 393);
             this.btnPrincipalOrcamento.Name = "btnPrincipalOrcamento";
@@ -320,7 +320,7 @@
             // btnPrincipalRealizaMaoDeObra
             // 
             this.btnPrincipalRealizaMaoDeObra.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPrincipalRealizaMaoDeObra.Image = global::SGM.WindowsForms.Properties.Resources.cashier_icon_icons_com_53629;
+            this.btnPrincipalRealizaMaoDeObra.Image = global::GUI.Properties.Resources.cashier_icon_icons_com_53629;
             this.btnPrincipalRealizaMaoDeObra.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnPrincipalRealizaMaoDeObra.Location = new System.Drawing.Point(680, 393);
             this.btnPrincipalRealizaMaoDeObra.Name = "btnPrincipalRealizaMaoDeObra";
@@ -334,7 +334,7 @@
             // btnVeiculoCliente
             // 
             this.btnVeiculoCliente.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnVeiculoCliente.Image = global::SGM.WindowsForms.Properties.Resources.Travel_BMV_icon2;
+            this.btnVeiculoCliente.Image = global::GUI.Properties.Resources.Travel_BMV_icon2;
             this.btnVeiculoCliente.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnVeiculoCliente.Location = new System.Drawing.Point(350, 393);
             this.btnVeiculoCliente.Name = "btnVeiculoCliente";
@@ -357,7 +357,7 @@
             // btnBuscarHistoricoServicoCliente
             // 
             this.btnBuscarHistoricoServicoCliente.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBuscarHistoricoServicoCliente.Image = global::SGM.WindowsForms.Properties.Resources.Voltar1_fw;
+            this.btnBuscarHistoricoServicoCliente.Image = global::GUI.Properties.Resources.Voltar1_fw;
             this.btnBuscarHistoricoServicoCliente.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnBuscarHistoricoServicoCliente.Location = new System.Drawing.Point(847, 393);
             this.btnBuscarHistoricoServicoCliente.Name = "btnBuscarHistoricoServicoCliente";
@@ -372,7 +372,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = global::SGM.WindowsForms.Properties.Resources.frmPrincipal;
+            this.BackgroundImage = global::GUI.Properties.Resources.frmPrincipal;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1350, 729);
             this.Controls.Add(this.btnBuscarHistoricoServicoCliente);

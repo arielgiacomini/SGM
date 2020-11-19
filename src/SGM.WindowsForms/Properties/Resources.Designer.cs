@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SGM.WindowsForms.Properties {
+namespace GUI.Properties {
     using System;
     
     
@@ -276,6 +276,16 @@ namespace SGM.WindowsForms.Properties {
         internal static System.Drawing.Bitmap LogotipoLoquinho {
             get {
                 object obj = ResourceManager.GetObject("LogotipoLoquinho", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap LogotipoLoquinho1 {
+            get {
+                object obj = ResourceManager.GetObject("LogotipoLoquinho1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

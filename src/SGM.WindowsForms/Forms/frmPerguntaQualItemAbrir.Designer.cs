@@ -36,7 +36,7 @@
             // btnRealizaOrcamento
             // 
             this.btnRealizaOrcamento.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRealizaOrcamento.Image = global::SGM.WindowsForms.Properties.Resources._3925433_budget_money_stocks_icon_111559;
+            this.btnRealizaOrcamento.Image = global::GUI.Properties.Resources._3925433_budget_money_stocks_icon_111559;
             this.btnRealizaOrcamento.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnRealizaOrcamento.Location = new System.Drawing.Point(41, 23);
             this.btnRealizaOrcamento.Name = "btnRealizaOrcamento";
@@ -50,7 +50,7 @@
             // btnRealizaMaoDeObra
             // 
             this.btnRealizaMaoDeObra.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRealizaMaoDeObra.Image = global::SGM.WindowsForms.Properties.Resources.cashier_icon_icons_com_53629;
+            this.btnRealizaMaoDeObra.Image = global::GUI.Properties.Resources.cashier_icon_icons_com_53629;
             this.btnRealizaMaoDeObra.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnRealizaMaoDeObra.Location = new System.Drawing.Point(251, 23);
             this.btnRealizaMaoDeObra.Name = "btnRealizaMaoDeObra";
