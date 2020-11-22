@@ -1,15 +1,20 @@
 ﻿using BLL;
 using DAL;
 using Modelo;
+using SGM.ApplicationServices.Command.Interface;
+using SGM.Domain.Entities;
 using System;
 using System.Windows.Forms;
 
 namespace SGM.WindowsForms
 {
-    public partial class FrmCadastroPeca : SGM.WindowsForms.FrmModeloDeFormularioDeCadastro
+    public partial class FrmCadastroPeca : FrmModeloDeFormularioDeCadastro
     {
-        public FrmCadastroPeca()
+        private readonly IPecaCommand _pecaCommand;
+
+        public FrmCadastroPeca(IPecaCommand pecaCommand)
         {
+            _pecaCommand = pecaCommand;
             InitializeComponent();
         }
 
@@ -61,25 +66,27 @@ namespace SGM.WindowsForms
         {
             try
             {
-                ModeloPeca modelo = new ModeloPeca();
-                modelo.CDescricao = txtPeca.Text;
-                modelo.CFornecedor = txtFornecedor.Text;
-                modelo.CValor = Convert.ToDecimal(txtValorPeca.Text.Replace("R$ ", ""));
-                modelo.CValorFrete = Convert.ToDecimal(txtValorFrete.Text.Replace("R$ ", ""));
-
-                DALConexao cx = new DALConexao(ConnectionStringConfiguration.ConnectionString);
-                BLLPeca bll = new BLLPeca(cx);
+                Peca peca = new Peca
+                {
+                    Descricao = txtPeca.Text,
+                    Fornecedor = txtFornecedor.Text,
+                    Valor = Convert.ToDecimal(txtValorPeca.Text.Replace("R$ ", "")),
+                    ValorFrete = Convert.ToDecimal(txtValorFrete.Text.Replace("R$ ", "")),
+                    Ativo = true,
+                    DataCadastro = DateTime.Now
+                };
 
                 if (this.operacao == "inserir")
                 {
-                    bll.Incluir(modelo);
-                    MessageBox.Show("Cadastro inserido com sucesso! Peça/Produto: " + modelo.CDescricao.ToString(), "Status", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    _pecaCommand.SalvarPeca(peca);
+                    MessageBox.Show("Cadastro inserido com sucesso! Peça/Produto: " + peca.CDescricao.ToString(), "Status", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
-                    modelo.CPecaId = Convert.ToInt32(txtPecaId.Text);
-                    bll.Alterar(modelo);
-                    MessageBox.Show("Cadastro alterado com sucesso! Peça/Produto: " + modelo.CDescricao.ToString());
+                    peca.PecaId = Convert.ToInt32(txtPecaId.Text);
+                    _pecaCommand.AtualizarPeca(peca);
+
+                    MessageBox.Show("Cadastro alterado com sucesso! Peça/Produto: " + peca.CDescricao.ToString());
                 }
 
                 this.LimpaTela();
