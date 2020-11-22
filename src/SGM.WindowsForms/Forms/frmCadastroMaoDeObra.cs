@@ -1,15 +1,19 @@
-﻿using BLL;
-using DAL;
-using Modelo;
+﻿using SGM.ApplicationServices.Application.Interface;
+using SGM.Domain.Entities;
 using System;
 using System.Windows.Forms;
 
 namespace SGM.WindowsForms
 {
-    public partial class FrmCadastroMaoDeObra : SGM.WindowsForms.FrmModeloDeFormularioDeCadastro
+    public partial class FrmCadastroMaoDeObra : FrmModeloDeFormularioDeCadastro
     {
-        public FrmCadastroMaoDeObra()
+        private readonly IMaodeObraApplication _maoDeObraApplication;
+        public string Status = "";
+        public bool vf = true;
+
+        public FrmCadastroMaoDeObra(IMaodeObraApplication maodeObraApplication)
         {
+            _maoDeObraApplication = maodeObraApplication;
             InitializeComponent();
         }
 
@@ -21,9 +25,6 @@ namespace SGM.WindowsForms
             txtVigenciaInicial.Clear();
             txtVigenciaFinal.Clear();
         }
-
-        public string Status = "";
-        public bool vf = true;
 
         private void FrmCadastroMaoDeObra_Load(object sender, EventArgs e)
         {
@@ -56,10 +57,10 @@ namespace SGM.WindowsForms
 
                 if (d.ToString() == "Yes")
                 {
-                    DALConexao cx = new DALConexao(ConnectionStringConfiguration.ConnectionString);
-                    BLLMaoDeObra bll = new BLLMaoDeObra(cx);
-                    bll.Excluir(Convert.ToInt32(txtMaoDeObraId.Text));
+                    _maoDeObraApplication.InativarMaodeObra(Convert.ToInt32(txtMaoDeObraId.Text));
+
                     MessageBox.Show("Registro Excluído com Sucesso!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
                     this.LimpaTela();
                     this.AlteraBotoes(1);
                 }
@@ -86,29 +87,26 @@ namespace SGM.WindowsForms
                     vf = false;
                 }
 
-                ModeloMaoDeObra modelo = new ModeloMaoDeObra
+                MaodeObra maoDeObra = new MaodeObra
                 {
-                    CDescricao = txtMaoDeObra.Text,
-                    CTipo = cboTipo.Text,
-                    CValor = Convert.ToDecimal(txtValor.Text.Replace("R$ ", "")),
-                    CVigenciaInicial = Convert.ToDateTime(txtVigenciaInicial.Text),
-                    CVigenciaFinal = Convert.ToDateTime(txtVigenciaFinal.Text),
-                    CAtivo = Convert.ToBoolean(vf)
+                    Descricao = txtMaoDeObra.Text,
+                    Tipo = cboTipo.Text,
+                    Valor = Convert.ToDecimal(txtValor.Text.Replace("R$ ", "")),
+                    VigenciaInicial = Convert.ToDateTime(txtVigenciaInicial.Text),
+                    VigenciaFinal = Convert.ToDateTime(txtVigenciaFinal.Text),
+                    Ativo = Convert.ToBoolean(vf)
                 };
-
-                DALConexao cx = new DALConexao(ConnectionStringConfiguration.ConnectionString);
-                BLLMaoDeObra bll = new BLLMaoDeObra(cx);
 
                 if (this.operacao == "inserir")
                 {
-                    bll.Incluir(modelo);
-                    MessageBox.Show("Cadastro inserido com sucesso! Mão-de-Obra/Serviço: " + modelo.CDescricao.ToString(), "Status", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    _maoDeObraApplication.SalvarMaodeObra(maoDeObra);
+                    MessageBox.Show("Cadastro inserido com sucesso! Mão-de-Obra/Serviço: " + maoDeObra.Descricao.ToString(), "Status", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
-                    modelo.CMaodeObraId = Convert.ToInt32(txtMaoDeObraId.Text);
-                    bll.Alterar(modelo);
-                    MessageBox.Show("Cadastro alterado com sucesso! Mão-de-Obra/Serviço: " + modelo.CDescricao.ToString(), "Status", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    maoDeObra.MaodeObraId = Convert.ToInt32(txtMaoDeObraId.Text);
+                    _maoDeObraApplication.AtualizarMaodeObra(maoDeObra);
+                    MessageBox.Show("Cadastro alterado com sucesso! Mão-de-Obra/Serviço: " + maoDeObra.Descricao.ToString(), "Status", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
 
                 this.LimpaTela();
@@ -132,21 +130,20 @@ namespace SGM.WindowsForms
 
         private void BtnLocalizar_Click(object sender, EventArgs e)
         {
-            FrmConsultaMaoDeObra m = new FrmConsultaMaoDeObra();
-            m.ShowDialog();
-            if (m.codigo != 0)
+            FrmConsultaMaoDeObra formConsultaMaodeObra = new FrmConsultaMaoDeObra();
+            formConsultaMaodeObra.ShowDialog();
+
+            if (formConsultaMaodeObra.codigo != 0)
             {
-                DALConexao cx = new DALConexao(ConnectionStringConfiguration.ConnectionString);
-                BLLMaoDeObra bll = new BLLMaoDeObra(cx);
+                var maoDeObra = _maoDeObraApplication.GetMaodeObraById(formConsultaMaodeObra.codigo);
 
-                ModeloMaoDeObra modelo = bll.CarregaModeloMaoDeObra(m.codigo);
-
-                txtMaoDeObraId.Text = Convert.ToString(modelo.CMaodeObraId);
-                txtMaoDeObra.Text = Convert.ToString(modelo.CDescricao);
-                cboTipo.Text = Convert.ToString(modelo.CTipo);
-                txtValor.Text = Convert.ToString(modelo.CValor);
-                txtVigenciaInicial.Text = Convert.ToString(modelo.CVigenciaInicial);
-                txtVigenciaFinal.Text = Convert.ToString(modelo.CVigenciaFinal);
+                txtMaoDeObraId.Text = Convert.ToString(maoDeObra.MaodeObraId);
+                txtMaoDeObra.Text = Convert.ToString(maoDeObra.Descricao);
+                cboTipo.Text = Convert.ToString(maoDeObra.Tipo);
+                txtValor.Text = Convert.ToString(maoDeObra.Valor);
+                txtVigenciaInicial.Text = Convert.ToString(maoDeObra.VigenciaInicial);
+                txtVigenciaFinal.Text = Convert.ToString(maoDeObra.VigenciaFinal);
+                cboAtivo.Text = ApresentarStatus(maoDeObra);
 
                 AlteraBotoes(2);
             }
@@ -156,7 +153,7 @@ namespace SGM.WindowsForms
                 this.AlteraBotoes(1);
             }
 
-            m.Dispose();
+            formConsultaMaodeObra.Dispose();
         }
 
         private void TxtValor_Leave(object sender, EventArgs e)
@@ -172,6 +169,22 @@ namespace SGM.WindowsForms
                 txtValor.Clear();
                 txtValor.Focus();
             }
+        }
+
+        private string ApresentarStatus(MaodeObra maodeObra)
+        {
+            string devolucao = "Escolher";
+
+            if (maodeObra.Ativo)
+            {
+                devolucao = "Ativo";
+            }
+            else if (!maodeObra.Ativo)
+            {
+                devolucao = "Inativo";
+            }
+
+            return devolucao;
         }
     }
 }
