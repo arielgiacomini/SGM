@@ -139,9 +139,9 @@ namespace SGM.WindowsForms
 
         private void MaoDeObraToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FrmCadastroMaoDeObra u = new FrmCadastroMaoDeObra();
-            u.ShowDialog();
-            u.Dispose();
+            FrmCadastroMaoDeObra form = FormResolve.Resolve<FrmCadastroMaoDeObra>();
+            form.ShowDialog();
+            form.Dispose();
         }
 
         private void MaoDeObraToolStripMenuItem1_Click(object sender, EventArgs e)

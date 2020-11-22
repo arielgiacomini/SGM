@@ -16,8 +16,15 @@ namespace SGM.WindowsForms.IoC
         {
             Bind<IClienteQuery>().To<ClienteQuery>();
             Bind<IClienteVeiculoQuery>().To<ClienteVeiculoQuery>();
+
             Bind<IClienteCommand>().To<ClienteCommand>();
+
+            Bind<IMaodeObraQuery>().To<MaodeObraQuery>();
+            Bind<IMaodeObraCommand>().To<MaodeObraCommand>();
+
             Bind<IClienteApplication>().To<ClienteApplication>();
+            Bind<IMaodeObraApplication>().To<MaodeObraApplication>();
+
             Bind<ISGMConfiguration>().To<SGMConfiguration>();
         }
 
