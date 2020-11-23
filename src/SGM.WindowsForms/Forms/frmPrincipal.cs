@@ -125,9 +125,9 @@ namespace SGM.WindowsForms
 
         private void PeçasToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FrmCadastroPeca o = new FrmCadastroPeca();
-            o.ShowDialog();
-            o.Dispose();
+            FrmCadastroPeca form = FormResolve.Resolve<FrmCadastroPeca>();
+            form.ShowDialog();
+            form.Dispose();
         }
 
         private void PecasToolStripMenuItem1_Click(object sender, EventArgs e)

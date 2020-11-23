@@ -76,14 +76,14 @@ namespace SGM.WindowsForms
                 if (this.operacao == "inserir")
                 {
                     _pecaApplication.SalvarPeca(peca);
-                    MessageBox.Show("Cadastro inserido com sucesso! Peça/Produto: " + peca.CDescricao.ToString(), "Status", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Cadastro inserido com sucesso! Peça/Produto: " + peca.Descricao.ToString(), "Status", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
                     peca.PecaId = Convert.ToInt32(txtPecaId.Text);
                     _pecaApplication.AtualizarPeca(peca);
 
-                    MessageBox.Show("Cadastro alterado com sucesso! Peça/Produto: " + peca.CDescricao.ToString());
+                    MessageBox.Show("Cadastro alterado com sucesso! Peça/Produto: " + peca.Descricao.ToString());
                 }
 
                 this.LimpaTela();
