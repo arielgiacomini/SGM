@@ -83,7 +83,7 @@ namespace SGM.WindowsForms
                     peca.PecaId = Convert.ToInt32(txtPecaId.Text);
                     _pecaApplication.AtualizarPeca(peca);
 
-                    MessageBox.Show("Cadastro alterado com sucesso! Peça/Produto: " + peca.Descricao.ToString());
+                    MessageBox.Show("Cadastro alterado com sucesso! Peça/Produto: " + peca.Descricao.ToString(), "Status", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
 
                 this.LimpaTela();
@@ -114,10 +114,10 @@ namespace SGM.WindowsForms
                 txtPecaId.Text = Convert.ToString(peca.PecaId);
                 txtPeca.Text = Convert.ToString(peca.Descricao);
                 txtFornecedor.Text = Convert.ToString(peca.Fornecedor);
-                txtValorPeca.Text = Convert.ToString(peca.Valor);
-                txtValorFrete.Text = Convert.ToString(peca.ValorFrete);
+                txtValorPeca.Text = TransformaTextoEmMoeda(Convert.ToString(peca.Valor));
+                txtValorFrete.Text = TransformaTextoEmMoeda(Convert.ToString(peca.ValorFrete));
 
-                AlteraBotoes(3);
+                AlteraBotoes(2);
             }
             else
             {
@@ -142,7 +142,6 @@ namespace SGM.WindowsForms
                 txtValorPeca.Clear();
                 txtValorPeca.Focus();
             }
-
         }
 
         private void TxtValorFrete_Leave(object sender, EventArgs e)
@@ -158,6 +157,21 @@ namespace SGM.WindowsForms
                 MessageBox.Show("Por favor, digite um número. \n " + validaVF.Message, "ALERTA!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 txtValorFrete.Clear();
                 txtValorFrete.Focus();
+            }
+        }
+
+        private string TransformaTextoEmMoeda(string textoValor)
+        {
+            string valorFinal = "0";
+            try
+            {
+                decimal VF = Convert.ToDecimal(textoValor.Replace("R$ ", ""));
+                return valorFinal = Convert.ToString(VF.ToString("C"));
+            }
+            catch (Exception validaVF)
+            {
+                MessageBox.Show("Por favor, digite um número. \n " + validaVF.Message, "ALERTA!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return valorFinal;
             }
         }
     }
