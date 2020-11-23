@@ -125,7 +125,7 @@ namespace SGM.WindowsForms
                 this.AlteraBotoes(1);
             }
 
-            formConsultaPeca.Dispose(); //destrói o formulário de consulta, para não ocupar memória.
+            formConsultaPeca.Dispose();
         }
 
         private void TxtValorPeca_Leave(object sender, EventArgs e)
