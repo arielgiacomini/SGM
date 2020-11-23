@@ -6,5 +6,6 @@ namespace SGM.ApplicationServices.Command.Interface
     {
         void SalvarPeca(Peca peca);
         void AtualizarPeca(Peca peca);
+        void InativarPeca(int pecaId);
     }
 }

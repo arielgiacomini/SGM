@@ -42,5 +42,17 @@ namespace SGM.ApplicationServices.Command
                 }
             }
         }
+
+        public void InativarPeca(int pecaId)
+        {
+            using (var client = new HttpClient())
+            {
+                var result = client.PutAsync($"{_sGMConfiguration.SGMWebApiUrl}SGM/peca/inativar/{pecaId}", null).Result;
+                if (!result.IsSuccessStatusCode)
+                {
+                    throw new ApplicationException($"Problema ao INATIVAR peças. Identificador: {pecaId}");
+                }
+            }
+        }
     }
 }
