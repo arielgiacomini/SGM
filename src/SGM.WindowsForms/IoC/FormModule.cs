@@ -25,9 +25,12 @@ namespace SGM.WindowsForms.IoC
             Bind<IPecaQuery>().To<PecaQuery>();
             Bind<IPecaCommand>().To<PecaCommand>();
 
+            Bind<IVeiculoCommand>().To<VeiculoCommand>();
+
             Bind<IClienteApplication>().To<ClienteApplication>();
             Bind<IMaodeObraApplication>().To<MaodeObraApplication>();
             Bind<IPecaApplication>().To<PecaApplication>();
+            Bind<IVeiculoApplication>().To<VeiculoApplication>();
 
             Bind<ISGMConfiguration>().To<SGMConfiguration>();
         }

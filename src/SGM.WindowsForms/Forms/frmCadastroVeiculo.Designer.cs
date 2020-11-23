@@ -52,11 +52,11 @@
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            this.btnCancelar.Click += new System.EventHandler(this.BtnCancelar_Click);
             // 
             // btnLocalizar
             // 
-            this.btnLocalizar.Click += new System.EventHandler(this.btnLocalizar_Click);
+            this.btnLocalizar.Click += new System.EventHandler(this.BtnLocalizar_Click);
             // 
             // btnSalvar
             // 
@@ -64,15 +64,15 @@
             // 
             // btnExcluir
             // 
-            this.btnExcluir.Click += new System.EventHandler(this.btnExcluir_Click);
+            this.btnExcluir.Click += new System.EventHandler(this.BtnExcluir_Click);
             // 
             // btnAlterar
             // 
-            this.btnAlterar.Click += new System.EventHandler(this.btnAlterar_Click);
+            this.btnAlterar.Click += new System.EventHandler(this.BtnAlterar_Click);
             // 
             // btnInserir
             // 
-            this.btnInserir.Click += new System.EventHandler(this.btnInserir_Click);
+            this.btnInserir.Click += new System.EventHandler(this.BtnInserir_Click);
             // 
             // lblCodigo
             // 
@@ -139,7 +139,7 @@
             this.ClientSize = new System.Drawing.Size(784, 561);
             this.Name = "frmCadastroVeiculo";
             this.Text = "Sistema de Gerenciamento Mecânica - Cadastro de Veiculos";
-            this.Load += new System.EventHandler(this.frmCadastroVeiculo_Load);
+            this.Load += new System.EventHandler(this.FrmCadastroVeiculo_Load);
             this.pnCadastro.ResumeLayout(false);
             this.pnCadastro.PerformLayout();
             this.pnBotoes.ResumeLayout(false);

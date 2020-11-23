@@ -218,7 +218,8 @@ namespace SGM.WindowsForms
                 this.LimpaTela();
                 this.AlteraBotoes(1);
             }
-            c.Dispose(); //destrói o formulário de consulta, para não ocupar memória.
+
+            c.Dispose();
         }
 
         private void VerificaSeCPFJaExisteNaBaseDados_Leave(object sender, EventArgs e)

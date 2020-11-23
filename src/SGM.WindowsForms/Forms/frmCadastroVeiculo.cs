@@ -1,16 +1,17 @@
-﻿using BLL;
-using DAL;
-using Modelo;
-using Modelo.Entities;
+﻿using SGM.ApplicationServices.Application.Interface;
+using SGM.Domain.Entities;
 using System;
 using System.Windows.Forms;
 
 namespace SGM.WindowsForms
 {
-    public partial class frmCadastroVeiculo : SGM.WindowsForms.FrmModeloDeFormularioDeCadastro
+    public partial class frmCadastroVeiculo : FrmModeloDeFormularioDeCadastro
     {
-        public frmCadastroVeiculo()
+        private readonly IVeiculoApplication _veiculoApplication;
+
+        public frmCadastroVeiculo(IVeiculoApplication veiculoApplication)
         {
+            _veiculoApplication = veiculoApplication;
             InitializeComponent();
         }
 
@@ -21,19 +22,18 @@ namespace SGM.WindowsForms
             txtModelo.Clear();
         }
 
-        private void frmCadastroVeiculo_Load(object sender, EventArgs e)
+        private void FrmCadastroVeiculo_Load(object sender, EventArgs e)
         {
             this.AlteraBotoes(1);
         }
 
-        private void btnInserir_Click(object sender, EventArgs e)
+        private void BtnInserir_Click(object sender, EventArgs e)
         {
             this.operacao = "inserir";
             this.AlteraBotoes(2);
-
         }
 
-        private void btnCancelar_Click(object sender, EventArgs e)
+        private void BtnCancelar_Click(object sender, EventArgs e)
         {
             this.operacao = "cancelar";
             this.AlteraBotoes(1);
@@ -44,7 +44,7 @@ namespace SGM.WindowsForms
         {
             try
             {
-                Veiculo modelo = new Veiculo
+                Veiculo veiculo = new Veiculo
                 {
                     CodigoFipe = 0,
                     MarcaId = 0,
@@ -52,39 +52,35 @@ namespace SGM.WindowsForms
                     VeiculoAtivo = true,
                     DataCadastro = DateTime.Now
                 };
-                // objeto para gravar os dados no banco de dados
-                DALConexao cx = new DALConexao(ConnectionStringConfiguration.ConnectionString);
-                BLLVeiculo bll = new BLLVeiculo(cx);
 
                 if (this.operacao == "inserir")
                 {
-                    // Cadastrar uma categoria
-                    int veiculoId = bll.Incluir(modelo);
-                    MessageBox.Show("Cadastro inserido com sucesso! Código: " + veiculoId.ToString());
+                    _veiculoApplication.SalvarVeiculo(veiculo);
+                    MessageBox.Show("Cadastro inserido com sucesso!", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-                //else
-                //{
-                //    // Alterar uma categoria
-                //    modelo.CVeiculoId = Convert.ToInt32(txtVeiculoid.Text);
-                //    bll.Alterar(modelo);
-                //    MessageBox.Show("Cadastro alterado com sucesso!");
-                //}
+                else
+                {
+                    veiculo.VeiculoId = Convert.ToInt32(txtVeiculoid.Text);
+                    _veiculoApplication.AtualizarVeiculo(veiculo);
+
+                    MessageBox.Show("Cadastro alterado com sucesso!", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
                 this.LimpaTela();
                 this.AlteraBotoes(1);
             }
             catch (Exception erro)
             {
-                MessageBox.Show(erro.Message);
+                MessageBox.Show(erro.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        private void btnAlterar_Click(object sender, EventArgs e)
+        private void BtnAlterar_Click(object sender, EventArgs e)
         {
             this.operacao = "alterar";
             this.AlteraBotoes(2);
         }
 
-        private void btnExcluir_Click(object sender, EventArgs e)
+        private void BtnExcluir_Click(object sender, EventArgs e)
         {
             try
             {
@@ -92,43 +88,43 @@ namespace SGM.WindowsForms
 
                 if (d.ToString() == "Yes")
                 {
-                    // objeto para gravar os dados no banco de dados
-                    DALConexao cx = new DALConexao(ConnectionStringConfiguration.ConnectionString);
-                    BLLVeiculo bll = new BLLVeiculo(cx);
-                    bll.Excluir(Convert.ToInt32(txtVeiculoid.Text));
+                    _veiculoApplication.InativarVeiculo(Convert.ToInt32(txtVeiculoid.Text));
+
                     this.LimpaTela();
                     this.AlteraBotoes(1);
+
                     MessageBox.Show("Registro Excluído com Sucesso!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch
             {
-                MessageBox.Show("Impossível excluir o registro. \n O registro está sendo utilizado em outro local.");
+                MessageBox.Show("Impossível excluir o registro. \n O registro está sendo utilizado em outro local.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 this.AlteraBotoes(3);
             }
         }
 
-        private void btnLocalizar_Click(object sender, EventArgs e)
+        private void BtnLocalizar_Click(object sender, EventArgs e)
         {
             frmConsultaVeiculo c = new frmConsultaVeiculo();
             c.ShowDialog();
             if (c.codigo != 0)
             {
-                // objeto para gravar os dados no banco de dados
-                DALConexao cx = new DALConexao(ConnectionStringConfiguration.ConnectionString);
-                BLLVeiculo bll = new BLLVeiculo(cx);
-                ModeloVeiculo modelo = bll.CarregaModeloVeiculo(c.codigo);
-                txtVeiculoid.Text = modelo.CVeiculoId.ToString();
-                txtMarca.Text = modelo.CMarca;
-                txtModelo.Text = modelo.CModelo;
-                AlteraBotoes(3);
+                var veiculo = _veiculoApplication.GetVeiculoByVeiculoId(c.codigo);
+                var marca = _veiculoApplication.GetMarcaByMarcaId(veiculo.MarcaId);
+
+                txtVeiculoid.Text = veiculo.VeiculoId.ToString();
+                txtMarca.Text = marca.Marca;
+                txtModelo.Text = veiculo.Modelo;
+
+                AlteraBotoes(2);
             }
             else
             {
                 this.LimpaTela();
                 this.AlteraBotoes(1);
             }
-            c.Dispose(); //destrói o formulário de consulta, para não ocupar memória.
+
+            c.Dispose();
         }
     }
 }
