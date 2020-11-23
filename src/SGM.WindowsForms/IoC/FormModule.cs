@@ -15,13 +15,14 @@ namespace SGM.WindowsForms.IoC
         public override void Load()
         {
             Bind<IClienteQuery>().To<ClienteQuery>();
-            Bind<IClienteVeiculoQuery>().To<ClienteVeiculoQuery>();
-
             Bind<IClienteCommand>().To<ClienteCommand>();
+
+            Bind<IClienteVeiculoQuery>().To<ClienteVeiculoQuery>();
 
             Bind<IMaodeObraQuery>().To<MaodeObraQuery>();
             Bind<IMaodeObraCommand>().To<MaodeObraCommand>();
 
+            Bind<IPecaQuery>().To<PecaQuery>();
             Bind<IPecaCommand>().To<PecaCommand>();
 
             Bind<IClienteApplication>().To<ClienteApplication>();

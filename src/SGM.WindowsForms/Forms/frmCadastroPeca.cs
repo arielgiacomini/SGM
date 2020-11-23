@@ -1,7 +1,4 @@
-﻿using BLL;
-using DAL;
-using Modelo;
-using SGM.ApplicationServices.Command.Interface;
+﻿using SGM.ApplicationServices.Application.Interface;
 using SGM.Domain.Entities;
 using System;
 using System.Windows.Forms;
@@ -10,11 +7,11 @@ namespace SGM.WindowsForms
 {
     public partial class FrmCadastroPeca : FrmModeloDeFormularioDeCadastro
     {
-        private readonly IPecaCommand _pecaCommand;
+        private readonly IPecaApplication _pecaApplication;
 
-        public FrmCadastroPeca(IPecaCommand pecaCommand)
+        public FrmCadastroPeca(IPecaApplication pecaApplication)
         {
-            _pecaCommand = pecaCommand;
+            _pecaApplication = pecaApplication;
             InitializeComponent();
         }
 
@@ -47,10 +44,10 @@ namespace SGM.WindowsForms
 
                 if (d.ToString() == "Yes")
                 {
-                    DALConexao cx = new DALConexao(ConnectionStringConfiguration.ConnectionString);
-                    BLLPeca bll = new BLLPeca(cx);
-                    bll.Excluir(Convert.ToInt32(txtPecaId.Text));
+                    _pecaApplication.InativarPeca(Convert.ToInt32(txtPecaId.Text));
+
                     MessageBox.Show("Registro Excluído com Sucesso!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
                     this.LimpaTela();
                     this.AlteraBotoes(1);
                 }
@@ -78,15 +75,15 @@ namespace SGM.WindowsForms
 
                 if (this.operacao == "inserir")
                 {
-                    _pecaCommand.SalvarPeca(peca);
-                    MessageBox.Show("Cadastro inserido com sucesso! Peça/Produto: " + peca.CDescricao.ToString(), "Status", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    _pecaApplication.SalvarPeca(peca);
+                    MessageBox.Show("Cadastro inserido com sucesso! Peça/Produto: " + peca.Descricao.ToString(), "Status", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
                     peca.PecaId = Convert.ToInt32(txtPecaId.Text);
-                    _pecaCommand.AtualizarPeca(peca);
+                    _pecaApplication.AtualizarPeca(peca);
 
-                    MessageBox.Show("Cadastro alterado com sucesso! Peça/Produto: " + peca.CDescricao.ToString());
+                    MessageBox.Show("Cadastro alterado com sucesso! Peça/Produto: " + peca.Descricao.ToString(), "Status", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
 
                 this.LimpaTela();
@@ -108,28 +105,27 @@ namespace SGM.WindowsForms
         private void BtnLocalizar_Click(object sender, EventArgs e)
         {
 
-            frmConsultaPeca l = new frmConsultaPeca();
-            l.ShowDialog();
-            if (l.codigo != 0)
+            frmConsultaPeca formConsultaPeca = new frmConsultaPeca();
+            formConsultaPeca.ShowDialog();
+            if (formConsultaPeca.codigo != 0)
             {
-                // objeto para gravar os dados no banco de dados
-                DALConexao cx = new DALConexao(ConnectionStringConfiguration.ConnectionString);
-                BLLPeca bll = new BLLPeca(cx);
-                ModeloPeca modelo = bll.CarregaModeloPeca(l.codigo);
-                txtPecaId.Text = Convert.ToString(modelo.CPecaId);
-                txtPeca.Text = Convert.ToString(modelo.CDescricao);
-                txtFornecedor.Text = Convert.ToString(modelo.CFornecedor);
-                txtValorPeca.Text = Convert.ToString(modelo.CValor);
-                txtValorFrete.Text = Convert.ToString(modelo.CValorFrete);
-                AlteraBotoes(3);
+                var peca = _pecaApplication.GetPecaByPecaId(formConsultaPeca.codigo);
+
+                txtPecaId.Text = Convert.ToString(peca.PecaId);
+                txtPeca.Text = Convert.ToString(peca.Descricao);
+                txtFornecedor.Text = Convert.ToString(peca.Fornecedor);
+                txtValorPeca.Text = TransformaTextoEmMoeda(Convert.ToString(peca.Valor));
+                txtValorFrete.Text = TransformaTextoEmMoeda(Convert.ToString(peca.ValorFrete));
+
+                AlteraBotoes(2);
             }
             else
             {
                 this.LimpaTela();
                 this.AlteraBotoes(1);
             }
-            l.Dispose(); //destrói o formulário de consulta, para não ocupar memória.
 
+            formConsultaPeca.Dispose(); //destrói o formulário de consulta, para não ocupar memória.
         }
 
         private void TxtValorPeca_Leave(object sender, EventArgs e)
@@ -146,7 +142,6 @@ namespace SGM.WindowsForms
                 txtValorPeca.Clear();
                 txtValorPeca.Focus();
             }
-
         }
 
         private void TxtValorFrete_Leave(object sender, EventArgs e)
@@ -162,6 +157,21 @@ namespace SGM.WindowsForms
                 MessageBox.Show("Por favor, digite um número. \n " + validaVF.Message, "ALERTA!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 txtValorFrete.Clear();
                 txtValorFrete.Focus();
+            }
+        }
+
+        private string TransformaTextoEmMoeda(string textoValor)
+        {
+            string valorFinal = "0";
+            try
+            {
+                decimal VF = Convert.ToDecimal(textoValor.Replace("R$ ", ""));
+                return valorFinal = Convert.ToString(VF.ToString("C"));
+            }
+            catch (Exception validaVF)
+            {
+                MessageBox.Show("Por favor, digite um número. \n " + validaVF.Message, "ALERTA!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return valorFinal;
             }
         }
     }
