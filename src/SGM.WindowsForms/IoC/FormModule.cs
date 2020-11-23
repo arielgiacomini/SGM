@@ -26,6 +26,7 @@ namespace SGM.WindowsForms.IoC
             Bind<IPecaCommand>().To<PecaCommand>();
 
             Bind<IVeiculoCommand>().To<VeiculoCommand>();
+            Bind<IVeiculoQuery>().To<VeiculoQuery>();
 
             Bind<IClienteApplication>().To<ClienteApplication>();
             Bind<IMaodeObraApplication>().To<MaodeObraApplication>();
