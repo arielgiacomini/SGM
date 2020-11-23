@@ -15,9 +15,9 @@ namespace SGM.WindowsForms
 
         private void VeiculosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmCadastroVeiculo f = new frmCadastroVeiculo();
-            f.ShowDialog();
-            f.Dispose();
+            frmCadastroVeiculo formCadastroVeiculo = FormResolve.Resolve<frmCadastroVeiculo>();
+            formCadastroVeiculo.ShowDialog();
+            formCadastroVeiculo.Dispose();
         }
 
         private void VeiculoToolStripMenuItem_Click(object sender, EventArgs e)
