@@ -1,5 +1,6 @@
 ﻿using SGM.ApplicationServices.Application.Interface;
 using SGM.Domain.Entities;
+using SGM.WindowsForms.IoC;
 using System;
 using System.Linq;
 using System.Windows.Forms;
@@ -9,10 +10,12 @@ namespace SGM.WindowsForms
     public partial class FrmCadastroCliente : FrmModeloDeFormularioDeCadastro
     {
         private readonly IClienteApplication _clienteApplication;
+        private readonly IClienteVeiculoApplication _clienteVeiculoApplication;
 
-        public FrmCadastroCliente(IClienteApplication clienteApplication)
+        public FrmCadastroCliente(IClienteApplication clienteApplication, IClienteVeiculoApplication clienteVeiculoApplication)
         {
             _clienteApplication = clienteApplication;
+            _clienteVeiculoApplication = clienteVeiculoApplication;
 
             InitializeComponent();
         }
@@ -110,7 +113,7 @@ namespace SGM.WindowsForms
                     MessageBox.Show("Cadastro alterado com sucesso! Cliente: " + cliente.NomeCliente.ToString(), "Status", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
 
-                var veiculosDoCliente = _clienteApplication.GetVeiculosClienteByClienteId(cliente.ClienteId);
+                var veiculosDoCliente = _clienteVeiculoApplication.GetVeiculosClienteByClienteId(cliente.ClienteId);
 
                 bool existeVeiculoCliente = veiculosDoCliente.Any();
 
@@ -129,11 +132,11 @@ namespace SGM.WindowsForms
 
                         if (c.codigo != 0)
                         {
-                            FrmCadastroClienteVeiculo g = new FrmCadastroClienteVeiculo();
-                            g.AlteraBotoes(1);
-                            g.clienteId = c.codigo;
-                            g.ShowDialog();
-                            g.Dispose();
+                            FrmCadastroClienteVeiculo formCadastroClienteVeiculo = FormResolve.Resolve<FrmCadastroClienteVeiculo>();
+                            formCadastroClienteVeiculo.AlteraBotoes(1);
+                            formCadastroClienteVeiculo.clienteId = c.codigo;
+                            formCadastroClienteVeiculo.ShowDialog();
+                            formCadastroClienteVeiculo.Dispose();
                         }
                     }
                 }
@@ -152,15 +155,12 @@ namespace SGM.WindowsForms
 
                         if (c.clienteId != 0)
                         {
-                            FrmCadastroClienteVeiculo g = new FrmCadastroClienteVeiculo
-                            {
-                                clienteId = c.clienteId,
-                                clienteVeiculoId = c.codigo
-                            };
-
-                            g.AlteraBotoes(3);
-                            g.ShowDialog();
-                            g.Dispose();
+                            FrmCadastroClienteVeiculo formCadastroClienteVeiculo = FormResolve.Resolve<FrmCadastroClienteVeiculo>();
+                            formCadastroClienteVeiculo.clienteId = c.clienteId;
+                            formCadastroClienteVeiculo.clienteVeiculoId = c.codigo;
+                            formCadastroClienteVeiculo.AlteraBotoes(3);
+                            formCadastroClienteVeiculo.ShowDialog();
+                            formCadastroClienteVeiculo.Dispose();
                         }
                     }
                 }

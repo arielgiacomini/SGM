@@ -17,9 +17,9 @@ namespace SGM.ApplicationServices.Application
             _veiculoQuery = veiculoQuery;
         }
 
-        public void SalvarVeiculo(Veiculo veiculo)
+        public int SalvarVeiculo(Veiculo veiculo)
         {
-            _veiculoCommand.SalvarVeiculo(veiculo);
+            return _veiculoCommand.SalvarVeiculo(veiculo);
         }
 
         public void AtualizarVeiculo(Veiculo veiculo)
@@ -45,6 +45,11 @@ namespace SGM.ApplicationServices.Application
         public IList<VeiculoMarca> GetMarcasByAll()
         {
             return _veiculoQuery.GetMarcasByAll();
+        }
+
+        public IList<Veiculo> GetVeiculosByMarcaId(int marcaId)
+        {
+            return _veiculoQuery.GetVeiculosByMarcaId(marcaId);
         }
     }
 }

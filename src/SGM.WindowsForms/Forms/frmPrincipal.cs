@@ -29,9 +29,9 @@ namespace SGM.WindowsForms
 
         private void ClienteVeículosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FrmCadastroClienteVeiculo k = new FrmCadastroClienteVeiculo();
-            k.ShowDialog();
-            k.Dispose();
+            FrmCadastroClienteVeiculo formCadastroClienteVeiculo = FormResolve.Resolve<FrmCadastroClienteVeiculo>();
+            formCadastroClienteVeiculo.ShowDialog();
+            formCadastroClienteVeiculo.Dispose();
         }
 
         private void BtnPrincipalCadastroCliente_Click(object sender, EventArgs e)
@@ -105,14 +105,11 @@ namespace SGM.WindowsForms
             x.ShowDialog();
             if (x.codigo != 0)
             {
-                FrmCadastroClienteVeiculo clivei = new FrmCadastroClienteVeiculo
-                {
-                    clienteId = x.clienteId,
-                    placaVeiculo = x.placaVeiculo
-                };
-
-                clivei.ShowDialog();
-                clivei.Dispose();
+                FrmCadastroClienteVeiculo formCadastroClienteVeiculo = FormResolve.Resolve<FrmCadastroClienteVeiculo>();
+                formCadastroClienteVeiculo.clienteId = x.clienteId;
+                formCadastroClienteVeiculo.placaVeiculo = x.placaVeiculo;
+                formCadastroClienteVeiculo.ShowDialog();
+                formCadastroClienteVeiculo.Dispose();
             }
         }
 

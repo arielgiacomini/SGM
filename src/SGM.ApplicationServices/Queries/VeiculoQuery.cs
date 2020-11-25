@@ -64,5 +64,21 @@ namespace SGM.ApplicationServices.Queries
                 }
             }
         }
+
+        public IList<Veiculo> GetVeiculosByMarcaId(int marcaId)
+        {
+            using (var client = new HttpClient())
+            {
+                var result = client.GetAsync($"{_sGMConfiguration.SGMWebApiUrl}SGM/veiculo/marca/{marcaId}").Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    return JsonConvert.DeserializeObject<IList<Veiculo>>(result.Content.ReadAsStringAsync().Result);
+                }
+                else
+                {
+                    throw new ApplicationException($"Problema ao consumir a API, resultado: {result.Content.ReadAsStringAsync().Result}");
+                }
+            }
+        }
     }
 }

@@ -4,7 +4,7 @@ namespace SGM.ApplicationServices.Command.Interface
 {
     public interface IVeiculoCommand
     {
-        void SalvarVeiculo(Veiculo veiculo);
+        int SalvarVeiculo(Veiculo veiculo);
         void AtualizarVeiculo(Veiculo veiculo);
         void InativarVeiculo(int veiculoId);
     }
