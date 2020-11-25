@@ -2,6 +2,7 @@
 using SGM.ApplicationServices.Command.Interface;
 using SGM.ApplicationServices.Queries.Interface;
 using SGM.Domain.Entities;
+using System.Collections.Generic;
 
 namespace SGM.ApplicationServices.Application
 {
@@ -39,6 +40,11 @@ namespace SGM.ApplicationServices.Application
         public VeiculoMarca GetMarcaByMarcaId(int marcaId)
         {
             return _veiculoQuery.GetMarcaByMarcaId(marcaId);
+        }
+
+        public IList<VeiculoMarca> GetMarcasByAll()
+        {
+            return _veiculoQuery.GetMarcasByAll();
         }
     }
 }

@@ -41,14 +41,24 @@ namespace SGM.ApplicationServices.Application
             _clienteCommand.InativarCliente(clienteId);
         }
 
+        public Cliente GetClienteByDocumentoCliente(string documentoCliente)
+        {
+            return _clienteQuery.GetClienteByDocumentoCliente(documentoCliente);
+        }
+
         public IEnumerable<ClienteVeiculo> GetVeiculosClienteByClienteId(int clienteId)
         {
             return _clienteVeiculoQuery.GetClienteVeiculoById(clienteId);
         }
 
-        public Cliente GetClienteByDocumentoCliente(string documentoCliente)
+        public ClienteVeiculo GetVeiculoClienteByPlaca(string placa)
         {
-            return _clienteQuery.GetClienteByDocumentoCliente(documentoCliente);
+            return _clienteVeiculoQuery.GetVeiculoClienteByPlaca(placa);
+        }
+
+        public ClienteVeiculo GetVeiculoClienteByClienteVeiculoId(int clienteVeiculoId)
+        {
+            return _clienteVeiculoQuery.GetVeiculoClienteByClienteVeiculoId(clienteVeiculoId);
         }
     }
 }

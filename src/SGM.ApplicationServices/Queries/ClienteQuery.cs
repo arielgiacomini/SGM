@@ -47,6 +47,5 @@ namespace SGM.ApplicationServices.Queries
                 }
             }
         }
-
     }
 }

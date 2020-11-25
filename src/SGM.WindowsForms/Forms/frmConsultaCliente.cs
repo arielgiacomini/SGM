@@ -33,7 +33,6 @@ namespace SGM.WindowsForms
                 BtnConsultaCliente_Click(sender, e);
             }
 
-
             dgvConsultCliente.Columns[0].HeaderText = "Código";
             dgvConsultCliente.Columns[0].Width = 50;
             dgvConsultCliente.Columns[1].HeaderText = "Cliente";
