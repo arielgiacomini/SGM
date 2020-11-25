@@ -9,7 +9,9 @@ namespace SGM.ApplicationServices.Application.Interface
         void SalvarCliente(Cliente cliente);
         void AtualizarCliente(Cliente cliente);
         void InativarCliente(int clienteId);
-        IEnumerable<ClienteVeiculo> GetVeiculosClienteByClienteId(int clienteId);
         Cliente GetClienteByDocumentoCliente(string documentoCliente);
+        IEnumerable<ClienteVeiculo> GetVeiculosClienteByClienteId(int clienteId);
+        ClienteVeiculo GetVeiculoClienteByPlaca(string placa);
+        ClienteVeiculo GetVeiculoClienteByClienteVeiculoId(int clienteVeiculoId);
     }
 }

@@ -1,8 +1,10 @@
 ﻿using BLL;
 using DAL;
 using Modelo;
-using Modelo.Entities;
+using SGM.ApplicationServices.Application.Interface;
+using SGM.Domain.Entities;
 using System;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace SGM.WindowsForms
@@ -12,9 +14,13 @@ namespace SGM.WindowsForms
         public int clienteId = 0;
         public string placaVeiculo = "";
         public int clienteVeiculoId = 0;
+        private readonly IClienteApplication _clienteApplication;
+        private readonly IVeiculoApplication _veiculoApplication;
 
-        public FrmCadastroClienteVeiculo()
+        public FrmCadastroClienteVeiculo(IClienteApplication clienteApplication, IVeiculoApplication veiculoApplication)
         {
+            _clienteApplication = clienteApplication;
+            _veiculoApplication = veiculoApplication;
             InitializeComponent();
         }
 
@@ -42,30 +48,26 @@ namespace SGM.WindowsForms
             this.LimpaTela();
             this.AlteraBotoes(1);
 
-            DALConexao conexao = new DALConexao(ConnectionStringConfiguration.ConnectionString);
-            BLLVeiculo veiculo = new BLLVeiculo(conexao);
-            BLLCliente cliente = new BLLCliente(conexao);
-            BLLVeiculoCliente clienteVeiculos = new BLLVeiculoCliente(conexao);
-
             if (cboMarcaVeiculo.DataSource == null)
             {
-                cboMarcaVeiculo.DataSource = veiculo.BuscarMarcasVeiculo();
+                cboMarcaVeiculo.DataSource = _veiculoApplication.GetMarcasByAll();
                 cboMarcaVeiculo.DisplayMember = "Marca";
                 cboMarcaVeiculo.ValueMember = "MarcaId";
             }
 
+
+
             ClienteVeiculo dadosVeiculoCliente = new ClienteVeiculo();
-            ModeloCliente dadosCliente = null;
+            Cliente dadosCliente = null;
             Veiculo dadosVeiculo = new Veiculo();
             VeiculoMarca dadosMarcaVeiculo = new VeiculoMarca();
 
-
             if (placaVeiculo != null && placaVeiculo != "")
             {
-                dadosVeiculoCliente = clienteVeiculos.CarregaModeloVeiculoClienteByPlaca(placaVeiculo);
-                dadosCliente = cliente.CarregaModeloCliente(dadosVeiculoCliente.ClienteId);
-                dadosVeiculo = veiculo.BuscarVeiculoByVeiculoId(dadosVeiculoCliente.VeiculoId);
-                dadosMarcaVeiculo = veiculo.BuscarMarcaVeiculoByMarcaId(dadosVeiculo.MarcaId);
+                dadosVeiculoCliente = _clienteApplication.GetVeiculoClienteByPlaca(placaVeiculo);
+                dadosCliente = _clienteApplication.GetClienteById(dadosVeiculoCliente.ClienteId);
+                dadosVeiculo = _veiculoApplication.GetVeiculoByVeiculoId(dadosVeiculoCliente.VeiculoId);
+                dadosMarcaVeiculo = _veiculoApplication.GetMarcaByMarcaId(dadosVeiculo.MarcaId);
 
                 PreencheInformacoesNaTela(dadosCliente, dadosVeiculoCliente, dadosVeiculo, dadosMarcaVeiculo);
 
@@ -75,10 +77,10 @@ namespace SGM.WindowsForms
 
             if (clienteVeiculoId != 0)
             {
-                dadosVeiculoCliente = clienteVeiculos.CarregaModeloVeiculoCliente(clienteVeiculoId);
-                dadosCliente = cliente.CarregaModeloCliente(dadosVeiculoCliente.ClienteId);
-                dadosVeiculo = veiculo.BuscarVeiculoByVeiculoId(dadosVeiculoCliente.VeiculoId);
-                dadosMarcaVeiculo = veiculo.BuscarMarcaVeiculoByMarcaId(dadosVeiculo.MarcaId);
+                dadosVeiculoCliente = _clienteApplication.GetVeiculoClienteByClienteVeiculoId(clienteVeiculoId);
+                dadosCliente = _clienteApplication.GetClienteById(dadosVeiculoCliente.ClienteId);
+                dadosVeiculo = _veiculoApplication.GetVeiculoByVeiculoId(dadosVeiculoCliente.VeiculoId);
+                dadosMarcaVeiculo = _veiculoApplication.GetMarcaByMarcaId(dadosVeiculo.MarcaId);
 
                 PreencheInformacoesNaTela(dadosCliente, dadosVeiculoCliente, dadosVeiculo, dadosMarcaVeiculo);
 
@@ -88,7 +90,7 @@ namespace SGM.WindowsForms
 
             if (clienteId != 0)
             {
-                dadosCliente = cliente.CarregaModeloCliente(clienteId);
+                dadosCliente = _clienteApplication.GetClienteById(clienteId);
 
                 PreencheInformacoesNaTela(dadosCliente, dadosVeiculoCliente, dadosVeiculo, dadosMarcaVeiculo);
 
@@ -108,9 +110,7 @@ namespace SGM.WindowsForms
 
             if (cboMarcaVeiculo.DataSource == null)
             {
-                DALConexao conexao = new DALConexao(ConnectionStringConfiguration.ConnectionString);
-                BLLVeiculo veiculo = new BLLVeiculo(conexao);
-                cboMarcaVeiculo.DataSource = veiculo.BuscarMarcasVeiculo();
+                cboMarcaVeiculo.DataSource = _veiculoApplication.GetMarcasByAll();
                 cboMarcaVeiculo.DisplayMember = "Marca";
                 cboMarcaVeiculo.ValueMember = "MarcaId";
             }
@@ -164,7 +164,9 @@ namespace SGM.WindowsForms
                     };
                     try
                     {
-                        veiculoId = veiculo.Incluir(novoVeiculo);
+                        _veiculoApplication.SalvarVeiculo(novoVeiculo);
+
+                        //saber qual Id foi inserido...
                     }
                     catch (Exception ex)
                     {
@@ -172,7 +174,7 @@ namespace SGM.WindowsForms
                     }
                 }
 
-                ClienteVeiculo modelo = new ClienteVeiculo
+                ClienteVeiculo clienteVeiculo = new ClienteVeiculo
                 {
                     ClienteId = Convert.ToInt32(txtClienteId.Text),
                     VeiculoId = veiculoId == 0 ? Convert.ToInt32(cboVeiculo.SelectedValue) : veiculoId,
@@ -186,7 +188,7 @@ namespace SGM.WindowsForms
                 {
                     try
                     {
-                        txtClienteVeiculoId.Text = Convert.ToString(bll.Incluir(modelo));
+                        txtClienteVeiculoId.Text = Convert.ToString(bll.Incluir(clienteVeiculo));
                         MessageBox.Show("Cadastro inserido com sucesso!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                         AbrirPerguntaQualItemDesejaEfetuarParaCliente(Convert.ToInt32(txtClienteId.Text), Convert.ToInt32(cboVeiculo.SelectedValue), Convert.ToString(txtPlacaVeiculo.Text));
@@ -200,8 +202,8 @@ namespace SGM.WindowsForms
                 {
                     try
                     {
-                        modelo.ClienteVeiculoId = Convert.ToInt32(txtClienteVeiculoId.Text);
-                        bll.Alterar(modelo);
+                        clienteVeiculo.ClienteVeiculoId = Convert.ToInt32(txtClienteVeiculoId.Text);
+                        bll.Alterar(clienteVeiculo);
                         MessageBox.Show("Cadastro alterado com sucesso!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                         AbrirPerguntaQualItemDesejaEfetuarParaCliente(Convert.ToInt32(txtClienteId.Text), Convert.ToInt32(cboVeiculo.SelectedValue), Convert.ToString(txtPlacaVeiculo.Text));
@@ -335,7 +337,7 @@ namespace SGM.WindowsForms
             }
         }
 
-        public void PreencheInformacoesNaTela(ModeloCliente cliente, ClienteVeiculo veiculoCliente, Veiculo veiculo, VeiculoMarca veiculoMarca)
+        public void PreencheInformacoesNaTela(Cliente cliente, ClienteVeiculo veiculoCliente, Veiculo veiculo, VeiculoMarca veiculoMarca)
         {
             if (cliente != null && cliente.CClienteId != 0)
             {

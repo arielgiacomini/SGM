@@ -32,5 +32,37 @@ namespace SGM.ApplicationServices.Queries
                 }
             }
         }
+
+        public ClienteVeiculo GetVeiculoClienteByPlaca(string placa)
+        {
+            using (var client = new HttpClient())
+            {
+                var result = client.GetAsync($"{_sGMConfiguration.SGMWebApiUrl}SGM/cliente-veiculo/placa/{placa}").Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    return JsonConvert.DeserializeObject<ClienteVeiculo>(result.Content.ReadAsStringAsync().Result);
+                }
+                else
+                {
+                    throw new ApplicationException($"Problema ao consumir a API, resultado: {result.Content.ReadAsStringAsync().Result}");
+                }
+            }
+        }
+
+        public ClienteVeiculo GetVeiculoClienteByClienteVeiculoId(int clienteVeiculoId)
+        {
+            using (var client = new HttpClient())
+            {
+                var result = client.GetAsync($"{_sGMConfiguration.SGMWebApiUrl}SGM/cliente-veiculo/id/{clienteVeiculoId}").Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    return JsonConvert.DeserializeObject<ClienteVeiculo>(result.Content.ReadAsStringAsync().Result);
+                }
+                else
+                {
+                    throw new ApplicationException($"Problema ao consumir a API, resultado: {result.Content.ReadAsStringAsync().Result}");
+                }
+            }
+        }
     }
 }

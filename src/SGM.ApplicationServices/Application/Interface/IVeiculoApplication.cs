@@ -1,4 +1,5 @@
 ﻿using SGM.Domain.Entities;
+using System.Collections.Generic;
 
 namespace SGM.ApplicationServices.Application.Interface
 {
@@ -9,5 +10,6 @@ namespace SGM.ApplicationServices.Application.Interface
         void InativarVeiculo(int veiculoId);
         Veiculo GetVeiculoByVeiculoId(int veiculoId);
         VeiculoMarca GetMarcaByMarcaId(int marcaId);
+        IList<VeiculoMarca> GetMarcasByAll();
     }
 }

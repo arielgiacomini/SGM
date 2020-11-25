@@ -17,7 +17,6 @@ namespace SGM.WindowsForms
 
         private void btnConsultaPeca_Click(object sender, EventArgs e)
         {
-            // objeto para gravar os dados no banco de dados
             DALConexao cx = new DALConexao(ConnectionStringConfiguration.ConnectionString);
             BLLPeca bll = new BLLPeca(cx);
             dgvConsultaPeca.DataSource = bll.Localizar(txtConsultaPeca.Text);
@@ -25,7 +24,7 @@ namespace SGM.WindowsForms
 
         private void frmConsultaPeca_Load(object sender, EventArgs e)
         {
-            btnConsultaPeca_Click(sender, e); // para carregar o grid na chamada da tela
+            btnConsultaPeca_Click(sender, e);
             dgvConsultaPeca.Columns[0].HeaderText = "Código";
             dgvConsultaPeca.Columns[0].Width = 50;
             dgvConsultaPeca.Columns[1].HeaderText = "Peça/Produto";
