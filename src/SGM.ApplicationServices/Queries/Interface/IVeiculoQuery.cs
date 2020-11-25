@@ -8,5 +8,6 @@ namespace SGM.ApplicationServices.Queries.Interface
         Veiculo GetVeiculoByVeiculoId(int veiculoId);
         VeiculoMarca GetMarcaByMarcaId(int marcaId);
         IList<VeiculoMarca> GetMarcasByAll();
+        IList<Veiculo> GetVeiculosByMarcaId(int marcaId);
     }
 }

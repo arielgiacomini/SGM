@@ -17,7 +17,7 @@ namespace SGM.ApplicationServices.Command
             _sGMConfiguration = sGMConfiguration;
         }
 
-        public void SalvarVeiculo(Veiculo veiculo)
+        public int SalvarVeiculo(Veiculo veiculo)
         {
             using (var client = new HttpClient())
             {
@@ -27,6 +27,8 @@ namespace SGM.ApplicationServices.Command
                 {
                     throw new ApplicationException($"Problema ao SALVAR veiculo. Modelo: {veiculo.Modelo}");
                 }
+
+                return Convert.ToInt32(result.Content);
             }
         }
 

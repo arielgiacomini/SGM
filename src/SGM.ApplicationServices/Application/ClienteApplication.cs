@@ -2,7 +2,6 @@
 using SGM.ApplicationServices.Command.Interface;
 using SGM.ApplicationServices.Queries.Interface;
 using SGM.Domain.Entities;
-using System.Collections.Generic;
 
 namespace SGM.ApplicationServices.Application
 {
@@ -44,21 +43,6 @@ namespace SGM.ApplicationServices.Application
         public Cliente GetClienteByDocumentoCliente(string documentoCliente)
         {
             return _clienteQuery.GetClienteByDocumentoCliente(documentoCliente);
-        }
-
-        public IEnumerable<ClienteVeiculo> GetVeiculosClienteByClienteId(int clienteId)
-        {
-            return _clienteVeiculoQuery.GetClienteVeiculoById(clienteId);
-        }
-
-        public ClienteVeiculo GetVeiculoClienteByPlaca(string placa)
-        {
-            return _clienteVeiculoQuery.GetVeiculoClienteByPlaca(placa);
-        }
-
-        public ClienteVeiculo GetVeiculoClienteByClienteVeiculoId(int clienteVeiculoId)
-        {
-            return _clienteVeiculoQuery.GetVeiculoClienteByClienteVeiculoId(clienteVeiculoId);
         }
     }
 }
