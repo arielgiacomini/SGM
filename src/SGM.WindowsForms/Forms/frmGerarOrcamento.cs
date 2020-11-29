@@ -1,6 +1,4 @@
-﻿using BLL;
-using DAL;
-using SGM.ApplicationServices.Application.Interface;
+﻿using SGM.ApplicationServices.Application.Interface;
 using SGM.Domain.DataSources;
 using SGM.Domain.Entities;
 using SGM.Domain.Enumeration;
