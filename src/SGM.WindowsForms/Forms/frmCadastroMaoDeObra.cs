@@ -1,5 +1,6 @@
 ﻿using SGM.ApplicationServices.Application.Interface;
 using SGM.Domain.Entities;
+using SGM.Domain.Enumeration;
 using System;
 using System.Windows.Forms;
 
@@ -35,7 +36,7 @@ namespace SGM.WindowsForms
         private void BtnInserir_Click(object sender, EventArgs e)
         {
             this.operacao = "inserir";
-            this.AlteraBotoes(2);
+            this.AlteraBotoes(EnumControleTelas.DisponivelInserirAndAlterar);
             txtVigenciaInicial.Text = Convert.ToString(DateTime.Today);
             txtVigenciaFinal.Text = Convert.ToString(DateTime.Today.AddDays(365));
             cboAtivo.Text = Convert.ToString("Ativo");
@@ -45,7 +46,7 @@ namespace SGM.WindowsForms
         private void BtnAlterar_Click(object sender, EventArgs e)
         {
             this.operacao = "alterar";
-            this.AlteraBotoes(2);
+            this.AlteraBotoes(EnumControleTelas.DisponivelInserirAndAlterar);
             cboAtivo.Enabled = true;
         }
 
@@ -62,13 +63,13 @@ namespace SGM.WindowsForms
                     MessageBox.Show("Registro Excluído com Sucesso!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     this.LimpaTela();
-                    this.AlteraBotoes(1);
+                    this.AlteraBotoes(EnumControleTelas.DisponivelInserirAndLocalizar);
                 }
             }
             catch
             {
                 MessageBox.Show("Impossível excluir o registro. \n O registro está sendo utilizado em outro local.");
-                this.AlteraBotoes(3);
+                this.AlteraBotoes(EnumControleTelas.DisponivelExcluirAndAlterar);
             }
         }
 
@@ -110,7 +111,7 @@ namespace SGM.WindowsForms
                 }
 
                 this.LimpaTela();
-                this.AlteraBotoes(2);
+                this.AlteraBotoes(EnumControleTelas.DisponivelInserirAndAlterar);
                 this.operacao = "inserir";
             }
             catch (Exception erro)
@@ -122,7 +123,7 @@ namespace SGM.WindowsForms
         private void BtnCancelar_Click(object sender, EventArgs e)
         {
             this.operacao = "cancelar";
-            this.AlteraBotoes(1);
+            this.AlteraBotoes(EnumControleTelas.DisponivelInserirAndLocalizar);
             this.LimpaTela();
             txtVigenciaInicial.Text = Convert.ToString(DateTime.Today);
             txtVigenciaFinal.Text = Convert.ToString(DateTime.Today.AddDays(365));
@@ -145,12 +146,12 @@ namespace SGM.WindowsForms
                 txtVigenciaFinal.Text = Convert.ToString(maoDeObra.VigenciaFinal);
                 cboAtivo.Text = ApresentarStatus(maoDeObra);
 
-                AlteraBotoes(2);
+                AlteraBotoes(EnumControleTelas.DisponivelInserirAndAlterar);
             }
             else
             {
                 this.LimpaTela();
-                this.AlteraBotoes(1);
+                this.AlteraBotoes(EnumControleTelas.DisponivelInserirAndLocalizar);
             }
 
             formConsultaMaodeObra.Dispose();

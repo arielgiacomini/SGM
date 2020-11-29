@@ -1,5 +1,6 @@
 ﻿using SGM.ApplicationServices.Application.Interface;
 using SGM.Domain.Entities;
+using SGM.Domain.Enumeration;
 using System;
 using System.Windows.Forms;
 
@@ -27,13 +28,13 @@ namespace SGM.WindowsForms
         private void BtnInserir_Click(object sender, EventArgs e)
         {
             this.operacao = "inserir";
-            this.AlteraBotoes(2);
+            this.AlteraBotoes(EnumControleTelas.DisponivelInserirAndAlterar);
         }
 
         private void BtnAlterar_Click(object sender, EventArgs e)
         {
             this.operacao = "alterar";
-            this.AlteraBotoes(2);
+            this.AlteraBotoes(EnumControleTelas.DisponivelInserirAndAlterar);
         }
 
         private void BtnExcluir_Click(object sender, EventArgs e)
@@ -49,13 +50,13 @@ namespace SGM.WindowsForms
                     MessageBox.Show("Registro Excluído com Sucesso!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     this.LimpaTela();
-                    this.AlteraBotoes(1);
+                    this.AlteraBotoes(EnumControleTelas.DisponivelInserirAndLocalizar);
                 }
             }
             catch
             {
                 MessageBox.Show("Impossível excluir o registro. \n O registro está sendo utilizado em outro local.", "ERRO!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                this.AlteraBotoes(3);
+                this.AlteraBotoes(EnumControleTelas.DisponivelExcluirAndAlterar);
             }
         }
 
@@ -87,7 +88,7 @@ namespace SGM.WindowsForms
                 }
 
                 this.LimpaTela();
-                this.AlteraBotoes(2);
+                this.AlteraBotoes(EnumControleTelas.DisponivelInserirAndAlterar);
             }
             catch (Exception erro)
             {
@@ -98,7 +99,7 @@ namespace SGM.WindowsForms
         private void BtnCancelar_Click(object sender, EventArgs e)
         {
             this.operacao = "cancelar";
-            this.AlteraBotoes(1);
+            this.AlteraBotoes(EnumControleTelas.DisponivelInserirAndLocalizar);
             this.LimpaTela();
         }
 
@@ -117,12 +118,12 @@ namespace SGM.WindowsForms
                 txtValorPeca.Text = TransformaTextoEmMoeda(Convert.ToString(peca.Valor));
                 txtValorFrete.Text = TransformaTextoEmMoeda(Convert.ToString(peca.ValorFrete));
 
-                AlteraBotoes(2);
+                AlteraBotoes(EnumControleTelas.DisponivelInserirAndAlterar);
             }
             else
             {
                 this.LimpaTela();
-                this.AlteraBotoes(1);
+                this.AlteraBotoes(EnumControleTelas.DisponivelInserirAndLocalizar);
             }
 
             formConsultaPeca.Dispose();

@@ -2,6 +2,7 @@
 using DAL;
 using SGM.ApplicationServices.Application.Interface;
 using SGM.Domain.Entities;
+using SGM.Domain.Enumeration;
 using System;
 using System.Windows.Forms;
 
@@ -36,6 +37,9 @@ namespace SGM.WindowsForms
             txtAnoModeloVeiculo.Clear();
             cboVeiculo.SelectedIndex = -1;
             cboMarcaVeiculo.SelectedIndex = -1;
+            checkBoxAtivo.Checked = false;
+            txtDataCadastro.Clear();
+            txtDataAlteracao.Clear();
         }
 
         private void FrmCadastroClienteVeiculo_Load(object sender, EventArgs e)
@@ -46,7 +50,7 @@ namespace SGM.WindowsForms
             this.txtAnoModeloVeiculo.Enabled = false;
 
             this.LimpaTela();
-            this.AlteraBotoes(1);
+            this.AlteraBotoes(EnumControleTelas.DisponivelInserirAndLocalizar);
 
             if (cboMarcaVeiculo.DataSource == null)
             {
@@ -69,11 +73,10 @@ namespace SGM.WindowsForms
 
                 PreencheInformacoesNaTela(dadosCliente, dadosVeiculoCliente, dadosVeiculo, dadosMarcaVeiculo);
 
-                this.AlteraBotoes(3);
+                this.AlteraBotoes(EnumControleTelas.DisponivelExcluirAndAlterar);
                 this.operacao = "alterar";
             }
-
-            if (clienteVeiculoId != 0)
+            else if (clienteVeiculoId != 0)
             {
                 dadosVeiculoCliente = _clienteVeiculoApplication.GetVeiculoClienteByClienteVeiculoId(clienteVeiculoId);
                 dadosCliente = _clienteApplication.GetClienteById(dadosVeiculoCliente.ClienteId);
@@ -82,22 +85,20 @@ namespace SGM.WindowsForms
 
                 PreencheInformacoesNaTela(dadosCliente, dadosVeiculoCliente, dadosVeiculo, dadosMarcaVeiculo);
 
-                this.AlteraBotoes(3);
+                this.AlteraBotoes(EnumControleTelas.DisponivelExcluirAndAlterar);
                 this.operacao = "alterar";
             }
-
-            if (clienteId != 0)
+            else if (clienteId != 0 && (placaVeiculo == null || clienteVeiculoId == 0 || clienteVeiculoId == 0))
             {
                 dadosCliente = _clienteApplication.GetClienteById(clienteId);
-
                 PreencheInformacoesNaTela(dadosCliente, dadosVeiculoCliente, dadosVeiculo, dadosMarcaVeiculo);
 
-                this.AlteraBotoes(2);
+                this.AlteraBotoes(EnumControleTelas.DisponivelInserirAndAlterar);
                 this.operacao = "inserir";
             }
             else
             {
-                this.AlteraBotoes(1);
+                this.AlteraBotoes(EnumControleTelas.DisponivelInserirAndLocalizar);
                 this.operacao = "inserir";
             }
         }
@@ -113,14 +114,14 @@ namespace SGM.WindowsForms
                 cboMarcaVeiculo.ValueMember = "MarcaId";
             }
 
-            this.AlteraBotoes(2);
+            this.AlteraBotoes(EnumControleTelas.DisponivelInserirAndAlterar);
             this.operacao = "inserir";
         }
 
         private void BtnCancelar_Click(object sender, EventArgs e)
         {
             this.txtAnoModeloVeiculo.Enabled = false;
-            this.AlteraBotoes(1);
+            this.AlteraBotoes(EnumControleTelas.DisponivelInserirAndLocalizar);
             this.LimpaTela();
         }
 
@@ -128,7 +129,7 @@ namespace SGM.WindowsForms
         {
             this.txtAnoModeloVeiculo.Enabled = false;
 
-            this.AlteraBotoes(3);
+            this.AlteraBotoes(EnumControleTelas.DisponivelExcluirAndAlterar);
             this.operacao = "alterar";
             txtCliente.Enabled = false;
             txtClienteId.Enabled = false;
@@ -173,7 +174,9 @@ namespace SGM.WindowsForms
                     CorVeiculo = txtCorVeiculo.Text,
                     PlacaVeiculo = txtPlacaVeiculo.Text,
                     KmRodados = txtKmVeiculo.Text.Length == 0 ? 0 : Convert.ToInt32(txtKmVeiculo.Text),
-                    AnoVeiculo = Convert.ToInt32(txtAnoModeloVeiculo.Text)
+                    AnoVeiculo = Convert.ToInt32(txtAnoModeloVeiculo.Text),
+                    Ativo = checkBoxAtivo.Checked,
+                    DataCadastro = DateTime.Now
                 };
 
                 if (this.operacao == "inserir")
@@ -195,6 +198,7 @@ namespace SGM.WindowsForms
                     try
                     {
                         clienteVeiculo.ClienteVeiculoId = Convert.ToInt32(txtClienteVeiculoId.Text);
+                        clienteVeiculo.DataAlteracao = DateTime.Now;
                         _clienteVeiculoApplication.AtualizarClienteVeiculo(clienteVeiculo);
                         MessageBox.Show("Cadastro alterado com sucesso!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -222,7 +226,7 @@ namespace SGM.WindowsForms
                     _clienteVeiculoApplication.InativarClienteVeiculo(Convert.ToInt32(txtClienteVeiculoId.Text));
 
                     this.LimpaTela();
-                    this.AlteraBotoes(1);
+                    this.AlteraBotoes(EnumControleTelas.DisponivelInserirAndLocalizar);
 
                     MessageBox.Show("Registro Excluído com sucesso!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
@@ -230,7 +234,7 @@ namespace SGM.WindowsForms
             catch
             {
                 MessageBox.Show("Impossível excluir o registro. \n O registro está sendo utilizado em outro local.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                this.AlteraBotoes(3);
+                this.AlteraBotoes(EnumControleTelas.DisponivelExcluirAndAlterar);
             }
         }
 
@@ -260,14 +264,14 @@ namespace SGM.WindowsForms
 
                     PreencheInformacoesNaTela(dadosCliente, dadosVeiculoCliente, dadosVeiculo, dadosMarcaVeiculo);
 
-                    this.AlteraBotoes(2);
+                    this.AlteraBotoes(EnumControleTelas.DisponivelInserirAndAlterar);
                     this.operacao = "alterar";
                 }
             }
             else
             {
                 this.LimpaTela();
-                this.AlteraBotoes(1);
+                this.AlteraBotoes(EnumControleTelas.DisponivelInserirAndLocalizar);
             }
 
             c.Dispose();
@@ -337,6 +341,9 @@ namespace SGM.WindowsForms
                 txtKmVeiculo.Text = veiculoCliente.KmRodados.ToString();
                 txtCorVeiculo.Text = veiculoCliente.CorVeiculo.ToString();
                 txtAnoModeloVeiculo.Text = veiculoCliente.AnoVeiculo.ToString();
+                checkBoxAtivo.Checked = veiculoCliente.Ativo;
+                txtDataCadastro.Text = veiculoCliente.DataCadastro.ToLongDateString();
+                txtDataAlteracao.Text = veiculoCliente.DataAlteracao.HasValue ? veiculoCliente.DataAlteracao.Value.ToLongDateString() : "";
             }
 
             if (veiculo != null && veiculo.VeiculoId != 0)

@@ -114,35 +114,45 @@ namespace SGM.WindowsForms
 
         private void FrmGerarOrcamento_Load(object sender, EventArgs e)
         {
-            ClienteVeiculo clienteVeiculo = null;
-
             OrganizarTelaOrcamento();
 
             if (clienteId != 0)
             {
                 var cliente = _clienteApplication.GetClienteById(clienteId);
 
-                if (placaVeiculo != "" && veiculoId != 0)
+                var dataSource = new List<PesquisaClienteOrcamentoDataSource>();
+
+                foreach (var clienteVeiculo in cliente.ClienteVeiculo)
                 {
-                    clienteVeiculo = _clienteVeiculoApplication.GetVeiculoClienteByPlaca(placaVeiculo);
+                    var veiculo = _veiculoApplication.GetVeiculoByVeiculoId(clienteVeiculo.VeiculoId);
 
-                    dgvCliente.DataSource = _clienteApplication.GetClienteByPlaca(placaVeiculo);
-                    dgvCliente.Columns[0].HeaderText = "Código";
-                    dgvCliente.Columns[0].Width = 50;
-                    dgvCliente.Columns[1].HeaderText = "Cliente";
-                    dgvCliente.Columns[1].Width = 296;
-                    dgvCliente.Columns[2].HeaderText = "Placa Veículo";
-                    dgvCliente.Columns[2].Width = 120;
-                    dgvCliente.Columns[3].HeaderText = "Marca/Modelo";
-                    dgvCliente.Columns[3].Width = 232;
-                    dgvCliente.Columns[4].HeaderText = "ClienteVeiculoId";
-                    dgvCliente.Columns[4].Width = 50;
-                    dgvCliente.Columns[4].Visible = false;
+                    var marca = _veiculoApplication.GetMarcaByMarcaId(veiculo.MarcaId);
 
+                    dataSource.Add(new PesquisaClienteOrcamentoDataSource
+                    {
+                        ClienteId = cliente.ClienteId,
+                        NomeCliente = cliente.NomeCliente,
+                        PlacaVeiculo = clienteVeiculo.PlacaVeiculo,
+                        MarcaModeloVeiculo = marca.Marca + " / " + veiculo.Modelo,
+                        ClienteVeiculoId = clienteVeiculo.ClienteVeiculoId
+                    });
                 }
 
+                dgvCliente.DataSource = dataSource;
+                dgvCliente.Columns[0].HeaderText = "Código";
+                dgvCliente.Columns[0].Width = 50;
+                dgvCliente.Columns[1].HeaderText = "Cliente";
+                dgvCliente.Columns[1].Width = 296;
+                dgvCliente.Columns[2].HeaderText = "Placa Veículo";
+                dgvCliente.Columns[2].Width = 120;
+                dgvCliente.Columns[3].HeaderText = "Marca/Modelo";
+                dgvCliente.Columns[3].Width = 232;
+                dgvCliente.Columns[4].HeaderText = "ClienteVeiculoId";
+                dgvCliente.Columns[4].Width = 50;
+                dgvCliente.Columns[4].Visible = false;
+
                 this.operacao = "inserir";
-                this.AlteraBotoes(2);
+                this.DisponibilizarBotoesTela(EnumControleTelas.DisponivelInserirAndAlterar);
 
                 txtConsultaCliente.Enabled = false;
                 btnConsultaCliente.Enabled = false;
@@ -187,7 +197,7 @@ namespace SGM.WindowsForms
         private void BtnInserir_Click(object sender, EventArgs e)
         {
             this.operacao = "inserir";
-            this.AlteraBotoes(2);
+            this.DisponibilizarBotoesTela(EnumControleTelas.DisponivelInserirAndAlterar);
 
             txtValorAdicional.Enabled = true;
             txtPercentualDesconto.Enabled = true;
@@ -375,7 +385,7 @@ namespace SGM.WindowsForms
                 dgvPeca.DataSource = null;
 
                 this.LimpaTela();
-                this.AlteraBotoes(1);
+                this.DisponibilizarBotoesTela(EnumControleTelas.DisponivelInserirAndLocalizar);
                 this.Close();
             }
             catch (Exception erro)
@@ -437,7 +447,7 @@ namespace SGM.WindowsForms
         private void BtnCancelar_Click(object sender, EventArgs e)
         {
             this.operacao = "cancelar";
-            this.AlteraBotoes(1);
+            this.DisponibilizarBotoesTela(EnumControleTelas.DisponivelInserirAndLocalizar);
             this.LimpaTela();
         }
 
@@ -514,13 +524,13 @@ namespace SGM.WindowsForms
                 dgvPeca.Columns[2].DefaultCellStyle.Format = "C2";
                 dgvPeca.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
 
-                AlteraBotoes(3);
+                DisponibilizarBotoesTela(EnumControleTelas.DisponivelExcluirAndAlterar);
             }
 
             else
             {
                 this.LimpaTela();
-                this.AlteraBotoes(1);
+                this.DisponibilizarBotoesTela(EnumControleTelas.DisponivelInserirAndLocalizar);
             }
 
             consultaHistoricoOrcamento.Dispose();
