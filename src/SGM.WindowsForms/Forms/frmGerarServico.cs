@@ -89,7 +89,7 @@ namespace SGM.WindowsForms
                 var dadosCliente = modeloCliente.CarregaModeloCliente(clienteId);
 
                 this.operacao = "inserir";
-                this.DisponibilizarBotoesTela(EnumControleTelas.DisponivelInserirAndAlterar);
+                this.DisponibilizarBotoesTela(EnumControleTelas.SalvarCancelarExcluir);
 
                 if (placaVeiculo != "" && veiculoId != 0)
                 {
@@ -145,7 +145,7 @@ namespace SGM.WindowsForms
         private void BtnInserir_Click(object sender, EventArgs e)
         {
             this.operacao = "inserir";
-            this.DisponibilizarBotoesTela(EnumControleTelas.DisponivelInserirAndAlterar);
+            this.DisponibilizarBotoesTela(EnumControleTelas.SalvarCancelarExcluir);
             txtValorAdicional.Enabled = true;
             txtPercentualDesconto.Enabled = true;
             txtClienteId.Text = Convert.ToString(1);
@@ -315,7 +315,7 @@ namespace SGM.WindowsForms
                 dgvPeca.DataSource = null;
 
                 this.LimpaTela();
-                this.DisponibilizarBotoesTela(EnumControleTelas.DisponivelInserirAndLocalizar);
+                this.DisponibilizarBotoesTela(EnumControleTelas.InserirLocalizar);
             }
             catch (Exception erro)
             {
@@ -375,7 +375,7 @@ namespace SGM.WindowsForms
         private void BtnCancelar_Click(object sender, EventArgs e)
         {
             this.operacao = "cancelar";
-            this.DisponibilizarBotoesTela(EnumControleTelas.DisponivelInserirAndLocalizar);
+            this.DisponibilizarBotoesTela(EnumControleTelas.InserirLocalizar);
             this.LimpaTela();
         }
 
@@ -398,12 +398,12 @@ namespace SGM.WindowsForms
                 txtPercentualDesconto.Text = Convert.ToString(modelo.CPercentualDesconto);
                 txtValorDesconto.Text = Convert.ToString(modelo.CValorDesconto);
                 txtValorTotal.Text = Convert.ToString(modelo.CValorTotal);
-                DisponibilizarBotoesTela(EnumControleTelas.DisponivelExcluirAndAlterar);
+                DisponibilizarBotoesTela(EnumControleTelas.AlterarExcluirCancelar);
             }
             else
             {
                 this.LimpaTela();
-                this.DisponibilizarBotoesTela(EnumControleTelas.DisponivelInserirAndLocalizar);
+                this.DisponibilizarBotoesTela(EnumControleTelas.InserirLocalizar);
             }
 
             consultaHistoricoServico.Dispose();

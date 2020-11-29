@@ -28,13 +28,13 @@ namespace SGM.WindowsForms
         private void BtnInserir_Click(object sender, EventArgs e)
         {
             this.operacao = "inserir";
-            this.DisponibilizarBotoesTela(EnumControleTelas.DisponivelInserirAndAlterar);
+            this.DisponibilizarBotoesTela(EnumControleTelas.SalvarCancelarExcluir);
         }
 
         private void BtnAlterar_Click(object sender, EventArgs e)
         {
             this.operacao = "alterar";
-            this.DisponibilizarBotoesTela(EnumControleTelas.DisponivelInserirAndAlterar);
+            this.DisponibilizarBotoesTela(EnumControleTelas.SalvarCancelarExcluir);
         }
 
         private void BtnExcluir_Click(object sender, EventArgs e)
@@ -50,13 +50,13 @@ namespace SGM.WindowsForms
                     MessageBox.Show("Registro Excluído com Sucesso!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     this.LimpaTela();
-                    this.DisponibilizarBotoesTela(EnumControleTelas.DisponivelInserirAndLocalizar);
+                    this.DisponibilizarBotoesTela(EnumControleTelas.InserirLocalizar);
                 }
             }
             catch
             {
                 MessageBox.Show("Impossível excluir o registro. \n O registro está sendo utilizado em outro local.", "ERRO!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                this.DisponibilizarBotoesTela(EnumControleTelas.DisponivelExcluirAndAlterar);
+                this.DisponibilizarBotoesTela(EnumControleTelas.AlterarExcluirCancelar);
             }
         }
 
@@ -88,7 +88,7 @@ namespace SGM.WindowsForms
                 }
 
                 this.LimpaTela();
-                this.DisponibilizarBotoesTela(EnumControleTelas.DisponivelInserirAndAlterar);
+                this.DisponibilizarBotoesTela(EnumControleTelas.SalvarCancelarExcluir);
             }
             catch (Exception erro)
             {
@@ -99,7 +99,7 @@ namespace SGM.WindowsForms
         private void BtnCancelar_Click(object sender, EventArgs e)
         {
             this.operacao = "cancelar";
-            this.DisponibilizarBotoesTela(EnumControleTelas.DisponivelInserirAndLocalizar);
+            this.DisponibilizarBotoesTela(EnumControleTelas.InserirLocalizar);
             this.LimpaTela();
         }
 
@@ -118,12 +118,12 @@ namespace SGM.WindowsForms
                 txtValorPeca.Text = TransformaTextoEmMoeda(Convert.ToString(peca.Valor));
                 txtValorFrete.Text = TransformaTextoEmMoeda(Convert.ToString(peca.ValorFrete));
 
-                DisponibilizarBotoesTela(EnumControleTelas.DisponivelInserirAndAlterar);
+                DisponibilizarBotoesTela(EnumControleTelas.SalvarCancelarExcluir);
             }
             else
             {
                 this.LimpaTela();
-                this.DisponibilizarBotoesTela(EnumControleTelas.DisponivelInserirAndLocalizar);
+                this.DisponibilizarBotoesTela(EnumControleTelas.InserirLocalizar);
             }
 
             formConsultaPeca.Dispose();

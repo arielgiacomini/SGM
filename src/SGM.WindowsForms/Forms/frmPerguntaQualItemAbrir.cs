@@ -14,6 +14,7 @@ namespace SGM.WindowsForms
         public int clienteId = 0;
         public int veiculoId = 0;
         public string placaVeiculo = "";
+        public int clienteVeiculoId = 0;
 
         private void FrmPerguntaQualItemAbrir_Load(object sender, EventArgs e)
         {
@@ -25,6 +26,7 @@ namespace SGM.WindowsForms
             FrmGerarOrcamento formGerarOrcamento = FormResolve.Resolve<FrmGerarOrcamento>();
             formGerarOrcamento.clienteId = clienteId;
             formGerarOrcamento.veiculoId = veiculoId;
+            formGerarOrcamento.clienteVeiculoId = clienteVeiculoId;
             formGerarOrcamento.placaVeiculo = placaVeiculo;
             formGerarOrcamento.ShowDialog();
             formGerarOrcamento.Dispose();

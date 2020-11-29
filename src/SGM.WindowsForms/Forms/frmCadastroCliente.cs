@@ -44,13 +44,13 @@ namespace SGM.WindowsForms
         private void BtnInserir_Click(object sender, EventArgs e)
         {
             this.operacao = "inserir";
-            this.DisponibilizarBotoesTela(EnumControleTelas.DisponivelInserirAndAlterar);
+            this.DisponibilizarBotoesTela(EnumControleTelas.SalvarCancelarExcluir);
         }
 
         private void BtnAlterar_Click(object sender, EventArgs e)
         {
             this.operacao = "alterar";
-            this.DisponibilizarBotoesTela(EnumControleTelas.DisponivelInserirAndAlterar);
+            this.DisponibilizarBotoesTela(EnumControleTelas.SalvarCancelarExcluir);
         }
 
         private void BtnExcluir_Click(object sender, EventArgs e)
@@ -65,13 +65,13 @@ namespace SGM.WindowsForms
 
                     MessageBox.Show("Registro Excluído com Sucesso!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.LimpaTela();
-                    this.DisponibilizarBotoesTela(EnumControleTelas.DisponivelInserirAndLocalizar);
+                    this.DisponibilizarBotoesTela(EnumControleTelas.InserirLocalizar);
                 }
             }
             catch
             {
                 MessageBox.Show("Impossível excluir o registro. \n O registro está sendo utilizado em outro local.", "Erro!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                this.DisponibilizarBotoesTela(EnumControleTelas.DisponivelExcluirAndAlterar);
+                this.DisponibilizarBotoesTela(EnumControleTelas.AlterarExcluirCancelar);
             }
         }
 
@@ -134,7 +134,7 @@ namespace SGM.WindowsForms
                         if (c.codigo != 0)
                         {
                             FrmCadastroClienteVeiculo formCadastroClienteVeiculo = FormResolve.Resolve<FrmCadastroClienteVeiculo>();
-                            formCadastroClienteVeiculo.DisponibilizarBotoesTela(EnumControleTelas.DisponivelInserirAndLocalizar);
+                            formCadastroClienteVeiculo.DisponibilizarBotoesTela(EnumControleTelas.InserirLocalizar);
                             formCadastroClienteVeiculo.clienteId = c.codigo;
                             formCadastroClienteVeiculo.ShowDialog();
                             formCadastroClienteVeiculo.Dispose();
@@ -159,7 +159,7 @@ namespace SGM.WindowsForms
                             FrmCadastroClienteVeiculo formCadastroClienteVeiculo = FormResolve.Resolve<FrmCadastroClienteVeiculo>();
                             formCadastroClienteVeiculo.clienteId = c.clienteId;
                             formCadastroClienteVeiculo.clienteVeiculoId = c.codigo;
-                            formCadastroClienteVeiculo.DisponibilizarBotoesTela(EnumControleTelas.DisponivelExcluirAndAlterar);
+                            formCadastroClienteVeiculo.DisponibilizarBotoesTela(EnumControleTelas.AlterarExcluirCancelar);
                             formCadastroClienteVeiculo.ShowDialog();
                             formCadastroClienteVeiculo.Dispose();
                         }
@@ -167,7 +167,7 @@ namespace SGM.WindowsForms
                 }
 
                 this.LimpaTela();
-                this.DisponibilizarBotoesTela(EnumControleTelas.DisponivelInserirAndLocalizar);
+                this.DisponibilizarBotoesTela(EnumControleTelas.InserirLocalizar);
                 this.Close();
             }
             catch (Exception erro)
@@ -179,7 +179,7 @@ namespace SGM.WindowsForms
         private void BtnCancelar_Click(object sender, EventArgs e)
         {
             this.operacao = "cancelar";
-            this.DisponibilizarBotoesTela(EnumControleTelas.DisponivelInserirAndLocalizar);
+            this.DisponibilizarBotoesTela(EnumControleTelas.InserirLocalizar);
             this.LimpaTela();
         }
 
@@ -212,12 +212,12 @@ namespace SGM.WindowsForms
                 txtUF.Text = cliente.LogradouroUF;
                 txtDataCadastro.Text = Convert.ToString(cliente.DataCadastro);
 
-                DisponibilizarBotoesTela(EnumControleTelas.DisponivelExcluirAndAlterar);
+                DisponibilizarBotoesTela(EnumControleTelas.AlterarExcluirCancelar);
             }
             else
             {
                 this.LimpaTela();
-                this.DisponibilizarBotoesTela(EnumControleTelas.DisponivelInserirAndLocalizar);
+                this.DisponibilizarBotoesTela(EnumControleTelas.InserirLocalizar);
             }
 
             c.Dispose();

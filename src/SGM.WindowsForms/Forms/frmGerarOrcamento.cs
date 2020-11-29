@@ -33,6 +33,7 @@ namespace SGM.WindowsForms
 
         public int codigo = 0;
         public int clienteId = 0;
+        public int clienteVeiculoId = 0;
         public int veiculoId = 0;
         public string placaVeiculo = "";
         public string CellCliente = "";
@@ -116,7 +117,7 @@ namespace SGM.WindowsForms
         {
             OrganizarTelaOrcamento();
 
-            if (clienteId != 0)
+            if (clienteId != 0 || clienteVeiculoId != 0)
             {
                 var cliente = _clienteApplication.GetClienteById(clienteId);
 
@@ -151,17 +152,8 @@ namespace SGM.WindowsForms
                 dgvCliente.Columns[4].Width = 50;
                 dgvCliente.Columns[4].Visible = false;
 
-                this.operacao = "inserir";
-                this.DisponibilizarBotoesTela(EnumControleTelas.DisponivelInserirAndAlterar);
-
-                txtConsultaCliente.Enabled = false;
-                btnConsultaCliente.Enabled = false;
-                dgvCliente.Enabled = false;
-
-                txtValorAdicional.Enabled = true;
-                txtPercentualDesconto.Enabled = true;
-
                 txtClienteId.Text = cliente.ClienteId.ToString();
+                txtClienteVeiculoId.Text = clienteVeiculoId.ToString();
                 txtClienteSelecionado.Text = cliente.NomeCliente.ToString();
                 txtValorDesconto.Text = Convert.ToDecimal("0").ToString("C");
                 txtValorTotal.Text = Convert.ToDecimal("0").ToString("C");
@@ -171,13 +163,25 @@ namespace SGM.WindowsForms
 
                 Orcamento orcamento = new Orcamento
                 {
-                    ClienteVeiculoId = Convert.ToInt32(txtClienteId.Text),
-                    Status = (int)EnumStatusOrcamento.IniciadoPendente
+                    ClienteVeiculoId = Convert.ToInt32(txtClienteVeiculoId.Text),
+                    Status = (int)EnumStatusOrcamento.IniciadoPendente,
+                    DataCadastro = DateTime.Now,
+                    Descricao = txtDescricao.Text
                 };
 
                 var orcamentoId = _orcamentoApplication.SalvarOrcamento(orcamento);
 
                 txtOrcamentoId.Text = orcamentoId.ToString();
+
+                this.operacao = "inserir";
+                this.DisponibilizarBotoesTela(EnumControleTelas.SalvarCancelarExcluir);
+
+                txtConsultaCliente.Enabled = false;
+                btnConsultaCliente.Enabled = false;
+                dgvCliente.Enabled = false;
+
+                txtValorAdicional.Enabled = true;
+                txtPercentualDesconto.Enabled = true;
             }
         }
 
@@ -197,7 +201,7 @@ namespace SGM.WindowsForms
         private void BtnInserir_Click(object sender, EventArgs e)
         {
             this.operacao = "inserir";
-            this.DisponibilizarBotoesTela(EnumControleTelas.DisponivelInserirAndAlterar);
+            this.DisponibilizarBotoesTela(EnumControleTelas.SalvarCancelarExcluir);
 
             txtValorAdicional.Enabled = true;
             txtPercentualDesconto.Enabled = true;
@@ -385,7 +389,7 @@ namespace SGM.WindowsForms
                 dgvPeca.DataSource = null;
 
                 this.LimpaTela();
-                this.DisponibilizarBotoesTela(EnumControleTelas.DisponivelInserirAndLocalizar);
+                this.DisponibilizarBotoesTela(EnumControleTelas.InserirLocalizar);
                 this.Close();
             }
             catch (Exception erro)
@@ -447,7 +451,7 @@ namespace SGM.WindowsForms
         private void BtnCancelar_Click(object sender, EventArgs e)
         {
             this.operacao = "cancelar";
-            this.DisponibilizarBotoesTela(EnumControleTelas.DisponivelInserirAndLocalizar);
+            this.DisponibilizarBotoesTela(EnumControleTelas.InserirLocalizar);
             this.LimpaTela();
         }
 
@@ -524,13 +528,13 @@ namespace SGM.WindowsForms
                 dgvPeca.Columns[2].DefaultCellStyle.Format = "C2";
                 dgvPeca.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
 
-                DisponibilizarBotoesTela(EnumControleTelas.DisponivelExcluirAndAlterar);
+                DisponibilizarBotoesTela(EnumControleTelas.AlterarExcluirCancelar);
             }
 
             else
             {
                 this.LimpaTela();
-                this.DisponibilizarBotoesTela(EnumControleTelas.DisponivelInserirAndLocalizar);
+                this.DisponibilizarBotoesTela(EnumControleTelas.InserirLocalizar);
             }
 
             consultaHistoricoOrcamento.Dispose();

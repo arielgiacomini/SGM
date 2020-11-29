@@ -17,12 +17,6 @@ namespace SGM.WindowsForms
 
         public void DisponibilizarBotoesTela(EnumControleTelas operacaoEscolhida)
         {
-            //  1 = Prepara os botões para inserir e localizar
-            //  2 = Prepara os para inserir/alterar um registro
-            //  3 = preparar a tela para excluir ou alterar
-            //  4 = apenas para operação de inclusão de registro direto de outra tela
-            //  5 = Disponível Alterar e Cancelar
-
             pnCadastro.Enabled = false;
             btnInserir.Enabled = false;
             btnAlterar.Enabled = false;
@@ -31,26 +25,26 @@ namespace SGM.WindowsForms
             btnCancelar.Enabled = false;
             btnSalvar.Enabled = false;
 
-            if (operacaoEscolhida == EnumControleTelas.DisponivelInserirAndLocalizar)
+            if (operacaoEscolhida == EnumControleTelas.InserirLocalizar)
             {
                 btnInserir.Enabled = true;
                 btnLocalizar.Enabled = true;
             }
-            if (operacaoEscolhida == EnumControleTelas.DisponivelInserirAndAlterar)
+            if (operacaoEscolhida == EnumControleTelas.SalvarCancelarExcluir)
             {
                 pnCadastro.Enabled = true;
                 btnSalvar.Enabled = true;
                 btnCancelar.Enabled = true;
                 btnExcluir.Enabled = true;
             }
-            if (operacaoEscolhida == EnumControleTelas.DisponivelExcluirAndAlterar)
+            if (operacaoEscolhida == EnumControleTelas.AlterarExcluirCancelar)
             {
                 btnAlterar.Enabled = true;
                 btnExcluir.Enabled = true;
                 btnCancelar.Enabled = true;
             }
 
-            if (operacaoEscolhida == EnumControleTelas.DisponivelInserirDeOutraTela)
+            if (operacaoEscolhida == EnumControleTelas.Localizar)
             {
                 pnCadastro.Enabled = false;
                 btnInserir.Enabled = false;
@@ -61,7 +55,7 @@ namespace SGM.WindowsForms
                 btnSalvar.Enabled = false;
             }
 
-            if (operacaoEscolhida == EnumControleTelas.DisponivelInserirAndCancelar)
+            if (operacaoEscolhida == EnumControleTelas.CancelarSalvar)
             {
                 pnCadastro.Enabled = true;
                 btnInserir.Enabled = false;
@@ -75,7 +69,7 @@ namespace SGM.WindowsForms
 
         private void FrmModeloDeFormularioDeCadastro_Load(object sender, EventArgs e)
         {
-            this.DisponibilizarBotoesTela(EnumControleTelas.DisponivelInserirAndLocalizar);
+            this.DisponibilizarBotoesTela(EnumControleTelas.InserirLocalizar);
         }
 
         private void FrmModeloDeFormularioDeCadastro_KeyDown(object sender, KeyEventArgs e)
