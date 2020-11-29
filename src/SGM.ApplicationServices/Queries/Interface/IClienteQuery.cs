@@ -6,5 +6,7 @@ namespace SGM.ApplicationServices.Queries.Interface
     {
         Cliente GetClienteById(int clienteId);
         Cliente GetClienteByDocumentoCliente(string documentoCliente);
+        Cliente GetClienteByLikePlacaOrNomeOrApelido(string valor);
+        Cliente GetClienteByPlaca(string placaVeiculo);
     }
 }

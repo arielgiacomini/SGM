@@ -26,8 +26,8 @@ namespace DAL
                 "ClienteVeiculo.KmRodados, " +
                 "Cliente.ClienteId " +
                 "FROM ClienteVeiculo " +
-                "INNER JOIN Veiculo ON Veiculo.VeiculoId = ClienteVeiculo.VeiculoId " +
-                "INNER JOIN Cliente ON Cliente.ClienteId = ClienteVeiculo.ClienteId " +
+                "LEFT JOIN Veiculo ON Veiculo.VeiculoId = ClienteVeiculo.VeiculoId " +
+                "LEFT JOIN Cliente ON Cliente.ClienteId = ClienteVeiculo.ClienteId " +
                 "WHERE " +
                 "ClienteVeiculo.PlacaVeiculo LIKE '%" + Convert.ToString(valor) + "%' " +
                 "OR Cliente.NomeCliente LIKE '%" + Convert.ToString(valor) + "%'" +

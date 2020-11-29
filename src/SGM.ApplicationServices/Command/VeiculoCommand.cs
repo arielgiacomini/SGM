@@ -28,7 +28,9 @@ namespace SGM.ApplicationServices.Command
                     throw new ApplicationException($"Problema ao SALVAR veiculo. Modelo: {veiculo.Modelo}");
                 }
 
-                return Convert.ToInt32(result.Content);
+                var response = result.Content.ReadAsStringAsync();
+
+                return Convert.ToInt32(response.Result);
             }
         }
 

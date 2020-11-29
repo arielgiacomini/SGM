@@ -60,13 +60,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Entities\ClienteVeiculo.cs" />
-    <Compile Include="Entities\OrcamentoMaodeObra.cs" />
     <Compile Include="Entities\OrcamentoPeca.cs" />
     <Compile Include="Entities\ServicoMaodeObra.cs" />
     <Compile Include="Entities\ServicoPeca.cs" />
     <Compile Include="Entities\Veiculo.cs" />
-    <Compile Include="Entities\VeiculoMarca.cs" />
     <Compile Include="ModeloCliente.cs" />
     <Compile Include="ModeloMaoDeObra.cs" />
     <Compile Include="ModeloOrcamento.cs" />

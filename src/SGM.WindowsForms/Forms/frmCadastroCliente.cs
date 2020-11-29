@@ -1,5 +1,6 @@
 ﻿using SGM.ApplicationServices.Application.Interface;
 using SGM.Domain.Entities;
+using SGM.Domain.Enumeration;
 using SGM.WindowsForms.IoC;
 using System;
 using System.Linq;
@@ -43,13 +44,13 @@ namespace SGM.WindowsForms
         private void BtnInserir_Click(object sender, EventArgs e)
         {
             this.operacao = "inserir";
-            this.AlteraBotoes(2);
+            this.DisponibilizarBotoesTela(EnumControleTelas.SalvarCancelarExcluir);
         }
 
         private void BtnAlterar_Click(object sender, EventArgs e)
         {
             this.operacao = "alterar";
-            this.AlteraBotoes(2);
+            this.DisponibilizarBotoesTela(EnumControleTelas.SalvarCancelarExcluir);
         }
 
         private void BtnExcluir_Click(object sender, EventArgs e)
@@ -64,13 +65,13 @@ namespace SGM.WindowsForms
 
                     MessageBox.Show("Registro Excluído com Sucesso!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.LimpaTela();
-                    this.AlteraBotoes(1);
+                    this.DisponibilizarBotoesTela(EnumControleTelas.InserirLocalizar);
                 }
             }
             catch
             {
                 MessageBox.Show("Impossível excluir o registro. \n O registro está sendo utilizado em outro local.", "Erro!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                this.AlteraBotoes(3);
+                this.DisponibilizarBotoesTela(EnumControleTelas.AlterarExcluirCancelar);
             }
         }
 
@@ -117,7 +118,7 @@ namespace SGM.WindowsForms
 
                 bool existeVeiculoCliente = veiculosDoCliente.Any();
 
-                if (existeVeiculoCliente)
+                if (!existeVeiculoCliente)
                 {
                     DialogResult res = MessageBox.Show("Deseja incluir o veículo dele agora? \n Clicando em (Sim), será aberto uma lista de clientes você escolhe o cliente que você acabou de cadastrar \n e clicando duas vezes você automáticamente poderá cadastrar o veículo dele.", "Cadastro de Veículo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
@@ -133,7 +134,7 @@ namespace SGM.WindowsForms
                         if (c.codigo != 0)
                         {
                             FrmCadastroClienteVeiculo formCadastroClienteVeiculo = FormResolve.Resolve<FrmCadastroClienteVeiculo>();
-                            formCadastroClienteVeiculo.AlteraBotoes(1);
+                            formCadastroClienteVeiculo.DisponibilizarBotoesTela(EnumControleTelas.InserirLocalizar);
                             formCadastroClienteVeiculo.clienteId = c.codigo;
                             formCadastroClienteVeiculo.ShowDialog();
                             formCadastroClienteVeiculo.Dispose();
@@ -158,7 +159,7 @@ namespace SGM.WindowsForms
                             FrmCadastroClienteVeiculo formCadastroClienteVeiculo = FormResolve.Resolve<FrmCadastroClienteVeiculo>();
                             formCadastroClienteVeiculo.clienteId = c.clienteId;
                             formCadastroClienteVeiculo.clienteVeiculoId = c.codigo;
-                            formCadastroClienteVeiculo.AlteraBotoes(3);
+                            formCadastroClienteVeiculo.DisponibilizarBotoesTela(EnumControleTelas.AlterarExcluirCancelar);
                             formCadastroClienteVeiculo.ShowDialog();
                             formCadastroClienteVeiculo.Dispose();
                         }
@@ -166,7 +167,7 @@ namespace SGM.WindowsForms
                 }
 
                 this.LimpaTela();
-                this.AlteraBotoes(1);
+                this.DisponibilizarBotoesTela(EnumControleTelas.InserirLocalizar);
                 this.Close();
             }
             catch (Exception erro)
@@ -178,7 +179,7 @@ namespace SGM.WindowsForms
         private void BtnCancelar_Click(object sender, EventArgs e)
         {
             this.operacao = "cancelar";
-            this.AlteraBotoes(1);
+            this.DisponibilizarBotoesTela(EnumControleTelas.InserirLocalizar);
             this.LimpaTela();
         }
 
@@ -211,12 +212,12 @@ namespace SGM.WindowsForms
                 txtUF.Text = cliente.LogradouroUF;
                 txtDataCadastro.Text = Convert.ToString(cliente.DataCadastro);
 
-                AlteraBotoes(3);
+                DisponibilizarBotoesTela(EnumControleTelas.AlterarExcluirCancelar);
             }
             else
             {
                 this.LimpaTela();
-                this.AlteraBotoes(1);
+                this.DisponibilizarBotoesTela(EnumControleTelas.InserirLocalizar);
             }
 
             c.Dispose();

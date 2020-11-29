@@ -44,5 +44,15 @@ namespace SGM.ApplicationServices.Application
         {
             return _clienteQuery.GetClienteByDocumentoCliente(documentoCliente);
         }
+
+        public Cliente GetClienteByLikePlacaOrNomeOrApelido(string valor)
+        {
+            return _clienteQuery.GetClienteByLikePlacaOrNomeOrApelido(valor);
+        }
+
+        public Cliente GetClienteByPlaca(string placaVeiculo)
+        {
+            return _clienteQuery.GetClienteByPlaca(placaVeiculo);
+        }
     }
 }

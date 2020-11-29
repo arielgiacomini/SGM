@@ -44,7 +44,7 @@ namespace SGM.WindowsForms
 
         private void BtnPrincipalOrcamento_Click(object sender, EventArgs e)
         {
-            FrmGerarOrcamento g = new FrmGerarOrcamento();
+            FrmGerarOrcamento g = FormResolve.Resolve<FrmGerarOrcamento>();
             g.ShowDialog();
             g.Dispose();
         }
@@ -150,7 +150,7 @@ namespace SGM.WindowsForms
 
         private void RealizarOrçamentoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FrmGerarOrcamento g = new FrmGerarOrcamento();
+            FrmGerarOrcamento g = FormResolve.Resolve<FrmGerarOrcamento>();
             g.ShowDialog();
             g.Dispose();
         }

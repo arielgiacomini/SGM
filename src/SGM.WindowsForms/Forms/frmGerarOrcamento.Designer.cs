@@ -63,6 +63,8 @@ namespace SGM.WindowsForms
             this.lblQtdRegistrosPecas = new System.Windows.Forms.Label();
             this.lblOrcamento = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.lblClienteVeiculoId = new System.Windows.Forms.Label();
+            this.txtClienteVeiculoId = new System.Windows.Forms.TextBox();
             this.pnCadastro.SuspendLayout();
             this.pnBotoes.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCliente)).BeginInit();
@@ -73,6 +75,8 @@ namespace SGM.WindowsForms
             // 
             // pnCadastro
             // 
+            this.pnCadastro.Controls.Add(this.txtClienteVeiculoId);
+            this.pnCadastro.Controls.Add(this.lblClienteVeiculoId);
             this.pnCadastro.Controls.Add(this.pictureBox1);
             this.pnCadastro.Controls.Add(this.lblOrcamento);
             this.pnCadastro.Controls.Add(this.lblQtdRegistrosPecas);
@@ -194,7 +198,7 @@ namespace SGM.WindowsForms
             this.txtClienteSelecionado.Enabled = false;
             this.txtClienteSelecionado.Location = new System.Drawing.Point(123, 97);
             this.txtClienteSelecionado.Name = "txtClienteSelecionado";
-            this.txtClienteSelecionado.Size = new System.Drawing.Size(539, 20);
+            this.txtClienteSelecionado.Size = new System.Drawing.Size(421, 20);
             this.txtClienteSelecionado.TabIndex = 9;
             // 
             // lblClienteSelecionado
@@ -209,9 +213,9 @@ namespace SGM.WindowsForms
             // txtClienteId
             // 
             this.txtClienteId.Enabled = false;
-            this.txtClienteId.Location = new System.Drawing.Point(669, 97);
+            this.txtClienteId.Location = new System.Drawing.Point(548, 97);
             this.txtClienteId.Name = "txtClienteId";
-            this.txtClienteId.Size = new System.Drawing.Size(94, 20);
+            this.txtClienteId.Size = new System.Drawing.Size(45, 20);
             this.txtClienteId.TabIndex = 11;
             // 
             // lblDescricao
@@ -445,6 +449,23 @@ namespace SGM.WindowsForms
             this.pictureBox1.TabIndex = 35;
             this.pictureBox1.TabStop = false;
             // 
+            // lblClienteVeiculoId
+            // 
+            this.lblClienteVeiculoId.AutoSize = true;
+            this.lblClienteVeiculoId.Location = new System.Drawing.Point(596, 100);
+            this.lblClienteVeiculoId.Name = "lblClienteVeiculoId";
+            this.lblClienteVeiculoId.Size = new System.Drawing.Size(122, 13);
+            this.lblClienteVeiculoId.TabIndex = 42;
+            this.lblClienteVeiculoId.Text = "Id do Veiculo do Cliente:";
+            // 
+            // txtClienteVeiculoId
+            // 
+            this.txtClienteVeiculoId.Enabled = false;
+            this.txtClienteVeiculoId.Location = new System.Drawing.Point(719, 97);
+            this.txtClienteVeiculoId.Name = "txtClienteVeiculoId";
+            this.txtClienteVeiculoId.Size = new System.Drawing.Size(44, 20);
+            this.txtClienteVeiculoId.TabIndex = 43;
+            // 
             // FrmGerarOrcamento
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -466,30 +487,30 @@ namespace SGM.WindowsForms
 
         #endregion
 
-        private System.Windows.Forms.TextBox txtOrcamentoId;
-        private System.Windows.Forms.Label lblOrcamentoId;
-        private System.Windows.Forms.Label lblCliente;
-        private System.Windows.Forms.TextBox txtConsultaCliente;
-        private System.Windows.Forms.Button btnConsultaCliente;
-        private System.Windows.Forms.DataGridView dgvCliente;
-        private System.Windows.Forms.Label lblClienteSelecionado;
-        private System.Windows.Forms.TextBox txtClienteSelecionado;
-        private System.Windows.Forms.TextBox txtClienteId;
-        private System.Windows.Forms.TextBox txtValorTotal;
-        private System.Windows.Forms.TextBox txtValorDesconto;
-        private System.Windows.Forms.TextBox txtPercentualDesconto;
-        private System.Windows.Forms.TextBox txtValorAdicional;
-        private System.Windows.Forms.Label lblValorTotal;
-        private System.Windows.Forms.Label lblValorDesconto;
-        private System.Windows.Forms.Label lblPercentualDesconto;
-        private System.Windows.Forms.Label lblValorAdicional;
-        private System.Windows.Forms.TextBox txtDescricao;
-        private System.Windows.Forms.Label lblDescricao;
-        private System.Windows.Forms.Button btnAdicionarPeca;
-        private System.Windows.Forms.Label lblInformativoPeca;
-        private System.Windows.Forms.DataGridView dgvPeca;
-        private System.Windows.Forms.DataGridView dgvMaodeObra;
-        private System.Windows.Forms.Button btnAdicionarMaodeObra;
+        private TextBox txtOrcamentoId;
+        private Label lblOrcamentoId;
+        private Label lblCliente;
+        private TextBox txtConsultaCliente;
+        private Button btnConsultaCliente;
+        private DataGridView dgvCliente;
+        private Label lblClienteSelecionado;
+        private TextBox txtClienteSelecionado;
+        private TextBox txtClienteId;
+        private TextBox txtValorTotal;
+        private TextBox txtValorDesconto;
+        private TextBox txtPercentualDesconto;
+        private TextBox txtValorAdicional;
+        private Label lblValorTotal;
+        private Label lblValorDesconto;
+        private Label lblPercentualDesconto;
+        private Label lblValorAdicional;
+        private TextBox txtDescricao;
+        private Label lblDescricao;
+        private Button btnAdicionarPeca;
+        private Label lblInformativoPeca;
+        private DataGridView dgvPeca;
+        private DataGridView dgvMaodeObra;
+        private Button btnAdicionarMaodeObra;
         private Label lblInformativoMaoDeObra;
         private Label lblQtdRegistrosMaoDeObra;
         private Label label2;
@@ -499,5 +520,7 @@ namespace SGM.WindowsForms
         private Label lblQtdRegistrosPecas;
         private Label lblOrcamento;
         private PictureBox pictureBox1;
+        private TextBox txtClienteVeiculoId;
+        private Label lblClienteVeiculoId;
     }
 }
