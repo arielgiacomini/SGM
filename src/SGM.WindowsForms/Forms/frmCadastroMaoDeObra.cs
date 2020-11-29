@@ -36,7 +36,7 @@ namespace SGM.WindowsForms
         private void BtnInserir_Click(object sender, EventArgs e)
         {
             this.operacao = "inserir";
-            this.AlteraBotoes(EnumControleTelas.DisponivelInserirAndAlterar);
+            this.DisponibilizarBotoesTela(EnumControleTelas.DisponivelInserirAndAlterar);
             txtVigenciaInicial.Text = Convert.ToString(DateTime.Today);
             txtVigenciaFinal.Text = Convert.ToString(DateTime.Today.AddDays(365));
             cboAtivo.Text = Convert.ToString("Ativo");
@@ -46,7 +46,7 @@ namespace SGM.WindowsForms
         private void BtnAlterar_Click(object sender, EventArgs e)
         {
             this.operacao = "alterar";
-            this.AlteraBotoes(EnumControleTelas.DisponivelInserirAndAlterar);
+            this.DisponibilizarBotoesTela(EnumControleTelas.DisponivelInserirAndAlterar);
             cboAtivo.Enabled = true;
         }
 
@@ -63,13 +63,13 @@ namespace SGM.WindowsForms
                     MessageBox.Show("Registro Excluído com Sucesso!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     this.LimpaTela();
-                    this.AlteraBotoes(EnumControleTelas.DisponivelInserirAndLocalizar);
+                    this.DisponibilizarBotoesTela(EnumControleTelas.DisponivelInserirAndLocalizar);
                 }
             }
             catch
             {
                 MessageBox.Show("Impossível excluir o registro. \n O registro está sendo utilizado em outro local.");
-                this.AlteraBotoes(EnumControleTelas.DisponivelExcluirAndAlterar);
+                this.DisponibilizarBotoesTela(EnumControleTelas.DisponivelExcluirAndAlterar);
             }
         }
 
@@ -111,7 +111,7 @@ namespace SGM.WindowsForms
                 }
 
                 this.LimpaTela();
-                this.AlteraBotoes(EnumControleTelas.DisponivelInserirAndAlterar);
+                this.DisponibilizarBotoesTela(EnumControleTelas.DisponivelInserirAndAlterar);
                 this.operacao = "inserir";
             }
             catch (Exception erro)
@@ -123,7 +123,7 @@ namespace SGM.WindowsForms
         private void BtnCancelar_Click(object sender, EventArgs e)
         {
             this.operacao = "cancelar";
-            this.AlteraBotoes(EnumControleTelas.DisponivelInserirAndLocalizar);
+            this.DisponibilizarBotoesTela(EnumControleTelas.DisponivelInserirAndLocalizar);
             this.LimpaTela();
             txtVigenciaInicial.Text = Convert.ToString(DateTime.Today);
             txtVigenciaFinal.Text = Convert.ToString(DateTime.Today.AddDays(365));
@@ -146,12 +146,12 @@ namespace SGM.WindowsForms
                 txtVigenciaFinal.Text = Convert.ToString(maoDeObra.VigenciaFinal);
                 cboAtivo.Text = ApresentarStatus(maoDeObra);
 
-                AlteraBotoes(EnumControleTelas.DisponivelInserirAndAlterar);
+                DisponibilizarBotoesTela(EnumControleTelas.DisponivelInserirAndAlterar);
             }
             else
             {
                 this.LimpaTela();
-                this.AlteraBotoes(EnumControleTelas.DisponivelInserirAndLocalizar);
+                this.DisponibilizarBotoesTela(EnumControleTelas.DisponivelInserirAndLocalizar);
             }
 
             formConsultaMaodeObra.Dispose();

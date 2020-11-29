@@ -202,7 +202,7 @@ namespace SGM.WindowsForms
             txtValorAdicional.Enabled = true;
             txtPercentualDesconto.Enabled = true;
             txtClienteId.Text = Convert.ToString(1);
-            txtClienteVeiculoId.Text = Convert.ToString(25);
+            txtClienteVeiculoId.Text = Convert.ToString(1);
             txtClienteSelecionado.Text = Convert.ToString("SEM CLIENTE");
             txtValorDesconto.Text = Convert.ToDecimal("0").ToString("C");
             txtValorTotal.Text = Convert.ToDecimal("0").ToString("C");
