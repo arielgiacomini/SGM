@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SGM.WindowsForms.IoC;
+using System;
 using System.Windows.Forms;
 
 namespace SGM.WindowsForms
@@ -21,13 +22,10 @@ namespace SGM.WindowsForms
 
         private void BtnRealizaOrcamento_Click(object sender, EventArgs e)
         {
-            FrmGerarOrcamento formGerarOrcamento = new FrmGerarOrcamento
-            {
-                clienteId = clienteId,
-                veiculoId = veiculoId,
-                placaVeiculo = placaVeiculo
-            };
-
+            FrmGerarOrcamento formGerarOrcamento = FormResolve.Resolve<FrmGerarOrcamento>();
+            formGerarOrcamento.clienteId = clienteId;
+            formGerarOrcamento.veiculoId = veiculoId;
+            formGerarOrcamento.placaVeiculo = placaVeiculo;
             formGerarOrcamento.ShowDialog();
             formGerarOrcamento.Dispose();
         }

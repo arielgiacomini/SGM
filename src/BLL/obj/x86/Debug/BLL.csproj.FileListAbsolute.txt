@@ -8,3 +8,14 @@ C:\Clones\SGM-WindowsForms\src\BLL\obj\x86\Debug\BLL.csprojAssemblyReference.cac
 C:\Clones\SGM-WindowsForms\src\BLL\obj\x86\Debug\BLL.csproj.CopyComplete
 C:\Clones\SGM-WindowsForms\src\BLL\obj\x86\Debug\BLL.dll
 C:\Clones\SGM-WindowsForms\src\BLL\obj\x86\Debug\BLL.pdb
+C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\BLL\bin\x86\Debug\BLL.dll
+C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\BLL\bin\x86\Debug\BLL.pdb
+C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\BLL\bin\x86\Debug\DAL.dll
+C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\BLL\bin\x86\Debug\Modelo.dll
+C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\BLL\bin\x86\Debug\DAL.pdb
+C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\BLL\bin\x86\Debug\Modelo.pdb
+C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\BLL\obj\x86\Debug\BLL.csprojAssemblyReference.cache
+C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\BLL\obj\x86\Debug\BLL.csproj.CoreCompileInputs.cache
+C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\BLL\obj\x86\Debug\BLL.csproj.CopyComplete
+C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\BLL\obj\x86\Debug\BLL.dll
+C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\BLL\obj\x86\Debug\BLL.pdb

@@ -54,5 +54,10 @@ namespace SGM.ApplicationServices.Command
                 }
             }
         }
+
+        public void SalvarOrcamentoMaodeObra(OrcamentoMaodeObra orcamentoMaodeObra)
+        {
+
+        }
     }
 }

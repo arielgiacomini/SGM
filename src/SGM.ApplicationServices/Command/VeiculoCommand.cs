@@ -30,7 +30,7 @@ namespace SGM.ApplicationServices.Command
 
                 var response = result.Content.ReadAsStringAsync();
 
-                return Convert.ToInt32(response.Id);
+                return Convert.ToInt32(response.Result);
             }
         }
 

@@ -27,10 +27,10 @@ namespace SGM.ApplicationServices.Command
                 {
                     throw new ApplicationException($"Problema ao SALVAR clienteVeiculo. ClienteId: {clienteVeiculo.ClienteId}");
                 }
-                
+
                 var response = result.Content.ReadAsStringAsync();
 
-                return Convert.ToInt32(response.Id);
+                return Convert.ToInt32(response.Result);
             }
         }
 
