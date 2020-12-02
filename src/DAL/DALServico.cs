@@ -1,5 +1,6 @@
 ﻿using Modelo;
 using Modelo.Entities;
+using SGM.Domain.Entities;
 using System;
 using System.Data;
 using System.Data.SqlClient;

@@ -61,6 +61,8 @@
             this.dgvMaodeObra = new System.Windows.Forms.DataGridView();
             this.lblServico = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.txtClienteVeiculoId = new System.Windows.Forms.TextBox();
+            this.lblClienteVeiculoId = new System.Windows.Forms.Label();
             this.pnCadastro.SuspendLayout();
             this.pnBotoes.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPeca)).BeginInit();
@@ -71,6 +73,8 @@
             // 
             // pnCadastro
             // 
+            this.pnCadastro.Controls.Add(this.txtClienteVeiculoId);
+            this.pnCadastro.Controls.Add(this.lblClienteVeiculoId);
             this.pnCadastro.Controls.Add(this.pictureBox1);
             this.pnCadastro.Controls.Add(this.lblServico);
             this.pnCadastro.Controls.Add(this.lblQtdRegistrosPecas);
@@ -326,9 +330,9 @@
             // txtClienteId
             // 
             this.txtClienteId.Enabled = false;
-            this.txtClienteId.Location = new System.Drawing.Point(670, 91);
+            this.txtClienteId.Location = new System.Drawing.Point(545, 91);
             this.txtClienteId.Name = "txtClienteId";
-            this.txtClienteId.Size = new System.Drawing.Size(94, 20);
+            this.txtClienteId.Size = new System.Drawing.Size(49, 20);
             this.txtClienteId.TabIndex = 49;
             // 
             // lblClienteSelecionado
@@ -345,7 +349,7 @@
             this.txtClienteSelecionado.Enabled = false;
             this.txtClienteSelecionado.Location = new System.Drawing.Point(124, 91);
             this.txtClienteSelecionado.Name = "txtClienteSelecionado";
-            this.txtClienteSelecionado.Size = new System.Drawing.Size(539, 20);
+            this.txtClienteSelecionado.Size = new System.Drawing.Size(416, 20);
             this.txtClienteSelecionado.TabIndex = 47;
             // 
             // dgvCliente
@@ -444,6 +448,23 @@
             this.pictureBox1.TabIndex = 74;
             this.pictureBox1.TabStop = false;
             // 
+            // txtClienteVeiculoId
+            // 
+            this.txtClienteVeiculoId.Enabled = false;
+            this.txtClienteVeiculoId.Location = new System.Drawing.Point(719, 91);
+            this.txtClienteVeiculoId.Name = "txtClienteVeiculoId";
+            this.txtClienteVeiculoId.Size = new System.Drawing.Size(44, 20);
+            this.txtClienteVeiculoId.TabIndex = 76;
+            // 
+            // lblClienteVeiculoId
+            // 
+            this.lblClienteVeiculoId.AutoSize = true;
+            this.lblClienteVeiculoId.Location = new System.Drawing.Point(596, 94);
+            this.lblClienteVeiculoId.Name = "lblClienteVeiculoId";
+            this.lblClienteVeiculoId.Size = new System.Drawing.Size(122, 13);
+            this.lblClienteVeiculoId.TabIndex = 75;
+            this.lblClienteVeiculoId.Text = "Id do Veiculo do Cliente:";
+            // 
             // FrmGerarServico
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -498,5 +519,7 @@
         private System.Windows.Forms.DataGridView dgvMaodeObra;
         private System.Windows.Forms.Label lblServico;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.TextBox txtClienteVeiculoId;
+        private System.Windows.Forms.Label lblClienteVeiculoId;
     }
 }
