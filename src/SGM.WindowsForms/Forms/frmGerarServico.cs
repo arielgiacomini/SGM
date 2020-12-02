@@ -1,9 +1,9 @@
-﻿using BLL;
-using DAL;
-using Modelo;
-using Modelo.Entities;
+﻿using SGM.ApplicationServices.Application.Interface;
+using SGM.Domain.DataSources;
+using SGM.Domain.Entities;
 using SGM.Domain.Enumeration;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Windows.Forms;
@@ -12,10 +12,37 @@ namespace SGM.WindowsForms
 {
     public partial class FrmGerarServico : FrmModeloDeFormularioDeCadastro
     {
-        public FrmGerarServico()
+
+        private readonly IClienteApplication _clienteApplication;
+        private readonly IServicoApplication _servicoApplication;
+        private readonly IClienteVeiculoApplication _clienteVeiculoApplication;
+        private readonly IVeiculoApplication _veiculoApplication;
+        private readonly IMaodeObraApplication _maoDeObraApplication;
+        private readonly IPecaApplication _pecaApplication;
+
+        public FrmGerarServico(IClienteApplication clienteApplication, IServicoApplication servicoApplication, IClienteVeiculoApplication clienteVeiculoApplication, IVeiculoApplication veiculoApplication, IMaodeObraApplication maodeObraApplication, IPecaApplication pecaApplication)
         {
+            _clienteApplication = clienteApplication;
+            _servicoApplication = servicoApplication;
+            _clienteVeiculoApplication = clienteVeiculoApplication;
+            _veiculoApplication = veiculoApplication;
+            _maoDeObraApplication = maodeObraApplication;
+            _pecaApplication = pecaApplication;
             InitializeComponent();
         }
+
+        public int codigo = 0;
+        public int clienteId = 0;
+        public int clienteVeiculoId = 0;
+        public int veiculoId = 0;
+        public string placaVeiculo = "";
+        public string CellCliente = "";
+        public string VerificaServico = "";
+        public decimal txtVA = 0;
+        public decimal txtVD = 0;
+        public decimal txtVP = 0;
+        public decimal txtVM = 0;
+        public decimal txtVT = 0;
 
         public void LimpaTela()
         {
@@ -50,24 +77,29 @@ namespace SGM.WindowsForms
             lblQtdRegistrosPecas.Text = "Quantidade de Registros: ";
         }
 
-        public int codigo = 0;
-        public int clienteId = 0;
-        public int veiculoId = 0;
-        public string placaVeiculo = "";
-        public string CellCliente = "";
-        public string VerificaOrcamento = "";
-        public decimal txtVA = 0;
-        public decimal txtVD = 0;
-        public decimal txtVP = 0;
-        public decimal txtVM = 0;
-        public decimal txtVT = 0;
-
         private void BtnConsultaCliente_Click(object sender, EventArgs e)
         {
+            var cliente = _clienteApplication.GetClienteByLikePlacaOrNomeOrApelido(txtConsultaCliente.Text);
 
-            DALConexao cx = new DALConexao(ConnectionStringConfiguration.ConnectionString);
-            BLLServico bll = new BLLServico(cx);
-            dgvCliente.DataSource = bll.LocalizarCliente(txtConsultaCliente.Text);
+            var dataSource = new List<PesquisaClienteServicoDataSource>();
+
+            foreach (var clienteVeiculo in cliente.ClienteVeiculo)
+            {
+                var veiculo = _veiculoApplication.GetVeiculoByVeiculoId(clienteVeiculo.VeiculoId);
+
+                var marca = _veiculoApplication.GetMarcaByMarcaId(veiculo.MarcaId);
+
+                dataSource.Add(new PesquisaClienteServicoDataSource
+                {
+                    ClienteId = cliente.ClienteId,
+                    NomeCliente = cliente.NomeCliente,
+                    PlacaVeiculo = clienteVeiculo.PlacaVeiculo,
+                    MarcaModeloVeiculo = marca.Marca + " / " + veiculo.Modelo,
+                    ClienteVeiculoId = clienteVeiculo.ClienteVeiculoId
+                });
+            }
+
+            dgvCliente.DataSource = dataSource;
             dgvCliente.Columns[0].HeaderText = "Código";
             dgvCliente.Columns[0].Width = 50;
             dgvCliente.Columns[1].HeaderText = "Cliente";
@@ -76,33 +108,73 @@ namespace SGM.WindowsForms
             dgvCliente.Columns[2].Width = 120;
             dgvCliente.Columns[3].HeaderText = "Marca/Modelo";
             dgvCliente.Columns[3].Width = 232;
+            dgvCliente.Columns[4].HeaderText = "ClienteVeiculoId";
+            dgvCliente.Columns[4].Width = 50;
+            dgvCliente.Columns[4].Visible = false;
         }
 
         private void FrmGerarServico_Load(object sender, EventArgs e)
         {
-            if (clienteId != 0)
-            {
-                DALConexao cx = new DALConexao(ConnectionStringConfiguration.ConnectionString);
-                BLLServico bll = new BLLServico(cx);
-                BLLCliente modeloCliente = new BLLCliente(cx);
+            OrganizarTelaServico();
 
-                var dadosCliente = modeloCliente.CarregaModeloCliente(clienteId);
+            if (clienteId != 0 || clienteVeiculoId != 0)
+            {
+                var cliente = _clienteApplication.GetClienteById(clienteId);
+
+                var dataSource = new List<PesquisaClienteServicoDataSource>();
+
+                foreach (var clienteVeiculo in cliente.ClienteVeiculo)
+                {
+                    var veiculo = _veiculoApplication.GetVeiculoByVeiculoId(clienteVeiculo.VeiculoId);
+
+                    var marca = _veiculoApplication.GetMarcaByMarcaId(veiculo.MarcaId);
+
+                    dataSource.Add(new PesquisaClienteServicoDataSource
+                    {
+                        ClienteId = cliente.ClienteId,
+                        NomeCliente = cliente.NomeCliente,
+                        PlacaVeiculo = clienteVeiculo.PlacaVeiculo,
+                        MarcaModeloVeiculo = marca.Marca + " / " + veiculo.Modelo,
+                        ClienteVeiculoId = clienteVeiculo.ClienteVeiculoId
+                    });
+                }
+
+                dgvCliente.DataSource = dataSource;
+                dgvCliente.Columns[0].HeaderText = "Código";
+                dgvCliente.Columns[0].Width = 50;
+                dgvCliente.Columns[1].HeaderText = "Cliente";
+                dgvCliente.Columns[1].Width = 296;
+                dgvCliente.Columns[2].HeaderText = "Placa Veículo";
+                dgvCliente.Columns[2].Width = 120;
+                dgvCliente.Columns[3].HeaderText = "Marca/Modelo";
+                dgvCliente.Columns[3].Width = 232;
+                dgvCliente.Columns[4].HeaderText = "ClienteVeiculoId";
+                dgvCliente.Columns[4].Width = 50;
+                dgvCliente.Columns[4].Visible = false;
+
+                txtClienteId.Text = cliente.ClienteId.ToString();
+                txtClienteVeiculoId.Text = clienteVeiculoId.ToString();
+                txtClienteSelecionado.Text = cliente.NomeCliente.ToString();
+                txtValorDesconto.Text = Convert.ToDecimal("0").ToString("C");
+                txtValorTotal.Text = Convert.ToDecimal("0").ToString("C");
+                txtValorTotalMaodeObra.Text = Convert.ToDecimal("0").ToString("C");
+                txtValorTotalPecas.Text = Convert.ToDecimal("0").ToString("C");
+                txtDescricao.Text = "GERANDO SERVIÇO";
+
+                Servico servico = new Servico
+                {
+                    ClienteVeiculoId = Convert.ToInt32(txtClienteVeiculoId.Text),
+                    Status = (int)EnumStatusServico.IniciadoPendente,
+                    DataCadastro = DateTime.Now,
+                    Descricao = txtDescricao.Text
+                };
+
+                var servicoId = _servicoApplication.SalvarServico(servico);
+
+                txtServicoId.Text = servicoId.ToString();
 
                 this.operacao = "inserir";
                 this.DisponibilizarBotoesTela(EnumControleTelas.SalvarCancelarExcluir);
-
-                if (placaVeiculo != "" && veiculoId != 0)
-                {
-                    dgvCliente.DataSource = bll.LocalizarCliente(txtConsultaCliente.Text);
-                    dgvCliente.Columns[0].HeaderText = "Código";
-                    dgvCliente.Columns[0].Width = 50;
-                    dgvCliente.Columns[1].HeaderText = "Cliente";
-                    dgvCliente.Columns[1].Width = 296;
-                    dgvCliente.Columns[2].HeaderText = "Placa Veículo";
-                    dgvCliente.Columns[2].Width = 120;
-                    dgvCliente.Columns[3].HeaderText = "Marca/Modelo";
-                    dgvCliente.Columns[3].Width = 232;
-                }
 
                 txtConsultaCliente.Enabled = false;
                 btnConsultaCliente.Enabled = false;
@@ -110,23 +182,6 @@ namespace SGM.WindowsForms
 
                 txtValorAdicional.Enabled = true;
                 txtPercentualDesconto.Enabled = true;
-
-                txtClienteId.Text = dadosCliente.CClienteId.ToString();
-                txtClienteSelecionado.Text = dadosCliente.CNomeCliente.ToString();
-                txtValorDesconto.Text = Convert.ToDecimal("0").ToString("C");
-                txtValorTotal.Text = Convert.ToDecimal("0").ToString("C");
-                txtValorTotalMaodeObra.Text = Convert.ToDecimal("0").ToString("C");
-                txtValorTotalPecas.Text = Convert.ToDecimal("0").ToString("C");
-                txtDescricao.Text = "";
-
-                ModeloServico modelo = new ModeloServico
-                {
-                    CClienteId = Convert.ToInt32(txtClienteId.Text),
-                    CStatus = "SERVIÇO INICIADO"
-                };
-
-                bll.IncluirServico(modelo);
-                txtServicoId.Text = Convert.ToString(modelo.CServicoId);
             }
         }
 
@@ -138,6 +193,7 @@ namespace SGM.WindowsForms
                 this.CellCliente = Convert.ToString(dgvCliente.Rows[e.RowIndex].Cells[1].Value);
                 txtClienteSelecionado.Text = Convert.ToString(CellCliente);
                 txtClienteId.Text = Convert.ToString(codigo);
+                txtClienteVeiculoId.Text = Convert.ToString(dgvCliente.Rows[e.RowIndex].Cells[4].Value);
                 dgvCliente.CurrentRow.Selected = false;
             }
         }
@@ -146,26 +202,33 @@ namespace SGM.WindowsForms
         {
             this.operacao = "inserir";
             this.DisponibilizarBotoesTela(EnumControleTelas.SalvarCancelarExcluir);
+
             txtValorAdicional.Enabled = true;
             txtPercentualDesconto.Enabled = true;
             txtClienteId.Text = Convert.ToString(1);
+            txtClienteVeiculoId.Text = Convert.ToString(1);
             txtClienteSelecionado.Text = Convert.ToString("SEM CLIENTE");
             txtValorDesconto.Text = Convert.ToDecimal("0").ToString("C");
             txtValorTotal.Text = Convert.ToDecimal("0").ToString("C");
             txtValorTotalMaodeObra.Text = Convert.ToDecimal("0").ToString("C");
             txtValorTotalPecas.Text = Convert.ToDecimal("0").ToString("C");
-            txtDescricao.Text = "";
+            txtDescricao.Text = "PESQUISANDO";
 
-            ModeloServico modelo = new ModeloServico
+            Servico servico = new Servico
             {
-                CClienteId = Convert.ToInt32(txtClienteId.Text),
-                CStatus = "SERVIÇO INICIADO"
+                ClienteVeiculoId = Convert.ToInt32(txtClienteVeiculoId.Text),
+                Descricao = txtDescricao.Text,
+                Status = (int)EnumStatusOrcamento.IniciadoPendente,
+                DataCadastro = DateTime.Now,
+                DataAlteracao = null,
+                Ativo = true,
+                ServicoMaodeObra = new List<ServicoMaodeObra>(),
+                ServicoPeca = new List<ServicoPeca>()
             };
 
-            DALConexao cx = new DALConexao(ConnectionStringConfiguration.ConnectionString);
-            BLLServico bll = new BLLServico(cx);
-            bll.IncluirServico(modelo);
-            txtServicoId.Text = Convert.ToString(modelo.CServicoId);
+            var servicoId = _servicoApplication.SalvarServico(servico);
+
+            txtServicoId.Text = servicoId.ToString();
         }
 
         private void BtnAdicionarMaodeObra_Click(object sender, EventArgs e)
@@ -182,18 +245,32 @@ namespace SGM.WindowsForms
 
                 if (consultaMaodeObra.codigo != 0)
                 {
-                    DALConexao cx = new DALConexao(ConnectionStringConfiguration.ConnectionString);
-                    BLLServico bll = new BLLServico(cx);
-
                     ServicoMaodeObra servicoMaodeObra = new ServicoMaodeObra()
                     {
                         ServicoId = Convert.ToInt32(txtServicoId.Text),
                         MaodeObraId = consultaMaodeObra.codigo
                     };
 
-                    bll.IncluirServicoMaodeObra(servicoMaodeObra);
+                    var Id = _servicoApplication.SalvarServicoMaodeObra(servicoMaodeObra);
 
-                    dgvMaodeObra.DataSource = bll.LocalizarServicoMaodeObra(Convert.ToInt32(txtServicoId.Text));
+                    var servicoMaodeObraSalvo = _servicoApplication.GetServicoMaodeObraByServicoId(Convert.ToInt32(txtServicoId.Text));
+
+                    IList<PesquisaMaodeObraServicoDataSource> maoDeObra = new List<PesquisaMaodeObraServicoDataSource>();
+
+                    foreach (var item in servicoMaodeObraSalvo)
+                    {
+                        var mao = _maoDeObraApplication.GetMaodeObraById(item.MaodeObraId);
+
+                        maoDeObra.Add(new PesquisaMaodeObraServicoDataSource
+                        {
+                            MaodeObraId = mao.MaodeObraId,
+                            MaodeObra = mao.Descricao,
+                            Valor = mao.Valor,
+                            ServicoMaodeObraId = Id
+                        });
+                    }
+
+                    dgvMaodeObra.DataSource = maoDeObra;
                     dgvMaodeObra.Columns[0].HeaderText = "Código";
                     dgvMaodeObra.Columns[0].Width = 50;
                     dgvMaodeObra.Columns[1].HeaderText = "Mão de Obra";
@@ -202,78 +279,69 @@ namespace SGM.WindowsForms
                     dgvMaodeObra.Columns[2].Width = 70;
                     dgvMaodeObra.Columns[2].DefaultCellStyle.Format = "C2";
                     dgvMaodeObra.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                    dgvMaodeObra.Columns[3].HeaderText = "ServicoMaoDeObraId";
+                    dgvMaodeObra.Columns[3].Width = 20;
+                    dgvMaodeObra.Columns[3].Visible = false;
                 }
             }
 
-            lblQtdRegistrosMaoDeObra.Text = "Quantidade de Registros: " + this.dgvMaodeObra.Rows.Count.ToString();
-
-            txtVM = Convert.ToDecimal(dgvMaodeObra.Rows.Cast<DataGridViewRow>().Sum(i => Convert.ToDecimal(i.Cells["Valor"].Value)));
-            txtValorTotalMaodeObra.Text = (txtVM.ToString("C"));
-
-            if (txtValorTotalPecas.Text.Replace("R$ 0,00", "") != "")
-            {
-                txtVP = Convert.ToDecimal(txtValorTotalPecas.Text.Replace("R$ ", ""));
-            }
-
-            if (txtValorAdicional.Text.Replace("R$ 0,00", "") != "")
-            {
-                txtVA = Convert.ToDecimal(txtValorAdicional.Text.Replace("R$ ", ""));
-            }
-
-            txtVT = 0;
-            txtVT = (txtVM + txtVP + txtVA);
-
-            txtValorTotal.Text = (txtVT.ToString("C"));
+            OrganizarTelaServico();
         }
 
         private void BtnAdicionarPeca_Click(object sender, EventArgs e)
         {
-            frmConsultaPeca consultaPeca = new frmConsultaPeca();
-            consultaPeca.ShowDialog();
-
-            if (consultaPeca.codigo != 0)
+            if (txtClienteId.Text == "")
             {
-                DALConexao cx = new DALConexao(ConnectionStringConfiguration.ConnectionString);
-                BLLServico bll = new BLLServico(cx);
+                MessageBox.Show("Você precisa primeiro incluir um cliente acima!", "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            else
+            {
+                frmConsultaPeca consultaPeca = new frmConsultaPeca();
+                consultaPeca.ShowDialog();
 
-                ServicoPeca servicoPeca = new ServicoPeca()
+                if (consultaPeca.codigo != 0)
                 {
-                    ServicoId = Convert.ToInt32(txtServicoId.Text),
-                    PecaId = consultaPeca.codigo
-                };
+                    ServicoPeca servicoPeca = new ServicoPeca()
+                    {
+                        ServicoId = Convert.ToInt32(txtServicoId.Text),
+                        PecaId = consultaPeca.codigo
+                    };
 
-                bll.IncluirServicoPeca(servicoPeca);
+                    var Id = _servicoApplication.SalvarServicoPeca(servicoPeca);
 
-                dgvPeca.DataSource = bll.LocalizarServicoPeca(Convert.ToInt32(txtServicoId.Text));
-                dgvPeca.Columns[0].HeaderText = "Código";
-                dgvPeca.Columns[0].Width = 50;
-                dgvPeca.Columns[1].HeaderText = "Peça";
-                dgvPeca.Columns[1].Width = 330;
-                dgvPeca.Columns[2].HeaderText = "Valor Integral";
-                dgvPeca.Columns[2].Width = 70;
-                dgvPeca.Columns[2].DefaultCellStyle.Format = "C2";
-                dgvPeca.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                    var servicoPecaSalvo = _servicoApplication.GetServicoPecaByServicoId(Convert.ToInt32(txtServicoId.Text));
+
+                    IList<PesquisaPecaServicoDataSource> peca = new List<PesquisaPecaServicoDataSource>();
+
+                    foreach (var item in servicoPecaSalvo)
+                    {
+                        var mao = _pecaApplication.GetPecaByPecaId(item.PecaId);
+                        peca.Add(new PesquisaPecaServicoDataSource
+                        {
+                            PecaId = mao.PecaId,
+                            Peca = mao.Descricao,
+                            Valor = mao.Valor,
+                            ServicoPecaId = Id
+                        });
+                    }
+
+                    dgvPeca.DataSource = peca;
+                    dgvPeca.Columns[0].HeaderText = "Código";
+                    dgvPeca.Columns[0].Width = 50;
+                    dgvPeca.Columns[1].HeaderText = "Peça";
+                    dgvPeca.Columns[1].Width = 330;
+                    dgvPeca.Columns[2].HeaderText = "Valor Integral";
+                    dgvPeca.Columns[2].Width = 70;
+                    dgvPeca.Columns[2].DefaultCellStyle.Format = "C2";
+                    dgvPeca.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                    dgvPeca.Columns[3].HeaderText = "OrcamentoPecaId";
+                    dgvPeca.Columns[3].Width = 20;
+                    dgvPeca.Columns[3].Visible = false;
+                }
+
+                OrganizarTelaServico();
             }
-
-            lblQtdRegistrosPecas.Text = "Quantidade de Registros: " + this.dgvPeca.Rows.Count.ToString();
-            txtVP = Convert.ToDecimal(dgvPeca.Rows.Cast<DataGridViewRow>().Sum(i => Convert.ToDecimal(i.Cells["ValorTotal"].Value)));
-            txtValorTotalPecas.Text = Convert.ToString(txtVP.ToString("C"));
-
-
-            if (txtValorTotalMaodeObra.Text.Replace("R$ 0,00", "") != "")
-            {
-                txtVM = Convert.ToDecimal(txtValorTotalMaodeObra.Text.Replace("R$ ", ""));
-            }
-
-            if (txtValorAdicional.Text.Replace("R$ 0,00", "") != "")
-            {
-                txtVA = Convert.ToDecimal(txtValorAdicional.Text.Replace("R$ ", ""));
-            }
-
-            txtVT = 0;
-            txtVT = (txtVM + txtVP + txtVA);
-
-            txtValorTotal.Text = (txtVT.ToString("C"));
         }
 
         private void DgvMaodeObra_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
@@ -292,23 +360,31 @@ namespace SGM.WindowsForms
         {
             try
             {
-                ModeloServico modelo = new ModeloServico
+                var servicoSalvo = _servicoApplication.GetServicoByServicoId(Convert.ToInt32(txtServicoId.Text));
+
+                Servico servico = new Servico
                 {
-                    CServicoId = Convert.ToInt32(txtServicoId.Text),
-                    CClienteId = Convert.ToInt32(txtClienteId.Text),
-                    CValorAdicional = txtValorAdicional.Text == "" ? 0 : Convert.ToDecimal(txtValorAdicional.Text.Replace("R$ ", "")),
-                    CPercentualDesconto = txtValorAdicional.Text == "" ? 0 : (Convert.ToDecimal(txtPercentualDesconto.Text.Replace("%", "")) / 100),
-                    CValorDesconto = Convert.ToDecimal(txtValorDesconto.Text.Replace("R$ ", "")),
-                    CValorTotal = Convert.ToDecimal(txtValorTotal.Text.Replace("R$ ", "")),
-                    CDescricao = txtDescricao.Text,
-                    CStatus = "SERVIÇO GERADO"
+                    ServicoId = Convert.ToInt32(txtServicoId.Text),
+                    ClienteVeiculoId = Convert.ToInt32(txtClienteVeiculoId.Text),
+                    ColaboradorId = 0,
+                    Descricao = txtDescricao.Text,
+                    ValorMaodeObra = txtValorTotalMaodeObra.Text == "" ? 0 : Convert.ToDecimal(txtValorTotalMaodeObra.Text.Replace("R$ ", "")),
+                    ValorPeca = txtValorTotalPecas.Text == "" ? 0 : Convert.ToDecimal(txtValorTotalPecas.Text.Replace("R$ ", "")),
+                    ValorAdicional = txtValorAdicional.Text == "R$ 0,00" ? 0 : Convert.ToDecimal(txtValorAdicional.Text.Replace("R$ ", "")),
+                    PercentualDesconto = txtValorAdicional.Text == "R$ 0,00" ? 0 : (Convert.ToDecimal(txtPercentualDesconto.Text.Replace("%", "")) / 100),
+                    ValorDesconto = Convert.ToDecimal(txtValorDesconto.Text.Replace("R$ ", "")),
+                    ValorTotal = Convert.ToDecimal(txtValorTotal.Text.Replace("R$ ", "")),
+                    Status = (int)EnumStatusOrcamento.ConcluidoSemGerarServico,
+                    Ativo = true,
+                    DataCadastro = servicoSalvo.DataCadastro,
+                    DataAlteracao = DateTime.Now,
+                    ServicoMaodeObra = new List<ServicoMaodeObra>(),
+                    ServicoPeca = new List<ServicoPeca>()
                 };
 
-                DALConexao cx = new DALConexao(ConnectionStringConfiguration.ConnectionString);
-                BLLServico bll = new BLLServico(cx);
+                _servicoApplication.AtualizarServico(servico);
 
-                bll.AlterarServico(modelo);
-                MessageBox.Show("Cadastro alterado com sucesso! Número da Ordem de Serviço: " + modelo.CServicoId.ToString(), "Status", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Cadastro alterado com sucesso! Número do Serviço: " + servico.ServicoId.ToString(), "Status", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 dgvCliente.DataSource = null;
                 dgvMaodeObra.DataSource = null;
@@ -316,6 +392,7 @@ namespace SGM.WindowsForms
 
                 this.LimpaTela();
                 this.DisponibilizarBotoesTela(EnumControleTelas.InserirLocalizar);
+                this.Close();
             }
             catch (Exception erro)
             {
@@ -347,13 +424,7 @@ namespace SGM.WindowsForms
 
             txtValorTotal.Text = (txtVT.ToString("C"));
 
-
-            DialogResult res = MessageBox.Show("Deseja realmente incluir esse adicional de: " + txtValorAdicional.Text, "Pergunta", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-            if (res.ToString() == "Yes")
-            {
-                txtValorAdicional.Enabled = false;
-            }
+            txtValorAdicional.Enabled = false;
         }
 
         private void TxtPercentualDesconto_Leave(object sender, EventArgs e)
@@ -381,32 +452,87 @@ namespace SGM.WindowsForms
 
         private void BtnLocalizar_Click(object sender, EventArgs e)
         {
-            Close();
-            FrmConsultaHistoricoServicoClienteVeiculo consultaHistoricoServico = new FrmConsultaHistoricoServicoClienteVeiculo();
-            consultaHistoricoServico.ShowDialog();
-            if (consultaHistoricoServico.codigo != 0)
+            FrmConsultaHistoricoServicoClienteVeiculo consultaHistoricoServicoCliente = new FrmConsultaHistoricoServicoClienteVeiculo();
+            consultaHistoricoServicoCliente.ShowDialog();
+
+            if (consultaHistoricoServicoCliente.codigo != 0)
             {
-                DALConexao cx = new DALConexao(ConnectionStringConfiguration.ConnectionString);
-                BLLServico bll = new BLLServico(cx);
+                var servico = _servicoApplication.GetServicoByServicoId(consultaHistoricoServicoCliente.codigo);
 
-                ModeloServico modelo = bll.BuscarDetalheServicoGerado(consultaHistoricoServico.codigo);
+                txtServicoId.Text = Convert.ToString(servico.ServicoId);
+                txtClienteId.Text = Convert.ToString(servico.ClienteVeiculoId);
+                txtDescricao.Text = Convert.ToString(servico.Descricao);
+                txtValorAdicional.Text = Convert.ToString(servico.ValorAdicional);
+                txtPercentualDesconto.Text = Convert.ToString(servico.PercentualDesconto);
+                txtValorDesconto.Text = Convert.ToString(servico.ValorDesconto);
+                txtValorTotal.Text = Convert.ToString(servico.ValorTotal);
 
-                txtServicoId.Text = Convert.ToString(modelo.CServicoId);
-                txtClienteId.Text = Convert.ToString(modelo.CClienteId);
-                txtDescricao.Text = Convert.ToString(modelo.CDescricao);
-                txtValorAdicional.Text = Convert.ToString(modelo.CValorAdicional);
-                txtPercentualDesconto.Text = Convert.ToString(modelo.CPercentualDesconto);
-                txtValorDesconto.Text = Convert.ToString(modelo.CValorDesconto);
-                txtValorTotal.Text = Convert.ToString(modelo.CValorTotal);
+                var servicoMaodeObraSalvo = _servicoApplication.GetServicoMaodeObraByServicoId(servico.ServicoId);
+
+                IList<PesquisaMaodeObraServicoDataSource> maoDeObra = new List<PesquisaMaodeObraServicoDataSource>();
+
+                foreach (var item in servicoMaodeObraSalvo)
+                {
+                    var mao = _maoDeObraApplication.GetMaodeObraById(item.MaodeObraId);
+
+                    maoDeObra.Add(new PesquisaMaodeObraServicoDataSource
+                    {
+                        MaodeObraId = mao.MaodeObraId,
+                        MaodeObra = mao.Descricao,
+                        Valor = mao.Valor,
+                        ServicoMaodeObraId = item.Id
+                    });
+                }
+
+                dgvMaodeObra.DataSource = maoDeObra;
+                dgvMaodeObra.Columns[0].HeaderText = "Código";
+                dgvMaodeObra.Columns[0].Width = 50;
+                dgvMaodeObra.Columns[1].HeaderText = "Mão de Obra";
+                dgvMaodeObra.Columns[1].Width = 330;
+                dgvMaodeObra.Columns[2].HeaderText = "Valor";
+                dgvMaodeObra.Columns[2].Width = 70;
+                dgvMaodeObra.Columns[2].DefaultCellStyle.Format = "C2";
+                dgvMaodeObra.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                dgvMaodeObra.Columns[3].HeaderText = "ServicoMaoDeObraId";
+                dgvMaodeObra.Columns[3].Width = 20;
+                dgvMaodeObra.Columns[3].Visible = false;
+
+                var servicoPecaSalvo = _servicoApplication.GetServicoPecaByServicoId(servico.ServicoId);
+
+                IList<PesquisaPecaServicoDataSource> peca = new List<PesquisaPecaServicoDataSource>();
+
+                foreach (var item in servicoPecaSalvo)
+                {
+                    var mao = _pecaApplication.GetPecaByPecaId(item.PecaId);
+                    peca.Add(new PesquisaPecaServicoDataSource
+                    {
+                        PecaId = mao.PecaId,
+                        Peca = mao.Descricao,
+                        Valor = mao.Valor,
+                        ServicoPecaId = item.Id
+                    });
+                }
+
+                dgvPeca.DataSource = peca;
+                dgvPeca.Columns[0].HeaderText = "Código";
+                dgvPeca.Columns[0].Width = 50;
+                dgvPeca.Columns[1].HeaderText = "Peça";
+                dgvPeca.Columns[1].Width = 330;
+                dgvPeca.Columns[2].HeaderText = "Valor Integral";
+                dgvPeca.Columns[2].Width = 70;
+                dgvPeca.Columns[2].DefaultCellStyle.Format = "C2";
+                dgvPeca.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+
                 DisponibilizarBotoesTela(EnumControleTelas.AlterarExcluirCancelar);
             }
+
             else
             {
                 this.LimpaTela();
                 this.DisponibilizarBotoesTela(EnumControleTelas.InserirLocalizar);
             }
 
-            consultaHistoricoServico.Dispose();
+            consultaHistoricoServicoCliente.Dispose();
         }
 
         private void DgvMaodeObra_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -414,24 +540,38 @@ namespace SGM.WindowsForms
             if (e.RowIndex >= 0)
             {
                 int maoDeObraId = Convert.ToInt32(dgvMaodeObra.Rows[e.RowIndex].Cells[0].Value);
-
-                DALConexao cx = new DALConexao(ConnectionStringConfiguration.ConnectionString);
-                BLLServico bll = new BLLServico(cx);
+                int servicoMaodeObraId = Convert.ToInt32(dgvMaodeObra.Rows[e.RowIndex].Cells[3].Value);
 
                 DialogResult res = MessageBox.Show("Deseja realmente EXCLUIR este item?", "Pergunta", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                 if (res.ToString() == "Yes")
                 {
-
                     ServicoMaodeObra servicoMaodeObra = new ServicoMaodeObra()
                     {
+                        Id = servicoMaodeObraId,
                         ServicoId = Convert.ToInt32(txtServicoId.Text),
                         MaodeObraId = maoDeObraId
                     };
 
-                    bll.ExcluirServicoMaodeObra(servicoMaodeObra);
+                    _servicoApplication.DeletarServicoMaodeObra(servicoMaodeObra);
 
-                    dgvMaodeObra.DataSource = bll.LocalizarServicoMaodeObra(Convert.ToInt32(txtServicoId.Text));
+                    var servicoMaodeObraSalvo = _servicoApplication.GetServicoMaodeObraByServicoId(Convert.ToInt32(txtServicoId.Text));
+
+                    IList<PesquisaMaodeObraServicoDataSource> maoDeObra = new List<PesquisaMaodeObraServicoDataSource>();
+
+                    foreach (var item in servicoMaodeObraSalvo)
+                    {
+                        var mao = _maoDeObraApplication.GetMaodeObraById(item.MaodeObraId);
+                        maoDeObra.Add(new PesquisaMaodeObraServicoDataSource
+                        {
+                            MaodeObraId = mao.MaodeObraId,
+                            MaodeObra = mao.Descricao,
+                            Valor = mao.Valor,
+                            ServicoMaodeObraId = item.Id
+                        });
+                    }
+
+                    dgvMaodeObra.DataSource = maoDeObra;
                     dgvMaodeObra.Columns[0].HeaderText = "Código";
                     dgvMaodeObra.Columns[0].Width = 50;
                     dgvMaodeObra.Columns[1].HeaderText = "Mão de Obra";
@@ -440,7 +580,12 @@ namespace SGM.WindowsForms
                     dgvMaodeObra.Columns[2].Width = 70;
                     dgvMaodeObra.Columns[2].DefaultCellStyle.Format = "C2";
                     dgvMaodeObra.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                    dgvMaodeObra.Columns[3].HeaderText = "OrcamentoMaoDeObraId";
+                    dgvMaodeObra.Columns[3].Width = 20;
+                    dgvMaodeObra.Columns[3].Visible = false;
                 }
+
+                OrganizarTelaServico();
             }
         }
 
@@ -449,9 +594,7 @@ namespace SGM.WindowsForms
             if (e.RowIndex >= 0)
             {
                 int pecaId = Convert.ToInt32(dgvPeca.Rows[e.RowIndex].Cells[0].Value);
-
-                DALConexao cx = new DALConexao(ConnectionStringConfiguration.ConnectionString);
-                BLLServico bll = new BLLServico(cx);
+                int servicoMaodeObraId = Convert.ToInt32(dgvPeca.Rows[e.RowIndex].Cells[3].Value);
 
                 DialogResult res = MessageBox.Show("Deseja realmente EXCLUIR este item?", "Pergunta", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
@@ -459,23 +602,77 @@ namespace SGM.WindowsForms
                 {
                     ServicoPeca servicoPeca = new ServicoPeca()
                     {
+                        Id = servicoMaodeObraId,
                         ServicoId = Convert.ToInt32(txtServicoId.Text),
                         PecaId = pecaId
                     };
 
-                    bll.ExcluirServicoPeca(servicoPeca);
+                    _servicoApplication.DeletarServicoPeca(servicoPeca);
 
-                    dgvPeca.DataSource = bll.LocalizarServicoPeca(Convert.ToInt32(txtServicoId.Text));
-                    dgvPeca.Columns[0].HeaderText = "Código";
-                    dgvPeca.Columns[0].Width = 50;
-                    dgvPeca.Columns[1].HeaderText = "Peça";
-                    dgvPeca.Columns[1].Width = 330;
-                    dgvPeca.Columns[2].HeaderText = "Valor Integral";
-                    dgvPeca.Columns[2].Width = 70;
-                    dgvPeca.Columns[2].DefaultCellStyle.Format = "C2";
-                    dgvPeca.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                    var servicoPecaSalvo = _servicoApplication.GetServicoPecaByServicoId(Convert.ToInt32(txtServicoId.Text));
+
+                    IList<PesquisaPecaServicoDataSource> peca = new List<PesquisaPecaServicoDataSource>();
+
+                    foreach (var item in servicoPecaSalvo)
+                    {
+                        var pec = _pecaApplication.GetPecaByPecaId(item.PecaId);
+                        peca.Add(new PesquisaPecaServicoDataSource
+                        {
+                            PecaId = pec.PecaId,
+                            Peca = pec.Descricao,
+                            Valor = pec.Valor,
+                            ServicoPecaId = item.Id
+                        });
+                    }
+
+                    dgvMaodeObra.DataSource = peca;
+                    dgvMaodeObra.Columns[0].HeaderText = "Código";
+                    dgvMaodeObra.Columns[0].Width = 50;
+                    dgvMaodeObra.Columns[1].HeaderText = "Mão de Obra";
+                    dgvMaodeObra.Columns[1].Width = 330;
+                    dgvMaodeObra.Columns[2].HeaderText = "Valor";
+                    dgvMaodeObra.Columns[2].Width = 70;
+                    dgvMaodeObra.Columns[2].DefaultCellStyle.Format = "C2";
+                    dgvMaodeObra.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                    dgvMaodeObra.Columns[3].HeaderText = "OrcamentoMaoDeObraId";
+                    dgvMaodeObra.Columns[3].Width = 20;
+                    dgvMaodeObra.Columns[3].Visible = false;
                 }
+
+                OrganizarTelaServico();
             }
+        }
+
+        private void OrganizarTelaServico()
+        {
+            lblQtdRegistrosMaoDeObra.Text = "Quantidade de Registros: " + this.dgvMaodeObra.Rows.Count.ToString();
+            lblQtdRegistrosPecas.Text = "Quantidade de Registros: " + this.dgvPeca.Rows.Count.ToString();
+
+            txtVM = Convert.ToDecimal(dgvMaodeObra.Rows.Cast<DataGridViewRow>().Sum(i => Convert.ToDecimal(i.Cells["Valor"].Value)));
+            txtVP = Convert.ToDecimal(dgvPeca.Rows.Cast<DataGridViewRow>().Sum(i => Convert.ToDecimal(i.Cells["Valor"].Value)));
+
+            txtValorTotalMaodeObra.Text = (txtVM.ToString("C"));
+            txtValorTotalPecas.Text = Convert.ToString(txtVP.ToString("C"));
+
+            if (txtValorTotalMaodeObra.Text.Replace("R$ 0,00", "") != "")
+            {
+                txtVM = Convert.ToDecimal(txtValorTotalMaodeObra.Text.Replace("R$ ", ""));
+            }
+
+            if (txtValorTotalPecas.Text.Replace("R$ 0,00", "") != "")
+            {
+                txtVP = Convert.ToDecimal(txtValorTotalPecas.Text.Replace("R$ ", ""));
+            }
+
+            if (txtValorAdicional.Text.Replace("R$ 0,00", "") != "")
+            {
+                txtVA = Convert.ToDecimal(txtValorAdicional.Text.Replace("R$ ", ""));
+            }
+
+            txtVT = 0;
+            txtVT = (txtVM + txtVP + txtVA);
+
+            txtValorTotal.Text = (txtVT.ToString("C"));
         }
     }
 }

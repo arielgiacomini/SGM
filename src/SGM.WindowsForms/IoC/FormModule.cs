@@ -32,12 +32,16 @@ namespace SGM.WindowsForms.IoC
             Bind<IOrcamentoCommand>().To<OrcamentoCommand>();
             Bind<IOrcamentoQuery>().To<OrcamentoQuery>();
 
+            Bind<IServicoCommand>().To<ServicoCommand>();
+            Bind<IServicoQuery>().To<ServicoQuery>();
+
             Bind<IClienteApplication>().To<ClienteApplication>();
             Bind<IClienteVeiculoApplication>().To<ClienteVeiculoApplication>();
             Bind<IMaodeObraApplication>().To<MaodeObraApplication>();
             Bind<IPecaApplication>().To<PecaApplication>();
             Bind<IVeiculoApplication>().To<VeiculoApplication>();
             Bind<IOrcamentoApplication>().To<OrcamentoApplication>();
+            Bind<IServicoApplication>().To<ServicoApplication>();
 
             Bind<ISGMConfiguration>().To<SGMConfiguration>();
         }

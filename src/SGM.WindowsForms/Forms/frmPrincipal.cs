@@ -44,16 +44,16 @@ namespace SGM.WindowsForms
 
         private void BtnPrincipalOrcamento_Click(object sender, EventArgs e)
         {
-            FrmGerarOrcamento g = FormResolve.Resolve<FrmGerarOrcamento>();
-            g.ShowDialog();
-            g.Dispose();
+            FrmGerarOrcamento formGerarOrcamento = FormResolve.Resolve<FrmGerarOrcamento>();
+            formGerarOrcamento.ShowDialog();
+            formGerarOrcamento.Dispose();
         }
 
         private void BtnPrincipalRealizaMaoDeObra_Click(object sender, EventArgs e)
         {
-            FrmGerarServico h = new FrmGerarServico();
-            h.ShowDialog();
-            h.Dispose();
+            FrmGerarServico formGerarServico = FormResolve.Resolve<FrmGerarServico>();
+            formGerarServico.ShowDialog();
+            formGerarServico.Dispose();
         }
 
         private void BtnPrincipalEmitirNotas_Click(object sender, EventArgs e)
@@ -150,16 +150,16 @@ namespace SGM.WindowsForms
 
         private void RealizarOrçamentoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FrmGerarOrcamento g = FormResolve.Resolve<FrmGerarOrcamento>();
-            g.ShowDialog();
-            g.Dispose();
+            FrmGerarOrcamento formGerarOrcamento = FormResolve.Resolve<FrmGerarOrcamento>();
+            formGerarOrcamento.ShowDialog();
+            formGerarOrcamento.Dispose();
         }
 
         private void RealizaMãodeObraToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FrmGerarServico j = new FrmGerarServico();
-            j.ShowDialog();
-            j.Dispose();
+            FrmGerarServico formGerarServico = FormResolve.Resolve<FrmGerarServico>();
+            formGerarServico.ShowDialog();
+            formGerarServico.Dispose();
         }
 
         private void FrmPrincipal_Load(object sender, EventArgs e)

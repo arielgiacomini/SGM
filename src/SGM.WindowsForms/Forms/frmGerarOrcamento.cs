@@ -422,13 +422,6 @@ namespace SGM.WindowsForms
 
             txtValorTotal.Text = (txtVT.ToString("C"));
 
-            //DialogResult res = MessageBox.Show("Deseja realmente incluir esse adicional de: " + txtValorAdicional.Text, "Pergunta", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-            //if (res.ToString() == "Yes")
-            //{
-            //    txtValorAdicional.Enabled = false;
-            //}
-
             txtValorAdicional.Enabled = false;
         }
 

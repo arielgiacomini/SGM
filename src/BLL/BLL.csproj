@@ -78,6 +78,10 @@
       <Project>{87a79315-966b-4ba0-a08c-6ffd29dd8469}</Project>
       <Name>Modelo</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SGM.Domain\SGM.Domain.csproj">
+      <Project>{A237AF18-47A1-4C78-8F6B-00E6A27F98EE}</Project>
+      <Name>SGM.Domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

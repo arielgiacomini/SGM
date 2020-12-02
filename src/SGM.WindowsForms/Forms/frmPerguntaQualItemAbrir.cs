@@ -34,13 +34,11 @@ namespace SGM.WindowsForms
 
         private void BtnRealizaMaoDeObra_Click(object sender, EventArgs e)
         {
-            FrmGerarServico formGerarServico = new FrmGerarServico
-            {
-                clienteId = clienteId,
-                veiculoId = veiculoId,
-                placaVeiculo = placaVeiculo
-            };
-
+            FrmGerarServico formGerarServico = FormResolve.Resolve<FrmGerarServico>();
+            formGerarServico.clienteId = clienteId;
+            formGerarServico.veiculoId = veiculoId;
+            formGerarServico.clienteVeiculoId = clienteVeiculoId;
+            formGerarServico.placaVeiculo = placaVeiculo;
             formGerarServico.ShowDialog();
             formGerarServico.Dispose();
         }
