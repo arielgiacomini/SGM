@@ -107,7 +107,7 @@ namespace SGM.WindowsForms
         private void BtnLocalizar_Click(object sender, EventArgs e)
         {
 
-            frmConsultaPeca formConsultaPeca = FormResolve.Resolve<frmConsultaPeca>();
+            FrmConsultaPeca formConsultaPeca = FormResolve.Resolve<FrmConsultaPeca>();
             formConsultaPeca.ShowDialog();
             if (formConsultaPeca.codigo != 0)
             {

@@ -37,6 +37,11 @@ namespace SGM.ApplicationServices.Application
             return _veiculoQuery.GetVeiculoByVeiculoId(veiculoId);
         }
 
+        public IList<Veiculo> GetVeiculoByDescricaoModelo(string descricaoModelo)
+        {
+            return _veiculoQuery.GetVeiculoByDescricaoModelo(descricaoModelo);
+        }
+
         public VeiculoMarca GetMarcaByMarcaId(int marcaId)
         {
             return _veiculoQuery.GetMarcaByMarcaId(marcaId);

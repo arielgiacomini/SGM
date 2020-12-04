@@ -1,8 +1,8 @@
 ﻿using BLL;
-using DAL;
 using SGM.ApplicationServices.Application.Interface;
 using SGM.Domain.Entities;
 using SGM.Domain.Enumeration;
+using SGM.Domain.Utils;
 using SGM.WindowsForms.IoC;
 using System;
 using System.Windows.Forms;
@@ -274,7 +274,7 @@ namespace SGM.WindowsForms
 
             int marcaId = Convert.ToInt32(marcaVeiculo.MarcaId);
 
-            if (!Utils.VerificaSeEhNumero(anoModeloFabricacao))
+            if (!Util.VerificaSeEhNumero(anoModeloFabricacao))
             {
                 MessageBox.Show("O Ano Modelo/Fabricação deve ser um número: ex.: 2020 ", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 txtAnoModeloVeiculo.Clear();
@@ -315,9 +315,7 @@ namespace SGM.WindowsForms
 
                 if (cboMarcaVeiculo.SelectedIndex > 0)
                 {
-                    DALConexao conexao = new DALConexao(ConnectionStringConfiguration.ConnectionString);
-                    BLLVeiculo veaquinho = new BLLVeiculo(conexao);
-                    cboVeiculo.DataSource = veaquinho.BuscarVeiculoByMarcaId(veiculoMarca.MarcaId);
+                    cboVeiculo.DataSource = _veiculoApplication.GetVeiculosByMarcaId(veiculoMarca.MarcaId);
                     cboVeiculo.DisplayMember = "Modelo";
                     cboVeiculo.ValueMember = "VeiculoId";
                     cboVeiculo.SelectedValue = veiculoCliente.VeiculoId;

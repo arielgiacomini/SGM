@@ -1,6 +1,6 @@
-﻿namespace BLL
+﻿namespace SGM.Domain.Utils
 {
-    public class Utils
+    public class Util
     {
         public static bool VerificaSeEhNumero(string valor)
         {

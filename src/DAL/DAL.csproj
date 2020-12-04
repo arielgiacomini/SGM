@@ -67,7 +67,6 @@
     <Compile Include="DALConexao.cs" />
     <Compile Include="DALOrcamento.cs" />
     <Compile Include="DALServico.cs" />
-    <Compile Include="DALVeiculo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

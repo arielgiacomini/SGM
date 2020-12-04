@@ -1,32 +1,58 @@
-﻿using BLL;
-using DAL;
+﻿using SGM.ApplicationServices.Application.Interface;
+using SGM.Domain.Entities;
 using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 
 namespace SGM.WindowsForms
 {
-    public partial class frmConsultaVeiculo : Form
+    public partial class FrmConsultaVeiculo : Form
     {
-
+        private readonly IVeiculoApplication _veiculoApplication;
         public int codigo = 0;
 
-        public frmConsultaVeiculo()
+        public FrmConsultaVeiculo(IVeiculoApplication veiculoApplication)
         {
+            _veiculoApplication = veiculoApplication;
             InitializeComponent();
         }
 
-        private void btnModeloMarcaConsulta_Click(object sender, EventArgs e)
+        private void BtnModeloMarcaConsulta_Click(object sender, EventArgs e)
         {
-            // objeto para gravar os dados no banco de dados
-            DALConexao cx = new DALConexao(ConnectionStringConfiguration.ConnectionString);
-            BLLVeiculo bll = new BLLVeiculo(cx);
-            dgvModeloMarcaConsulta.DataSource = bll.Localizar(txtModeloMarcaConsulta.Text);
+            if (txtModeloMarcaConsulta.Text != "" || txtModeloMarcaConsulta.Text != null)
+            {
+                var listaVeiculos = _veiculoApplication.GetVeiculoByDescricaoModelo(txtModeloMarcaConsulta.Text);
+
+                CarregaGridView(listaVeiculos);
+            }
         }
 
-        private void frmConsultaVeiculo_Load(object sender, EventArgs e)
+        private void FrmConsultaVeiculo_Load(object sender, EventArgs e)
         {
-            btnModeloMarcaConsulta_Click(sender, e); // para carregar o grid na chamada da tela
+            IList<Veiculo> veiculo = new List<Veiculo>();
+
+            if (codigo > 0)
+            {
+                veiculo.Add(_veiculoApplication.GetVeiculoByVeiculoId(codigo));
+            }
+
+            CarregaGridView(veiculo);
+
+        }
+
+        private void dgvModeloMarcaConsulta_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                this.codigo = Convert.ToInt32(dgvModeloMarcaConsulta.Rows[e.RowIndex].Cells[0].Value);
+                this.Close();
+            }
+        }
+
+        private void CarregaGridView(IList<Veiculo> veiculo)
+        {
+            dgvModeloMarcaConsulta.DataSource = veiculo;
             dgvModeloMarcaConsulta.Columns[0].HeaderText = "Código";
             dgvModeloMarcaConsulta.Columns[0].Width = 50;
             dgvModeloMarcaConsulta.Columns[1].HeaderText = "Marca Veículo";
@@ -37,16 +63,6 @@ namespace SGM.WindowsForms
             dgvModeloMarcaConsulta.Columns[3].Width = 65;
             dgvModeloMarcaConsulta.Columns[4].HeaderText = "Data Cadastro";
             dgvModeloMarcaConsulta.Columns[4].Width = 78;
-
-        }
-
-        private void dgvModeloMarcaConsulta_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex >= 0) // vai guardar a informação escolhida com duplo clique.
-            {
-                this.codigo = Convert.ToInt32(dgvModeloMarcaConsulta.Rows[e.RowIndex].Cells[0].Value);
-                this.Close();
-            }
         }
     }
 }

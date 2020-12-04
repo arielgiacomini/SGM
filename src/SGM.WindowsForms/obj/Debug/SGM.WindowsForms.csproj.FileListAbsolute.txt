@@ -129,8 +129,8 @@ C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\SGM.WindowsForms\obj\
 C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\SGM.WindowsForms\obj\Debug\SGM.WindowsForms.frmConsultaHistoricoOrcamentoClienteVeiculo.resources
 C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\SGM.WindowsForms\obj\Debug\SGM.WindowsForms.FrmConsultaHistoricoServicoClienteVeiculo.resources
 C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\SGM.WindowsForms\obj\Debug\SGM.WindowsForms.FrmConsultaMaoDeObra.resources
-C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\SGM.WindowsForms\obj\Debug\SGM.WindowsForms.frmConsultaPeca.resources
-C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\SGM.WindowsForms\obj\Debug\SGM.WindowsForms.frmConsultaVeiculo.resources
+C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\SGM.WindowsForms\obj\Debug\SGM.WindowsForms.FrmConsultaPeca.resources
+C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\SGM.WindowsForms\obj\Debug\SGM.WindowsForms.FrmConsultaVeiculo.resources
 C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\SGM.WindowsForms\obj\Debug\SGM.WindowsForms.frmDetalhesOrcamentoGerado.resources
 C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\SGM.WindowsForms\obj\Debug\SGM.WindowsForms.FrmDetalhesServicoGerado.resources
 C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\SGM.WindowsForms\obj\Debug\SGM.WindowsForms.FrmGerarOrcamento.resources

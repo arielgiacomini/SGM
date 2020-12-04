@@ -22,9 +22,9 @@ namespace SGM.WindowsForms
 
         private void VeiculoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmConsultaVeiculo v = new frmConsultaVeiculo();
-            v.ShowDialog();
-            v.Dispose();
+            FrmConsultaVeiculo formConsultaVeiculo = FormResolve.Resolve<FrmConsultaVeiculo>();
+            formConsultaVeiculo.ShowDialog();
+            formConsultaVeiculo.Dispose();
         }
 
         private void ClienteVeículosToolStripMenuItem_Click(object sender, EventArgs e)
@@ -128,7 +128,7 @@ namespace SGM.WindowsForms
 
         private void PecasToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            frmConsultaPeca formConsultaPeca = FormResolve.Resolve<frmConsultaPeca>();
+            FrmConsultaPeca formConsultaPeca = FormResolve.Resolve<FrmConsultaPeca>();
             formConsultaPeca.ShowDialog();
             formConsultaPeca.Dispose();
         }

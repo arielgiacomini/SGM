@@ -38,6 +38,32 @@ namespace SGM.ApplicationServices.Queries
             }
         }
 
+        public IList<Veiculo> GetVeiculoByDescricaoModelo(string descricaoModelo)
+        {
+            using (var client = new HttpClient())
+            {
+                var result = client.GetAsync($"{_sGMConfiguration.SGMWebApiUrl}SGM/veiculo/descricao-modelo?descricaoModelo={descricaoModelo}").Result;
+
+                if (result.StatusCode == System.Net.HttpStatusCode.OK)
+                {
+                    var dados = JsonConvert.DeserializeObject<IList<Veiculo>>(result.Content.ReadAsStringAsync().Result);
+
+                    if (dados == null)
+                    {
+                        return new List<Veiculo>();
+                    }
+                    else
+                    {
+                        return dados;
+                    }
+                }
+                else
+                {
+                    throw new ApplicationException($"Problema ao consumir a API, resultado: {result.Content.ReadAsStringAsync().Result}");
+                }
+            }
+        }
+
         public IList<Veiculo> GetVeiculosByMarcaId(int marcaId)
         {
             using (var client = new HttpClient())

@@ -298,7 +298,7 @@ namespace SGM.WindowsForms
             }
             else
             {
-                frmConsultaPeca consultaPeca = FormResolve.Resolve<frmConsultaPeca>();
+                FrmConsultaPeca consultaPeca = FormResolve.Resolve<FrmConsultaPeca>();
                 consultaPeca.ShowDialog();
 
                 if (consultaPeca.codigo != 0)

@@ -6,12 +6,12 @@ using System.Windows.Forms;
 
 namespace SGM.WindowsForms
 {
-    public partial class frmConsultaPeca : Form
+    public partial class FrmConsultaPeca : Form
     {
         private readonly IPecaApplication _pecaApplication;
         public int codigo = 0;
 
-        public frmConsultaPeca(IPecaApplication pecaApplication)
+        public FrmConsultaPeca(IPecaApplication pecaApplication)
         {
             _pecaApplication = pecaApplication;
             InitializeComponent();
@@ -21,9 +21,9 @@ namespace SGM.WindowsForms
         {
             if (txtConsultaPeca.Text != "" || txtConsultaPeca.Text != null)
             {
-                var listaMaodeObra = _pecaApplication.GetPecaByDescricao(txtConsultaPeca.Text);
+                var listaPecas = _pecaApplication.GetPecaByDescricao(txtConsultaPeca.Text);
 
-                CarregaGridView(listaMaodeObra);
+                CarregaGridView(listaPecas);
             }
         }
 

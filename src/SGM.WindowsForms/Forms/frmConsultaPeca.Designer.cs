@@ -1,6 +1,6 @@
 ﻿namespace SGM.WindowsForms
 {
-    partial class frmConsultaPeca
+    partial class FrmConsultaPeca
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmConsultaPeca));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmConsultaPeca));
             this.dgvConsultaPeca = new System.Windows.Forms.DataGridView();
             this.btnConsultaPeca = new System.Windows.Forms.Button();
             this.txtConsultaPeca = new System.Windows.Forms.TextBox();
