@@ -2,6 +2,7 @@
 using SGM.ApplicationServices.Command.Interface;
 using SGM.ApplicationServices.Queries.Interface;
 using SGM.Domain.Entities;
+using System.Collections.Generic;
 
 namespace SGM.ApplicationServices.Application
 {
@@ -34,6 +35,11 @@ namespace SGM.ApplicationServices.Application
         public MaodeObra GetMaodeObraById(int maoDeObraId)
         {
             return _maodeObraQuery.GetMaodeObraById(maoDeObraId);
+        }
+
+        public IList<MaodeObra> GetMaodeObraByDescricao(string descricaoMaodeObra)
+        {
+            return _maodeObraQuery.GetMaodeObraByDescricao(descricaoMaodeObra);
         }
     }
 }

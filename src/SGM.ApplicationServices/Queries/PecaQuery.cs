@@ -3,6 +3,7 @@ using SGM.ApplicationServices.Infrastructure;
 using SGM.ApplicationServices.Queries.Interface;
 using SGM.Domain.Entities;
 using System;
+using System.Collections.Generic;
 using System.Net.Http;
 
 namespace SGM.ApplicationServices.Queries
@@ -24,6 +25,22 @@ namespace SGM.ApplicationServices.Queries
                 if (result.IsSuccessStatusCode)
                 {
                     return JsonConvert.DeserializeObject<Peca>(result.Content.ReadAsStringAsync().Result);
+                }
+                else
+                {
+                    throw new ApplicationException($"Problema ao consumir a API, resultado: {result.Content.ReadAsStringAsync().Result}");
+                }
+            }
+        }
+
+        public IList<Peca> GetPecaByDescricao(string descricaoPeca)
+        {
+            using (var client = new HttpClient())
+            {
+                var result = client.GetAsync($"{_sGMConfiguration.SGMWebApiUrl}SGM/peca/descricao?descricaoPeca={descricaoPeca}").Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    return JsonConvert.DeserializeObject<IList<Peca>>(result.Content.ReadAsStringAsync().Result);
                 }
                 else
                 {

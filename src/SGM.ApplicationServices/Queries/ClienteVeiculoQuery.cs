@@ -22,9 +22,14 @@ namespace SGM.ApplicationServices.Queries
             using (var client = new HttpClient())
             {
                 var result = client.GetAsync($"{_sGMConfiguration.SGMWebApiUrl}SGM/cliente-veiculo/{clienteId}").Result;
-                if (result.IsSuccessStatusCode)
+
+                if (result.StatusCode == System.Net.HttpStatusCode.OK)
                 {
                     return JsonConvert.DeserializeObject<IEnumerable<ClienteVeiculo>>(result.Content.ReadAsStringAsync().Result);
+                }
+                else if (result.StatusCode == System.Net.HttpStatusCode.NoContent)
+                {
+                    return new List<ClienteVeiculo>();
                 }
                 else
                 {
@@ -38,9 +43,14 @@ namespace SGM.ApplicationServices.Queries
             using (var client = new HttpClient())
             {
                 var result = client.GetAsync($"{_sGMConfiguration.SGMWebApiUrl}SGM/cliente-veiculo/placa/{placa}").Result;
-                if (result.IsSuccessStatusCode)
+
+                if (result.StatusCode == System.Net.HttpStatusCode.OK)
                 {
                     return JsonConvert.DeserializeObject<ClienteVeiculo>(result.Content.ReadAsStringAsync().Result);
+                }
+                else if (result.StatusCode == System.Net.HttpStatusCode.NoContent)
+                {
+                    return new ClienteVeiculo();
                 }
                 else
                 {
@@ -54,9 +64,14 @@ namespace SGM.ApplicationServices.Queries
             using (var client = new HttpClient())
             {
                 var result = client.GetAsync($"{_sGMConfiguration.SGMWebApiUrl}SGM/cliente-veiculo/id/{clienteVeiculoId}").Result;
-                if (result.IsSuccessStatusCode)
+
+                if (result.StatusCode == System.Net.HttpStatusCode.OK)
                 {
                     return JsonConvert.DeserializeObject<ClienteVeiculo>(result.Content.ReadAsStringAsync().Result);
+                }
+                else if (result.StatusCode == System.Net.HttpStatusCode.NoContent)
+                {
+                    return new ClienteVeiculo();
                 }
                 else
                 {

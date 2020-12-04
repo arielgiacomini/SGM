@@ -1,6 +1,7 @@
-﻿using BLL;
-using DAL;
+﻿using SGM.ApplicationServices.Application.Interface;
+using SGM.Domain.Entities;
 using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace SGM.WindowsForms
@@ -8,22 +9,48 @@ namespace SGM.WindowsForms
     public partial class FrmConsultaMaoDeObra : Form
     {
         public int codigo = 0;
+        private readonly IMaodeObraApplication _maoDeObraApplication;
 
-        public FrmConsultaMaoDeObra()
+        public FrmConsultaMaoDeObra(IMaodeObraApplication maodeObraApplication)
         {
+            _maoDeObraApplication = maodeObraApplication;
             InitializeComponent();
         }
 
-        private void btnConsultaMaoDeObra_Click(object sender, EventArgs e)
+        private void BtnConsultaMaoDeObra_Click(object sender, EventArgs e)
         {
-            DALConexao cx = new DALConexao(ConnectionStringConfiguration.ConnectionString);
-            BLLMaoDeObra bll = new BLLMaoDeObra(cx);
-            dgvConsultaMaoDeObra.DataSource = bll.Localizar(txtConsultaMaoDeObra.Text);
+            if (txtConsultaMaoDeObra.Text != "" || txtConsultaMaoDeObra.Text != null)
+            {
+                var listaMaodeObra = _maoDeObraApplication.GetMaodeObraByDescricao(txtConsultaMaoDeObra.Text);
+
+                CarregaGridView(listaMaodeObra);
+            }
         }
 
         private void frmConsultaMaoDeObra_Load(object sender, EventArgs e)
         {
-            btnConsultaMaoDeObra_Click(sender, e);
+            IList<MaodeObra> maoDeObra = new List<MaodeObra>();
+
+            if (codigo > 0)
+            {
+                maoDeObra.Add(_maoDeObraApplication.GetMaodeObraById(codigo));
+            }
+
+            CarregaGridView(maoDeObra);
+        }
+
+        private void dgvConsultaMaoDeObra_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                this.codigo = Convert.ToInt32(dgvConsultaMaoDeObra.Rows[e.RowIndex].Cells[0].Value);
+                this.Close();
+            }
+        }
+
+        private void CarregaGridView(IList<MaodeObra> maodeObra)
+        {
+            dgvConsultaMaoDeObra.DataSource = maodeObra;
             dgvConsultaMaoDeObra.Columns[0].HeaderText = "Código";
             dgvConsultaMaoDeObra.Columns[0].Width = 50;
             dgvConsultaMaoDeObra.Columns[1].HeaderText = "Mão-de-Obra/Serviço";
@@ -40,15 +67,6 @@ namespace SGM.WindowsForms
             dgvConsultaMaoDeObra.Columns[6].Width = 45;
             dgvConsultaMaoDeObra.Columns[7].HeaderText = "Data Cadastro";
             dgvConsultaMaoDeObra.Columns[7].Width = 70;
-        }
-
-        private void dgvConsultaMaoDeObra_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex >= 0)
-            {
-                this.codigo = Convert.ToInt32(dgvConsultaMaoDeObra.Rows[e.RowIndex].Cells[0].Value);
-                this.Close();
-            }
         }
     }
 }

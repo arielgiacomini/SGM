@@ -1,30 +1,56 @@
-﻿using BLL;
-using DAL;
+﻿using SGM.ApplicationServices.Application.Interface;
+using SGM.Domain.Entities;
 using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace SGM.WindowsForms
 {
     public partial class frmConsultaPeca : Form
     {
-
+        private readonly IPecaApplication _pecaApplication;
         public int codigo = 0;
 
-        public frmConsultaPeca()
+        public frmConsultaPeca(IPecaApplication pecaApplication)
         {
+            _pecaApplication = pecaApplication;
             InitializeComponent();
         }
 
-        private void btnConsultaPeca_Click(object sender, EventArgs e)
+        private void BtnConsultaPeca_Click(object sender, EventArgs e)
         {
-            DALConexao cx = new DALConexao(ConnectionStringConfiguration.ConnectionString);
-            BLLPeca bll = new BLLPeca(cx);
-            dgvConsultaPeca.DataSource = bll.Localizar(txtConsultaPeca.Text);
+            if (txtConsultaPeca.Text != "" || txtConsultaPeca.Text != null)
+            {
+                var listaMaodeObra = _pecaApplication.GetPecaByDescricao(txtConsultaPeca.Text);
+
+                CarregaGridView(listaMaodeObra);
+            }
         }
 
-        private void frmConsultaPeca_Load(object sender, EventArgs e)
+        private void FrmConsultaPeca_Load(object sender, EventArgs e)
         {
-            btnConsultaPeca_Click(sender, e);
+            IList<Peca> maoDeObra = new List<Peca>();
+
+            if (codigo > 0)
+            {
+                maoDeObra.Add(_pecaApplication.GetPecaByPecaId(codigo));
+            }
+
+            CarregaGridView(maoDeObra);
+        }
+
+        private void DgvConsultaPeca_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0) // vai guardar a informação escolhida com duplo clique.
+            {
+                this.codigo = Convert.ToInt32(dgvConsultaPeca.Rows[e.RowIndex].Cells[0].Value);
+                this.Close();
+            }
+        }
+
+        private void CarregaGridView(IList<Peca> peca)
+        {
+            dgvConsultaPeca.DataSource = peca;
             dgvConsultaPeca.Columns[0].HeaderText = "Código";
             dgvConsultaPeca.Columns[0].Width = 50;
             dgvConsultaPeca.Columns[1].HeaderText = "Peça/Produto";
@@ -39,15 +65,6 @@ namespace SGM.WindowsForms
             dgvConsultaPeca.Columns[5].Width = 50;
             dgvConsultaPeca.Columns[6].HeaderText = "Data Cadastro";
             dgvConsultaPeca.Columns[6].Width = 70;
-        }
-
-        private void dgvConsultaPeca_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex >= 0) // vai guardar a informação escolhida com duplo clique.
-            {
-                this.codigo = Convert.ToInt32(dgvConsultaPeca.Rows[e.RowIndex].Cells[0].Value);
-                this.Close();
-            }
         }
     }
 }

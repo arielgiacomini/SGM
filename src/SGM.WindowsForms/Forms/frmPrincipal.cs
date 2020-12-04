@@ -94,20 +94,19 @@ namespace SGM.WindowsForms
 
         private void FornecedorToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            FrmConsultaClienteVeiculo p = new FrmConsultaClienteVeiculo();
-            p.ShowDialog();
-            p.Dispose();
+            FrmConsultaClienteVeiculo formConsultaClienteVeiculo = FormResolve.Resolve<FrmConsultaClienteVeiculo>();
+            formConsultaClienteVeiculo.ShowDialog();
+            formConsultaClienteVeiculo.Dispose();
         }
 
         private void BtnVeiculoCliente_Click(object sender, EventArgs e)
         {
-            FrmConsultaClienteVeiculo x = new FrmConsultaClienteVeiculo();
-            x.ShowDialog();
-            if (x.codigo != 0)
+            FrmConsultaClienteVeiculo formConsultaClienteVeiculo = FormResolve.Resolve<FrmConsultaClienteVeiculo>();
+            formConsultaClienteVeiculo.ShowDialog();
+            if (formConsultaClienteVeiculo.clienteVeiculoId != 0)
             {
                 FrmCadastroClienteVeiculo formCadastroClienteVeiculo = FormResolve.Resolve<FrmCadastroClienteVeiculo>();
-                formCadastroClienteVeiculo.clienteId = x.clienteId;
-                formCadastroClienteVeiculo.placaVeiculo = x.placaVeiculo;
+                formCadastroClienteVeiculo.clienteVeiculoId = formConsultaClienteVeiculo.clienteVeiculoId;
                 formCadastroClienteVeiculo.ShowDialog();
                 formCadastroClienteVeiculo.Dispose();
             }
@@ -115,9 +114,9 @@ namespace SGM.WindowsForms
 
         private void ClienteToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            frmConsultaCliente t = new frmConsultaCliente();
-            t.ShowDialog();
-            t.Dispose();
+            frmConsultaCliente formConsultaCliente = FormResolve.Resolve<frmConsultaCliente>();
+            formConsultaCliente.ShowDialog();
+            formConsultaCliente.Dispose();
         }
 
         private void PeçasToolStripMenuItem_Click(object sender, EventArgs e)
@@ -129,9 +128,9 @@ namespace SGM.WindowsForms
 
         private void PecasToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            frmConsultaPeca i = new frmConsultaPeca();
-            i.ShowDialog();
-            i.Dispose();
+            frmConsultaPeca formConsultaPeca = FormResolve.Resolve<frmConsultaPeca>();
+            formConsultaPeca.ShowDialog();
+            formConsultaPeca.Dispose();
         }
 
         private void MaoDeObraToolStripMenuItem_Click(object sender, EventArgs e)
@@ -143,9 +142,9 @@ namespace SGM.WindowsForms
 
         private void MaoDeObraToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            FrmConsultaMaoDeObra b = new FrmConsultaMaoDeObra();
-            b.ShowDialog();
-            b.Dispose();
+            FrmConsultaMaoDeObra formConsultaMaodeObra = FormResolve.Resolve<FrmConsultaMaoDeObra>();
+            formConsultaMaodeObra.ShowDialog();
+            formConsultaMaodeObra.Dispose();
         }
 
         private void RealizarOrçamentoToolStripMenuItem_Click(object sender, EventArgs e)

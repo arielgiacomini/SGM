@@ -1,4 +1,5 @@
 ﻿using SGM.Domain.Entities;
+using System.Collections.Generic;
 
 namespace SGM.ApplicationServices.Application.Interface
 {
@@ -8,5 +9,6 @@ namespace SGM.ApplicationServices.Application.Interface
         void AtualizarMaodeObra(MaodeObra maoDeObra);
         void InativarMaodeObra(int maoDeObraId);
         MaodeObra GetMaodeObraById(int maoDeObraId);
+        IList<MaodeObra> GetMaodeObraByDescricao(string descricaoMaodeObra);
     }
 }

@@ -1,6 +1,7 @@
 ﻿using SGM.ApplicationServices.Application.Interface;
 using SGM.Domain.Entities;
 using SGM.Domain.Enumeration;
+using SGM.WindowsForms.IoC;
 using System;
 using System.Windows.Forms;
 
@@ -106,7 +107,7 @@ namespace SGM.WindowsForms
         private void BtnLocalizar_Click(object sender, EventArgs e)
         {
 
-            frmConsultaPeca formConsultaPeca = new frmConsultaPeca();
+            frmConsultaPeca formConsultaPeca = FormResolve.Resolve<frmConsultaPeca>();
             formConsultaPeca.ShowDialog();
             if (formConsultaPeca.codigo != 0)
             {

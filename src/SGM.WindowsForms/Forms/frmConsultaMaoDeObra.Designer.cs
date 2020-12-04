@@ -61,7 +61,7 @@
             this.btnConsultaMaoDeObra.TabIndex = 14;
             this.btnConsultaMaoDeObra.Text = "Consultar";
             this.btnConsultaMaoDeObra.UseVisualStyleBackColor = true;
-            this.btnConsultaMaoDeObra.Click += new System.EventHandler(this.btnConsultaMaoDeObra_Click);
+            this.btnConsultaMaoDeObra.Click += new System.EventHandler(this.BtnConsultaMaoDeObra_Click);
             // 
             // txtConsultaMaoDeObra
             // 

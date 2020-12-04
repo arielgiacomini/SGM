@@ -1,38 +1,61 @@
-﻿using BLL;
-using DAL;
+﻿using SGM.ApplicationServices.Application.Interface;
+using SGM.Domain.Entities;
 using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace SGM.WindowsForms
 {
     public partial class frmConsultaCliente : Form
     {
-        public frmConsultaCliente()
+        public int codigo = 0;
+        public string nomeCliente = "";
+        private readonly IClienteApplication _clienteApplication;
+
+        public frmConsultaCliente(IClienteApplication clienteApplication)
         {
+            _clienteApplication = clienteApplication;
             InitializeComponent();
         }
 
-        public int codigo = 0;
-        public string nomeCliente = "";
-
         private void BtnConsultaCliente_Click(object sender, EventArgs e)
         {
-            DALConexao cx = new DALConexao(ConnectionStringConfiguration.ConnectionString);
-            BLLCliente bll = new BLLCliente(cx);
-            dgvConsultCliente.DataSource = bll.Localizar(txtConsultaCliente.Text);
+            if (txtConsultaCliente.Text != "" || txtConsultaCliente.Text != null)
+            {
+                IList<Cliente> cliente = new List<Cliente>
+                {
+                    _clienteApplication.GetClienteByLikePlacaOrNomeOrApelido(txtConsultaCliente.Text)
+                };
+
+                CarregaGridView(cliente);
+            }
         }
 
         private void FrmConsultaCliente_Load(object sender, EventArgs e)
         {
+            IList<Cliente> cliente = new List<Cliente>();
+
             if (codigo > 0)
             {
-                CarregandoGridViewFiltradoPorCliente(codigo);
-            }
-            else
-            {
-                BtnConsultaCliente_Click(sender, e);
+                cliente.Add(_clienteApplication.GetClienteById(codigo));
             }
 
+            CarregaGridView(cliente);
+        }
+
+        private void DgvConsultCliente_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0) // vai guardar a informação escolhida com duplo clique.
+            {
+                this.codigo = Convert.ToInt32(dgvConsultCliente.Rows[e.RowIndex].Cells[0].Value);
+                this.nomeCliente = Convert.ToString(dgvConsultCliente.Rows[e.RowIndex].Cells[3].Value);
+                this.Close();
+            }
+        }
+
+        private void CarregaGridView(IList<Cliente> cliente)
+        {
+            dgvConsultCliente.DataSource = cliente;
             dgvConsultCliente.Columns[0].HeaderText = "Código";
             dgvConsultCliente.Columns[0].Width = 50;
             dgvConsultCliente.Columns[1].HeaderText = "Cliente";
@@ -47,24 +70,6 @@ namespace SGM.WindowsForms
             dgvConsultCliente.Columns[5].Width = 75;
             dgvConsultCliente.Columns[6].HeaderText = "Data Nascimento";
             dgvConsultCliente.Columns[6].Width = 75;
-        }
-
-        private void CarregandoGridViewFiltradoPorCliente(int clienteId)
-        {
-            DALConexao cx = new DALConexao(ConnectionStringConfiguration.ConnectionString);
-            BLLCliente bll = new BLLCliente(cx);
-
-            dgvConsultCliente.DataSource = bll.LocalizarClienteByClienteId(clienteId);
-        }
-
-        private void DgvConsultCliente_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex >= 0) // vai guardar a informação escolhida com duplo clique.
-            {
-                this.codigo = Convert.ToInt32(dgvConsultCliente.Rows[e.RowIndex].Cells[0].Value);
-                this.nomeCliente = Convert.ToString(dgvConsultCliente.Rows[e.RowIndex].Cells[3].Value);
-                this.Close();
-            }
         }
     }
 }

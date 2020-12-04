@@ -3,6 +3,7 @@ using DAL;
 using SGM.ApplicationServices.Application.Interface;
 using SGM.Domain.Entities;
 using SGM.Domain.Enumeration;
+using SGM.WindowsForms.IoC;
 using System;
 using System.Windows.Forms;
 
@@ -44,57 +45,19 @@ namespace SGM.WindowsForms
 
         private void FrmCadastroClienteVeiculo_Load(object sender, EventArgs e)
         {
-            this.txtClienteId.Enabled = false;
-            this.txtCliente.Enabled = false;
-            this.txtTelefoneCliente.Enabled = false;
-            this.txtAnoModeloVeiculo.Enabled = false;
+            LoadTela();
 
-            this.LimpaTela();
-            this.DisponibilizarBotoesTela(EnumControleTelas.InserirLocalizar);
-
-            if (cboMarcaVeiculo.DataSource == null)
+            if (clienteVeiculoId != 0)
             {
-                cboMarcaVeiculo.DataSource = _veiculoApplication.GetMarcasByAll();
-                cboMarcaVeiculo.DisplayMember = "Marca";
-                cboMarcaVeiculo.ValueMember = "MarcaId";
-            }
-
-            ClienteVeiculo dadosVeiculoCliente = new ClienteVeiculo();
-            Cliente dadosCliente = null;
-            Veiculo dadosVeiculo = new Veiculo();
-            VeiculoMarca dadosMarcaVeiculo = new VeiculoMarca();
-
-            if (placaVeiculo != null && placaVeiculo != "")
-            {
-                dadosVeiculoCliente = _clienteVeiculoApplication.GetVeiculoClienteByPlaca(placaVeiculo);
-                dadosCliente = _clienteApplication.GetClienteById(dadosVeiculoCliente.ClienteId);
-                dadosVeiculo = _veiculoApplication.GetVeiculoByVeiculoId(dadosVeiculoCliente.VeiculoId);
-                dadosMarcaVeiculo = _veiculoApplication.GetMarcaByMarcaId(dadosVeiculo.MarcaId);
+                var dadosVeiculoCliente = _clienteVeiculoApplication.GetVeiculoClienteByClienteVeiculoId(clienteVeiculoId);
+                var dadosCliente = _clienteApplication.GetClienteById(dadosVeiculoCliente.ClienteId);
+                var dadosVeiculo = _veiculoApplication.GetVeiculoByVeiculoId(dadosVeiculoCliente.VeiculoId);
+                var dadosMarcaVeiculo = _veiculoApplication.GetMarcaByMarcaId(dadosVeiculo.MarcaId);
 
                 PreencheInformacoesNaTela(dadosCliente, dadosVeiculoCliente, dadosVeiculo, dadosMarcaVeiculo);
 
                 this.DisponibilizarBotoesTela(EnumControleTelas.AlterarExcluirCancelar);
                 this.operacao = "alterar";
-            }
-            else if (clienteVeiculoId != 0)
-            {
-                dadosVeiculoCliente = _clienteVeiculoApplication.GetVeiculoClienteByClienteVeiculoId(clienteVeiculoId);
-                dadosCliente = _clienteApplication.GetClienteById(dadosVeiculoCliente.ClienteId);
-                dadosVeiculo = _veiculoApplication.GetVeiculoByVeiculoId(dadosVeiculoCliente.VeiculoId);
-                dadosMarcaVeiculo = _veiculoApplication.GetMarcaByMarcaId(dadosVeiculo.MarcaId);
-
-                PreencheInformacoesNaTela(dadosCliente, dadosVeiculoCliente, dadosVeiculo, dadosMarcaVeiculo);
-
-                this.DisponibilizarBotoesTela(EnumControleTelas.AlterarExcluirCancelar);
-                this.operacao = "alterar";
-            }
-            else if (clienteId != 0 && (placaVeiculo == null || clienteVeiculoId == 0 || clienteVeiculoId == 0))
-            {
-                dadosCliente = _clienteApplication.GetClienteById(clienteId);
-                PreencheInformacoesNaTela(dadosCliente, dadosVeiculoCliente, dadosVeiculo, dadosMarcaVeiculo);
-
-                this.DisponibilizarBotoesTela(EnumControleTelas.SalvarCancelarExcluir);
-                this.operacao = "inserir";
             }
             else
             {
@@ -240,9 +203,9 @@ namespace SGM.WindowsForms
 
         private void BtnLocalizar_Click(object sender, EventArgs e)
         {
-            FrmConsultaClienteVeiculo c = new FrmConsultaClienteVeiculo();
-            c.ShowDialog();
-            if (c.codigo != 0)
+            FrmConsultaClienteVeiculo formConsultaClienteVeiculo = FormResolve.Resolve<FrmConsultaClienteVeiculo>();
+            formConsultaClienteVeiculo.ShowDialog();
+            if (formConsultaClienteVeiculo.clienteVeiculoId != 0)
             {
                 this.txtClienteId.Enabled = false;
                 this.txtCliente.Enabled = false;
@@ -274,7 +237,7 @@ namespace SGM.WindowsForms
                 this.DisponibilizarBotoesTela(EnumControleTelas.InserirLocalizar);
             }
 
-            c.Dispose();
+            formConsultaClienteVeiculo.Dispose();
         }
 
         private void BtnBuscarHistoricoCliente_Click(object sender, EventArgs e)
@@ -342,8 +305,8 @@ namespace SGM.WindowsForms
                 txtCorVeiculo.Text = veiculoCliente.CorVeiculo.ToString();
                 txtAnoModeloVeiculo.Text = veiculoCliente.AnoVeiculo.ToString();
                 checkBoxAtivo.Checked = veiculoCliente.Ativo;
-                txtDataCadastro.Text = veiculoCliente.DataCadastro.ToLongDateString();
-                txtDataAlteracao.Text = veiculoCliente.DataAlteracao.HasValue ? veiculoCliente.DataAlteracao.Value.ToLongDateString() : "";
+                txtDataCadastro.Text = veiculoCliente.DataCadastro.ToString();
+                txtDataAlteracao.Text = veiculoCliente.DataAlteracao.HasValue ? veiculoCliente.DataAlteracao.Value.ToString() : "";
             }
 
             if (veiculo != null && veiculo.VeiculoId != 0)
@@ -383,6 +346,29 @@ namespace SGM.WindowsForms
         private void CboVeiculo_Leave(object sender, EventArgs e)
         {
             txtKmVeiculo.Focus();
+        }
+
+        private void LoadTela()
+        {
+            this.txtClienteId.Enabled = false;
+            this.txtCliente.Enabled = false;
+            this.txtTelefoneCliente.Enabled = false;
+            this.txtAnoModeloVeiculo.Enabled = false;
+            this.LimpaTela();
+            this.DisponibilizarBotoesTela(EnumControleTelas.InserirLocalizar);
+
+            if (cboMarcaVeiculo.DataSource == null)
+            {
+                cboMarcaVeiculo.DataSource = _veiculoApplication.GetMarcasByAll();
+                cboMarcaVeiculo.DisplayMember = "Marca";
+                cboMarcaVeiculo.ValueMember = "MarcaId";
+            }
+        }
+
+        private void btnConsultaCliente_Click(object sender, EventArgs e)
+        {
+            frmConsultaCliente formConsultaCliente = FormResolve.Resolve<frmConsultaCliente>();
+            formConsultaCliente.ShowDialog();
         }
     }
 }
