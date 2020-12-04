@@ -2,6 +2,7 @@
 using SGM.Domain.DataSources;
 using SGM.Domain.Entities;
 using SGM.Domain.Enumeration;
+using SGM.WindowsForms.IoC;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -240,7 +241,7 @@ namespace SGM.WindowsForms
             }
             else
             {
-                FrmConsultaMaoDeObra consultaMaodeObra = new FrmConsultaMaoDeObra();
+                FrmConsultaMaoDeObra consultaMaodeObra = FormResolve.Resolve<FrmConsultaMaoDeObra>();
                 consultaMaodeObra.ShowDialog();
 
                 if (consultaMaodeObra.codigo != 0)
@@ -297,7 +298,7 @@ namespace SGM.WindowsForms
             }
             else
             {
-                frmConsultaPeca consultaPeca = new frmConsultaPeca();
+                FrmConsultaPeca consultaPeca = FormResolve.Resolve<FrmConsultaPeca>();
                 consultaPeca.ShowDialog();
 
                 if (consultaPeca.codigo != 0)

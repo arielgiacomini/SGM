@@ -59,15 +59,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BLLCliente.cs" />
-    <Compile Include="BLLMaoDeObra.cs" />
     <Compile Include="BLLOrcamento.cs" />
-    <Compile Include="BLLPeca.cs" />
     <Compile Include="BLLServico.cs" />
-    <Compile Include="BLLVeiculo.cs" />
-    <Compile Include="BLLVeiculoCliente.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Utils.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DAL\DAL.csproj">

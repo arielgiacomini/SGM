@@ -2,6 +2,7 @@
 using SGM.ApplicationServices.Command.Interface;
 using SGM.ApplicationServices.Queries.Interface;
 using SGM.Domain.Entities;
+using System.Collections.Generic;
 
 namespace SGM.ApplicationServices.Application
 {
@@ -34,6 +35,11 @@ namespace SGM.ApplicationServices.Application
         public Peca GetPecaByPecaId(int pecaId)
         {
             return _pecaQuery.GetPecaByPecaId(pecaId);
+        }
+
+        public IList<Peca> GetPecaByDescricao(string descricaoPeca)
+        {
+            return _pecaQuery.GetPecaByDescricao(descricaoPeca);
         }
     }
 }

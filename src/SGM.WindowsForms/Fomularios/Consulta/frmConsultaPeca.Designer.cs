@@ -1,6 +1,6 @@
 ﻿namespace SGM.WindowsForms
 {
-    partial class frmConsultaPeca
+    partial class FrmConsultaPeca
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmConsultaPeca));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmConsultaPeca));
             this.dgvConsultaPeca = new System.Windows.Forms.DataGridView();
             this.btnConsultaPeca = new System.Windows.Forms.Button();
             this.txtConsultaPeca = new System.Windows.Forms.TextBox();
@@ -49,7 +49,7 @@
             this.dgvConsultaPeca.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvConsultaPeca.Size = new System.Drawing.Size(760, 472);
             this.dgvConsultaPeca.TabIndex = 11;
-            this.dgvConsultaPeca.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvConsultaPeca_CellDoubleClick);
+            this.dgvConsultaPeca.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvConsultaPeca_CellDoubleClick);
             // 
             // btnConsultaPeca
             // 
@@ -61,7 +61,7 @@
             this.btnConsultaPeca.TabIndex = 10;
             this.btnConsultaPeca.Text = "Consultar";
             this.btnConsultaPeca.UseVisualStyleBackColor = true;
-            this.btnConsultaPeca.Click += new System.EventHandler(this.btnConsultaPeca_Click);
+            this.btnConsultaPeca.Click += new System.EventHandler(this.BtnConsultaPeca_Click);
             // 
             // txtConsultaPeca
             // 
@@ -103,7 +103,7 @@
             this.Name = "frmConsultaPeca";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Sistema Gerenciamento Mecânica - Consulta de Peças/Produtos";
-            this.Load += new System.EventHandler(this.frmConsultaPeca_Load);
+            this.Load += new System.EventHandler(this.FrmConsultaPeca_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvConsultaPeca)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);

@@ -124,18 +124,15 @@ namespace SGM.WindowsForms
 
                     if (res.ToString() == "Yes")
                     {
-                        frmConsultaCliente c = new frmConsultaCliente
-                        {
-                            codigo = cliente.ClienteId
-                        };
+                        frmConsultaCliente formConsultaCliente = FormResolve.Resolve<frmConsultaCliente>();
+                        formConsultaCliente.codigo = cliente.ClienteId;
+                        formConsultaCliente.ShowDialog();
 
-                        c.ShowDialog();
-
-                        if (c.codigo != 0)
+                        if (formConsultaCliente.codigo != 0)
                         {
                             FrmCadastroClienteVeiculo formCadastroClienteVeiculo = FormResolve.Resolve<FrmCadastroClienteVeiculo>();
                             formCadastroClienteVeiculo.DisponibilizarBotoesTela(EnumControleTelas.InserirLocalizar);
-                            formCadastroClienteVeiculo.clienteId = c.codigo;
+                            formCadastroClienteVeiculo.clienteId = formConsultaCliente.codigo;
                             formCadastroClienteVeiculo.ShowDialog();
                             formCadastroClienteVeiculo.Dispose();
                         }
@@ -147,18 +144,16 @@ namespace SGM.WindowsForms
 
                     if (clienteJaPossuiVeiculo.ToString() == "Yes")
                     {
-                        FrmConsultaClienteVeiculo c = new FrmConsultaClienteVeiculo
-                        {
-                            clienteId = cliente.ClienteId
-                        };
+                        FrmConsultaClienteVeiculo formConsultaClienteVeiculo = FormResolve.Resolve<FrmConsultaClienteVeiculo>();
+                        formConsultaClienteVeiculo.clienteId = cliente.ClienteId;
 
-                        c.ShowDialog();
+                        formConsultaClienteVeiculo.ShowDialog();
 
-                        if (c.clienteId != 0)
+                        if (formConsultaClienteVeiculo.clienteId != 0)
                         {
                             FrmCadastroClienteVeiculo formCadastroClienteVeiculo = FormResolve.Resolve<FrmCadastroClienteVeiculo>();
-                            formCadastroClienteVeiculo.clienteId = c.clienteId;
-                            formCadastroClienteVeiculo.clienteVeiculoId = c.codigo;
+                            formCadastroClienteVeiculo.clienteId = formConsultaClienteVeiculo.clienteId;
+                            formCadastroClienteVeiculo.clienteVeiculoId = formConsultaClienteVeiculo.clienteVeiculoId;
                             formCadastroClienteVeiculo.DisponibilizarBotoesTela(EnumControleTelas.AlterarExcluirCancelar);
                             formCadastroClienteVeiculo.ShowDialog();
                             formCadastroClienteVeiculo.Dispose();
@@ -185,12 +180,11 @@ namespace SGM.WindowsForms
 
         private void BtnLocalizar_Click(object sender, EventArgs e)
         {
-
-            frmConsultaCliente c = new frmConsultaCliente();
-            c.ShowDialog();
-            if (c.codigo != 0)
+            frmConsultaCliente formConsultaCliente = FormResolve.Resolve<frmConsultaCliente>();
+            formConsultaCliente.ShowDialog();
+            if (formConsultaCliente.codigo != 0)
             {
-                var cliente = _clienteApplication.GetClienteById(c.codigo);
+                var cliente = _clienteApplication.GetClienteById(formConsultaCliente.codigo);
 
                 txtClienteId.Text = cliente.ClienteId.ToString();
                 txtCliente.Text = cliente.NomeCliente;
@@ -220,7 +214,7 @@ namespace SGM.WindowsForms
                 this.DisponibilizarBotoesTela(EnumControleTelas.InserirLocalizar);
             }
 
-            c.Dispose();
+            formConsultaCliente.Dispose();
         }
 
         private void VerificaSeCPFJaExisteNaBaseDados_Leave(object sender, EventArgs e)

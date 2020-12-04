@@ -60,14 +60,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Entities\Veiculo.cs" />
-    <Compile Include="ModeloCliente.cs" />
-    <Compile Include="ModeloMaoDeObra.cs" />
     <Compile Include="ModeloOrcamento.cs" />
-    <Compile Include="ModeloPeca.cs" />
     <Compile Include="ModeloServico.cs" />
-    <Compile Include="ModeloVeiculo.cs" />
-    <Compile Include="ModeloVeiculoCliente.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

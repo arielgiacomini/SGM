@@ -1,4 +1,5 @@
 ﻿using SGM.Domain.Entities;
+using System.Collections.Generic;
 
 namespace SGM.ApplicationServices.Application.Interface
 {
@@ -8,5 +9,6 @@ namespace SGM.ApplicationServices.Application.Interface
         void AtualizarPeca(Peca peca);
         void InativarPeca(int pecaId);
         Peca GetPecaByPecaId(int pecaId);
+        IList<Peca> GetPecaByDescricao(string descricaoPeca);
     }
 }

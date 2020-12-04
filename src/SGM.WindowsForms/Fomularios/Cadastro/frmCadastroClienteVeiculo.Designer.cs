@@ -39,6 +39,7 @@
             this.txtClienteVeiculoId = new System.Windows.Forms.TextBox();
             this.txtPlacaVeiculo = new System.Windows.Forms.MaskedTextBox();
             this.gbInfoCliente = new System.Windows.Forms.GroupBox();
+            this.btnConsultaCliente = new System.Windows.Forms.Button();
             this.txtClienteId = new System.Windows.Forms.TextBox();
             this.lblClienteId = new System.Windows.Forms.Label();
             this.lblNomeCliente = new System.Windows.Forms.Label();
@@ -209,6 +210,7 @@
             // 
             // gbInfoCliente
             // 
+            this.gbInfoCliente.Controls.Add(this.btnConsultaCliente);
             this.gbInfoCliente.Controls.Add(this.txtClienteId);
             this.gbInfoCliente.Controls.Add(this.lblClienteId);
             this.gbInfoCliente.Controls.Add(this.lblNomeCliente);
@@ -221,6 +223,22 @@
             this.gbInfoCliente.TabIndex = 7;
             this.gbInfoCliente.TabStop = false;
             this.gbInfoCliente.Text = "Informações do Cliente";
+            // 
+            // btnConsultaCliente
+            // 
+            this.btnConsultaCliente.BackgroundImage = global::GUI.Properties.Resources.localizar1;
+            this.btnConsultaCliente.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnConsultaCliente.Enabled = false;
+            this.btnConsultaCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnConsultaCliente.ForeColor = System.Drawing.Color.Red;
+            this.btnConsultaCliente.ImageAlign = System.Drawing.ContentAlignment.TopRight;
+            this.btnConsultaCliente.Location = new System.Drawing.Point(638, 15);
+            this.btnConsultaCliente.Name = "btnConsultaCliente";
+            this.btnConsultaCliente.Size = new System.Drawing.Size(85, 88);
+            this.btnConsultaCliente.TabIndex = 46;
+            this.btnConsultaCliente.Text = "Busca Cliente";
+            this.btnConsultaCliente.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnConsultaCliente.Click += new System.EventHandler(this.btnConsultaCliente_Click);
             // 
             // txtClienteId
             // 
@@ -277,7 +295,7 @@
             // 
             this.lblBuscarHistoricoServicoCliente.AutoSize = true;
             this.lblBuscarHistoricoServicoCliente.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBuscarHistoricoServicoCliente.Location = new System.Drawing.Point(543, 354);
+            this.lblBuscarHistoricoServicoCliente.Location = new System.Drawing.Point(504, 352);
             this.lblBuscarHistoricoServicoCliente.Name = "lblBuscarHistoricoServicoCliente";
             this.lblBuscarHistoricoServicoCliente.Size = new System.Drawing.Size(130, 40);
             this.lblBuscarHistoricoServicoCliente.TabIndex = 7;
@@ -288,9 +306,9 @@
             this.btnBuscarHistoricoCliente.BackgroundImage = global::GUI.Properties.Resources.localizar1;
             this.btnBuscarHistoricoCliente.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btnBuscarHistoricoCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBuscarHistoricoCliente.Location = new System.Drawing.Point(679, 335);
+            this.btnBuscarHistoricoCliente.Location = new System.Drawing.Point(640, 324);
             this.btnBuscarHistoricoCliente.Name = "btnBuscarHistoricoCliente";
-            this.btnBuscarHistoricoCliente.Size = new System.Drawing.Size(73, 71);
+            this.btnBuscarHistoricoCliente.Size = new System.Drawing.Size(96, 90);
             this.btnBuscarHistoricoCliente.TabIndex = 10;
             this.btnBuscarHistoricoCliente.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnBuscarHistoricoCliente.Click += new System.EventHandler(this.BtnBuscarHistoricoCliente_Click);
@@ -361,7 +379,7 @@
             this.txtDataCadastro.Enabled = false;
             this.txtDataCadastro.Location = new System.Drawing.Point(93, 19);
             this.txtDataCadastro.Name = "txtDataCadastro";
-            this.txtDataCadastro.Size = new System.Drawing.Size(172, 20);
+            this.txtDataCadastro.Size = new System.Drawing.Size(125, 20);
             this.txtDataCadastro.TabIndex = 41;
             // 
             // lblDataCadastro
@@ -376,7 +394,7 @@
             // lblDataAlteracao
             // 
             this.lblDataAlteracao.AutoSize = true;
-            this.lblDataAlteracao.Location = new System.Drawing.Point(268, 22);
+            this.lblDataAlteracao.Location = new System.Drawing.Point(227, 22);
             this.lblDataAlteracao.Name = "lblDataAlteracao";
             this.lblDataAlteracao.Size = new System.Drawing.Size(84, 13);
             this.lblDataAlteracao.TabIndex = 43;
@@ -386,9 +404,9 @@
             // 
             this.txtDataAlteracao.BackColor = System.Drawing.SystemColors.Control;
             this.txtDataAlteracao.Enabled = false;
-            this.txtDataAlteracao.Location = new System.Drawing.Point(353, 19);
+            this.txtDataAlteracao.Location = new System.Drawing.Point(312, 19);
             this.txtDataAlteracao.Name = "txtDataAlteracao";
-            this.txtDataAlteracao.Size = new System.Drawing.Size(174, 20);
+            this.txtDataAlteracao.Size = new System.Drawing.Size(115, 20);
             this.txtDataAlteracao.TabIndex = 44;
             // 
             // grbBoxDatas
@@ -400,7 +418,7 @@
             this.grbBoxDatas.Enabled = false;
             this.grbBoxDatas.Location = new System.Drawing.Point(9, 379);
             this.grbBoxDatas.Name = "grbBoxDatas";
-            this.grbBoxDatas.Size = new System.Drawing.Size(533, 46);
+            this.grbBoxDatas.Size = new System.Drawing.Size(444, 46);
             this.grbBoxDatas.TabIndex = 45;
             this.grbBoxDatas.TabStop = false;
             this.grbBoxDatas.Text = "Controle Datas";
@@ -455,5 +473,6 @@
         private System.Windows.Forms.Label lblDataCadastro;
         private System.Windows.Forms.TextBox txtDataCadastro;
         private System.Windows.Forms.GroupBox grbBoxDatas;
+        protected System.Windows.Forms.Button btnConsultaCliente;
     }
 }

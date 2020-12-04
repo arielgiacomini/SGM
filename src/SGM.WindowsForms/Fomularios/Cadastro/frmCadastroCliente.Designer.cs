@@ -475,6 +475,7 @@
             // 
             // imgLogoTipo
             // 
+            this.imgLogoTipo.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.imgLogoTipo.Image = global::GUI.Properties.Resources.LogotipoLoquinho1;
             this.imgLogoTipo.Location = new System.Drawing.Point(545, 77);
             this.imgLogoTipo.Name = "imgLogoTipo";
@@ -485,7 +486,7 @@
             // 
             // txtDataCadastro
             // 
-            this.txtDataCadastro.Location = new System.Drawing.Point(101, 405);
+            this.txtDataCadastro.Location = new System.Drawing.Point(105, 405);
             this.txtDataCadastro.Name = "txtDataCadastro";
             this.txtDataCadastro.ReadOnly = true;
             this.txtDataCadastro.Size = new System.Drawing.Size(123, 20);
@@ -497,9 +498,9 @@
             this.lblDataCadastro.Enabled = false;
             this.lblDataCadastro.Location = new System.Drawing.Point(11, 408);
             this.lblDataCadastro.Name = "lblDataCadastro";
-            this.lblDataCadastro.Size = new System.Drawing.Size(87, 13);
+            this.lblDataCadastro.Size = new System.Drawing.Size(93, 13);
             this.lblDataCadastro.TabIndex = 35;
-            this.lblDataCadastro.Text = "Cadastro Cliente:";
+            this.lblDataCadastro.Text = "Data de Cadastro:";
             // 
             // FrmCadastroCliente
             // 

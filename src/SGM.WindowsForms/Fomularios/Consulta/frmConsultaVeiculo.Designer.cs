@@ -1,6 +1,6 @@
 ﻿namespace SGM.WindowsForms
 {
-    partial class frmConsultaVeiculo
+    partial class FrmConsultaVeiculo
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmConsultaVeiculo));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmConsultaVeiculo));
             this.lblModeloMarca = new System.Windows.Forms.Label();
             this.txtModeloMarcaConsulta = new System.Windows.Forms.TextBox();
             this.dgvModeloMarcaConsulta = new System.Windows.Forms.DataGridView();
@@ -77,7 +77,7 @@
             this.btnModeloMarcaConsulta.TabIndex = 2;
             this.btnModeloMarcaConsulta.Text = "Consultar";
             this.btnModeloMarcaConsulta.UseVisualStyleBackColor = true;
-            this.btnModeloMarcaConsulta.Click += new System.EventHandler(this.btnModeloMarcaConsulta_Click);
+            this.btnModeloMarcaConsulta.Click += new System.EventHandler(this.BtnModeloMarcaConsulta_Click);
             // 
             // pictureBox1
             // 
@@ -103,7 +103,7 @@
             this.Name = "frmConsultaVeiculo";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Sistema Gerenciamento Mecânica - Consulta Veiculos";
-            this.Load += new System.EventHandler(this.frmConsultaVeiculo_Load);
+            this.Load += new System.EventHandler(this.FrmConsultaVeiculo_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvModeloMarcaConsulta)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
