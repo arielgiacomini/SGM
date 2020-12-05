@@ -59,7 +59,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BLLOrcamento.cs" />
     <Compile Include="BLLServico.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

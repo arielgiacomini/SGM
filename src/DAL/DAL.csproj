@@ -65,7 +65,6 @@
   <ItemGroup>
     <Compile Include="ConnectionStringConfiguration.cs" />
     <Compile Include="DALConexao.cs" />
-    <Compile Include="DALOrcamento.cs" />
     <Compile Include="DALServico.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
