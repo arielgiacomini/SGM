@@ -126,7 +126,6 @@ C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\SGM.WindowsForms\obj\
 C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\SGM.WindowsForms\obj\Debug\SGM.WindowsForms.frmCadastroVeiculo.resources
 C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\SGM.WindowsForms\obj\Debug\SGM.WindowsForms.frmConsultaCliente.resources
 C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\SGM.WindowsForms\obj\Debug\SGM.WindowsForms.FrmConsultaClienteVeiculo.resources
-C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\SGM.WindowsForms\obj\Debug\SGM.WindowsForms.frmConsultaHistoricoOrcamentoClienteVeiculo.resources
 C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\SGM.WindowsForms\obj\Debug\SGM.WindowsForms.FrmConsultaHistoricoServicoClienteVeiculo.resources
 C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\SGM.WindowsForms\obj\Debug\SGM.WindowsForms.FrmConsultaMaoDeObra.resources
 C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\SGM.WindowsForms\obj\Debug\SGM.WindowsForms.FrmConsultaPeca.resources
@@ -147,3 +146,4 @@ C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\SGM.WindowsForms\obj\
 C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\SGM.WindowsForms\obj\Debug\SGM.WindowsForms.csproj.CopyComplete
 C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\SGM.WindowsForms\obj\Debug\GUI.exe
 C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\SGM.WindowsForms\obj\Debug\GUI.pdb
+C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\SGM.WindowsForms\obj\Debug\SGM.WindowsForms.FrmConsultaOrcamento.resources

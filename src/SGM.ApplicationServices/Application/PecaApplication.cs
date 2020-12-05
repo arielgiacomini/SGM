@@ -41,5 +41,10 @@ namespace SGM.ApplicationServices.Application
         {
             return _pecaQuery.GetPecaByDescricao(descricaoPeca);
         }
+
+        public IList<Peca> GetPecaByAll()
+        {
+            return _pecaQuery.GetPecaByAll();
+        }
     }
 }

@@ -71,23 +71,42 @@ namespace SGM.WindowsForms
             {
                 var cliente = _clienteApplication.GetClienteByLikePlacaOrNomeOrApelido(txtPlacaClienteVeiculoConsulta.Text);
 
-                foreach (var item in cliente.ClienteVeiculo)
+                if (cliente.ClienteVeiculo.Count > 0)
                 {
-                    var veiculo = _veiculoApplication.GetVeiculoByVeiculoId(item.VeiculoId);
-                    var marca = _veiculoApplication.GetMarcaByMarcaId(veiculo.MarcaId);
+                    foreach (var item in cliente.ClienteVeiculo)
+                    {
+                        var veiculo = _veiculoApplication.GetVeiculoByVeiculoId(item.VeiculoId);
+                        var marca = _veiculoApplication.GetMarcaByMarcaId(veiculo.MarcaId);
 
+                        listaCliente.Add(new PesquisaClienteVeiculoDataSource
+                        {
+                            ClienteVeiculoId = item.ClienteVeiculoId,
+                            ClienteId = cliente.ClienteId,
+                            NomeCliente = cliente.NomeCliente,
+                            Modelo = marca.Marca + " / " + veiculo.Modelo,
+                            PlacaVeiculo = item.PlacaVeiculo,
+                            CorVeiculo = item.CorVeiculo,
+                            KmRodados = item.KmRodados,
+                            DataCadastro = item.DataCadastro,
+                            Ativo = item.Ativo,
+                            DataAlteracao = item.DataAlteracao
+                        });
+                    }
+                }
+                else
+                {
                     listaCliente.Add(new PesquisaClienteVeiculoDataSource
                     {
-                        ClienteVeiculoId = item.ClienteVeiculoId,
+                        ClienteVeiculoId = 0,
                         ClienteId = cliente.ClienteId,
                         NomeCliente = cliente.NomeCliente,
-                        Modelo = marca.Marca + " / " + veiculo.Modelo,
-                        PlacaVeiculo = item.PlacaVeiculo,
-                        CorVeiculo = item.CorVeiculo,
-                        KmRodados = item.KmRodados,
-                        DataCadastro = item.DataCadastro,
-                        Ativo = item.Ativo,
-                        DataAlteracao = item.DataAlteracao
+                        Modelo = "",
+                        PlacaVeiculo = "",
+                        CorVeiculo = "",
+                        KmRodados = 0,
+                        DataCadastro = DateTime.Now,
+                        Ativo = false,
+                        DataAlteracao = DateTime.Now
                     });
                 }
 
@@ -104,6 +123,7 @@ namespace SGM.WindowsForms
             if (e.RowIndex >= 0) // vai guardar a informação escolhida com duplo clique.
             {
                 this.clienteVeiculoId = Convert.ToInt32(dgvClienteVeiculoConsulta.Rows[e.RowIndex].Cells[0].Value ?? 0);
+                this.clienteId = Convert.ToInt32(dgvClienteVeiculoConsulta.Rows[e.RowIndex].Cells[1].Value ?? 0);
                 this.Close();
             }
         }

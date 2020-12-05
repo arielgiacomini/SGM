@@ -1,6 +1,6 @@
 ﻿namespace SGM.WindowsForms
 {
-    partial class frmConsultaHistoricoOrcamentoClienteVeiculo
+    partial class FrmConsultaOrcamento
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmConsultaHistoricoOrcamentoClienteVeiculo));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmConsultaOrcamento));
             this.txtPlacaClienteVeiculoConsulta = new System.Windows.Forms.TextBox();
             this.lblPlacaClienteVeiculoConsulta = new System.Windows.Forms.Label();
             this.dgvOrcamentoHistoricoClienteVeiculo = new System.Windows.Forms.DataGridView();

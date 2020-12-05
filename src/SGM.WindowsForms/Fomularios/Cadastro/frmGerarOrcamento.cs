@@ -451,12 +451,12 @@ namespace SGM.WindowsForms
 
         private void BtnLocalizar_Click(object sender, EventArgs e)
         {
-            frmConsultaHistoricoOrcamentoClienteVeiculo consultaHistoricoOrcamento = new frmConsultaHistoricoOrcamentoClienteVeiculo();
+            FrmConsultaOrcamento consultaHistoricoOrcamento = FormResolve.Resolve<FrmConsultaOrcamento>();
             consultaHistoricoOrcamento.ShowDialog();
 
-            if (consultaHistoricoOrcamento.codigo != 0)
+            if (consultaHistoricoOrcamento.orcamentoId != 0)
             {
-                var orcamento = _orcamentoApplication.GetOrcamentoByOrcamentoId(consultaHistoricoOrcamento.codigo);
+                var orcamento = _orcamentoApplication.GetOrcamentoByOrcamentoId(consultaHistoricoOrcamento.orcamentoId);
 
                 txtOrcamentoId.Text = Convert.ToString(orcamento.OrcamentoId);
                 txtClienteId.Text = Convert.ToString(orcamento.ClienteVeiculoId);

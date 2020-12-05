@@ -27,6 +27,11 @@ namespace SGM.ApplicationServices.Application
             return _orcamentoQuery.GetOrcamentoByOrcamentoId(orcamentoId);
         }
 
+        public IList<Orcamento> GetOrcamentoByClienteVeiculoId(int clienteVeiculoId)
+        {
+            return _orcamentoQuery.GetOrcamentoByClienteVeiculoId(clienteVeiculoId);
+        }
+
         public void AtualizarOrcamento(Orcamento orcamento)
         {
             _orcamentoCommand.AtualizarOrcamento(orcamento);

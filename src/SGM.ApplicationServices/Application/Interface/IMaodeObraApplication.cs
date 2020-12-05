@@ -10,5 +10,6 @@ namespace SGM.ApplicationServices.Application.Interface
         void InativarMaodeObra(int maoDeObraId);
         MaodeObra GetMaodeObraById(int maoDeObraId);
         IList<MaodeObra> GetMaodeObraByDescricao(string descricaoMaodeObra);
+        IList<MaodeObra> GetMaodeObraByAll();
     }
 }

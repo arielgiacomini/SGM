@@ -103,10 +103,11 @@ namespace SGM.WindowsForms
         {
             FrmConsultaClienteVeiculo formConsultaClienteVeiculo = FormResolve.Resolve<FrmConsultaClienteVeiculo>();
             formConsultaClienteVeiculo.ShowDialog();
-            if (formConsultaClienteVeiculo.clienteVeiculoId != 0)
+            if (formConsultaClienteVeiculo.clienteVeiculoId != 0 || formConsultaClienteVeiculo.clienteId != 0)
             {
                 FrmCadastroClienteVeiculo formCadastroClienteVeiculo = FormResolve.Resolve<FrmCadastroClienteVeiculo>();
                 formCadastroClienteVeiculo.clienteVeiculoId = formConsultaClienteVeiculo.clienteVeiculoId;
+                formCadastroClienteVeiculo.clienteId = formConsultaClienteVeiculo.clienteId;
                 formCadastroClienteVeiculo.ShowDialog();
                 formCadastroClienteVeiculo.Dispose();
             }

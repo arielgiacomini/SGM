@@ -1,6 +1,6 @@
 ﻿namespace SGM.WindowsForms
 {
-    partial class frmDetalhesOrcamentoGerado
+    partial class FrmDetalhesOrcamentoGerado
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDetalhesOrcamentoGerado));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmDetalhesOrcamentoGerado));
             this.lblQtdRegistrosMaodeObra = new System.Windows.Forms.Label();
             this.lblQtdRegistrosPecasProdutos = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();

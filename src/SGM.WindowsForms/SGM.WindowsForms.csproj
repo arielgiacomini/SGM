@@ -107,206 +107,206 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configuration\SGMConfiguration.cs" />
-    <Compile Include="Forms\Cadastro\frmCadastroCliente.cs">
+    <Compile Include="Fomularios\Cadastro\frmCadastroCliente.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Cadastro\frmCadastroCliente.Designer.cs">
+    <Compile Include="Fomularios\Cadastro\frmCadastroCliente.Designer.cs">
       <DependentUpon>frmCadastroCliente.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Cadastro\frmCadastroClienteVeiculo.cs">
+    <Compile Include="Fomularios\Cadastro\frmCadastroClienteVeiculo.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Cadastro\frmCadastroClienteVeiculo.Designer.cs">
+    <Compile Include="Fomularios\Cadastro\frmCadastroClienteVeiculo.Designer.cs">
       <DependentUpon>frmCadastroClienteVeiculo.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Cadastro\frmCadastroMaoDeObra.cs">
+    <Compile Include="Fomularios\Cadastro\frmCadastroMaoDeObra.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Cadastro\frmCadastroMaoDeObra.Designer.cs">
+    <Compile Include="Fomularios\Cadastro\frmCadastroMaoDeObra.Designer.cs">
       <DependentUpon>frmCadastroMaoDeObra.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Cadastro\frmCadastroPeca.cs">
+    <Compile Include="Fomularios\Cadastro\frmCadastroPeca.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Cadastro\frmCadastroPeca.Designer.cs">
+    <Compile Include="Fomularios\Cadastro\frmCadastroPeca.Designer.cs">
       <DependentUpon>frmCadastroPeca.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Cadastro\frmCadastroVeiculo.cs">
+    <Compile Include="Fomularios\Cadastro\frmCadastroVeiculo.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Cadastro\frmCadastroVeiculo.Designer.cs">
+    <Compile Include="Fomularios\Cadastro\frmCadastroVeiculo.Designer.cs">
       <DependentUpon>frmCadastroVeiculo.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Consulta\frmConsultaCliente.cs">
+    <Compile Include="Fomularios\Consulta\frmConsultaCliente.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Consulta\frmConsultaCliente.Designer.cs">
+    <Compile Include="Fomularios\Consulta\frmConsultaCliente.Designer.cs">
       <DependentUpon>frmConsultaCliente.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Consulta\frmConsultaClienteVeiculo.cs">
+    <Compile Include="Fomularios\Consulta\frmConsultaClienteVeiculo.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Consulta\frmConsultaClienteVeiculo.Designer.cs">
+    <Compile Include="Fomularios\Consulta\frmConsultaClienteVeiculo.Designer.cs">
       <DependentUpon>frmConsultaClienteVeiculo.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Consulta\frmConsultaHistoricoOrcamentoClienteVeiculo.cs">
+    <Compile Include="Fomularios\Consulta\frmConsultaOrcamento.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Consulta\frmConsultaHistoricoOrcamentoClienteVeiculo.Designer.cs">
-      <DependentUpon>frmConsultaHistoricoOrcamentoClienteVeiculo.cs</DependentUpon>
+    <Compile Include="Fomularios\Consulta\frmConsultaOrcamento.Designer.cs">
+      <DependentUpon>frmConsultaOrcamento.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Consulta\frmConsultaHistoricoServicoClienteVeiculo.cs">
+    <Compile Include="Fomularios\Consulta\frmConsultaHistoricoServicoClienteVeiculo.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Consulta\frmConsultaHistoricoServicoClienteVeiculo.Designer.cs">
+    <Compile Include="Fomularios\Consulta\frmConsultaHistoricoServicoClienteVeiculo.Designer.cs">
       <DependentUpon>frmConsultaHistoricoServicoClienteVeiculo.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Consulta\frmConsultaMaoDeObra.cs">
+    <Compile Include="Fomularios\Consulta\frmConsultaMaoDeObra.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Consulta\frmConsultaMaoDeObra.Designer.cs">
+    <Compile Include="Fomularios\Consulta\frmConsultaMaoDeObra.Designer.cs">
       <DependentUpon>frmConsultaMaoDeObra.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Consulta\frmConsultaPeca.cs">
+    <Compile Include="Fomularios\Consulta\frmConsultaPeca.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Consulta\frmConsultaPeca.Designer.cs">
+    <Compile Include="Fomularios\Consulta\frmConsultaPeca.Designer.cs">
       <DependentUpon>frmConsultaPeca.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Consulta\frmConsultaVeiculo.cs">
+    <Compile Include="Fomularios\Consulta\frmConsultaVeiculo.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Consulta\frmConsultaVeiculo.Designer.cs">
+    <Compile Include="Fomularios\Consulta\frmConsultaVeiculo.Designer.cs">
       <DependentUpon>frmConsultaVeiculo.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Consulta\frmDetalhesOrcamentoGerado.cs">
+    <Compile Include="Fomularios\Consulta\frmDetalhesOrcamentoGerado.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Consulta\frmDetalhesOrcamentoGerado.Designer.cs">
+    <Compile Include="Fomularios\Consulta\frmDetalhesOrcamentoGerado.Designer.cs">
       <DependentUpon>frmDetalhesOrcamentoGerado.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Consulta\frmDetalhesServicoGerado.cs">
+    <Compile Include="Fomularios\Consulta\frmDetalhesServicoGerado.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Consulta\frmDetalhesServicoGerado.Designer.cs">
+    <Compile Include="Fomularios\Consulta\frmDetalhesServicoGerado.Designer.cs">
       <DependentUpon>frmDetalhesServicoGerado.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Cadastro\frmGerarOrcamento.cs">
+    <Compile Include="Fomularios\Cadastro\frmGerarOrcamento.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Cadastro\frmGerarOrcamento.Designer.cs">
+    <Compile Include="Fomularios\Cadastro\frmGerarOrcamento.Designer.cs">
       <DependentUpon>frmGerarOrcamento.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Cadastro\frmGerarServico.cs">
+    <Compile Include="Fomularios\Cadastro\frmGerarServico.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Cadastro\frmGerarServico.Designer.cs">
+    <Compile Include="Fomularios\Cadastro\frmGerarServico.Designer.cs">
       <DependentUpon>frmGerarServico.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Modelo\frmModeloDeFormularioDeCadastro.cs">
+    <Compile Include="Fomularios\Modelo\frmModeloDeFormularioDeCadastro.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Modelo\frmModeloDeFormularioDeCadastro.Designer.cs">
+    <Compile Include="Fomularios\Modelo\frmModeloDeFormularioDeCadastro.Designer.cs">
       <DependentUpon>frmModeloDeFormularioDeCadastro.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Cadastro\frmPerguntaQualItemAbrir.cs">
+    <Compile Include="Fomularios\Cadastro\frmPerguntaQualItemAbrir.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Cadastro\frmPerguntaQualItemAbrir.Designer.cs">
+    <Compile Include="Fomularios\Cadastro\frmPerguntaQualItemAbrir.Designer.cs">
       <DependentUpon>frmPerguntaQualItemAbrir.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\frmPrincipal.cs">
+    <Compile Include="Fomularios\frmPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\frmPrincipal.Designer.cs">
+    <Compile Include="Fomularios\frmPrincipal.Designer.cs">
       <DependentUpon>frmPrincipal.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Relatorio\frmRelatoriosConsolidadoRelatorioDiario.cs">
+    <Compile Include="Fomularios\Relatorio\frmRelatoriosConsolidadoRelatorioDiario.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Relatorio\frmRelatoriosConsolidadoRelatorioDiario.Designer.cs">
+    <Compile Include="Fomularios\Relatorio\frmRelatoriosConsolidadoRelatorioDiario.Designer.cs">
       <DependentUpon>frmRelatoriosConsolidadoRelatorioDiario.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Relatorio\frmRelatorios.cs">
+    <Compile Include="Fomularios\Relatorio\frmRelatorios.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Relatorio\frmRelatorios.Designer.cs">
+    <Compile Include="Fomularios\Relatorio\frmRelatorios.Designer.cs">
       <DependentUpon>frmRelatorios.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Relatorio\frmSobre.cs">
+    <Compile Include="Fomularios\Relatorio\frmSobre.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Relatorio\frmSobre.Designer.cs">
+    <Compile Include="Fomularios\Relatorio\frmSobre.Designer.cs">
       <DependentUpon>frmSobre.cs</DependentUpon>
     </Compile>
     <Compile Include="IoC\FormModule.cs" />
     <Compile Include="IoC\FormResolve.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Forms\Cadastro\frmCadastroCliente.resx">
+    <EmbeddedResource Include="Fomularios\Cadastro\frmCadastroCliente.resx">
       <DependentUpon>frmCadastroCliente.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Cadastro\frmCadastroClienteVeiculo.resx">
+    <EmbeddedResource Include="Fomularios\Cadastro\frmCadastroClienteVeiculo.resx">
       <DependentUpon>frmCadastroClienteVeiculo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Cadastro\frmCadastroMaoDeObra.resx">
+    <EmbeddedResource Include="Fomularios\Cadastro\frmCadastroMaoDeObra.resx">
       <DependentUpon>frmCadastroMaoDeObra.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Cadastro\frmCadastroPeca.resx">
+    <EmbeddedResource Include="Fomularios\Cadastro\frmCadastroPeca.resx">
       <DependentUpon>frmCadastroPeca.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Cadastro\frmCadastroVeiculo.resx">
+    <EmbeddedResource Include="Fomularios\Cadastro\frmCadastroVeiculo.resx">
       <DependentUpon>frmCadastroVeiculo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Consulta\frmConsultaCliente.resx">
+    <EmbeddedResource Include="Fomularios\Consulta\frmConsultaCliente.resx">
       <DependentUpon>frmConsultaCliente.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Consulta\frmConsultaClienteVeiculo.resx">
+    <EmbeddedResource Include="Fomularios\Consulta\frmConsultaClienteVeiculo.resx">
       <DependentUpon>frmConsultaClienteVeiculo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Consulta\frmConsultaHistoricoOrcamentoClienteVeiculo.resx">
-      <DependentUpon>frmConsultaHistoricoOrcamentoClienteVeiculo.cs</DependentUpon>
+    <EmbeddedResource Include="Fomularios\Consulta\frmConsultaOrcamento.resx">
+      <DependentUpon>frmConsultaOrcamento.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Consulta\frmConsultaHistoricoServicoClienteVeiculo.resx">
+    <EmbeddedResource Include="Fomularios\Consulta\frmConsultaHistoricoServicoClienteVeiculo.resx">
       <DependentUpon>frmConsultaHistoricoServicoClienteVeiculo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Consulta\frmConsultaMaoDeObra.resx">
+    <EmbeddedResource Include="Fomularios\Consulta\frmConsultaMaoDeObra.resx">
       <DependentUpon>frmConsultaMaoDeObra.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Consulta\frmConsultaPeca.resx">
+    <EmbeddedResource Include="Fomularios\Consulta\frmConsultaPeca.resx">
       <DependentUpon>frmConsultaPeca.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Consulta\frmConsultaVeiculo.resx">
+    <EmbeddedResource Include="Fomularios\Consulta\frmConsultaVeiculo.resx">
       <DependentUpon>frmConsultaVeiculo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Consulta\frmDetalhesOrcamentoGerado.resx">
+    <EmbeddedResource Include="Fomularios\Consulta\frmDetalhesOrcamentoGerado.resx">
       <DependentUpon>frmDetalhesOrcamentoGerado.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Consulta\frmDetalhesServicoGerado.resx">
+    <EmbeddedResource Include="Fomularios\Consulta\frmDetalhesServicoGerado.resx">
       <DependentUpon>frmDetalhesServicoGerado.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Cadastro\frmGerarOrcamento.resx">
+    <EmbeddedResource Include="Fomularios\Cadastro\frmGerarOrcamento.resx">
       <DependentUpon>frmGerarOrcamento.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Cadastro\frmGerarServico.resx">
+    <EmbeddedResource Include="Fomularios\Cadastro\frmGerarServico.resx">
       <DependentUpon>frmGerarServico.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Modelo\frmModeloDeFormularioDeCadastro.resx">
+    <EmbeddedResource Include="Fomularios\Modelo\frmModeloDeFormularioDeCadastro.resx">
       <DependentUpon>frmModeloDeFormularioDeCadastro.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Cadastro\frmPerguntaQualItemAbrir.resx">
+    <EmbeddedResource Include="Fomularios\Cadastro\frmPerguntaQualItemAbrir.resx">
       <DependentUpon>frmPerguntaQualItemAbrir.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\frmPrincipal.resx">
+    <EmbeddedResource Include="Fomularios\frmPrincipal.resx">
       <DependentUpon>frmPrincipal.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Relatorio\frmRelatorios.resx">
+    <EmbeddedResource Include="Fomularios\Relatorio\frmRelatorios.resx">
       <DependentUpon>frmRelatorios.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Relatorio\frmRelatoriosConsolidadoRelatorioDiario.resx">
+    <EmbeddedResource Include="Fomularios\Relatorio\frmRelatoriosConsolidadoRelatorioDiario.resx">
       <DependentUpon>frmRelatoriosConsolidadoRelatorioDiario.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Relatorio\frmSobre.resx">
+    <EmbeddedResource Include="Fomularios\Relatorio\frmSobre.resx">
       <DependentUpon>frmSobre.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">

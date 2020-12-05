@@ -10,5 +10,6 @@ namespace SGM.ApplicationServices.Application.Interface
         void InativarPeca(int pecaId);
         Peca GetPecaByPecaId(int pecaId);
         IList<Peca> GetPecaByDescricao(string descricaoPeca);
+        IList<Peca> GetPecaByAll();
     }
 }

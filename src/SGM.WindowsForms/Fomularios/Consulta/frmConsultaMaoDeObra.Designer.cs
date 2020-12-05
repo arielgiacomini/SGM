@@ -49,7 +49,7 @@
             this.dgvConsultaMaoDeObra.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvConsultaMaoDeObra.Size = new System.Drawing.Size(760, 472);
             this.dgvConsultaMaoDeObra.TabIndex = 15;
-            this.dgvConsultaMaoDeObra.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvConsultaMaoDeObra_CellDoubleClick);
+            this.dgvConsultaMaoDeObra.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvConsultaMaoDeObra_CellDoubleClick);
             // 
             // btnConsultaMaoDeObra
             // 
@@ -103,7 +103,7 @@
             this.Name = "frmConsultaMaoDeObra";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Sistema de Gerenciamento Mecânica - Consulta de Mão-de-Obra (Serviços)";
-            this.Load += new System.EventHandler(this.frmConsultaMaoDeObra_Load);
+            this.Load += new System.EventHandler(this.FrmConsultaMaoDeObra_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvConsultaMaoDeObra)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);

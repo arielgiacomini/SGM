@@ -35,6 +35,10 @@ namespace SGM.WindowsForms
             {
                 maoDeObra.Add(_pecaApplication.GetPecaByPecaId(codigo));
             }
+            else
+            {
+                maoDeObra = _pecaApplication.GetPecaByAll();
+            }
 
             CarregaGridView(maoDeObra);
         }
