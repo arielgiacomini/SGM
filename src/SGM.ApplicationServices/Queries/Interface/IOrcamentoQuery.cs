@@ -9,5 +9,6 @@ namespace SGM.ApplicationServices.Queries.Interface
         Orcamento GetOrcamentoByOrcamentoId(int orcamentoId);
         IList<OrcamentoMaodeObra> GetOrcamentoMaodeObraByOrcamentoId(int orcamentoId);
         IList<OrcamentoPeca> GetOrcamentoPecaByOrcamentoId(int orcamentoId);
+        IList<Orcamento> GetUltimosOrcamentos();
     }
 }

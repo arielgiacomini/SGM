@@ -3,7 +3,6 @@ using SGM.Domain.DataSources;
 using SGM.Domain.Entities;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace SGM.WindowsForms
@@ -107,22 +106,20 @@ namespace SGM.WindowsForms
 
         private void CarregaInformacoesOrcamento(Orcamento orcamento)
         {
-            txtValorMaodeObraTotal.Text = 0.ToString("C");
-            txtValorProdutosPecasTotal.Text = 0.ToString("C");
+            txtValorMaodeObraTotal.Text = orcamento.ValorMaodeObra.ToString("C");
+            txtValorProdutosPecasTotal.Text = orcamento.ValorPeca.ToString("C");
             txtValorAdicionalTotal.Text = orcamento.ValorAdicional.ToString("C");
             txtPercentualDesconto.Text = orcamento.PercentualDesconto.ToString("P");
             txtValorDescontoTotal.Text = orcamento.ValorDesconto.ToString("C");
             txtValorTotal.Text = orcamento.ValorTotal.ToString("C");
+            txtDescricaoOrcamento.Text = orcamento.Descricao;
+            lblOrcamentoId.Text = lblOrcamentoId.Text + " 000" + orcamento.OrcamentoId.ToString();
         }
 
         private void CarregaInformacoesGridView()
         {
             lblQtdRegistrosMaodeObra.Text = "Quantidade de Registros: " + this.dgvMaodeObraOrcamentoGerado.Rows.Count.ToString();
             lblQtdRegistrosPecasProdutos.Text = "Quantidade de Registros: " + this.dgvPecasOrcamentoGerados.Rows.Count.ToString();
-            decimal valorTotalGridMaodeObra = Convert.ToDecimal(dgvMaodeObraOrcamentoGerado.Rows.Cast<DataGridViewRow>().Sum(i => Convert.ToDecimal(i.Cells["Valor"].Value)));
-            txtValorMaodeObraTotal.Text = (valorTotalGridMaodeObra.ToString("C"));
-            decimal valorTotalGridProdutosPecas = Convert.ToDecimal(dgvPecasOrcamentoGerados.Rows.Cast<DataGridViewRow>().Sum(i => Convert.ToDecimal(i.Cells["ValorTotal"].Value)));
-            txtValorProdutosPecasTotal.Text = (valorTotalGridProdutosPecas.ToString("C"));
         }
     }
 }

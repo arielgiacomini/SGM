@@ -12,6 +12,7 @@ namespace SGM.ApplicationServices.Application.Interface
         Orcamento GetOrcamentoByOrcamentoId(int orcamentoId);
         IList<OrcamentoMaodeObra> GetOrcamentoMaodeObraByOrcamentoId(int orcamentoId);
         IList<OrcamentoPeca> GetOrcamentoPecaByOrcamentoId(int orcamentoId);
+        IList<Orcamento> GetUltimosOrcamentos();
         int SalvarOrcamento(Orcamento orcamento);
         int SalvarOrcamentoMaodeObra(OrcamentoMaodeObra orcamentoMaodeObra);
         int SalvarOrcamentoPeca(OrcamentoPeca orcamentoPeca);

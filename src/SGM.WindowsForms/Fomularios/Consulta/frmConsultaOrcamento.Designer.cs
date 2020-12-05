@@ -104,7 +104,7 @@
             this.Name = "frmConsultaHistoricoOrcamentoClienteVeiculo";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Sistema de Gerenciamento Mecãnica - Consulta de Histórico de Orçamentos";
-            this.Load += new System.EventHandler(this.FrmConsultaHistoricoOrcamentoClienteVeiculo_Load);
+            this.Load += new System.EventHandler(this.FrmConsultaOrcamento_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvOrcamentoHistoricoClienteVeiculo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);

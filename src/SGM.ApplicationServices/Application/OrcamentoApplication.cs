@@ -66,5 +66,10 @@ namespace SGM.ApplicationServices.Application
         {
             return _orcamentoQuery.GetOrcamentoPecaByOrcamentoId(orcamentoId);
         }
+
+        public IList<Orcamento> GetUltimosOrcamentos()
+        {
+            return _orcamentoQuery.GetUltimosOrcamentos();
+        }
     }
 }

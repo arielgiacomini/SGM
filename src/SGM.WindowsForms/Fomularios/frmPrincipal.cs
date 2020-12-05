@@ -46,7 +46,6 @@ namespace SGM.WindowsForms
         {
             FrmGerarOrcamento formGerarOrcamento = FormResolve.Resolve<FrmGerarOrcamento>();
             formGerarOrcamento.ShowDialog();
-            formGerarOrcamento.Dispose();
         }
 
         private void BtnPrincipalRealizaMaoDeObra_Click(object sender, EventArgs e)

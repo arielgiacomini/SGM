@@ -49,6 +49,8 @@
             this.lblValorProdutosPecasTotal = new System.Windows.Forms.Label();
             this.txtValorAdicionalTotal = new System.Windows.Forms.TextBox();
             this.txtValorProdutosPecasTotal = new System.Windows.Forms.TextBox();
+            this.txtDescricaoOrcamento = new System.Windows.Forms.TextBox();
+            this.lblDescricaoOrcamento = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMaodeObraOrcamentoGerado)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPecasOrcamentoGerados)).BeginInit();
@@ -116,7 +118,7 @@
             // txtValorTotal
             // 
             this.txtValorTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtValorTotal.Location = new System.Drawing.Point(593, 450);
+            this.txtValorTotal.Location = new System.Drawing.Point(620, 483);
             this.txtValorTotal.Name = "txtValorTotal";
             this.txtValorTotal.ReadOnly = true;
             this.txtValorTotal.Size = new System.Drawing.Size(179, 26);
@@ -127,7 +129,7 @@
             // 
             this.lblValorTotal.AutoSize = true;
             this.lblValorTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblValorTotal.Location = new System.Drawing.Point(620, 406);
+            this.lblValorTotal.Location = new System.Drawing.Point(647, 439);
             this.lblValorTotal.Name = "lblValorTotal";
             this.lblValorTotal.Size = new System.Drawing.Size(117, 24);
             this.lblValorTotal.TabIndex = 90;
@@ -136,7 +138,7 @@
             // txtValorDescontoTotal
             // 
             this.txtValorDescontoTotal.ForeColor = System.Drawing.Color.Red;
-            this.txtValorDescontoTotal.Location = new System.Drawing.Point(706, 329);
+            this.txtValorDescontoTotal.Location = new System.Drawing.Point(700, 295);
             this.txtValorDescontoTotal.Name = "txtValorDescontoTotal";
             this.txtValorDescontoTotal.ReadOnly = true;
             this.txtValorDescontoTotal.Size = new System.Drawing.Size(135, 20);
@@ -157,7 +159,7 @@
             this.lblValorDescontoTotal.AutoSize = true;
             this.lblValorDescontoTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblValorDescontoTotal.ForeColor = System.Drawing.Color.Red;
-            this.lblValorDescontoTotal.Location = new System.Drawing.Point(585, 329);
+            this.lblValorDescontoTotal.Location = new System.Drawing.Point(579, 295);
             this.lblValorDescontoTotal.Name = "lblValorDescontoTotal";
             this.lblValorDescontoTotal.Size = new System.Drawing.Size(115, 18);
             this.lblValorDescontoTotal.TabIndex = 88;
@@ -176,7 +178,7 @@
             // txtPercentualDesconto
             // 
             this.txtPercentualDesconto.ForeColor = System.Drawing.Color.Red;
-            this.txtPercentualDesconto.Location = new System.Drawing.Point(706, 275);
+            this.txtPercentualDesconto.Location = new System.Drawing.Point(700, 241);
             this.txtPercentualDesconto.Name = "txtPercentualDesconto";
             this.txtPercentualDesconto.ReadOnly = true;
             this.txtPercentualDesconto.Size = new System.Drawing.Size(135, 20);
@@ -187,7 +189,7 @@
             // 
             this.lblValorMaodeObra.AutoSize = true;
             this.lblValorMaodeObra.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblValorMaodeObra.Location = new System.Drawing.Point(562, 113);
+            this.lblValorMaodeObra.Location = new System.Drawing.Point(556, 79);
             this.lblValorMaodeObra.Name = "lblValorMaodeObra";
             this.lblValorMaodeObra.Size = new System.Drawing.Size(136, 18);
             this.lblValorMaodeObra.TabIndex = 80;
@@ -199,7 +201,7 @@
             this.lblPercentualDesconto.AutoSize = true;
             this.lblPercentualDesconto.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPercentualDesconto.ForeColor = System.Drawing.Color.Red;
-            this.lblPercentualDesconto.Location = new System.Drawing.Point(586, 274);
+            this.lblPercentualDesconto.Location = new System.Drawing.Point(580, 240);
             this.lblPercentualDesconto.Name = "lblPercentualDesconto";
             this.lblPercentualDesconto.Size = new System.Drawing.Size(114, 18);
             this.lblPercentualDesconto.TabIndex = 86;
@@ -208,7 +210,7 @@
             // 
             // txtValorMaodeObraTotal
             // 
-            this.txtValorMaodeObraTotal.Location = new System.Drawing.Point(706, 114);
+            this.txtValorMaodeObraTotal.Location = new System.Drawing.Point(700, 80);
             this.txtValorMaodeObraTotal.Name = "txtValorMaodeObraTotal";
             this.txtValorMaodeObraTotal.ReadOnly = true;
             this.txtValorMaodeObraTotal.Size = new System.Drawing.Size(137, 20);
@@ -219,7 +221,7 @@
             // 
             this.lblValorAdicionalTotal.AutoSize = true;
             this.lblValorAdicionalTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblValorAdicionalTotal.Location = new System.Drawing.Point(557, 217);
+            this.lblValorAdicionalTotal.Location = new System.Drawing.Point(551, 183);
             this.lblValorAdicionalTotal.Name = "lblValorAdicionalTotal";
             this.lblValorAdicionalTotal.Size = new System.Drawing.Size(146, 18);
             this.lblValorAdicionalTotal.TabIndex = 85;
@@ -230,7 +232,7 @@
             // 
             this.lblValorProdutosPecasTotal.AutoSize = true;
             this.lblValorProdutosPecasTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblValorProdutosPecasTotal.Location = new System.Drawing.Point(545, 164);
+            this.lblValorProdutosPecasTotal.Location = new System.Drawing.Point(539, 130);
             this.lblValorProdutosPecasTotal.Name = "lblValorProdutosPecasTotal";
             this.lblValorProdutosPecasTotal.Size = new System.Drawing.Size(156, 18);
             this.lblValorProdutosPecasTotal.TabIndex = 82;
@@ -239,7 +241,7 @@
             // 
             // txtValorAdicionalTotal
             // 
-            this.txtValorAdicionalTotal.Location = new System.Drawing.Point(706, 218);
+            this.txtValorAdicionalTotal.Location = new System.Drawing.Point(700, 184);
             this.txtValorAdicionalTotal.Name = "txtValorAdicionalTotal";
             this.txtValorAdicionalTotal.ReadOnly = true;
             this.txtValorAdicionalTotal.Size = new System.Drawing.Size(137, 20);
@@ -248,19 +250,43 @@
             // 
             // txtValorProdutosPecasTotal
             // 
-            this.txtValorProdutosPecasTotal.Location = new System.Drawing.Point(706, 165);
+            this.txtValorProdutosPecasTotal.Location = new System.Drawing.Point(700, 131);
             this.txtValorProdutosPecasTotal.Name = "txtValorProdutosPecasTotal";
             this.txtValorProdutosPecasTotal.ReadOnly = true;
             this.txtValorProdutosPecasTotal.Size = new System.Drawing.Size(137, 20);
             this.txtValorProdutosPecasTotal.TabIndex = 83;
             this.txtValorProdutosPecasTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // frmDetalhesOrcamentoGerado
+            // txtDescricaoOrcamento
+            // 
+            this.txtDescricaoOrcamento.ForeColor = System.Drawing.SystemColors.ScrollBar;
+            this.txtDescricaoOrcamento.Location = new System.Drawing.Point(542, 355);
+            this.txtDescricaoOrcamento.Multiline = true;
+            this.txtDescricaoOrcamento.Name = "txtDescricaoOrcamento";
+            this.txtDescricaoOrcamento.ReadOnly = true;
+            this.txtDescricaoOrcamento.Size = new System.Drawing.Size(295, 68);
+            this.txtDescricaoOrcamento.TabIndex = 98;
+            this.txtDescricaoOrcamento.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // lblDescricaoOrcamento
+            // 
+            this.lblDescricaoOrcamento.AutoSize = true;
+            this.lblDescricaoOrcamento.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDescricaoOrcamento.Location = new System.Drawing.Point(541, 334);
+            this.lblDescricaoOrcamento.Name = "lblDescricaoOrcamento";
+            this.lblDescricaoOrcamento.Size = new System.Drawing.Size(176, 18);
+            this.lblDescricaoOrcamento.TabIndex = 99;
+            this.lblDescricaoOrcamento.Text = "Descrição do Orçamento";
+            this.lblDescricaoOrcamento.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // FrmDetalhesOrcamentoGerado
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.ClientSize = new System.Drawing.Size(887, 521);
+            this.Controls.Add(this.lblDescricaoOrcamento);
+            this.Controls.Add(this.txtDescricaoOrcamento);
             this.Controls.Add(this.lblQtdRegistrosMaodeObra);
             this.Controls.Add(this.lblQtdRegistrosPecasProdutos);
             this.Controls.Add(this.pictureBox1);
@@ -282,7 +308,7 @@
             this.Controls.Add(this.txtValorAdicionalTotal);
             this.Controls.Add(this.txtValorProdutosPecasTotal);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "frmDetalhesOrcamentoGerado";
+            this.Name = "FrmDetalhesOrcamentoGerado";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Sistema de Gerenciamento Mecânica - Detalhe de Orçamento Gerado para Cliente";
             this.Load += new System.EventHandler(this.FrmDetalhesOrcamentoGerado_Load);
@@ -316,5 +342,7 @@
         private System.Windows.Forms.Label lblValorProdutosPecasTotal;
         private System.Windows.Forms.TextBox txtValorAdicionalTotal;
         private System.Windows.Forms.TextBox txtValorProdutosPecasTotal;
+        private System.Windows.Forms.TextBox txtDescricaoOrcamento;
+        private System.Windows.Forms.Label lblDescricaoOrcamento;
     }
 }

@@ -1,5 +1,6 @@
 ﻿using SGM.ApplicationServices.Application.Interface;
 using SGM.Domain.DataSources;
+using SGM.Domain.Enumeration;
 using SGM.WindowsForms.IoC;
 using System;
 using System.Collections.Generic;
@@ -27,7 +28,7 @@ namespace SGM.WindowsForms
             InitializeComponent();
         }
 
-        private void FrmConsultaHistoricoOrcamentoClienteVeiculo_Load(object sender, EventArgs e)
+        private void FrmConsultaOrcamento_Load(object sender, EventArgs e)
         {
             IList<PesquisaOrcamentoDataSource> pesquisaOrcamento = new List<PesquisaOrcamentoDataSource>();
 
@@ -50,7 +51,7 @@ namespace SGM.WindowsForms
                     NomeCliente = cliente.NomeCliente,
                     MarcaModeloVeiculo = marca.Marca + " / " + veiculo.Modelo,
                     Placa = clienteVeiculo.PlacaVeiculo,
-                    Status = "",
+                    Status = TranslateStatusOrcamento(orcamento.Status),
                     ValorTotal = orcamento.ValorTotal,
                     ValorAdicional = orcamento.ValorAdicional,
                     PercentualDesconto = orcamento.PercentualDesconto,
@@ -58,6 +59,37 @@ namespace SGM.WindowsForms
                     DataAlteracao = orcamento.DataAlteracao,
                     ClienteId = cliente.ClienteId
                 });
+            }
+            else
+            {
+                var ultimosOrcamentos = _orcamentoApplication.GetUltimosOrcamentos();
+
+                foreach (var orcamento in ultimosOrcamentos)
+                {
+                    var clienteVeiculo = _clienteVeiculoApplication.GetVeiculoClienteByClienteVeiculoId(orcamento.ClienteVeiculoId);
+
+                    var cliente = _clienteApplication.GetClienteById(clienteVeiculo.ClienteId);
+
+                    var veiculo = _veiculoApplication.GetVeiculoByVeiculoId(clienteVeiculo.VeiculoId);
+
+                    var marca = _veiculoApplication.GetMarcaByMarcaId(veiculo.MarcaId);
+
+                    pesquisaOrcamento.Add(new PesquisaOrcamentoDataSource
+                    {
+                        OrcamentoId = orcamento.OrcamentoId,
+                        DataCadastro = orcamento.DataCadastro,
+                        NomeCliente = cliente.NomeCliente,
+                        MarcaModeloVeiculo = marca.Marca + " / " + veiculo.Modelo,
+                        Placa = clienteVeiculo.PlacaVeiculo,
+                        Status = TranslateStatusOrcamento(orcamento.Status),
+                        ValorTotal = orcamento.ValorTotal,
+                        ValorAdicional = orcamento.ValorAdicional,
+                        PercentualDesconto = orcamento.PercentualDesconto,
+                        ValorDesconto = orcamento.ValorDesconto,
+                        DataAlteracao = orcamento.DataAlteracao,
+                        ClienteId = cliente.ClienteId
+                    });
+                }
             }
 
             CarregaGridView(pesquisaOrcamento);
@@ -106,13 +138,41 @@ namespace SGM.WindowsForms
             if (e.RowIndex >= 0)
             {
                 this.orcamentoId = Convert.ToInt32(dgvOrcamentoHistoricoClienteVeiculo.Rows[e.RowIndex].Cells[0].Value == null ? 0 : dgvOrcamentoHistoricoClienteVeiculo.Rows[e.RowIndex].Cells[0].Value);
-                this.clienteId = Convert.ToInt32(dgvOrcamentoHistoricoClienteVeiculo.Rows[e.RowIndex].Cells[1].Value);
-                this.placaVeiculo = Convert.ToString(dgvOrcamentoHistoricoClienteVeiculo.Rows[e.RowIndex].Cells[5].Value);
+                this.clienteId = Convert.ToInt32(dgvOrcamentoHistoricoClienteVeiculo.Rows[e.RowIndex].Cells[11].Value);
+                this.placaVeiculo = Convert.ToString(dgvOrcamentoHistoricoClienteVeiculo.Rows[e.RowIndex].Cells[4].Value);
                 this.Close();
 
                 FrmDetalhesOrcamentoGerado formDetalheOrcamentoGerado = FormResolve.Resolve<FrmDetalhesOrcamentoGerado>();
                 formDetalheOrcamentoGerado.orcamentoId = orcamentoId;
                 formDetalheOrcamentoGerado.ShowDialog();
+            }
+        }
+
+        private string TranslateStatusOrcamento(int statusOrcamento)
+        {
+            if (statusOrcamento == (int)EnumStatusOrcamento.IniciadoPendente)
+            {
+                return EnumStatusOrcamento.IniciadoPendente.ToString();
+            }
+            else if (statusOrcamento == (int)EnumStatusOrcamento.Expirado)
+            {
+                return EnumStatusOrcamento.Expirado.ToString();
+            }
+            else if (statusOrcamento == (int)EnumStatusOrcamento.Desistido)
+            {
+                return EnumStatusOrcamento.Desistido.ToString();
+            }
+            else if (statusOrcamento == (int)EnumStatusOrcamento.ConcluidoSemGerarServico)
+            {
+                return EnumStatusOrcamento.ConcluidoSemGerarServico.ToString();
+            }
+            else if (statusOrcamento == (int)EnumStatusOrcamento.GerouServico)
+            {
+                return EnumStatusOrcamento.GerouServico.ToString();
+            }
+            else
+            {
+                return "";
             }
         }
 
@@ -150,17 +210,17 @@ namespace SGM.WindowsForms
             dgvOrcamentoHistoricoClienteVeiculo.Columns[8].DefaultCellStyle.Format = "C2";
             dgvOrcamentoHistoricoClienteVeiculo.Columns[8].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
 
-            dgvOrcamentoHistoricoClienteVeiculo.Columns[8].HeaderText = "Data Cadastro";
-            dgvOrcamentoHistoricoClienteVeiculo.Columns[8].Width = 110;
-            dgvOrcamentoHistoricoClienteVeiculo.Columns[8].DefaultCellStyle.Format = "dd/MM/yyyy hh:mm";
-
-            dgvOrcamentoHistoricoClienteVeiculo.Columns[9].HeaderText = "Data Alteração";
+            dgvOrcamentoHistoricoClienteVeiculo.Columns[9].HeaderText = "Data Cadastro";
             dgvOrcamentoHistoricoClienteVeiculo.Columns[9].Width = 110;
             dgvOrcamentoHistoricoClienteVeiculo.Columns[9].DefaultCellStyle.Format = "dd/MM/yyyy hh:mm";
 
-            dgvOrcamentoHistoricoClienteVeiculo.Columns[10].HeaderText = "ClienteId";
-            dgvOrcamentoHistoricoClienteVeiculo.Columns[10].Width = 50;
-            dgvOrcamentoHistoricoClienteVeiculo.Columns[10].Visible = false;
+            dgvOrcamentoHistoricoClienteVeiculo.Columns[10].HeaderText = "Data Alteração";
+            dgvOrcamentoHistoricoClienteVeiculo.Columns[10].Width = 110;
+            dgvOrcamentoHistoricoClienteVeiculo.Columns[10].DefaultCellStyle.Format = "dd/MM/yyyy hh:mm";
+
+            dgvOrcamentoHistoricoClienteVeiculo.Columns[11].HeaderText = "ClienteId";
+            dgvOrcamentoHistoricoClienteVeiculo.Columns[11].Width = 50;
+            dgvOrcamentoHistoricoClienteVeiculo.Columns[11].Visible = false;
         }
     }
 }
