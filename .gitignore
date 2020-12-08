@@ -13,3 +13,5 @@
 /src/SGM.Domain/obj/Debug/netstandard2.0/.NETStandard,Version=v2.0.AssemblyAttributes.cs
 *.dll
 *.v2
+/arquivos/AtualizacaoVeiculos
+/arquivos/Tabelas

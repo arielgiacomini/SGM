@@ -48,5 +48,21 @@ namespace SGM.ApplicationServices.Queries
                 }
             }
         }
+
+        public IList<Peca> GetPecaByAll()
+        {
+            using (var client = new HttpClient())
+            {
+                var result = client.GetAsync($"{_sGMConfiguration.SGMWebApiUrl}SGM/peca").Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    return JsonConvert.DeserializeObject<IList<Peca>>(result.Content.ReadAsStringAsync().Result);
+                }
+                else
+                {
+                    throw new ApplicationException($"Problema ao consumir a API, resultado: {result.Content.ReadAsStringAsync().Result}");
+                }
+            }
+        }
     }
 }

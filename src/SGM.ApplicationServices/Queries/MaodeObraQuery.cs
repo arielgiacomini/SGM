@@ -48,5 +48,21 @@ namespace SGM.ApplicationServices.Queries
                 }
             }
         }
+
+        public IList<MaodeObra> GetMaodeObraByAll()
+        {
+            using (var client = new HttpClient())
+            {
+                var result = client.GetAsync($"{_sGMConfiguration.SGMWebApiUrl}SGM/mao-de-obra").Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    return JsonConvert.DeserializeObject<IList<MaodeObra>>(result.Content.ReadAsStringAsync().Result);
+                }
+                else
+                {
+                    throw new ApplicationException($"Problema ao consumir a API, resultado: {result.Content.ReadAsStringAsync().Result}");
+                }
+            }
+        }
     }
 }

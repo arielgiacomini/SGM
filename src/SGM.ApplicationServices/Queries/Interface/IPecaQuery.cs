@@ -5,6 +5,7 @@ namespace SGM.ApplicationServices.Queries.Interface
 {
     public interface IPecaQuery
     {
+        IList<Peca> GetPecaByAll();
         IList<Peca> GetPecaByDescricao(string descricaoPeca);
         Peca GetPecaByPecaId(int pecaId);
     }

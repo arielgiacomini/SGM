@@ -453,12 +453,12 @@ namespace SGM.WindowsForms
 
         private void BtnLocalizar_Click(object sender, EventArgs e)
         {
-            FrmConsultaHistoricoServicoClienteVeiculo consultaHistoricoServicoCliente = new FrmConsultaHistoricoServicoClienteVeiculo();
-            consultaHistoricoServicoCliente.ShowDialog();
+            FrmConsultaServico consultaServico = FormResolve.Resolve<FrmConsultaServico>();
+            consultaServico.ShowDialog();
 
-            if (consultaHistoricoServicoCliente.codigo != 0)
+            if (consultaServico.servicoId != 0)
             {
-                var servico = _servicoApplication.GetServicoByServicoId(consultaHistoricoServicoCliente.codigo);
+                var servico = _servicoApplication.GetServicoByServicoId(consultaServico.servicoId);
 
                 txtServicoId.Text = Convert.ToString(servico.ServicoId);
                 txtClienteId.Text = Convert.ToString(servico.ClienteVeiculoId);
@@ -533,7 +533,7 @@ namespace SGM.WindowsForms
                 this.DisponibilizarBotoesTela(EnumControleTelas.InserirLocalizar);
             }
 
-            consultaHistoricoServicoCliente.Dispose();
+            consultaServico.Dispose();
         }
 
         private void DgvMaodeObra_CellDoubleClick(object sender, DataGridViewCellEventArgs e)

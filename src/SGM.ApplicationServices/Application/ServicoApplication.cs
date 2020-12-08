@@ -27,6 +27,11 @@ namespace SGM.ApplicationServices.Application
             return _servicoQuery.GetServicoByServicoId(servicoId);
         }
 
+        public IList<Servico> GetServicoByClienteVeiculoId(int clienteVeiculoId)
+        {
+            return _servicoQuery.GetServicoByClienteVeiculoId(clienteVeiculoId);
+        }
+
         public void AtualizarServico(Servico servico)
         {
             _servicoCommand.AtualizarServico(servico);
@@ -60,6 +65,11 @@ namespace SGM.ApplicationServices.Application
         public IList<ServicoPeca> GetServicoPecaByServicoId(int servicoId)
         {
             return _servicoQuery.GetServicoPecaByServicoId(servicoId);
+        }
+
+        public IList<Servico> GetUltimosServicos()
+        {
+            return _servicoQuery.GetUltimosServicos();
         }
     }
 }

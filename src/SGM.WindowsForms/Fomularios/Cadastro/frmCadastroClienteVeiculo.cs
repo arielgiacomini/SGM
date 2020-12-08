@@ -1,5 +1,4 @@
-﻿using BLL;
-using SGM.ApplicationServices.Application.Interface;
+﻿using SGM.ApplicationServices.Application.Interface;
 using SGM.Domain.Entities;
 using SGM.Domain.Enumeration;
 using SGM.Domain.Utils;
@@ -58,6 +57,15 @@ namespace SGM.WindowsForms
 
                 this.DisponibilizarBotoesTela(EnumControleTelas.AlterarExcluirCancelar);
                 this.operacao = "alterar";
+            }
+            else if (clienteVeiculoId == 0 && clienteId != 0)
+            {
+                var dadosCliente = _clienteApplication.GetClienteById(clienteId);
+
+                PreencheInformacoesNaTela(dadosCliente, new ClienteVeiculo(), new Veiculo(), new VeiculoMarca());
+
+                this.DisponibilizarBotoesTela(EnumControleTelas.InserirLocalizar);
+                this.operacao = "inserir";
             }
             else
             {
@@ -242,14 +250,11 @@ namespace SGM.WindowsForms
 
         private void BtnBuscarHistoricoCliente_Click(object sender, EventArgs e)
         {
-            FrmConsultaHistoricoServicoClienteVeiculo consultaHistorico = new FrmConsultaHistoricoServicoClienteVeiculo
-            {
-                clienteId = Convert.ToInt32(txtClienteId.Text)
-            };
-
-            consultaHistorico.ShowDialog();
-            consultaHistorico.Dispose();
-            consultaHistorico.Close();
+            FrmConsultaServico consultaServico = FormResolve.Resolve<FrmConsultaServico>();
+            consultaServico.servicoId = Convert.ToInt32(txtClienteId.Text);
+            consultaServico.ShowDialog();
+            consultaServico.Dispose();
+            consultaServico.Close();
         }
 
         private void ComboBoxMarcaVeiculoAlteracaoValor(object sender, EventArgs e)

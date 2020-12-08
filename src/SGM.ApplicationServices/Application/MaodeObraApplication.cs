@@ -41,5 +41,10 @@ namespace SGM.ApplicationServices.Application
         {
             return _maodeObraQuery.GetMaodeObraByDescricao(descricaoMaodeObra);
         }
+
+        public IList<MaodeObra> GetMaodeObraByAll()
+        {
+            return _maodeObraQuery.GetMaodeObraByAll();
+        }
     }
 }

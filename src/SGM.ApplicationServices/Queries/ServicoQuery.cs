@@ -64,5 +64,57 @@ namespace SGM.ApplicationServices.Queries
                 }
             }
         }
+
+        public IList<Servico> GetServicoByClienteVeiculoId(int clienteVeiculoId)
+        {
+            using (var client = new HttpClient())
+            {
+                var result = client.GetAsync($"{_sGMConfiguration.SGMWebApiUrl}SGM/servico/veiculo-cliente?clienteVeiculoId={clienteVeiculoId}").Result;
+
+                if (result.StatusCode == System.Net.HttpStatusCode.OK)
+                {
+                    var dados = JsonConvert.DeserializeObject<IList<Servico>>(result.Content.ReadAsStringAsync().Result);
+
+                    if (dados != null)
+                    {
+                        return dados;
+                    }
+                    else
+                    {
+                        return new List<Servico>();
+                    }
+                }
+                else
+                {
+                    throw new ApplicationException($"Problema ao consumir a API, resultado: {result.Content.ReadAsStringAsync().Result}");
+                }
+            }
+        }
+
+        public IList<Servico> GetUltimosServicos()
+        {
+            using (var client = new HttpClient())
+            {
+                var result = client.GetAsync($"{_sGMConfiguration.SGMWebApiUrl}SGM/servico/ultimos-gerados?quantidade={_sGMConfiguration.QuantidadeUltimosServicos}").Result;
+
+                if (result.StatusCode == System.Net.HttpStatusCode.OK)
+                {
+                    var dados = JsonConvert.DeserializeObject<IList<Servico>>(result.Content.ReadAsStringAsync().Result);
+
+                    if (dados != null)
+                    {
+                        return dados;
+                    }
+                    else
+                    {
+                        return new List<Servico>();
+                    }
+                }
+                else
+                {
+                    throw new ApplicationException($"Problema ao consumir a API, resultado: {result.Content.ReadAsStringAsync().Result}");
+                }
+            }
+        }
     }
 }

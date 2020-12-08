@@ -372,7 +372,7 @@ namespace SGM.WindowsForms
                     ValorMaodeObra = txtValorTotalMaodeObra.Text == "" ? 0 : Convert.ToDecimal(txtValorTotalMaodeObra.Text.Replace("R$ ", "")),
                     ValorPeca = txtValorTotalPecas.Text == "" ? 0 : Convert.ToDecimal(txtValorTotalPecas.Text.Replace("R$ ", "")),
                     ValorAdicional = txtValorAdicional.Text == "R$ 0,00" ? 0 : Convert.ToDecimal(txtValorAdicional.Text.Replace("R$ ", "")),
-                    PercentualDesconto = txtValorAdicional.Text == "R$ 0,00" ? 0 : (Convert.ToDecimal(txtPercentualDesconto.Text.Replace("%", "")) / 100),
+                    PercentualDesconto = txtPercentualDesconto.Text == "0,00%" ? 0 : (Convert.ToDecimal(txtPercentualDesconto.Text.Replace("%", "")) / 100),
                     ValorDesconto = Convert.ToDecimal(txtValorDesconto.Text.Replace("R$ ", "")),
                     ValorTotal = Convert.ToDecimal(txtValorTotal.Text.Replace("R$ ", "")),
                     Status = (int)EnumStatusOrcamento.ConcluidoSemGerarServico,
@@ -428,7 +428,7 @@ namespace SGM.WindowsForms
 
         private void TxtPercentualDesconto_Leave(object sender, EventArgs e)
         {
-            decimal PDesc = Convert.ToDecimal(txtPercentualDesconto.Text.Replace("%", ""));
+            decimal PDesc = Convert.ToDecimal(txtPercentualDesconto.Text.Replace("%", "0"));
             decimal VTota = Convert.ToDecimal(txtValorTotal.Text.Replace("R$ ", ""));
             decimal VDesc = Convert.ToDecimal(txtValorDesconto.Text.Replace("R$ ", ""));
             txtValorDesconto.Text = Convert.ToString(Convert.ToDecimal(((VTota / 100) * PDesc)).ToString("C"));
@@ -451,86 +451,103 @@ namespace SGM.WindowsForms
 
         private void BtnLocalizar_Click(object sender, EventArgs e)
         {
-            frmConsultaHistoricoOrcamentoClienteVeiculo consultaHistoricoOrcamento = new frmConsultaHistoricoOrcamentoClienteVeiculo();
+            FrmConsultaOrcamento consultaHistoricoOrcamento = FormResolve.Resolve<FrmConsultaOrcamento>();
             consultaHistoricoOrcamento.ShowDialog();
 
-            if (consultaHistoricoOrcamento.codigo != 0)
+            DialogResult res = MessageBox.Show("Deseja efetuar alguma alteração no Orçamento?", "Orçamento", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (res.ToString() == "Yes")
             {
-                var orcamento = _orcamentoApplication.GetOrcamentoByOrcamentoId(consultaHistoricoOrcamento.codigo);
-
-                txtOrcamentoId.Text = Convert.ToString(orcamento.OrcamentoId);
-                txtClienteId.Text = Convert.ToString(orcamento.ClienteVeiculoId);
-                txtDescricao.Text = Convert.ToString(orcamento.Descricao);
-                txtValorAdicional.Text = Convert.ToString(orcamento.ValorAdicional);
-                txtPercentualDesconto.Text = Convert.ToString(orcamento.PercentualDesconto);
-                txtValorDesconto.Text = Convert.ToString(orcamento.ValorDesconto);
-                txtValorTotal.Text = Convert.ToString(orcamento.ValorTotal);
-
-                var orcamentoMaodeObraSalvo = _orcamentoApplication.GetOrcamentoMaodeObraByOrcamentoId(orcamento.OrcamentoId);
-
-                IList<PesquisaMaodeObraOrcamentoDataSource> maoDeObra = new List<PesquisaMaodeObraOrcamentoDataSource>();
-
-                foreach (var item in orcamentoMaodeObraSalvo)
+                if (consultaHistoricoOrcamento.orcamentoId != 0)
                 {
-                    var mao = _maoDeObraApplication.GetMaodeObraById(item.MaodeObraId);
+                    var orcamento = _orcamentoApplication.GetOrcamentoByOrcamentoId(consultaHistoricoOrcamento.orcamentoId);
+                    var clienteVeiculo = _clienteVeiculoApplication.GetVeiculoClienteByClienteVeiculoId(orcamento.ClienteVeiculoId);
+                    var cliente = _clienteApplication.GetClienteById(clienteVeiculo.ClienteId);
 
-                    maoDeObra.Add(new PesquisaMaodeObraOrcamentoDataSource
+                    txtOrcamentoId.Text = orcamento.OrcamentoId.ToString();
+                    txtClienteId.Text = orcamento.ClienteVeiculoId.ToString();
+                    txtClienteVeiculoId.Text = orcamento.ClienteVeiculoId.ToString();
+                    txtValorTotalMaodeObra.Text = orcamento.ValorMaodeObra.ToString("C");
+                    txtValorTotalPecas.Text = orcamento.ValorPeca.ToString("C");
+                    txtValorAdicional.Text = orcamento.ValorAdicional.ToString("C");
+                    txtPercentualDesconto.Text = orcamento.PercentualDesconto.ToString("P");
+                    txtValorDesconto.Text = orcamento.ValorDesconto.ToString("C");
+                    txtValorTotal.Text = orcamento.ValorTotal.ToString("C");
+                    txtClienteSelecionado.Text = cliente.NomeCliente;
+                    txtDescricao.Text = orcamento.Descricao.ToString();
+
+                    var orcamentoMaodeObraSalvo = _orcamentoApplication.GetOrcamentoMaodeObraByOrcamentoId(orcamento.OrcamentoId);
+
+                    IList<PesquisaMaodeObraOrcamentoDataSource> maoDeObra = new List<PesquisaMaodeObraOrcamentoDataSource>();
+
+                    foreach (var item in orcamentoMaodeObraSalvo)
                     {
-                        MaodeObraId = mao.MaodeObraId,
-                        MaodeObra = mao.Descricao,
-                        Valor = mao.Valor,
-                        OrcamentoMaodeObraId = item.Id
-                    });
+                        var mao = _maoDeObraApplication.GetMaodeObraById(item.MaodeObraId);
+
+                        maoDeObra.Add(new PesquisaMaodeObraOrcamentoDataSource
+                        {
+                            MaodeObraId = mao.MaodeObraId,
+                            MaodeObra = mao.Descricao,
+                            Valor = mao.Valor,
+                            OrcamentoMaodeObraId = item.Id
+                        });
+                    }
+
+                    dgvMaodeObra.DataSource = maoDeObra;
+                    dgvMaodeObra.Columns[0].HeaderText = "Código";
+                    dgvMaodeObra.Columns[0].Width = 50;
+                    dgvMaodeObra.Columns[1].HeaderText = "Mão de Obra";
+                    dgvMaodeObra.Columns[1].Width = 300;
+                    dgvMaodeObra.Columns[2].HeaderText = "Valor";
+                    dgvMaodeObra.Columns[2].Width = 70;
+                    dgvMaodeObra.Columns[2].DefaultCellStyle.Format = "C2";
+                    dgvMaodeObra.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                    dgvMaodeObra.Columns[3].HeaderText = "OrcamentoMaoDeObraId";
+                    dgvMaodeObra.Columns[3].Width = 20;
+                    dgvMaodeObra.Columns[3].Visible = false;
+
+                    var orcamentoPecaSalvo = _orcamentoApplication.GetOrcamentoPecaByOrcamentoId(Convert.ToInt32(txtOrcamentoId.Text));
+
+                    IList<PesquisaPecaOrcamentoDataSource> peca = new List<PesquisaPecaOrcamentoDataSource>();
+
+                    foreach (var item in orcamentoPecaSalvo)
+                    {
+                        var mao = _pecaApplication.GetPecaByPecaId(item.PecaId);
+                        peca.Add(new PesquisaPecaOrcamentoDataSource
+                        {
+                            PecaId = mao.PecaId,
+                            Peca = mao.Descricao,
+                            Valor = mao.Valor,
+                            OrcamentoPecaId = item.Id
+                        });
+                    }
+
+                    dgvPeca.DataSource = peca;
+                    dgvPeca.Columns[0].HeaderText = "Código";
+                    dgvPeca.Columns[0].Width = 50;
+                    dgvPeca.Columns[1].HeaderText = "Peça";
+                    dgvPeca.Columns[1].Width = 300;
+                    dgvPeca.Columns[2].HeaderText = "Valor Integral";
+                    dgvPeca.Columns[2].Width = 70;
+                    dgvPeca.Columns[2].DefaultCellStyle.Format = "C2";
+                    dgvPeca.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                    dgvPeca.Columns[3].HeaderText = "OrcamentoPecaId";
+                    dgvPeca.Columns[3].Width = 20;
+                    dgvPeca.Columns[3].Visible = false;
+
+                    DisponibilizarBotoesTela(EnumControleTelas.AlterarExcluirCancelar);
                 }
-
-                dgvMaodeObra.DataSource = maoDeObra;
-                dgvMaodeObra.Columns[0].HeaderText = "Código";
-                dgvMaodeObra.Columns[0].Width = 50;
-                dgvMaodeObra.Columns[1].HeaderText = "Mão de Obra";
-                dgvMaodeObra.Columns[1].Width = 330;
-                dgvMaodeObra.Columns[2].HeaderText = "Valor";
-                dgvMaodeObra.Columns[2].Width = 70;
-                dgvMaodeObra.Columns[2].DefaultCellStyle.Format = "C2";
-                dgvMaodeObra.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                dgvMaodeObra.Columns[3].HeaderText = "OrcamentoMaoDeObraId";
-                dgvMaodeObra.Columns[3].Width = 20;
-                dgvMaodeObra.Columns[3].Visible = false;
-
-                var orcamentoPecaSalvo = _orcamentoApplication.GetOrcamentoPecaByOrcamentoId(Convert.ToInt32(txtOrcamentoId.Text));
-
-                IList<PesquisaPecaOrcamentoDataSource> peca = new List<PesquisaPecaOrcamentoDataSource>();
-
-                foreach (var item in orcamentoPecaSalvo)
+                else
                 {
-                    var mao = _pecaApplication.GetPecaByPecaId(item.PecaId);
-                    peca.Add(new PesquisaPecaOrcamentoDataSource
-                    {
-                        PecaId = mao.PecaId,
-                        Peca = mao.Descricao,
-                        Valor = mao.Valor,
-                        OrcamentoPecaId = item.Id
-                    });
+                    this.LimpaTela();
+                    this.DisponibilizarBotoesTela(EnumControleTelas.InserirLocalizar);
                 }
-
-                dgvPeca.DataSource = peca;
-                dgvPeca.Columns[0].HeaderText = "Código";
-                dgvPeca.Columns[0].Width = 50;
-                dgvPeca.Columns[1].HeaderText = "Peça";
-                dgvPeca.Columns[1].Width = 330;
-                dgvPeca.Columns[2].HeaderText = "Valor Integral";
-                dgvPeca.Columns[2].Width = 70;
-                dgvPeca.Columns[2].DefaultCellStyle.Format = "C2";
-                dgvPeca.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-
-                DisponibilizarBotoesTela(EnumControleTelas.AlterarExcluirCancelar);
             }
-
             else
             {
                 this.LimpaTela();
                 this.DisponibilizarBotoesTela(EnumControleTelas.InserirLocalizar);
             }
-
             consultaHistoricoOrcamento.Dispose();
         }
 
@@ -667,6 +684,12 @@ namespace SGM.WindowsForms
             txtVT = (txtVM + txtVP + txtVA);
 
             txtValorTotal.Text = (txtVT.ToString("C"));
+        }
+
+        private void btnAlterar_Click(object sender, EventArgs e)
+        {
+            this.operacao = "alterar";
+            this.DisponibilizarBotoesTela(EnumControleTelas.SalvarCancelarExcluir);
         }
     }
 }

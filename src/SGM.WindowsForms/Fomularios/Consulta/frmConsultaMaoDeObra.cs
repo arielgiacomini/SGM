@@ -27,7 +27,7 @@ namespace SGM.WindowsForms
             }
         }
 
-        private void frmConsultaMaoDeObra_Load(object sender, EventArgs e)
+        private void FrmConsultaMaoDeObra_Load(object sender, EventArgs e)
         {
             IList<MaodeObra> maoDeObra = new List<MaodeObra>();
 
@@ -35,11 +35,15 @@ namespace SGM.WindowsForms
             {
                 maoDeObra.Add(_maoDeObraApplication.GetMaodeObraById(codigo));
             }
+            else
+            {
+                maoDeObra = _maoDeObraApplication.GetMaodeObraByAll();
+            }
 
             CarregaGridView(maoDeObra);
         }
 
-        private void dgvConsultaMaoDeObra_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void DgvConsultaMaoDeObra_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
             {
