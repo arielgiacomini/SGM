@@ -45,7 +45,7 @@ namespace SGM.WindowsForms
 
         private void DgvConsultCliente_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0) // vai guardar a informação escolhida com duplo clique.
+            if (e.RowIndex >= 0)
             {
                 this.codigo = Convert.ToInt32(dgvConsultCliente.Rows[e.RowIndex].Cells[0].Value);
                 this.nomeCliente = Convert.ToString(dgvConsultCliente.Rows[e.RowIndex].Cells[3].Value);

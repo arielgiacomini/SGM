@@ -4,6 +4,7 @@ using SGM.Domain.Enumeration;
 using SGM.Domain.Utils;
 using SGM.WindowsForms.IoC;
 using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace SGM.WindowsForms
@@ -37,9 +38,9 @@ namespace SGM.WindowsForms
             txtAnoModeloVeiculo.Clear();
             cboVeiculo.SelectedIndex = -1;
             cboMarcaVeiculo.SelectedIndex = -1;
-            checkBoxAtivo.Checked = false;
             txtDataCadastro.Clear();
             txtDataAlteracao.Clear();
+            checkBoxAtivo.Checked = false;
         }
 
         private void FrmCadastroClienteVeiculo_Load(object sender, EventArgs e)
@@ -76,8 +77,6 @@ namespace SGM.WindowsForms
 
         private void BtnInserir_Click(object sender, EventArgs e)
         {
-            this.txtAnoModeloVeiculo.Enabled = false;
-
             if (cboMarcaVeiculo.DataSource == null)
             {
                 cboMarcaVeiculo.DataSource = _veiculoApplication.GetMarcasByAll();
@@ -91,15 +90,12 @@ namespace SGM.WindowsForms
 
         private void BtnCancelar_Click(object sender, EventArgs e)
         {
-            this.txtAnoModeloVeiculo.Enabled = false;
             this.DisponibilizarBotoesTela(EnumControleTelas.InserirLocalizar);
             this.LimpaTela();
         }
 
         private void BtnAlterar_Click(object sender, EventArgs e)
         {
-            this.txtAnoModeloVeiculo.Enabled = false;
-
             this.DisponibilizarBotoesTela(EnumControleTelas.SalvarCancelarExcluir);
             this.operacao = "alterar";
             txtCliente.Enabled = false;
@@ -310,12 +306,14 @@ namespace SGM.WindowsForms
                 txtCorVeiculo.Text = veiculoCliente.CorVeiculo.ToString();
                 txtAnoModeloVeiculo.Text = veiculoCliente.AnoVeiculo.ToString();
                 checkBoxAtivo.Checked = veiculoCliente.Ativo;
-                txtDataCadastro.Text = veiculoCliente.DataCadastro.ToString();
-                txtDataAlteracao.Text = veiculoCliente.DataAlteracao.HasValue ? veiculoCliente.DataAlteracao.Value.ToString() : "";
+                txtDataCadastro.Text = Util.ConvertHorarioOfServerToWorldReal(veiculoCliente.DataCadastro, 5).ToString();
+                txtDataAlteracao.Text = veiculoCliente.DataAlteracao.HasValue ? Util.ConvertHorarioOfServerToWorldReal(veiculoCliente.DataAlteracao.Value, 5).ToString() : "";
             }
 
             if (veiculo != null && veiculo.VeiculoId != 0)
             {
+                IList<Veiculo> veiculos = new List<Veiculo>();
+
                 cboMarcaVeiculo.SelectedValue = veiculoMarca.MarcaId;
 
                 if (cboMarcaVeiculo.SelectedIndex > 0)
@@ -325,6 +323,12 @@ namespace SGM.WindowsForms
                     cboVeiculo.ValueMember = "VeiculoId";
                     cboVeiculo.SelectedValue = veiculoCliente.VeiculoId;
                 }
+
+                veiculos.Add(veiculo);
+                cboVeiculo.DataSource = veiculos;
+                cboVeiculo.DisplayMember = "Modelo";
+                cboVeiculo.ValueMember = "VeiculoId";
+                cboVeiculo.SelectedValue = veiculo.VeiculoId;
             }
 
             if (veiculoMarca != null && veiculoMarca.MarcaId != 0)

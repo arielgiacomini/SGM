@@ -1,6 +1,7 @@
 ﻿using SGM.ApplicationServices.Application.Interface;
 using SGM.Domain.Entities;
 using SGM.Domain.Enumeration;
+using SGM.Domain.Utils;
 using SGM.WindowsForms.IoC;
 using System;
 using System.Linq;
@@ -124,18 +125,10 @@ namespace SGM.WindowsForms
 
                     if (res.ToString() == "Yes")
                     {
-                        frmConsultaCliente formConsultaCliente = FormResolve.Resolve<frmConsultaCliente>();
-                        formConsultaCliente.codigo = cliente.ClienteId;
-                        formConsultaCliente.ShowDialog();
-
-                        if (formConsultaCliente.codigo != 0)
-                        {
-                            FrmCadastroClienteVeiculo formCadastroClienteVeiculo = FormResolve.Resolve<FrmCadastroClienteVeiculo>();
-                            formCadastroClienteVeiculo.DisponibilizarBotoesTela(EnumControleTelas.InserirLocalizar);
-                            formCadastroClienteVeiculo.clienteId = formConsultaCliente.codigo;
-                            formCadastroClienteVeiculo.ShowDialog();
-                            formCadastroClienteVeiculo.Dispose();
-                        }
+                        FrmCadastroClienteVeiculo formCadastroClienteVeiculo = FormResolve.Resolve<FrmCadastroClienteVeiculo>();
+                        formCadastroClienteVeiculo.clienteId = cliente.ClienteId;
+                        formCadastroClienteVeiculo.ShowDialog();
+                        formCadastroClienteVeiculo.Dispose();
                     }
                 }
                 else
@@ -146,10 +139,9 @@ namespace SGM.WindowsForms
                     {
                         FrmConsultaClienteVeiculo formConsultaClienteVeiculo = FormResolve.Resolve<FrmConsultaClienteVeiculo>();
                         formConsultaClienteVeiculo.clienteId = cliente.ClienteId;
-
                         formConsultaClienteVeiculo.ShowDialog();
 
-                        if (formConsultaClienteVeiculo.clienteId != 0)
+                        if (formConsultaClienteVeiculo.clienteId != 0 || formConsultaClienteVeiculo.clienteVeiculoId != 0)
                         {
                             FrmCadastroClienteVeiculo formCadastroClienteVeiculo = FormResolve.Resolve<FrmCadastroClienteVeiculo>();
                             formCadastroClienteVeiculo.clienteId = formConsultaClienteVeiculo.clienteId;
@@ -204,7 +196,7 @@ namespace SGM.WindowsForms
                 txtCidade.Text = cliente.LogradouroMunicipio;
                 txtBairro.Text = cliente.LogradouroBairro;
                 txtUF.Text = cliente.LogradouroUF;
-                txtDataCadastro.Text = Convert.ToString(cliente.DataCadastro);
+                txtDataCadastro.Text = Convert.ToString(Util.ConvertHorarioOfServerToWorldReal(cliente.DataCadastro, 5));
 
                 DisponibilizarBotoesTela(EnumControleTelas.AlterarExcluirCancelar);
             }
@@ -223,7 +215,7 @@ namespace SGM.WindowsForms
             {
                 var cliente = _clienteApplication.GetClienteByDocumentoCliente(txtCPF.Text);
 
-                if (cliente != null)
+                if (cliente.ClienteId != 0)
                 {
                     DialogResult res = MessageBox.Show("Esse CPF já existe em nossa base de dados. Deseja alterar o registro?", "Aviso IMPORTANTE", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
@@ -249,7 +241,7 @@ namespace SGM.WindowsForms
                         txtCidade.Text = cliente.LogradouroMunicipio;
                         txtBairro.Text = cliente.LogradouroBairro;
                         txtUF.Text = cliente.LogradouroUF;
-                        txtDataCadastro.Text = Convert.ToString(cliente.DataCadastro);
+                        txtDataCadastro.Text = Convert.ToString(Util.ConvertHorarioOfServerToWorldReal(cliente.DataCadastro, 5));
                     }
                 }
             }

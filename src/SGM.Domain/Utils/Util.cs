@@ -1,4 +1,6 @@
-﻿namespace SGM.Domain.Utils
+﻿using System;
+
+namespace SGM.Domain.Utils
 {
     public class Util
     {
@@ -15,6 +17,11 @@
             {
                 return false;
             }
+        }
+
+        public static DateTime ConvertHorarioOfServerToWorldReal(DateTime dataHora, int horas)
+        {
+            return dataHora.AddHours(horas);
         }
     }
 }
