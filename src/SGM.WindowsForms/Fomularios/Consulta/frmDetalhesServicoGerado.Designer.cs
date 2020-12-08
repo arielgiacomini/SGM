@@ -50,6 +50,8 @@
             this.lblQtdRegistrosPecasProdutos = new System.Windows.Forms.Label();
             this.lblQtdRegistrosMaodeObra = new System.Windows.Forms.Label();
             this.btnImprimir = new System.Windows.Forms.Button();
+            this.txtDescricaoServico = new System.Windows.Forms.TextBox();
+            this.lblDescricaoServico = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPecasServicosGerados)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMaodeObraServicoGerado)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -58,7 +60,7 @@
             // dgvPecasServicosGerados
             // 
             this.dgvPecasServicosGerados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvPecasServicosGerados.Location = new System.Drawing.Point(12, 300);
+            this.dgvPecasServicosGerados.Location = new System.Drawing.Point(12, 276);
             this.dgvPecasServicosGerados.Name = "dgvPecasServicosGerados";
             this.dgvPecasServicosGerados.ReadOnly = true;
             this.dgvPecasServicosGerados.Size = new System.Drawing.Size(494, 190);
@@ -67,7 +69,7 @@
             // dgvMaodeObraServicoGerado
             // 
             this.dgvMaodeObraServicoGerado.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvMaodeObraServicoGerado.Location = new System.Drawing.Point(12, 60);
+            this.dgvMaodeObraServicoGerado.Location = new System.Drawing.Point(12, 36);
             this.dgvMaodeObraServicoGerado.Name = "dgvMaodeObraServicoGerado";
             this.dgvMaodeObraServicoGerado.ReadOnly = true;
             this.dgvMaodeObraServicoGerado.Size = new System.Drawing.Size(494, 190);
@@ -77,7 +79,7 @@
             // 
             this.lblValorMaodeObra.AutoSize = true;
             this.lblValorMaodeObra.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblValorMaodeObra.Location = new System.Drawing.Point(563, 116);
+            this.lblValorMaodeObra.Location = new System.Drawing.Point(568, 92);
             this.lblValorMaodeObra.Name = "lblValorMaodeObra";
             this.lblValorMaodeObra.Size = new System.Drawing.Size(136, 18);
             this.lblValorMaodeObra.TabIndex = 2;
@@ -86,7 +88,7 @@
             // 
             // txtValorMaodeObraTotal
             // 
-            this.txtValorMaodeObraTotal.Location = new System.Drawing.Point(707, 117);
+            this.txtValorMaodeObraTotal.Location = new System.Drawing.Point(712, 93);
             this.txtValorMaodeObraTotal.Name = "txtValorMaodeObraTotal";
             this.txtValorMaodeObraTotal.ReadOnly = true;
             this.txtValorMaodeObraTotal.Size = new System.Drawing.Size(137, 20);
@@ -97,7 +99,7 @@
             // 
             this.lblValorProdutosPecasTotal.AutoSize = true;
             this.lblValorProdutosPecasTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblValorProdutosPecasTotal.Location = new System.Drawing.Point(546, 167);
+            this.lblValorProdutosPecasTotal.Location = new System.Drawing.Point(551, 143);
             this.lblValorProdutosPecasTotal.Name = "lblValorProdutosPecasTotal";
             this.lblValorProdutosPecasTotal.Size = new System.Drawing.Size(156, 18);
             this.lblValorProdutosPecasTotal.TabIndex = 4;
@@ -106,7 +108,7 @@
             // 
             // txtValorProdutosPecasTotal
             // 
-            this.txtValorProdutosPecasTotal.Location = new System.Drawing.Point(707, 168);
+            this.txtValorProdutosPecasTotal.Location = new System.Drawing.Point(712, 144);
             this.txtValorProdutosPecasTotal.Name = "txtValorProdutosPecasTotal";
             this.txtValorProdutosPecasTotal.ReadOnly = true;
             this.txtValorProdutosPecasTotal.Size = new System.Drawing.Size(137, 20);
@@ -115,7 +117,7 @@
             // 
             // txtValorAdicionalTotal
             // 
-            this.txtValorAdicionalTotal.Location = new System.Drawing.Point(707, 221);
+            this.txtValorAdicionalTotal.Location = new System.Drawing.Point(712, 197);
             this.txtValorAdicionalTotal.Name = "txtValorAdicionalTotal";
             this.txtValorAdicionalTotal.ReadOnly = true;
             this.txtValorAdicionalTotal.Size = new System.Drawing.Size(137, 20);
@@ -126,7 +128,7 @@
             // 
             this.lblValorAdicionalTotal.AutoSize = true;
             this.lblValorAdicionalTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblValorAdicionalTotal.Location = new System.Drawing.Point(558, 220);
+            this.lblValorAdicionalTotal.Location = new System.Drawing.Point(563, 196);
             this.lblValorAdicionalTotal.Name = "lblValorAdicionalTotal";
             this.lblValorAdicionalTotal.Size = new System.Drawing.Size(146, 18);
             this.lblValorAdicionalTotal.TabIndex = 7;
@@ -138,7 +140,7 @@
             this.lblPercentualDesconto.AutoSize = true;
             this.lblPercentualDesconto.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPercentualDesconto.ForeColor = System.Drawing.Color.Red;
-            this.lblPercentualDesconto.Location = new System.Drawing.Point(587, 277);
+            this.lblPercentualDesconto.Location = new System.Drawing.Point(592, 253);
             this.lblPercentualDesconto.Name = "lblPercentualDesconto";
             this.lblPercentualDesconto.Size = new System.Drawing.Size(114, 18);
             this.lblPercentualDesconto.TabIndex = 8;
@@ -148,7 +150,7 @@
             // txtPercentualDesconto
             // 
             this.txtPercentualDesconto.ForeColor = System.Drawing.Color.Red;
-            this.txtPercentualDesconto.Location = new System.Drawing.Point(707, 278);
+            this.txtPercentualDesconto.Location = new System.Drawing.Point(712, 254);
             this.txtPercentualDesconto.Name = "txtPercentualDesconto";
             this.txtPercentualDesconto.ReadOnly = true;
             this.txtPercentualDesconto.Size = new System.Drawing.Size(135, 20);
@@ -160,7 +162,7 @@
             this.lblValorDescontoTotal.AutoSize = true;
             this.lblValorDescontoTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblValorDescontoTotal.ForeColor = System.Drawing.Color.Red;
-            this.lblValorDescontoTotal.Location = new System.Drawing.Point(586, 332);
+            this.lblValorDescontoTotal.Location = new System.Drawing.Point(591, 308);
             this.lblValorDescontoTotal.Name = "lblValorDescontoTotal";
             this.lblValorDescontoTotal.Size = new System.Drawing.Size(115, 18);
             this.lblValorDescontoTotal.TabIndex = 10;
@@ -170,7 +172,7 @@
             // txtValorDescontoTotal
             // 
             this.txtValorDescontoTotal.ForeColor = System.Drawing.Color.Red;
-            this.txtValorDescontoTotal.Location = new System.Drawing.Point(707, 332);
+            this.txtValorDescontoTotal.Location = new System.Drawing.Point(712, 308);
             this.txtValorDescontoTotal.Name = "txtValorDescontoTotal";
             this.txtValorDescontoTotal.ReadOnly = true;
             this.txtValorDescontoTotal.Size = new System.Drawing.Size(135, 20);
@@ -181,7 +183,7 @@
             // 
             this.lblValorTotal.AutoSize = true;
             this.lblValorTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblValorTotal.Location = new System.Drawing.Point(633, 437);
+            this.lblValorTotal.Location = new System.Drawing.Point(636, 454);
             this.lblValorTotal.Name = "lblValorTotal";
             this.lblValorTotal.Size = new System.Drawing.Size(117, 24);
             this.lblValorTotal.TabIndex = 12;
@@ -201,7 +203,7 @@
             // 
             this.lblTextoMaodeObra.AutoSize = true;
             this.lblTextoMaodeObra.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTextoMaodeObra.Location = new System.Drawing.Point(216, 33);
+            this.lblTextoMaodeObra.Location = new System.Drawing.Point(216, 9);
             this.lblTextoMaodeObra.Name = "lblTextoMaodeObra";
             this.lblTextoMaodeObra.Size = new System.Drawing.Size(132, 24);
             this.lblTextoMaodeObra.TabIndex = 14;
@@ -211,7 +213,7 @@
             // 
             this.lblTextoPecaProduto.AutoSize = true;
             this.lblTextoPecaProduto.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTextoPecaProduto.Location = new System.Drawing.Point(216, 271);
+            this.lblTextoPecaProduto.Location = new System.Drawing.Point(216, 247);
             this.lblTextoPecaProduto.Name = "lblTextoPecaProduto";
             this.lblTextoPecaProduto.Size = new System.Drawing.Size(156, 24);
             this.lblTextoPecaProduto.TabIndex = 15;
@@ -221,7 +223,7 @@
             // 
             this.lblServicoId.AutoSize = true;
             this.lblServicoId.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblServicoId.Location = new System.Drawing.Point(524, 23);
+            this.lblServicoId.Location = new System.Drawing.Point(532, 23);
             this.lblServicoId.Name = "lblServicoId";
             this.lblServicoId.Size = new System.Drawing.Size(131, 24);
             this.lblServicoId.TabIndex = 16;
@@ -240,7 +242,7 @@
             // lblQtdRegistrosPecasProdutos
             // 
             this.lblQtdRegistrosPecasProdutos.AutoSize = true;
-            this.lblQtdRegistrosPecasProdutos.Location = new System.Drawing.Point(12, 284);
+            this.lblQtdRegistrosPecasProdutos.Location = new System.Drawing.Point(12, 260);
             this.lblQtdRegistrosPecasProdutos.Name = "lblQtdRegistrosPecasProdutos";
             this.lblQtdRegistrosPecasProdutos.Size = new System.Drawing.Size(124, 13);
             this.lblQtdRegistrosPecasProdutos.TabIndex = 76;
@@ -250,7 +252,7 @@
             // lblQtdRegistrosMaodeObra
             // 
             this.lblQtdRegistrosMaodeObra.AutoSize = true;
-            this.lblQtdRegistrosMaodeObra.Location = new System.Drawing.Point(12, 44);
+            this.lblQtdRegistrosMaodeObra.Location = new System.Drawing.Point(12, 20);
             this.lblQtdRegistrosMaodeObra.Name = "lblQtdRegistrosMaodeObra";
             this.lblQtdRegistrosMaodeObra.Size = new System.Drawing.Size(124, 13);
             this.lblQtdRegistrosMaodeObra.TabIndex = 77;
@@ -258,7 +260,7 @@
             // 
             // btnImprimir
             // 
-            this.btnImprimir.Location = new System.Drawing.Point(651, 382);
+            this.btnImprimir.Location = new System.Drawing.Point(196, 479);
             this.btnImprimir.Name = "btnImprimir";
             this.btnImprimir.Size = new System.Drawing.Size(125, 33);
             this.btnImprimir.TabIndex = 78;
@@ -266,10 +268,32 @@
             this.btnImprimir.UseVisualStyleBackColor = true;
             this.btnImprimir.Click += new System.EventHandler(this.BtnImprimir_Click);
             // 
+            // txtDescricaoServico
+            // 
+            this.txtDescricaoServico.Location = new System.Drawing.Point(556, 366);
+            this.txtDescricaoServico.Multiline = true;
+            this.txtDescricaoServico.Name = "txtDescricaoServico";
+            this.txtDescricaoServico.ReadOnly = true;
+            this.txtDescricaoServico.Size = new System.Drawing.Size(295, 68);
+            this.txtDescricaoServico.TabIndex = 79;
+            // 
+            // lblDescricaoServico
+            // 
+            this.lblDescricaoServico.AutoSize = true;
+            this.lblDescricaoServico.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDescricaoServico.Location = new System.Drawing.Point(553, 345);
+            this.lblDescricaoServico.Name = "lblDescricaoServico";
+            this.lblDescricaoServico.Size = new System.Drawing.Size(151, 18);
+            this.lblDescricaoServico.TabIndex = 100;
+            this.lblDescricaoServico.Text = "Descrição do Serviço";
+            this.lblDescricaoServico.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // FrmDetalhesServicoGerado
             // 
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
             this.ClientSize = new System.Drawing.Size(887, 521);
+            this.Controls.Add(this.lblDescricaoServico);
+            this.Controls.Add(this.txtDescricaoServico);
             this.Controls.Add(this.btnImprimir);
             this.Controls.Add(this.lblQtdRegistrosMaodeObra);
             this.Controls.Add(this.lblQtdRegistrosPecasProdutos);
@@ -327,5 +351,7 @@
         private System.Windows.Forms.Label lblQtdRegistrosPecasProdutos;
         private System.Windows.Forms.Label lblQtdRegistrosMaodeObra;
         private System.Windows.Forms.Button btnImprimir;
+        private System.Windows.Forms.TextBox txtDescricaoServico;
+        private System.Windows.Forms.Label lblDescricaoServico;
     }
 }

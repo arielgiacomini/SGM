@@ -155,11 +155,11 @@
     <Compile Include="Fomularios\Consulta\frmConsultaOrcamento.Designer.cs">
       <DependentUpon>frmConsultaOrcamento.cs</DependentUpon>
     </Compile>
-    <Compile Include="Fomularios\Consulta\frmConsultaHistoricoServicoClienteVeiculo.cs">
+    <Compile Include="Fomularios\Consulta\frmConsultaServico.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Fomularios\Consulta\frmConsultaHistoricoServicoClienteVeiculo.Designer.cs">
-      <DependentUpon>frmConsultaHistoricoServicoClienteVeiculo.cs</DependentUpon>
+    <Compile Include="Fomularios\Consulta\frmConsultaServico.Designer.cs">
+      <DependentUpon>frmConsultaServico.cs</DependentUpon>
     </Compile>
     <Compile Include="Fomularios\Consulta\frmConsultaMaoDeObra.cs">
       <SubType>Form</SubType>
@@ -267,8 +267,8 @@
     <EmbeddedResource Include="Fomularios\Consulta\frmConsultaOrcamento.resx">
       <DependentUpon>frmConsultaOrcamento.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Fomularios\Consulta\frmConsultaHistoricoServicoClienteVeiculo.resx">
-      <DependentUpon>frmConsultaHistoricoServicoClienteVeiculo.cs</DependentUpon>
+    <EmbeddedResource Include="Fomularios\Consulta\frmConsultaServico.resx">
+      <DependentUpon>frmConsultaServico.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Fomularios\Consulta\frmConsultaMaoDeObra.resx">
       <DependentUpon>frmConsultaMaoDeObra.cs</DependentUpon>
@@ -331,18 +331,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BLL\BLL.csproj">
-      <Project>{9cf5aee1-3f0d-4173-8f4a-e013b79ab664}</Project>
-      <Name>BLL</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DAL\DAL.csproj">
-      <Project>{aaa136d7-9514-493a-bf49-775f2d2a0211}</Project>
-      <Name>DAL</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Modelo\Modelo.csproj">
-      <Project>{87a79315-966b-4ba0-a08c-6ffd29dd8469}</Project>
-      <Name>Modelo</Name>
-    </ProjectReference>
     <ProjectReference Include="..\SGM.ApplicationServices\SGM.ApplicationServices.csproj">
       <Project>{d83029ac-393c-41af-9b3f-7eebd9d1d762}</Project>
       <Name>SGM.ApplicationServices</Name>

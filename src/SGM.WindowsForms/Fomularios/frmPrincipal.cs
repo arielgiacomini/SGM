@@ -170,7 +170,7 @@ namespace SGM.WindowsForms
 
         private void BtnBuscarHistoricoServicoCliente_Click(object sender, EventArgs e)
         {
-            FrmConsultaHistoricoServicoClienteVeiculo consultaHistorico = new FrmConsultaHistoricoServicoClienteVeiculo();
+            FrmConsultaServico consultaHistorico = FormResolve.Resolve<FrmConsultaServico>();
             consultaHistorico.ShowDialog();
             consultaHistorico.Dispose();
         }

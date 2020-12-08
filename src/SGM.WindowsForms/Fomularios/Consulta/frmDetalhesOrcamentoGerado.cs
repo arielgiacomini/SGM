@@ -19,7 +19,6 @@ namespace SGM.WindowsForms
             _orcamentoApplication = orcamentoApplication;
             _pecaApplication = pecaApplication;
             _maoDeObraApplication = maodeObraApplication;
-
             InitializeComponent();
         }
 

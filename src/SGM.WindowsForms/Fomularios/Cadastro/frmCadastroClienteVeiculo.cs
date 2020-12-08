@@ -250,14 +250,11 @@ namespace SGM.WindowsForms
 
         private void BtnBuscarHistoricoCliente_Click(object sender, EventArgs e)
         {
-            FrmConsultaHistoricoServicoClienteVeiculo consultaHistorico = new FrmConsultaHistoricoServicoClienteVeiculo
-            {
-                clienteId = Convert.ToInt32(txtClienteId.Text)
-            };
-
-            consultaHistorico.ShowDialog();
-            consultaHistorico.Dispose();
-            consultaHistorico.Close();
+            FrmConsultaServico consultaServico = FormResolve.Resolve<FrmConsultaServico>();
+            consultaServico.servicoId = Convert.ToInt32(txtClienteId.Text);
+            consultaServico.ShowDialog();
+            consultaServico.Dispose();
+            consultaServico.Close();
         }
 
         private void ComboBoxMarcaVeiculoAlteracaoValor(object sender, EventArgs e)
