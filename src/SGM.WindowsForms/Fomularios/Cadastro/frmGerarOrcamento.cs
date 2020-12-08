@@ -428,7 +428,7 @@ namespace SGM.WindowsForms
 
         private void TxtPercentualDesconto_Leave(object sender, EventArgs e)
         {
-            decimal PDesc = Convert.ToDecimal(txtPercentualDesconto.Text.Replace("%", ""));
+            decimal PDesc = Convert.ToDecimal(txtPercentualDesconto.Text.Replace("%", "0"));
             decimal VTota = Convert.ToDecimal(txtValorTotal.Text.Replace("R$ ", ""));
             decimal VDesc = Convert.ToDecimal(txtValorDesconto.Text.Replace("R$ ", ""));
             txtValorDesconto.Text = Convert.ToString(Convert.ToDecimal(((VTota / 100) * PDesc)).ToString("C"));

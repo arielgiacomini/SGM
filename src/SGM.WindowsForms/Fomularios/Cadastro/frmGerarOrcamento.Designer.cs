@@ -140,18 +140,18 @@ namespace SGM.WindowsForms
             // lblOrcamentoId
             // 
             this.lblOrcamentoId.AutoSize = true;
-            this.lblOrcamentoId.Location = new System.Drawing.Point(566, 148);
+            this.lblOrcamentoId.Location = new System.Drawing.Point(611, 126);
             this.lblOrcamentoId.Name = "lblOrcamentoId";
-            this.lblOrcamentoId.Size = new System.Drawing.Size(46, 13);
+            this.lblOrcamentoId.Size = new System.Drawing.Size(110, 13);
             this.lblOrcamentoId.TabIndex = 0;
-            this.lblOrcamentoId.Text = "Código: ";
+            this.lblOrcamentoId.Text = "Código do Orçamento";
             // 
             // txtOrcamentoId
             // 
             this.txtOrcamentoId.Enabled = false;
-            this.txtOrcamentoId.Location = new System.Drawing.Point(615, 145);
+            this.txtOrcamentoId.Location = new System.Drawing.Point(719, 123);
             this.txtOrcamentoId.Name = "txtOrcamentoId";
-            this.txtOrcamentoId.Size = new System.Drawing.Size(112, 20);
+            this.txtOrcamentoId.Size = new System.Drawing.Size(44, 20);
             this.txtOrcamentoId.TabIndex = 1;
             // 
             // txtConsultaCliente
@@ -393,7 +393,6 @@ namespace SGM.WindowsForms
             // 
             // txtValorTotalPecas
             // 
-            this.txtValorTotalPecas.Enabled = false;
             this.txtValorTotalPecas.Location = new System.Drawing.Point(631, 335);
             this.txtValorTotalPecas.Name = "txtValorTotalPecas";
             this.txtValorTotalPecas.Size = new System.Drawing.Size(133, 20);
@@ -402,7 +401,6 @@ namespace SGM.WindowsForms
             // 
             // txtValorTotalMaodeObra
             // 
-            this.txtValorTotalMaodeObra.Enabled = false;
             this.txtValorTotalMaodeObra.Location = new System.Drawing.Point(631, 309);
             this.txtValorTotalMaodeObra.Name = "txtValorTotalMaodeObra";
             this.txtValorTotalMaodeObra.Size = new System.Drawing.Size(133, 20);
@@ -462,11 +460,11 @@ namespace SGM.WindowsForms
             // lblClienteVeiculoId
             // 
             this.lblClienteVeiculoId.AutoSize = true;
-            this.lblClienteVeiculoId.Location = new System.Drawing.Point(596, 100);
+            this.lblClienteVeiculoId.Location = new System.Drawing.Point(593, 100);
             this.lblClienteVeiculoId.Name = "lblClienteVeiculoId";
-            this.lblClienteVeiculoId.Size = new System.Drawing.Size(122, 13);
+            this.lblClienteVeiculoId.Size = new System.Drawing.Size(128, 13);
             this.lblClienteVeiculoId.TabIndex = 42;
-            this.lblClienteVeiculoId.Text = "Id do Veiculo do Cliente:";
+            this.lblClienteVeiculoId.Text = "Código do Veiculo Cliente";
             // 
             // txtClienteVeiculoId
             // 
