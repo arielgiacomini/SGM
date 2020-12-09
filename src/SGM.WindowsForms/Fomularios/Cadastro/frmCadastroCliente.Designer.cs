@@ -372,6 +372,7 @@
             this.txtCEP.Size = new System.Drawing.Size(63, 20);
             this.txtCEP.TabIndex = 33;
             this.txtCEP.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtCEP.Leave += new System.EventHandler(this.TxtCEP_Leave);
             // 
             // txtClienteId
             // 

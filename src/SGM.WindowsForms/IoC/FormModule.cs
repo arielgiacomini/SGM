@@ -5,7 +5,9 @@ using SGM.ApplicationServices.Command;
 using SGM.ApplicationServices.Command.Interface;
 using SGM.ApplicationServices.Infrastructure;
 using SGM.ApplicationServices.Queries;
+using SGM.ApplicationServices.Queries.External;
 using SGM.ApplicationServices.Queries.Interface;
+using SGM.ApplicationServices.Queries.Interface.External;
 using SGM.WindowsForms.Configuration;
 
 namespace SGM.WindowsForms.IoC
@@ -34,6 +36,8 @@ namespace SGM.WindowsForms.IoC
 
             Bind<IServicoCommand>().To<ServicoCommand>();
             Bind<IServicoQuery>().To<ServicoQuery>();
+
+            Bind<ICorreiosQuery>().To<CorreiosQuery>();
 
             Bind<IClienteApplication>().To<ClienteApplication>();
             Bind<IClienteVeiculoApplication>().To<ClienteVeiculoApplication>();

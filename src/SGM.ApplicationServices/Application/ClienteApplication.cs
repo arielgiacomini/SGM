@@ -1,7 +1,9 @@
 ﻿using SGM.ApplicationServices.Application.Interface;
 using SGM.ApplicationServices.Command.Interface;
 using SGM.ApplicationServices.Queries.Interface;
+using SGM.ApplicationServices.Queries.Interface.External;
 using SGM.Domain.Entities;
+using SGM.Domain.Entities.External;
 
 namespace SGM.ApplicationServices.Application
 {
@@ -10,12 +12,14 @@ namespace SGM.ApplicationServices.Application
         private readonly IClienteCommand _clienteCommand;
         private readonly IClienteQuery _clienteQuery;
         private readonly IClienteVeiculoQuery _clienteVeiculoQuery;
+        private readonly ICorreiosQuery _correiosQuery;
 
-        public ClienteApplication(IClienteCommand clienteCommand, IClienteQuery clienteQuery, IClienteVeiculoQuery clienteVeiculoQuery)
+        public ClienteApplication(IClienteCommand clienteCommand, IClienteQuery clienteQuery, IClienteVeiculoQuery clienteVeiculoQuery, ICorreiosQuery correiosQuery)
         {
             _clienteCommand = clienteCommand;
             _clienteQuery = clienteQuery;
             _clienteVeiculoQuery = clienteVeiculoQuery;
+            _correiosQuery = correiosQuery;
         }
 
         public Cliente GetClienteById(int clienteId)
@@ -53,6 +57,11 @@ namespace SGM.ApplicationServices.Application
         public Cliente GetClienteByPlaca(string placaVeiculo)
         {
             return _clienteQuery.GetClienteByPlaca(placaVeiculo);
+        }
+
+        public CorreiosEndereco GetEnderecoByCEP(string cEP)
+        {
+            return _correiosQuery.GetEnderecoByCEP(cEP);
         }
     }
 }

@@ -246,5 +246,20 @@ namespace SGM.WindowsForms
                 }
             }
         }
+
+        private void TxtCEP_Leave(object sender, EventArgs e)
+        {
+            var enderecoApi = _clienteApplication.GetEnderecoByCEP(txtCEP.Text.Replace("-", ""));
+
+            if (enderecoApi.Logradouro != "" || enderecoApi.Logradouro != null)
+            {
+                txtEndereco.Text = enderecoApi.Logradouro;
+                txtBairro.Text = enderecoApi.Bairro;
+                txtCidade.Text = enderecoApi.Localidade;
+                txtUF.Text = enderecoApi.UF;
+
+                txtNumero.Focus();
+            }
+        }
     }
 }
