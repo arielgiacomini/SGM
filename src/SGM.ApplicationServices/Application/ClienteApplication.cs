@@ -3,7 +3,6 @@ using SGM.ApplicationServices.Command.Interface;
 using SGM.ApplicationServices.Queries.Interface;
 using SGM.ApplicationServices.Queries.Interface.External;
 using SGM.Domain.Entities;
-using SGM.Domain.Entities.External;
 
 namespace SGM.ApplicationServices.Application
 {

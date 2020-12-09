@@ -2,6 +2,7 @@
 using SGM.Domain.DataSources;
 using SGM.Domain.Entities;
 using SGM.Domain.Enumeration;
+using SGM.Domain.Utils;
 using SGM.WindowsForms.IoC;
 using System;
 using System.Collections.Generic;
@@ -37,13 +38,7 @@ namespace SGM.WindowsForms
         public int clienteVeiculoId = 0;
         public int veiculoId = 0;
         public string placaVeiculo = "";
-        public string CellCliente = "";
-        public string VerificaOrcamento = "";
-        public decimal txtVA = 0;
-        public decimal txtVD = 0;
-        public decimal txtVP = 0;
-        public decimal txtVM = 0;
-        public decimal txtVT = 0;
+        public string nomeCliente = "";
 
         public void LimpaTela()
         {
@@ -76,42 +71,6 @@ namespace SGM.WindowsForms
 
             lblQtdRegistrosMaoDeObra.Text = "Quantidade de Registros: ";
             lblQtdRegistrosPecas.Text = "Quantidade de Registros: ";
-        }
-
-        private void BtnConsultaCliente_Click(object sender, EventArgs e)
-        {
-            var cliente = _clienteApplication.GetClienteByLikePlacaOrNomeOrApelido(txtConsultaCliente.Text);
-
-            var dataSource = new List<PesquisaClienteOrcamentoDataSource>();
-
-            foreach (var clienteVeiculo in cliente.ClienteVeiculo)
-            {
-                var veiculo = _veiculoApplication.GetVeiculoByVeiculoId(clienteVeiculo.VeiculoId);
-
-                var marca = _veiculoApplication.GetMarcaByMarcaId(veiculo.MarcaId);
-
-                dataSource.Add(new PesquisaClienteOrcamentoDataSource
-                {
-                    ClienteId = cliente.ClienteId,
-                    NomeCliente = cliente.NomeCliente,
-                    PlacaVeiculo = clienteVeiculo.PlacaVeiculo,
-                    MarcaModeloVeiculo = marca.Marca + " / " + veiculo.Modelo,
-                    ClienteVeiculoId = clienteVeiculo.ClienteVeiculoId
-                });
-            }
-
-            dgvCliente.DataSource = dataSource;
-            dgvCliente.Columns[0].HeaderText = "Código";
-            dgvCliente.Columns[0].Width = 50;
-            dgvCliente.Columns[1].HeaderText = "Cliente";
-            dgvCliente.Columns[1].Width = 296;
-            dgvCliente.Columns[2].HeaderText = "Placa Veículo";
-            dgvCliente.Columns[2].Width = 120;
-            dgvCliente.Columns[3].HeaderText = "Marca/Modelo";
-            dgvCliente.Columns[3].Width = 232;
-            dgvCliente.Columns[4].HeaderText = "ClienteVeiculoId";
-            dgvCliente.Columns[4].Width = 50;
-            dgvCliente.Columns[4].Visible = false;
         }
 
         private void FrmGerarOrcamento_Load(object sender, EventArgs e)
@@ -156,10 +115,12 @@ namespace SGM.WindowsForms
                 txtClienteId.Text = cliente.ClienteId.ToString();
                 txtClienteVeiculoId.Text = clienteVeiculoId.ToString();
                 txtClienteSelecionado.Text = cliente.NomeCliente.ToString();
-                txtValorDesconto.Text = Convert.ToDecimal("0").ToString("C");
-                txtValorTotal.Text = Convert.ToDecimal("0").ToString("C");
                 txtValorTotalMaodeObra.Text = Convert.ToDecimal("0").ToString("C");
                 txtValorTotalPecas.Text = Convert.ToDecimal("0").ToString("C");
+                txtValorAdicional.Text = Convert.ToDecimal("0").ToString("C");
+                txtPercentualDesconto.Text = Convert.ToDecimal("0").ToString("P");
+                txtValorDesconto.Text = Convert.ToDecimal("0").ToString("C");
+                txtValorTotal.Text = Convert.ToDecimal("0").ToString("C");
                 txtDescricao.Text = "PESQUISANDO";
 
                 Orcamento orcamento = new Orcamento
@@ -180,23 +141,51 @@ namespace SGM.WindowsForms
                 txtConsultaCliente.Enabled = false;
                 btnConsultaCliente.Enabled = false;
                 dgvCliente.Enabled = false;
-
-                txtValorAdicional.Enabled = true;
-                txtPercentualDesconto.Enabled = true;
             }
+
+            txtValorTotalMaodeObra.Text = Convert.ToDecimal("0").ToString("C");
+            txtValorTotalPecas.Text = Convert.ToDecimal("0").ToString("C");
+            txtValorAdicional.Text = Convert.ToDecimal("0").ToString("C");
+            txtPercentualDesconto.Text = Convert.ToDecimal("0").ToString("P");
+            txtValorDesconto.Text = Convert.ToDecimal("0").ToString("C");
+            txtValorTotal.Text = Convert.ToDecimal("0").ToString("C");
+            txtDescricao.Text = "PESQUISANDO";
         }
 
-        private void DgvCliente_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void BtnConsultaCliente_Click(object sender, EventArgs e)
         {
-            if (e.RowIndex >= 0)
+            var cliente = _clienteApplication.GetClienteByLikePlacaOrNomeOrApelido(txtConsultaCliente.Text);
+
+            var dataSource = new List<PesquisaClienteOrcamentoDataSource>();
+
+            foreach (var clienteVeiculo in cliente.ClienteVeiculo)
             {
-                this.codigo = Convert.ToInt32(dgvCliente.Rows[e.RowIndex].Cells[0].Value);
-                this.CellCliente = Convert.ToString(dgvCliente.Rows[e.RowIndex].Cells[1].Value);
-                txtClienteSelecionado.Text = Convert.ToString(CellCliente);
-                txtClienteId.Text = Convert.ToString(codigo);
-                txtClienteVeiculoId.Text = Convert.ToString(dgvCliente.Rows[e.RowIndex].Cells[4].Value);
-                dgvCliente.CurrentRow.Selected = false;
+                var veiculo = _veiculoApplication.GetVeiculoByVeiculoId(clienteVeiculo.VeiculoId);
+
+                var marca = _veiculoApplication.GetMarcaByMarcaId(veiculo.MarcaId);
+
+                dataSource.Add(new PesquisaClienteOrcamentoDataSource
+                {
+                    ClienteId = cliente.ClienteId,
+                    NomeCliente = cliente.NomeCliente,
+                    PlacaVeiculo = clienteVeiculo.PlacaVeiculo,
+                    MarcaModeloVeiculo = marca.Marca + " / " + veiculo.Modelo,
+                    ClienteVeiculoId = clienteVeiculo.ClienteVeiculoId
+                });
             }
+
+            dgvCliente.DataSource = dataSource;
+            dgvCliente.Columns[0].HeaderText = "Código";
+            dgvCliente.Columns[0].Width = 50;
+            dgvCliente.Columns[1].HeaderText = "Cliente";
+            dgvCliente.Columns[1].Width = 296;
+            dgvCliente.Columns[2].HeaderText = "Placa Veículo";
+            dgvCliente.Columns[2].Width = 120;
+            dgvCliente.Columns[3].HeaderText = "Marca/Modelo";
+            dgvCliente.Columns[3].Width = 232;
+            dgvCliente.Columns[4].HeaderText = "ClienteVeiculoId";
+            dgvCliente.Columns[4].Width = 50;
+            dgvCliente.Columns[4].Visible = false;
         }
 
         private void BtnInserir_Click(object sender, EventArgs e)
@@ -209,10 +198,12 @@ namespace SGM.WindowsForms
             txtClienteId.Text = Convert.ToString(1);
             txtClienteVeiculoId.Text = Convert.ToString(1);
             txtClienteSelecionado.Text = Convert.ToString("SEM CLIENTE");
-            txtValorDesconto.Text = Convert.ToDecimal("0").ToString("C");
-            txtValorTotal.Text = Convert.ToDecimal("0").ToString("C");
             txtValorTotalMaodeObra.Text = Convert.ToDecimal("0").ToString("C");
             txtValorTotalPecas.Text = Convert.ToDecimal("0").ToString("C");
+            txtValorAdicional.Text = Convert.ToDecimal("0").ToString("C");
+            txtPercentualDesconto.Text = Convert.ToDecimal("0").ToString("P");
+            txtValorDesconto.Text = Convert.ToDecimal("0").ToString("C");
+            txtValorTotal.Text = Convert.ToDecimal("0").ToString("C");
             txtDescricao.Text = "PESQUISANDO";
 
             Orcamento orcamento = new Orcamento
@@ -345,18 +336,6 @@ namespace SGM.WindowsForms
             }
         }
 
-        private void DgvMaodeObra_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
-        {
-            foreach (DataGridViewColumn coluna in dgvMaodeObra.Columns)
-                coluna.SortMode = DataGridViewColumnSortMode.NotSortable;
-        }
-
-        private void DgvPeca_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
-        {
-            foreach (DataGridViewColumn coluna in dgvPeca.Columns)
-                coluna.SortMode = DataGridViewColumnSortMode.NotSortable;
-        }
-
         private void BtnSalvar_Click(object sender, EventArgs e)
         {
             try
@@ -396,49 +375,6 @@ namespace SGM.WindowsForms
             catch (Exception erro)
             {
                 MessageBox.Show(erro.Message);
-            }
-        }
-
-        private void TxtValorAdicional_Leave(object sender, EventArgs e)
-        {
-            if (txtValorTotalMaodeObra.Text.Replace("R$ 0,00", "") != "")
-            {
-                txtVM = Convert.ToDecimal(txtValorTotalMaodeObra.Text.Replace("R$ ", ""));
-            }
-
-            if (txtValorTotalPecas.Text.Replace("R$ 0,00", "") != "")
-            {
-                txtVP = Convert.ToDecimal(txtValorTotalPecas.Text.Replace("R$ ", ""));
-            }
-
-            if (txtValorAdicional.Text.Replace("R$ 0,00", "") != "")
-            {
-                txtVA = Convert.ToDecimal(txtValorAdicional.Text.Replace("R$ ", ""));
-            }
-
-            txtValorAdicional.Text = (txtVA.ToString("C"));
-
-            txtVT = 0;
-            txtVT = (txtVM + txtVP + txtVA);
-
-            txtValorTotal.Text = (txtVT.ToString("C"));
-
-            txtValorAdicional.Enabled = false;
-        }
-
-        private void TxtPercentualDesconto_Leave(object sender, EventArgs e)
-        {
-            decimal PDesc = Convert.ToDecimal(txtPercentualDesconto.Text.Replace("%", "0"));
-            decimal VTota = Convert.ToDecimal(txtValorTotal.Text.Replace("R$ ", ""));
-            decimal VDesc = Convert.ToDecimal(txtValorDesconto.Text.Replace("R$ ", ""));
-            txtValorDesconto.Text = Convert.ToString(Convert.ToDecimal(((VTota / 100) * PDesc)).ToString("C"));
-            VDesc = Convert.ToDecimal((VTota / 100) * PDesc);
-            txtValorTotal.Text = Convert.ToString((VTota - VDesc).ToString("C"));
-            txtPercentualDesconto.Text = Convert.ToString(Convert.ToDecimal(PDesc / 100).ToString("P"));
-
-            if (PDesc != 0)
-            {
-                txtPercentualDesconto.Enabled = false;
             }
         }
 
@@ -551,6 +487,25 @@ namespace SGM.WindowsForms
             consultaHistoricoOrcamento.Dispose();
         }
 
+        private void BtnAlterar_Click(object sender, EventArgs e)
+        {
+            this.operacao = "alterar";
+            this.DisponibilizarBotoesTela(EnumControleTelas.SalvarCancelarExcluir);
+        }
+
+        private void DgvCliente_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                this.codigo = Convert.ToInt32(dgvCliente.Rows[e.RowIndex].Cells[0].Value);
+                this.nomeCliente = Convert.ToString(dgvCliente.Rows[e.RowIndex].Cells[1].Value);
+                txtClienteSelecionado.Text = Convert.ToString(nomeCliente);
+                txtClienteId.Text = Convert.ToString(codigo);
+                txtClienteVeiculoId.Text = Convert.ToString(dgvCliente.Rows[e.RowIndex].Cells[4].Value);
+                dgvCliente.CurrentRow.Selected = false;
+            }
+        }
+
         private void DgvMaodeObra_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             if (e.RowIndex >= 0)
@@ -659,37 +614,146 @@ namespace SGM.WindowsForms
             }
         }
 
+        private void DgvMaodeObra_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
+        {
+            foreach (DataGridViewColumn coluna in dgvMaodeObra.Columns)
+                coluna.SortMode = DataGridViewColumnSortMode.NotSortable;
+        }
+
+        private void DgvPeca_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
+        {
+            foreach (DataGridViewColumn coluna in dgvPeca.Columns)
+                coluna.SortMode = DataGridViewColumnSortMode.NotSortable;
+        }
+
+        private void TxtValorTotalMaodeObra_Leave(object sender, EventArgs e)
+        {
+            txtValorTotalMaodeObra.Text = TranslateValorEmStringDinheiro(txtValorTotalMaodeObra.Text);
+
+            OrganizarTelaOrcamento();
+        }
+
+        private void TxtValorTotalPecas_Leave(object sender, EventArgs e)
+        {
+            txtValorTotalPecas.Text = TranslateValorEmStringDinheiro(txtValorTotalPecas.Text);
+
+            OrganizarTelaOrcamento();
+        }
+
+        private void TxtValorAdicional_Leave(object sender, EventArgs e)
+        {
+            var valorAdicional = TranslateStringEmDecimal(txtValorAdicional.Text);
+            txtValorTotalPecas.Text = Convert.ToDecimal(valorAdicional).ToString("C");
+            txtPercentualDesconto.Focus();
+
+            OrganizarTelaOrcamento();
+        }
+
+        private void TxtPercentualDesconto_Leave(object sender, EventArgs e)
+        {
+            decimal percentualDesconto = TranslateStringEmDecimal(txtPercentualDesconto.Text);
+            decimal valorMaodeObra = TranslateStringEmDecimal(txtValorTotalMaodeObra.Text);
+            decimal valorPeca = TranslateStringEmDecimal(txtValorTotalPecas.Text);
+            decimal valorAdicional = TranslateStringEmDecimal(txtValorAdicional.Text);
+            decimal valorTotal = valorMaodeObra + valorPeca + valorAdicional;
+
+            txtValorDesconto.Text = Convert.ToString(Convert.ToDecimal(((valorTotal / 100) * percentualDesconto)).ToString("C"));
+
+            OrganizarTelaOrcamento();
+        }
+
+        private void TxtValorTotalMaodeObra_Enter(object sender, EventArgs e)
+        {
+            txtValorTotalMaodeObra.Text = "";
+        }
+
+        private void TxtValorTotalPecas_Enter(object sender, EventArgs e)
+        {
+            txtValorTotalPecas.Text = "";
+        }
+
+        private void TxtValorAdicional_Enter(object sender, EventArgs e)
+        {
+            txtValorAdicional.Text = "";
+        }
+
+        private void TxtPercentualDesconto_Enter(object sender, EventArgs e)
+        {
+            txtPercentualDesconto.Text = "";
+        }
+
+        public string TranslateValorEmStringDinheiro(string valor)
+        {
+            string devolutiva;
+
+            if (valor == "")
+            {
+                devolutiva = 0.ToString("C");
+            }
+            else if (valor == "R$ 0,00")
+            {
+                devolutiva = valor;
+            }
+            else if ((!valor.Contains("R$") || !valor.Contains(",")) && Util.VerificaSeEhNumero(valor))
+            {
+                devolutiva = Convert.ToDecimal(valor).ToString("C");
+            }
+            else
+            {
+                devolutiva = valor;
+            }
+
+            return devolutiva;
+        }
+
+        public decimal TranslateStringEmDecimal(string valor, bool ehPercentual = false)
+        {
+            decimal devolutiva = 0;
+
+            bool ehNumero = Util.VerificaSeEhNumero(valor);
+
+            if (valor.Contains("R$"))
+            {
+                devolutiva = Convert.ToDecimal(valor.Replace("R$ ", ""));
+            }
+            else if (valor.Contains("%"))
+            {
+                devolutiva = (Convert.ToDecimal(valor.Replace("%", "")) / 100);
+            }
+            else if (ehNumero && !ehPercentual)
+            {
+                devolutiva = Convert.ToDecimal(valor);
+            }
+            else if (ehNumero && ehPercentual)
+            {
+                devolutiva = Convert.ToDecimal(valor);
+                devolutiva /= 100;
+            }
+
+            return devolutiva;
+        }
+
         private void OrganizarTelaOrcamento()
         {
             lblQtdRegistrosMaoDeObra.Text = "Quantidade de Registros: " + this.dgvMaodeObra.Rows.Count.ToString();
             lblQtdRegistrosPecas.Text = "Quantidade de Registros: " + this.dgvPeca.Rows.Count.ToString();
 
-            txtVM = Convert.ToDecimal(dgvMaodeObra.Rows.Cast<DataGridViewRow>().Sum(i => Convert.ToDecimal(i.Cells["Valor"].Value)));
-            txtVP = Convert.ToDecimal(dgvPeca.Rows.Cast<DataGridViewRow>().Sum(i => Convert.ToDecimal(i.Cells["Valor"].Value)));
+            var tempValorMaodeObra = TranslateStringEmDecimal(txtValorTotalMaodeObra.Text);
+            var tempValorPeca = TranslateStringEmDecimal(txtValorTotalPecas.Text);
 
-            txtValorTotalMaodeObra.Text = (txtVM.ToString("C"));
-            txtValorTotalPecas.Text = (txtVP.ToString("C"));
+            var valorMaodeObra = Convert.ToDecimal(dgvMaodeObra.Rows.Cast<DataGridViewRow>().Sum(i => Convert.ToDecimal(i.Cells["Valor"].Value))) + tempValorMaodeObra;
+            var valorPeca = Convert.ToDecimal(dgvPeca.Rows.Cast<DataGridViewRow>().Sum(i => Convert.ToDecimal(i.Cells["Valor"].Value))) + tempValorPeca;
+            var valorDesconto = TranslateStringEmDecimal(txtValorDesconto.Text);
+            var valorAdicional = TranslateStringEmDecimal(txtValorAdicional.Text);
+            var percentualDesconto = TranslateStringEmDecimal(txtPercentualDesconto.Text, true);
+            var valorTotal = ((valorMaodeObra + valorPeca + valorAdicional) - valorDesconto);
 
-            if (txtValorTotalPecas.Text.Replace("R$ 0,00", "") != "")
-            {
-                txtVP = Convert.ToDecimal(txtValorTotalPecas.Text.Replace("R$ ", ""));
-            }
-
-            if (txtValorAdicional.Text.Replace("R$ 0,00", "") != "")
-            {
-                txtVA = Convert.ToDecimal(txtValorAdicional.Text.Replace("R$ ", ""));
-            }
-
-            txtVT = 0;
-            txtVT = (txtVM + txtVP + txtVA);
-
-            txtValorTotal.Text = (txtVT.ToString("C"));
-        }
-
-        private void btnAlterar_Click(object sender, EventArgs e)
-        {
-            this.operacao = "alterar";
-            this.DisponibilizarBotoesTela(EnumControleTelas.SalvarCancelarExcluir);
+            txtValorTotalMaodeObra.Text = valorMaodeObra.ToString("C");
+            txtValorTotalPecas.Text = valorPeca.ToString("C");
+            txtValorAdicional.Text = valorAdicional.ToString("C");
+            txtPercentualDesconto.Text = percentualDesconto.ToString("P");
+            txtValorDesconto.Text = valorDesconto.ToString("C");
+            txtValorTotal.Text = valorTotal.ToString("C");
         }
     }
 }

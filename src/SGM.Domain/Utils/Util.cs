@@ -7,6 +7,7 @@ namespace SGM.Domain.Utils
         public static bool VerificaSeEhNumero(string valor)
         {
             int i = 0;
+
             bool result = int.TryParse(valor, out i);
 
             if (result)

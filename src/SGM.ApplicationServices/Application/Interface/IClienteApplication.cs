@@ -1,5 +1,4 @@
 ﻿using SGM.Domain.Entities;
-using SGM.Domain.Entities.External;
 
 namespace SGM.ApplicationServices.Application.Interface
 {

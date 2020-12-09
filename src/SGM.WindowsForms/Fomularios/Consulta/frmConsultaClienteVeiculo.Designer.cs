@@ -69,7 +69,7 @@
             // 
             // btnPlacaClienteVeiculoConsulta
             // 
-            this.btnPlacaClienteVeiculoConsulta.Image = global::GUI.Properties.Resources.LocalicarRedimensionado3;
+            this.btnPlacaClienteVeiculoConsulta.Image = global::SGM.WindowsForms.Properties.Resources.LocalicarRedimensionado3;
             this.btnPlacaClienteVeiculoConsulta.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnPlacaClienteVeiculoConsulta.Location = new System.Drawing.Point(612, 30);
             this.btnPlacaClienteVeiculoConsulta.Name = "btnPlacaClienteVeiculoConsulta";
@@ -81,7 +81,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::GUI.Properties.Resources.LogotipoLoquinho;
+            this.pictureBox1.Image = global::SGM.WindowsForms.Properties.Resources.LogotipoLoquinho;
             this.pictureBox1.Location = new System.Drawing.Point(335, 1);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(83, 30);
