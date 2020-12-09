@@ -131,7 +131,7 @@ namespace SGM.WindowsForms
             // 
             // btnAlterar
             // 
-            this.btnAlterar.Click += new System.EventHandler(this.btnAlterar_Click);
+            this.btnAlterar.Click += new System.EventHandler(this.BtnAlterar_Click);
             // 
             // btnInserir
             // 
@@ -172,7 +172,7 @@ namespace SGM.WindowsForms
             // 
             // btnConsultaCliente
             // 
-            this.btnConsultaCliente.Image = global::GUI.Properties.Resources.LocalicarRedimensionado3;
+            this.btnConsultaCliente.Image = global::SGM.WindowsForms.Properties.Resources.LocalicarRedimensionado3;
             this.btnConsultaCliente.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnConsultaCliente.Location = new System.Drawing.Point(564, 11);
             this.btnConsultaCliente.Name = "btnConsultaCliente";
@@ -286,6 +286,7 @@ namespace SGM.WindowsForms
             this.txtValorAdicional.Size = new System.Drawing.Size(133, 20);
             this.txtValorAdicional.TabIndex = 18;
             this.txtValorAdicional.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtValorAdicional.Enter += new System.EventHandler(this.TxtValorAdicional_Enter);
             this.txtValorAdicional.Leave += new System.EventHandler(this.TxtValorAdicional_Leave);
             // 
             // txtPercentualDesconto
@@ -295,6 +296,7 @@ namespace SGM.WindowsForms
             this.txtPercentualDesconto.Size = new System.Drawing.Size(133, 20);
             this.txtPercentualDesconto.TabIndex = 19;
             this.txtPercentualDesconto.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtPercentualDesconto.Enter += new System.EventHandler(this.TxtPercentualDesconto_Enter);
             this.txtPercentualDesconto.Leave += new System.EventHandler(this.TxtPercentualDesconto_Leave);
             // 
             // txtValorDesconto
@@ -302,6 +304,7 @@ namespace SGM.WindowsForms
             this.txtValorDesconto.Enabled = false;
             this.txtValorDesconto.Location = new System.Drawing.Point(631, 413);
             this.txtValorDesconto.Name = "txtValorDesconto";
+            this.txtValorDesconto.ReadOnly = true;
             this.txtValorDesconto.Size = new System.Drawing.Size(133, 20);
             this.txtValorDesconto.TabIndex = 20;
             this.txtValorDesconto.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -311,6 +314,7 @@ namespace SGM.WindowsForms
             this.txtValorTotal.Enabled = false;
             this.txtValorTotal.Location = new System.Drawing.Point(631, 439);
             this.txtValorTotal.Name = "txtValorTotal";
+            this.txtValorTotal.ReadOnly = true;
             this.txtValorTotal.Size = new System.Drawing.Size(133, 20);
             this.txtValorTotal.TabIndex = 21;
             this.txtValorTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -398,6 +402,8 @@ namespace SGM.WindowsForms
             this.txtValorTotalPecas.Size = new System.Drawing.Size(133, 20);
             this.txtValorTotalPecas.TabIndex = 36;
             this.txtValorTotalPecas.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtValorTotalPecas.Enter += new System.EventHandler(this.TxtValorTotalPecas_Enter);
+            this.txtValorTotalPecas.Leave += new System.EventHandler(this.TxtValorTotalPecas_Leave);
             // 
             // txtValorTotalMaodeObra
             // 
@@ -406,6 +412,8 @@ namespace SGM.WindowsForms
             this.txtValorTotalMaodeObra.Size = new System.Drawing.Size(133, 20);
             this.txtValorTotalMaodeObra.TabIndex = 37;
             this.txtValorTotalMaodeObra.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtValorTotalMaodeObra.Enter += new System.EventHandler(this.TxtValorTotalMaodeObra_Enter);
+            this.txtValorTotalMaodeObra.Leave += new System.EventHandler(this.TxtValorTotalMaodeObra_Leave);
             // 
             // lblValorMaoDeObraTexto
             // 
@@ -449,7 +457,7 @@ namespace SGM.WindowsForms
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::GUI.Properties.Resources.LogotipoLoquinho;
+            this.pictureBox1.Image = global::SGM.WindowsForms.Properties.Resources.LogotipoLoquinho;
             this.pictureBox1.Location = new System.Drawing.Point(579, 183);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(148, 56);

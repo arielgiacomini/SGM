@@ -372,6 +372,7 @@
             this.txtCEP.Size = new System.Drawing.Size(63, 20);
             this.txtCEP.TabIndex = 33;
             this.txtCEP.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtCEP.Leave += new System.EventHandler(this.TxtCEP_Leave);
             // 
             // txtClienteId
             // 
@@ -476,7 +477,7 @@
             // imgLogoTipo
             // 
             this.imgLogoTipo.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.imgLogoTipo.Image = global::GUI.Properties.Resources.LogotipoLoquinho1;
+            this.imgLogoTipo.Image = global::SGM.WindowsForms.Properties.Resources.LogotipoLoquinho1;
             this.imgLogoTipo.Location = new System.Drawing.Point(545, 77);
             this.imgLogoTipo.Name = "imgLogoTipo";
             this.imgLogoTipo.Size = new System.Drawing.Size(191, 67);

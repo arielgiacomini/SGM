@@ -25,7 +25,7 @@ namespace SGM.Domain.Entities
         public string LogradouroUF { get; set; }
         public bool RecebeNotificacoes { get; set; }
         public bool ClienteAtivo { get; set; }
-        public DateTime? DataCadastro { get; set; }
+        public DateTime DataCadastro { get; set; }
         public DateTime? DataAlteracao { get; set; }
         public virtual IList<ClienteVeiculo> ClienteVeiculo { get; set; }
     }

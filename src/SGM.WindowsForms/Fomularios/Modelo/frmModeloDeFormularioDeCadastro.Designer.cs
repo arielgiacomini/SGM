@@ -63,7 +63,7 @@
             // btnCancelar
             // 
             this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancelar.Image = global::GUI.Properties.Resources.Cancelar;
+            this.btnCancelar.Image = global::SGM.WindowsForms.Properties.Resources.Cancelar;
             this.btnCancelar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnCancelar.Location = new System.Drawing.Point(679, 13);
             this.btnCancelar.Name = "btnCancelar";
@@ -76,7 +76,7 @@
             // btnLocalizar
             // 
             this.btnLocalizar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLocalizar.Image = global::GUI.Properties.Resources.localizar_fw;
+            this.btnLocalizar.Image = global::SGM.WindowsForms.Properties.Resources.localizar_fw;
             this.btnLocalizar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnLocalizar.Location = new System.Drawing.Point(411, 13);
             this.btnLocalizar.Name = "btnLocalizar";
@@ -89,7 +89,7 @@
             // btnSalvar
             // 
             this.btnSalvar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSalvar.Image = global::GUI.Properties.Resources.Salvar1_fw;
+            this.btnSalvar.Image = global::SGM.WindowsForms.Properties.Resources.Salvar1_fw;
             this.btnSalvar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnSalvar.Location = new System.Drawing.Point(545, 13);
             this.btnSalvar.Name = "btnSalvar";
@@ -102,7 +102,7 @@
             // btnExcluir
             // 
             this.btnExcluir.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExcluir.Image = global::GUI.Properties.Resources.Excluir;
+            this.btnExcluir.Image = global::SGM.WindowsForms.Properties.Resources.Excluir;
             this.btnExcluir.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnExcluir.Location = new System.Drawing.Point(277, 13);
             this.btnExcluir.Name = "btnExcluir";
@@ -115,7 +115,7 @@
             // btnAlterar
             // 
             this.btnAlterar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAlterar.Image = global::GUI.Properties.Resources.Alterar;
+            this.btnAlterar.Image = global::SGM.WindowsForms.Properties.Resources.Alterar;
             this.btnAlterar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnAlterar.Location = new System.Drawing.Point(143, 13);
             this.btnAlterar.Name = "btnAlterar";
@@ -128,7 +128,7 @@
             // btnInserir
             // 
             this.btnInserir.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnInserir.Image = global::GUI.Properties.Resources.Novo;
+            this.btnInserir.Image = global::SGM.WindowsForms.Properties.Resources.Novo;
             this.btnInserir.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnInserir.Location = new System.Drawing.Point(9, 13);
             this.btnInserir.Name = "btnInserir";

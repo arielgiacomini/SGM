@@ -1,11 +1,15 @@
 ﻿using Ninject.Modules;
 using SGM.ApplicationServices.Application;
+using SGM.ApplicationServices.Application.External;
 using SGM.ApplicationServices.Application.Interface;
+using SGM.ApplicationServices.Application.Interface.External;
 using SGM.ApplicationServices.Command;
 using SGM.ApplicationServices.Command.Interface;
 using SGM.ApplicationServices.Infrastructure;
 using SGM.ApplicationServices.Queries;
+using SGM.ApplicationServices.Queries.External;
 using SGM.ApplicationServices.Queries.Interface;
+using SGM.ApplicationServices.Queries.Interface.External;
 using SGM.WindowsForms.Configuration;
 
 namespace SGM.WindowsForms.IoC
@@ -35,6 +39,8 @@ namespace SGM.WindowsForms.IoC
             Bind<IServicoCommand>().To<ServicoCommand>();
             Bind<IServicoQuery>().To<ServicoQuery>();
 
+            Bind<ICorreiosQuery>().To<CorreiosQuery>();
+
             Bind<IClienteApplication>().To<ClienteApplication>();
             Bind<IClienteVeiculoApplication>().To<ClienteVeiculoApplication>();
             Bind<IMaodeObraApplication>().To<MaodeObraApplication>();
@@ -42,6 +48,7 @@ namespace SGM.WindowsForms.IoC
             Bind<IVeiculoApplication>().To<VeiculoApplication>();
             Bind<IOrcamentoApplication>().To<OrcamentoApplication>();
             Bind<IServicoApplication>().To<ServicoApplication>();
+            Bind<ICorreriosApplication>().To<CorreiosApplication>();
 
             Bind<ISGMConfiguration>().To<SGMConfiguration>();
         }

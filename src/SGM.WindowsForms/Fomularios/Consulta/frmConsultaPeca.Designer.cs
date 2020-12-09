@@ -53,7 +53,7 @@
             // 
             // btnConsultaPeca
             // 
-            this.btnConsultaPeca.Image = global::GUI.Properties.Resources.LocalicarRedimensionado3;
+            this.btnConsultaPeca.Image = global::SGM.WindowsForms.Properties.Resources.LocalicarRedimensionado3;
             this.btnConsultaPeca.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnConsultaPeca.Location = new System.Drawing.Point(612, 30);
             this.btnConsultaPeca.Name = "btnConsultaPeca";
@@ -81,7 +81,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::GUI.Properties.Resources.LogotipoLoquinho;
+            this.pictureBox1.Image = global::SGM.WindowsForms.Properties.Resources.LogotipoLoquinho;
             this.pictureBox1.Location = new System.Drawing.Point(323, 1);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(83, 30);

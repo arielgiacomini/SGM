@@ -234,7 +234,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::GUI.Properties.Resources.LogotipoLoquinho1;
+            this.pictureBox1.Image = global::SGM.WindowsForms.Properties.Resources.LogotipoLoquinho1;
             this.pictureBox1.Location = new System.Drawing.Point(384, 203);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(325, 133);

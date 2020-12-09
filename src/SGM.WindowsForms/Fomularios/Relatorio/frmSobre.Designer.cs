@@ -56,7 +56,7 @@
             this.lblSobreVersao.Name = "lblSobreVersao";
             this.lblSobreVersao.Size = new System.Drawing.Size(70, 16);
             this.lblSobreVersao.TabIndex = 1;
-            this.lblSobreVersao.Text = "Versão 1.0";
+            this.lblSobreVersao.Text = "Versão 5.0";
             // 
             // lblSobreAno
             // 
@@ -66,7 +66,7 @@
             this.lblSobreAno.Name = "lblSobreAno";
             this.lblSobreAno.Size = new System.Drawing.Size(36, 16);
             this.lblSobreAno.TabIndex = 2;
-            this.lblSobreAno.Text = "2019";
+            this.lblSobreAno.Text = "2020";
             // 
             // lblSobreCriador
             // 
@@ -82,15 +82,15 @@
             // 
             this.lblSobreBancoDeDados.AutoSize = true;
             this.lblSobreBancoDeDados.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSobreBancoDeDados.Location = new System.Drawing.Point(47, 169);
+            this.lblSobreBancoDeDados.Location = new System.Drawing.Point(24, 170);
             this.lblSobreBancoDeDados.Name = "lblSobreBancoDeDados";
-            this.lblSobreBancoDeDados.Size = new System.Drawing.Size(152, 16);
+            this.lblSobreBancoDeDados.Size = new System.Drawing.Size(215, 16);
             this.lblSobreBancoDeDados.TabIndex = 4;
-            this.lblSobreBancoDeDados.Text = "Banco de Dados: SQLite";
+            this.lblSobreBancoDeDados.Text = "API: http:\\\\api.arielgiacomini.com.br";
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::GUI.Properties.Resources.LogotipoLoquinho;
+            this.pictureBox1.Image = global::SGM.WindowsForms.Properties.Resources.LogotipoLoquinho;
             this.pictureBox1.Location = new System.Drawing.Point(37, 12);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(194, 71);

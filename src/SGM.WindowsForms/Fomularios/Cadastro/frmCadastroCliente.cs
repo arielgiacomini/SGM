@@ -1,6 +1,8 @@
 ﻿using SGM.ApplicationServices.Application.Interface;
+using SGM.ApplicationServices.Application.Interface.External;
 using SGM.Domain.Entities;
 using SGM.Domain.Enumeration;
+using SGM.Domain.Utils;
 using SGM.WindowsForms.IoC;
 using System;
 using System.Linq;
@@ -12,11 +14,13 @@ namespace SGM.WindowsForms
     {
         private readonly IClienteApplication _clienteApplication;
         private readonly IClienteVeiculoApplication _clienteVeiculoApplication;
+        private readonly ICorreriosApplication _correriosApplication;
 
-        public FrmCadastroCliente(IClienteApplication clienteApplication, IClienteVeiculoApplication clienteVeiculoApplication)
+        public FrmCadastroCliente(IClienteApplication clienteApplication, IClienteVeiculoApplication clienteVeiculoApplication, ICorreriosApplication correriosApplication)
         {
             _clienteApplication = clienteApplication;
             _clienteVeiculoApplication = clienteVeiculoApplication;
+            _correriosApplication = correriosApplication;
 
             InitializeComponent();
         }
@@ -116,44 +120,52 @@ namespace SGM.WindowsForms
 
                 var veiculosDoCliente = _clienteVeiculoApplication.GetVeiculosClienteByClienteId(cliente.ClienteId);
 
-                bool existeVeiculoCliente = veiculosDoCliente.Any();
+                int quantidadeVeiculos = veiculosDoCliente.Count();
 
-                if (!existeVeiculoCliente)
+                if (quantidadeVeiculos <= 0)
                 {
                     DialogResult res = MessageBox.Show("Deseja incluir o veículo dele agora? \n Clicando em (Sim), será aberto uma lista de clientes você escolhe o cliente que você acabou de cadastrar \n e clicando duas vezes você automáticamente poderá cadastrar o veículo dele.", "Cadastro de Veículo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                     if (res.ToString() == "Yes")
                     {
-                        frmConsultaCliente formConsultaCliente = FormResolve.Resolve<frmConsultaCliente>();
-                        formConsultaCliente.codigo = cliente.ClienteId;
-                        formConsultaCliente.ShowDialog();
-
-                        if (formConsultaCliente.codigo != 0)
-                        {
-                            FrmCadastroClienteVeiculo formCadastroClienteVeiculo = FormResolve.Resolve<FrmCadastroClienteVeiculo>();
-                            formCadastroClienteVeiculo.DisponibilizarBotoesTela(EnumControleTelas.InserirLocalizar);
-                            formCadastroClienteVeiculo.clienteId = formConsultaCliente.codigo;
-                            formCadastroClienteVeiculo.ShowDialog();
-                            formCadastroClienteVeiculo.Dispose();
-                        }
+                        FrmCadastroClienteVeiculo formCadastroClienteVeiculo = FormResolve.Resolve<FrmCadastroClienteVeiculo>();
+                        formCadastroClienteVeiculo.clienteId = cliente.ClienteId;
+                        formCadastroClienteVeiculo.ShowDialog();
+                        formCadastroClienteVeiculo.Dispose();
                     }
                 }
                 else
                 {
-                    DialogResult clienteJaPossuiVeiculo = MessageBox.Show("Este Cliente já possui veículo cadastrado no sistema. Deseja visualizar? \n Clicando em (Sim), será aberto uma lista dos veiculos deste cliente.", "Cadastro de Veículo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-                    if (clienteJaPossuiVeiculo.ToString() == "Yes")
+                    if (quantidadeVeiculos > 1)
                     {
-                        FrmConsultaClienteVeiculo formConsultaClienteVeiculo = FormResolve.Resolve<FrmConsultaClienteVeiculo>();
-                        formConsultaClienteVeiculo.clienteId = cliente.ClienteId;
+                        DialogResult clienteJaPossuiVeiculo = MessageBox.Show("Este cliente possui + de 1 veículo cadastrado no sistema, será aberto a lista de veículos.", "Cadastro de Veículo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-                        formConsultaClienteVeiculo.ShowDialog();
+                        if (clienteJaPossuiVeiculo.ToString() == "Yes")
+                        {
+                            FrmConsultaClienteVeiculo formConsultaClienteVeiculo = FormResolve.Resolve<FrmConsultaClienteVeiculo>();
+                            formConsultaClienteVeiculo.clienteId = cliente.ClienteId;
+                            formConsultaClienteVeiculo.ShowDialog();
 
-                        if (formConsultaClienteVeiculo.clienteId != 0)
+                            if (formConsultaClienteVeiculo.clienteId != 0 || formConsultaClienteVeiculo.clienteVeiculoId != 0)
+                            {
+                                FrmCadastroClienteVeiculo formCadastroClienteVeiculo = FormResolve.Resolve<FrmCadastroClienteVeiculo>();
+                                formCadastroClienteVeiculo.clienteId = formConsultaClienteVeiculo.clienteId;
+                                formCadastroClienteVeiculo.clienteVeiculoId = formConsultaClienteVeiculo.clienteVeiculoId;
+                                formCadastroClienteVeiculo.DisponibilizarBotoesTela(EnumControleTelas.AlterarExcluirCancelar);
+                                formCadastroClienteVeiculo.ShowDialog();
+                                formCadastroClienteVeiculo.Dispose();
+                            }
+                        }
+                    }
+                    else
+                    {
+                        DialogResult clienteJaPossuiVeiculo = MessageBox.Show("Este Cliente possui 1 veículo no cadastro, abriremos a tela de veiculo deste cliente.", "Cadastro de Veículo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        if (veiculosDoCliente.FirstOrDefault().ClienteId != 0 || veiculosDoCliente.FirstOrDefault().ClienteVeiculoId != 0)
                         {
                             FrmCadastroClienteVeiculo formCadastroClienteVeiculo = FormResolve.Resolve<FrmCadastroClienteVeiculo>();
-                            formCadastroClienteVeiculo.clienteId = formConsultaClienteVeiculo.clienteId;
-                            formCadastroClienteVeiculo.clienteVeiculoId = formConsultaClienteVeiculo.clienteVeiculoId;
+                            formCadastroClienteVeiculo.clienteId = veiculosDoCliente.FirstOrDefault().ClienteId;
+                            formCadastroClienteVeiculo.clienteVeiculoId = veiculosDoCliente.FirstOrDefault().ClienteVeiculoId;
                             formCadastroClienteVeiculo.DisponibilizarBotoesTela(EnumControleTelas.AlterarExcluirCancelar);
                             formCadastroClienteVeiculo.ShowDialog();
                             formCadastroClienteVeiculo.Dispose();
@@ -204,7 +216,7 @@ namespace SGM.WindowsForms
                 txtCidade.Text = cliente.LogradouroMunicipio;
                 txtBairro.Text = cliente.LogradouroBairro;
                 txtUF.Text = cliente.LogradouroUF;
-                txtDataCadastro.Text = Convert.ToString(cliente.DataCadastro);
+                txtDataCadastro.Text = Convert.ToString(Util.ConvertHorarioOfServerToWorldReal(cliente.DataCadastro, 5));
 
                 DisponibilizarBotoesTela(EnumControleTelas.AlterarExcluirCancelar);
             }
@@ -223,7 +235,7 @@ namespace SGM.WindowsForms
             {
                 var cliente = _clienteApplication.GetClienteByDocumentoCliente(txtCPF.Text);
 
-                if (cliente != null)
+                if (cliente.ClienteId != 0)
                 {
                     DialogResult res = MessageBox.Show("Esse CPF já existe em nossa base de dados. Deseja alterar o registro?", "Aviso IMPORTANTE", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
@@ -249,9 +261,24 @@ namespace SGM.WindowsForms
                         txtCidade.Text = cliente.LogradouroMunicipio;
                         txtBairro.Text = cliente.LogradouroBairro;
                         txtUF.Text = cliente.LogradouroUF;
-                        txtDataCadastro.Text = Convert.ToString(cliente.DataCadastro);
+                        txtDataCadastro.Text = Convert.ToString(Util.ConvertHorarioOfServerToWorldReal(cliente.DataCadastro, 5));
                     }
                 }
+            }
+        }
+
+        private void TxtCEP_Leave(object sender, EventArgs e)
+        {
+            var enderecoApi = _correriosApplication.GetEnderecoByCEP(txtCEP.Text.Replace("-", ""));
+
+            if (enderecoApi.Logradouro != "" || enderecoApi.Logradouro != null)
+            {
+                txtEndereco.Text = enderecoApi.Logradouro;
+                txtBairro.Text = enderecoApi.Bairro;
+                txtCidade.Text = enderecoApi.Localidade;
+                txtUF.Text = enderecoApi.UF;
+
+                txtNumero.Focus();
             }
         }
     }
