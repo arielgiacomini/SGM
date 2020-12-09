@@ -1,4 +1,5 @@
 ﻿using SGM.ApplicationServices.Application.Interface;
+using SGM.ApplicationServices.Application.Interface.External;
 using SGM.Domain.Entities;
 using SGM.Domain.Enumeration;
 using SGM.Domain.Utils;
@@ -13,11 +14,13 @@ namespace SGM.WindowsForms
     {
         private readonly IClienteApplication _clienteApplication;
         private readonly IClienteVeiculoApplication _clienteVeiculoApplication;
+        private readonly ICorreriosApplication _correriosApplication;
 
-        public FrmCadastroCliente(IClienteApplication clienteApplication, IClienteVeiculoApplication clienteVeiculoApplication)
+        public FrmCadastroCliente(IClienteApplication clienteApplication, IClienteVeiculoApplication clienteVeiculoApplication, ICorreriosApplication correriosApplication)
         {
             _clienteApplication = clienteApplication;
             _clienteVeiculoApplication = clienteVeiculoApplication;
+            _correriosApplication = correriosApplication;
 
             InitializeComponent();
         }
@@ -249,7 +252,7 @@ namespace SGM.WindowsForms
 
         private void TxtCEP_Leave(object sender, EventArgs e)
         {
-            var enderecoApi = _clienteApplication.GetEnderecoByCEP(txtCEP.Text.Replace("-", ""));
+            var enderecoApi = _correriosApplication.GetEnderecoByCEP(txtCEP.Text.Replace("-", ""));
 
             if (enderecoApi.Logradouro != "" || enderecoApi.Logradouro != null)
             {

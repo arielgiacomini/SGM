@@ -1,6 +1,8 @@
 ﻿using Ninject.Modules;
 using SGM.ApplicationServices.Application;
+using SGM.ApplicationServices.Application.External;
 using SGM.ApplicationServices.Application.Interface;
+using SGM.ApplicationServices.Application.Interface.External;
 using SGM.ApplicationServices.Command;
 using SGM.ApplicationServices.Command.Interface;
 using SGM.ApplicationServices.Infrastructure;
@@ -46,6 +48,7 @@ namespace SGM.WindowsForms.IoC
             Bind<IVeiculoApplication>().To<VeiculoApplication>();
             Bind<IOrcamentoApplication>().To<OrcamentoApplication>();
             Bind<IServicoApplication>().To<ServicoApplication>();
+            Bind<ICorreriosApplication>().To<CorreiosApplication>();
 
             Bind<ISGMConfiguration>().To<SGMConfiguration>();
         }

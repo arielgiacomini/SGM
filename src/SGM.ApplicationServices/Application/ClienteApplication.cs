@@ -58,10 +58,5 @@ namespace SGM.ApplicationServices.Application
         {
             return _clienteQuery.GetClienteByPlaca(placaVeiculo);
         }
-
-        public CorreiosEndereco GetEnderecoByCEP(string cEP)
-        {
-            return _correiosQuery.GetEnderecoByCEP(cEP);
-        }
     }
 }

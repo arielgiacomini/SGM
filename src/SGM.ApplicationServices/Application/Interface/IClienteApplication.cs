@@ -12,6 +12,5 @@ namespace SGM.ApplicationServices.Application.Interface
         Cliente GetClienteByDocumentoCliente(string documentoCliente);
         Cliente GetClienteByLikePlacaOrNomeOrApelido(string valor);
         Cliente GetClienteByPlaca(string placaVeiculo);
-        CorreiosEndereco GetEnderecoByCEP(string cEP);
     }
 }
