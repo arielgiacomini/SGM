@@ -21,7 +21,6 @@ namespace SGM.WindowsForms
             _clienteApplication = clienteApplication;
             _clienteVeiculoApplication = clienteVeiculoApplication;
             _correriosApplication = correriosApplication;
-
             InitializeComponent();
         }
 
@@ -43,6 +42,9 @@ namespace SGM.WindowsForms
             txtCidade.Clear();
             txtUF.Clear();
             txtDataCadastro.Clear();
+            txtDataAlteracao.Clear();
+            cboSexo.SelectedIndex = -1;
+            cboEstadoCivil.SelectedIndex = -1;
         }
 
         private void BtnInserir_Click(object sender, EventArgs e)
@@ -217,7 +219,7 @@ namespace SGM.WindowsForms
                 txtBairro.Text = cliente.LogradouroBairro;
                 txtUF.Text = cliente.LogradouroUF;
                 txtDataCadastro.Text = Convert.ToString(Util.ConvertHorarioOfServerToWorldReal(cliente.DataCadastro, 5));
-
+                txtDataAlteracao.Text = Convert.ToString(Util.ConvertHorarioOfServerToWorldReal(cliente.DataAlteracao.Value, 5));
                 DisponibilizarBotoesTela(EnumControleTelas.AlterarExcluirCancelar);
             }
             else
@@ -229,57 +231,84 @@ namespace SGM.WindowsForms
             formConsultaCliente.Dispose();
         }
 
-        private void VerificaSeCPFJaExisteNaBaseDados_Leave(object sender, EventArgs e)
+        private void TxtCPF_Leave(object sender, EventArgs e)
         {
-            if (this.operacao == "inserir")
+            if (txtCPF.Text != "")
             {
-                var cliente = _clienteApplication.GetClienteByDocumentoCliente(txtCPF.Text);
-
-                if (cliente.ClienteId != 0)
+                if (this.operacao == "inserir")
                 {
-                    DialogResult res = MessageBox.Show("Esse CPF já existe em nossa base de dados. Deseja alterar o registro?", "Aviso IMPORTANTE", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                    var cliente = _clienteApplication.GetClienteByDocumentoCliente(txtCPF.Text);
 
-                    if (res.ToString() == "Yes")
+                    if (cliente.ClienteId != 0)
                     {
-                        this.operacao = "alterar";
+                        DialogResult res = MessageBox.Show("Esse CPF já existe em nossa base de dados. Deseja alterar o registro?", "Aviso IMPORTANTE", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
-                        txtClienteId.Text = Convert.ToString(cliente.ClienteId);
-                        txtCliente.Text = cliente.NomeCliente;
-                        txtApelido.Text = cliente.Apelido;
-                        txtCPF.Text = cliente.DocumentoCliente;
-                        cboSexo.Text = cliente.Sexo;
-                        cboEstadoCivil.Text = cliente.EstadoCivil;
-                        dtpDataNascimento.Value = Convert.ToDateTime(cliente.DataNascimento);
-                        txtEmail.Text = cliente.Email;
-                        txtTelefoneFixo.Text = cliente.TelefoneFixo;
-                        txtCelular.Text = cliente.TelefoneCelular;
-                        txtTelefoneOutros.Text = cliente.TelefoneOutros;
-                        txtCEP.Text = cliente.LogradouroCEP;
-                        txtEndereco.Text = cliente.LogradouroNome;
-                        txtNumero.Text = cliente.LogradouroNumero;
-                        txtComplemento.Text = cliente.LogradouroComplemento;
-                        txtCidade.Text = cliente.LogradouroMunicipio;
-                        txtBairro.Text = cliente.LogradouroBairro;
-                        txtUF.Text = cliente.LogradouroUF;
-                        txtDataCadastro.Text = Convert.ToString(Util.ConvertHorarioOfServerToWorldReal(cliente.DataCadastro, 5));
+                        if (res.ToString() == "Yes")
+                        {
+                            this.operacao = "alterar";
+
+                            txtClienteId.Text = Convert.ToString(cliente.ClienteId);
+                            txtCliente.Text = cliente.NomeCliente;
+                            txtApelido.Text = cliente.Apelido;
+                            txtCPF.Text = cliente.DocumentoCliente;
+                            cboSexo.Text = cliente.Sexo;
+                            cboEstadoCivil.Text = cliente.EstadoCivil;
+                            dtpDataNascimento.Value = Convert.ToDateTime(cliente.DataNascimento);
+                            txtEmail.Text = cliente.Email;
+                            txtTelefoneFixo.Text = cliente.TelefoneFixo;
+                            txtCelular.Text = cliente.TelefoneCelular;
+                            txtTelefoneOutros.Text = cliente.TelefoneOutros;
+                            txtCEP.Text = cliente.LogradouroCEP;
+                            txtEndereco.Text = cliente.LogradouroNome;
+                            txtNumero.Text = cliente.LogradouroNumero;
+                            txtComplemento.Text = cliente.LogradouroComplemento;
+                            txtCidade.Text = cliente.LogradouroMunicipio;
+                            txtBairro.Text = cliente.LogradouroBairro;
+                            txtUF.Text = cliente.LogradouroUF;
+                            txtDataCadastro.Text = Convert.ToString(Util.ConvertHorarioOfServerToWorldReal(cliente.DataCadastro, 5));
+                        }
                     }
                 }
             }
+
+            txtCPF.Mask = "000,000,000-00";
         }
 
         private void TxtCEP_Leave(object sender, EventArgs e)
         {
-            var enderecoApi = _correriosApplication.GetEnderecoByCEP(txtCEP.Text.Replace("-", ""));
-
-            if (enderecoApi.Logradouro != "" || enderecoApi.Logradouro != null)
+            if (txtCEP.Text != "")
             {
-                txtEndereco.Text = enderecoApi.Logradouro;
-                txtBairro.Text = enderecoApi.Bairro;
-                txtCidade.Text = enderecoApi.Localidade;
-                txtUF.Text = enderecoApi.UF;
+                var enderecoApi = _correriosApplication.GetEnderecoByCEP(txtCEP.Text.Replace("-", ""));
 
-                txtNumero.Focus();
+                if (enderecoApi.Logradouro != "" || enderecoApi.Logradouro != null)
+                {
+                    txtEndereco.Text = enderecoApi.Logradouro;
+                    txtBairro.Text = enderecoApi.Bairro;
+                    txtCidade.Text = enderecoApi.Localidade;
+                    txtUF.Text = enderecoApi.UF;
+
+                    txtNumero.Focus();
+                }
             }
+
+            txtCEP.Mask = "00000-000";
+        }
+
+        private void TxtCEP_Enter(object sender, EventArgs e)
+        {
+            txtCEP.Mask = "";
+            txtCEP.Text = "";
+        }
+
+        private void TxtCPF_Enter(object sender, EventArgs e)
+        {
+            txtCPF.Mask = "";
+            txtCPF.Text = "";
+        }
+
+        private void DtpDataNascimento_Enter(object sender, EventArgs e)
+        {
+            dtpDataNascimento.CustomFormat = "";
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace SGM.WindowsForms
 {
-    partial class FrmPerguntaQualItemAbrir
+    partial class FrmGerarServicoOuOrcamento
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmPerguntaQualItemAbrir));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmGerarServicoOuOrcamento));
             this.btnRealizaOrcamento = new System.Windows.Forms.Button();
             this.btnRealizaMaoDeObra = new System.Windows.Forms.Button();
             this.SuspendLayout();

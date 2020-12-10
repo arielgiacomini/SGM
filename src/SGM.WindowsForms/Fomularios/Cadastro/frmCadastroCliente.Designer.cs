@@ -65,19 +65,23 @@
             this.txtTelefoneFixo = new System.Windows.Forms.MaskedTextBox();
             this.txtCelular = new System.Windows.Forms.MaskedTextBox();
             this.txtTelefoneOutros = new System.Windows.Forms.MaskedTextBox();
-            this.imgLogoTipo = new System.Windows.Forms.PictureBox();
             this.txtDataCadastro = new System.Windows.Forms.TextBox();
             this.lblDataCadastro = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.gbControleDatas = new System.Windows.Forms.GroupBox();
+            this.txtDataAlteracao = new System.Windows.Forms.TextBox();
+            this.lblDataAlteracao = new System.Windows.Forms.Label();
             this.pnCadastro.SuspendLayout();
             this.pnBotoes.SuspendLayout();
             this.gbLogradouro.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.imgLogoTipo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.gbControleDatas.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnCadastro
             // 
-            this.pnCadastro.Controls.Add(this.lblDataCadastro);
-            this.pnCadastro.Controls.Add(this.txtDataCadastro);
+            this.pnCadastro.Controls.Add(this.gbControleDatas);
+            this.pnCadastro.Controls.Add(this.pictureBox1);
             this.pnCadastro.Controls.Add(this.txtTelefoneOutros);
             this.pnCadastro.Controls.Add(this.txtCelular);
             this.pnCadastro.Controls.Add(this.txtTelefoneFixo);
@@ -101,7 +105,6 @@
             this.pnCadastro.Controls.Add(this.lblEmail);
             this.pnCadastro.Controls.Add(this.lblCelular);
             this.pnCadastro.Controls.Add(this.lblTelefoneFixo);
-            this.pnCadastro.Controls.Add(this.imgLogoTipo);
             // 
             // btnCancelar
             // 
@@ -314,7 +317,7 @@
             this.gbLogradouro.Controls.Add(this.lblMunicipio);
             this.gbLogradouro.Controls.Add(this.lblBairro);
             this.gbLogradouro.Controls.Add(this.lblCEP);
-            this.gbLogradouro.Location = new System.Drawing.Point(354, 150);
+            this.gbLogradouro.Location = new System.Drawing.Point(364, 117);
             this.gbLogradouro.Name = "gbLogradouro";
             this.gbLogradouro.Size = new System.Drawing.Size(399, 263);
             this.gbLogradouro.TabIndex = 32;
@@ -372,13 +375,14 @@
             this.txtCEP.Size = new System.Drawing.Size(63, 20);
             this.txtCEP.TabIndex = 33;
             this.txtCEP.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtCEP.Enter += new System.EventHandler(this.TxtCEP_Enter);
             this.txtCEP.Leave += new System.EventHandler(this.TxtCEP_Leave);
             // 
             // txtClienteId
             // 
-            this.txtClienteId.Enabled = false;
             this.txtClienteId.Location = new System.Drawing.Point(87, 18);
             this.txtClienteId.Name = "txtClienteId";
+            this.txtClienteId.ReadOnly = true;
             this.txtClienteId.Size = new System.Drawing.Size(137, 20);
             this.txtClienteId.TabIndex = 21;
             // 
@@ -386,7 +390,7 @@
             // 
             this.txtCliente.Location = new System.Drawing.Point(87, 46);
             this.txtCliente.Name = "txtCliente";
-            this.txtCliente.Size = new System.Drawing.Size(603, 20);
+            this.txtCliente.Size = new System.Drawing.Size(535, 20);
             this.txtCliente.TabIndex = 22;
             // 
             // txtApelido
@@ -404,7 +408,8 @@
             this.txtCPF.Size = new System.Drawing.Size(90, 20);
             this.txtCPF.TabIndex = 24;
             this.txtCPF.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtCPF.Leave += new System.EventHandler(this.VerificaSeCPFJaExisteNaBaseDados_Leave);
+            this.txtCPF.Enter += new System.EventHandler(this.TxtCPF_Enter);
+            this.txtCPF.Leave += new System.EventHandler(this.TxtCPF_Leave);
             // 
             // cboSexo
             // 
@@ -434,11 +439,13 @@
             // 
             // dtpDataNascimento
             // 
-            this.dtpDataNascimento.CustomFormat = "00/00/0000";
+            this.dtpDataNascimento.CustomFormat = "dd/MM/yyyy";
+            this.dtpDataNascimento.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpDataNascimento.Location = new System.Drawing.Point(87, 198);
             this.dtpDataNascimento.Name = "dtpDataNascimento";
-            this.dtpDataNascimento.Size = new System.Drawing.Size(211, 20);
+            this.dtpDataNascimento.Size = new System.Drawing.Size(97, 20);
             this.dtpDataNascimento.TabIndex = 27;
+            this.dtpDataNascimento.Enter += new System.EventHandler(this.DtpDataNascimento_Enter);
             // 
             // txtEmail
             // 
@@ -474,34 +481,63 @@
             this.txtTelefoneOutros.TabIndex = 31;
             this.txtTelefoneOutros.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // imgLogoTipo
-            // 
-            this.imgLogoTipo.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.imgLogoTipo.Image = global::SGM.WindowsForms.Properties.Resources.LogotipoLoquinho1;
-            this.imgLogoTipo.Location = new System.Drawing.Point(545, 77);
-            this.imgLogoTipo.Name = "imgLogoTipo";
-            this.imgLogoTipo.Size = new System.Drawing.Size(191, 67);
-            this.imgLogoTipo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.imgLogoTipo.TabIndex = 33;
-            this.imgLogoTipo.TabStop = false;
-            // 
             // txtDataCadastro
             // 
-            this.txtDataCadastro.Location = new System.Drawing.Point(105, 405);
+            this.txtDataCadastro.Location = new System.Drawing.Point(99, 19);
             this.txtDataCadastro.Name = "txtDataCadastro";
             this.txtDataCadastro.ReadOnly = true;
-            this.txtDataCadastro.Size = new System.Drawing.Size(123, 20);
+            this.txtDataCadastro.Size = new System.Drawing.Size(115, 20);
             this.txtDataCadastro.TabIndex = 34;
             // 
             // lblDataCadastro
             // 
             this.lblDataCadastro.AutoSize = true;
             this.lblDataCadastro.Enabled = false;
-            this.lblDataCadastro.Location = new System.Drawing.Point(11, 408);
+            this.lblDataCadastro.Location = new System.Drawing.Point(5, 22);
             this.lblDataCadastro.Name = "lblDataCadastro";
             this.lblDataCadastro.Size = new System.Drawing.Size(93, 13);
             this.lblDataCadastro.TabIndex = 35;
             this.lblDataCadastro.Text = "Data de Cadastro:";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::SGM.WindowsForms.Properties.Resources.LogotipoLoquinho;
+            this.pictureBox1.Location = new System.Drawing.Point(628, 3);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(135, 52);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 36;
+            this.pictureBox1.TabStop = false;
+            // 
+            // gbControleDatas
+            // 
+            this.gbControleDatas.Controls.Add(this.txtDataAlteracao);
+            this.gbControleDatas.Controls.Add(this.lblDataAlteracao);
+            this.gbControleDatas.Controls.Add(this.txtDataCadastro);
+            this.gbControleDatas.Controls.Add(this.lblDataCadastro);
+            this.gbControleDatas.Location = new System.Drawing.Point(9, 379);
+            this.gbControleDatas.Name = "gbControleDatas";
+            this.gbControleDatas.Size = new System.Drawing.Size(444, 46);
+            this.gbControleDatas.TabIndex = 37;
+            this.gbControleDatas.TabStop = false;
+            this.gbControleDatas.Text = "Controle de Datas";
+            // 
+            // txtDataAlteracao
+            // 
+            this.txtDataAlteracao.Location = new System.Drawing.Point(319, 18);
+            this.txtDataAlteracao.Name = "txtDataAlteracao";
+            this.txtDataAlteracao.ReadOnly = true;
+            this.txtDataAlteracao.Size = new System.Drawing.Size(115, 20);
+            this.txtDataAlteracao.TabIndex = 37;
+            // 
+            // lblDataAlteracao
+            // 
+            this.lblDataAlteracao.AutoSize = true;
+            this.lblDataAlteracao.Location = new System.Drawing.Point(217, 22);
+            this.lblDataAlteracao.Name = "lblDataAlteracao";
+            this.lblDataAlteracao.Size = new System.Drawing.Size(96, 13);
+            this.lblDataAlteracao.TabIndex = 36;
+            this.lblDataAlteracao.Text = "Data de Alteração:";
             // 
             // FrmCadastroCliente
             // 
@@ -514,7 +550,9 @@
             this.pnBotoes.ResumeLayout(false);
             this.gbLogradouro.ResumeLayout(false);
             this.gbLogradouro.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.imgLogoTipo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.gbControleDatas.ResumeLayout(false);
+            this.gbControleDatas.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -558,8 +596,11 @@
         private System.Windows.Forms.Label lblEmail;
         private System.Windows.Forms.Label lblCelular;
         private System.Windows.Forms.Label lblTelefoneFixo;
-        private System.Windows.Forms.PictureBox imgLogoTipo;
         private System.Windows.Forms.Label lblDataCadastro;
         private System.Windows.Forms.TextBox txtDataCadastro;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.GroupBox gbControleDatas;
+        private System.Windows.Forms.Label lblDataAlteracao;
+        private System.Windows.Forms.TextBox txtDataAlteracao;
     }
 }
