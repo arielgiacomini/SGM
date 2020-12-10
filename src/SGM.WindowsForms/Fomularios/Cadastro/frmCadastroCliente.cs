@@ -229,7 +229,7 @@ namespace SGM.WindowsForms
             formConsultaCliente.Dispose();
         }
 
-        private void VerificaSeCPFJaExisteNaBaseDados_Leave(object sender, EventArgs e)
+        private void TxtCPF_Leave(object sender, EventArgs e)
         {
             if (this.operacao == "inserir")
             {
@@ -265,6 +265,8 @@ namespace SGM.WindowsForms
                     }
                 }
             }
+
+            txtCPF.Mask = "000,000,000-00";
         }
 
         private void TxtCEP_Leave(object sender, EventArgs e)
@@ -280,6 +282,20 @@ namespace SGM.WindowsForms
 
                 txtNumero.Focus();
             }
+
+            txtCEP.Mask = "00000-000";
+        }
+
+        private void TxtCEP_Enter(object sender, EventArgs e)
+        {
+            txtCEP.Mask = "";
+            txtCEP.Text = "";
+        }
+
+        private void TxtCPF_Enter(object sender, EventArgs e)
+        {
+            txtCPF.Mask = "";
+            txtCPF.Text = "";
         }
     }
 }
