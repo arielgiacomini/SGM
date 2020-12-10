@@ -151,6 +151,7 @@ namespace SGM.WindowsForms
             this.txtOrcamentoId.Enabled = false;
             this.txtOrcamentoId.Location = new System.Drawing.Point(719, 123);
             this.txtOrcamentoId.Name = "txtOrcamentoId";
+            this.txtOrcamentoId.ReadOnly = true;
             this.txtOrcamentoId.Size = new System.Drawing.Size(44, 20);
             this.txtOrcamentoId.TabIndex = 1;
             // 
@@ -159,7 +160,7 @@ namespace SGM.WindowsForms
             this.txtConsultaCliente.Location = new System.Drawing.Point(208, 15);
             this.txtConsultaCliente.Name = "txtConsultaCliente";
             this.txtConsultaCliente.Size = new System.Drawing.Size(350, 20);
-            this.txtConsultaCliente.TabIndex = 3;
+            this.txtConsultaCliente.TabIndex = 36;
             // 
             // lblCliente
             // 
@@ -202,6 +203,7 @@ namespace SGM.WindowsForms
             this.txtClienteSelecionado.Enabled = false;
             this.txtClienteSelecionado.Location = new System.Drawing.Point(123, 97);
             this.txtClienteSelecionado.Name = "txtClienteSelecionado";
+            this.txtClienteSelecionado.ReadOnly = true;
             this.txtClienteSelecionado.Size = new System.Drawing.Size(421, 20);
             this.txtClienteSelecionado.TabIndex = 9;
             // 
@@ -219,13 +221,14 @@ namespace SGM.WindowsForms
             this.txtClienteId.Enabled = false;
             this.txtClienteId.Location = new System.Drawing.Point(548, 97);
             this.txtClienteId.Name = "txtClienteId";
+            this.txtClienteId.ReadOnly = true;
             this.txtClienteId.Size = new System.Drawing.Size(45, 20);
             this.txtClienteId.TabIndex = 11;
             // 
             // lblDescricao
             // 
             this.lblDescricao.AutoSize = true;
-            this.lblDescricao.Location = new System.Drawing.Point(10, 493);
+            this.lblDescricao.Location = new System.Drawing.Point(10, 498);
             this.lblDescricao.Name = "lblDescricao";
             this.lblDescricao.Size = new System.Drawing.Size(73, 13);
             this.lblDescricao.TabIndex = 12;
@@ -233,68 +236,77 @@ namespace SGM.WindowsForms
             // 
             // txtDescricao
             // 
-            this.txtDescricao.Location = new System.Drawing.Point(89, 481);
+            this.txtDescricao.Location = new System.Drawing.Point(89, 485);
             this.txtDescricao.Multiline = true;
             this.txtDescricao.Name = "txtDescricao";
             this.txtDescricao.Size = new System.Drawing.Size(674, 38);
-            this.txtDescricao.TabIndex = 13;
+            this.txtDescricao.TabIndex = 41;
             // 
             // lblValorAdicional
             // 
             this.lblValorAdicional.AutoSize = true;
-            this.lblValorAdicional.Location = new System.Drawing.Point(546, 364);
+            this.lblValorAdicional.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblValorAdicional.Location = new System.Drawing.Point(529, 364);
             this.lblValorAdicional.Name = "lblValorAdicional";
-            this.lblValorAdicional.Size = new System.Drawing.Size(83, 13);
+            this.lblValorAdicional.Size = new System.Drawing.Size(102, 16);
             this.lblValorAdicional.TabIndex = 14;
-            this.lblValorAdicional.Text = "Valor Adicional: ";
+            this.lblValorAdicional.Text = "Valor Adicional:";
             this.lblValorAdicional.TextAlign = System.Drawing.ContentAlignment.BottomRight;
             // 
             // lblPercentualDesconto
             // 
             this.lblPercentualDesconto.AutoSize = true;
-            this.lblPercentualDesconto.Location = new System.Drawing.Point(545, 390);
+            this.lblPercentualDesconto.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPercentualDesconto.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.lblPercentualDesconto.Location = new System.Drawing.Point(528, 390);
             this.lblPercentualDesconto.Name = "lblPercentualDesconto";
-            this.lblPercentualDesconto.Size = new System.Drawing.Size(85, 13);
+            this.lblPercentualDesconto.Size = new System.Drawing.Size(103, 16);
             this.lblPercentualDesconto.TabIndex = 15;
-            this.lblPercentualDesconto.Text = "% de Desconto: ";
+            this.lblPercentualDesconto.Text = "% de Desconto:";
             this.lblPercentualDesconto.TextAlign = System.Drawing.ContentAlignment.BottomRight;
             // 
             // lblValorDesconto
             // 
             this.lblValorDesconto.AutoSize = true;
-            this.lblValorDesconto.Location = new System.Drawing.Point(543, 416);
+            this.lblValorDesconto.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblValorDesconto.ForeColor = System.Drawing.Color.Red;
+            this.lblValorDesconto.Location = new System.Drawing.Point(527, 421);
             this.lblValorDesconto.Name = "lblValorDesconto";
-            this.lblValorDesconto.Size = new System.Drawing.Size(86, 13);
+            this.lblValorDesconto.Size = new System.Drawing.Size(104, 16);
             this.lblValorDesconto.TabIndex = 16;
-            this.lblValorDesconto.Text = "Valor Desconto: ";
+            this.lblValorDesconto.Text = "Valor Desconto:";
             this.lblValorDesconto.TextAlign = System.Drawing.ContentAlignment.BottomRight;
             // 
             // lblValorTotal
             // 
             this.lblValorTotal.AutoSize = true;
-            this.lblValorTotal.Location = new System.Drawing.Point(564, 442);
+            this.lblValorTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblValorTotal.Location = new System.Drawing.Point(521, 449);
             this.lblValorTotal.Name = "lblValorTotal";
-            this.lblValorTotal.Size = new System.Drawing.Size(64, 13);
+            this.lblValorTotal.Size = new System.Drawing.Size(101, 20);
             this.lblValorTotal.TabIndex = 17;
-            this.lblValorTotal.Text = "Valor Total: ";
+            this.lblValorTotal.Text = "Valor Total:";
             this.lblValorTotal.TextAlign = System.Drawing.ContentAlignment.BottomRight;
             // 
             // txtValorAdicional
             // 
-            this.txtValorAdicional.Location = new System.Drawing.Point(631, 361);
+            this.txtValorAdicional.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtValorAdicional.Location = new System.Drawing.Point(633, 361);
             this.txtValorAdicional.Name = "txtValorAdicional";
-            this.txtValorAdicional.Size = new System.Drawing.Size(133, 20);
-            this.txtValorAdicional.TabIndex = 18;
+            this.txtValorAdicional.Size = new System.Drawing.Size(131, 22);
+            this.txtValorAdicional.TabIndex = 39;
             this.txtValorAdicional.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtValorAdicional.Enter += new System.EventHandler(this.TxtValorAdicional_Enter);
             this.txtValorAdicional.Leave += new System.EventHandler(this.TxtValorAdicional_Leave);
             // 
             // txtPercentualDesconto
             // 
-            this.txtPercentualDesconto.Location = new System.Drawing.Point(631, 387);
+            this.txtPercentualDesconto.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPercentualDesconto.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.txtPercentualDesconto.Location = new System.Drawing.Point(633, 387);
             this.txtPercentualDesconto.Name = "txtPercentualDesconto";
-            this.txtPercentualDesconto.Size = new System.Drawing.Size(133, 20);
-            this.txtPercentualDesconto.TabIndex = 19;
+            this.txtPercentualDesconto.Size = new System.Drawing.Size(131, 22);
+            this.txtPercentualDesconto.TabIndex = 40;
             this.txtPercentualDesconto.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtPercentualDesconto.Enter += new System.EventHandler(this.TxtPercentualDesconto_Enter);
             this.txtPercentualDesconto.Leave += new System.EventHandler(this.TxtPercentualDesconto_Leave);
@@ -302,20 +314,23 @@ namespace SGM.WindowsForms
             // txtValorDesconto
             // 
             this.txtValorDesconto.Enabled = false;
-            this.txtValorDesconto.Location = new System.Drawing.Point(631, 413);
+            this.txtValorDesconto.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtValorDesconto.ForeColor = System.Drawing.Color.Red;
+            this.txtValorDesconto.Location = new System.Drawing.Point(633, 418);
             this.txtValorDesconto.Name = "txtValorDesconto";
             this.txtValorDesconto.ReadOnly = true;
-            this.txtValorDesconto.Size = new System.Drawing.Size(133, 20);
+            this.txtValorDesconto.Size = new System.Drawing.Size(131, 22);
             this.txtValorDesconto.TabIndex = 20;
             this.txtValorDesconto.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtValorTotal
             // 
             this.txtValorTotal.Enabled = false;
-            this.txtValorTotal.Location = new System.Drawing.Point(631, 439);
+            this.txtValorTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtValorTotal.Location = new System.Drawing.Point(630, 446);
             this.txtValorTotal.Name = "txtValorTotal";
             this.txtValorTotal.ReadOnly = true;
-            this.txtValorTotal.Size = new System.Drawing.Size(133, 20);
+            this.txtValorTotal.Size = new System.Drawing.Size(133, 29);
             this.txtValorTotal.TabIndex = 21;
             this.txtValorTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -326,7 +341,7 @@ namespace SGM.WindowsForms
             this.dgvMaodeObra.AllowUserToResizeColumns = false;
             this.dgvMaodeObra.AllowUserToResizeRows = false;
             this.dgvMaodeObra.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvMaodeObra.Location = new System.Drawing.Point(22, 171);
+            this.dgvMaodeObra.Location = new System.Drawing.Point(12, 174);
             this.dgvMaodeObra.Name = "dgvMaodeObra";
             this.dgvMaodeObra.ReadOnly = true;
             this.dgvMaodeObra.Size = new System.Drawing.Size(505, 116);
@@ -339,7 +354,7 @@ namespace SGM.WindowsForms
             this.dgvPeca.AllowUserToAddRows = false;
             this.dgvPeca.AllowUserToDeleteRows = false;
             this.dgvPeca.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvPeca.Location = new System.Drawing.Point(22, 338);
+            this.dgvPeca.Location = new System.Drawing.Point(11, 338);
             this.dgvPeca.Name = "dgvPeca";
             this.dgvPeca.ReadOnly = true;
             this.dgvPeca.Size = new System.Drawing.Size(505, 118);
@@ -350,7 +365,7 @@ namespace SGM.WindowsForms
             // lblInformativoPeca
             // 
             this.lblInformativoPeca.AutoSize = true;
-            this.lblInformativoPeca.Location = new System.Drawing.Point(168, 315);
+            this.lblInformativoPeca.Location = new System.Drawing.Point(157, 315);
             this.lblInformativoPeca.Name = "lblInformativoPeca";
             this.lblInformativoPeca.Size = new System.Drawing.Size(290, 13);
             this.lblInformativoPeca.TabIndex = 25;
@@ -358,7 +373,7 @@ namespace SGM.WindowsForms
             // 
             // btnAdicionarPeca
             // 
-            this.btnAdicionarPeca.Location = new System.Drawing.Point(23, 304);
+            this.btnAdicionarPeca.Location = new System.Drawing.Point(12, 304);
             this.btnAdicionarPeca.Name = "btnAdicionarPeca";
             this.btnAdicionarPeca.Size = new System.Drawing.Size(139, 28);
             this.btnAdicionarPeca.TabIndex = 29;
@@ -368,7 +383,7 @@ namespace SGM.WindowsForms
             // 
             // btnAdicionarMaodeObra
             // 
-            this.btnAdicionarMaodeObra.Location = new System.Drawing.Point(22, 137);
+            this.btnAdicionarMaodeObra.Location = new System.Drawing.Point(12, 140);
             this.btnAdicionarMaodeObra.Name = "btnAdicionarMaodeObra";
             this.btnAdicionarMaodeObra.Size = new System.Drawing.Size(122, 28);
             this.btnAdicionarMaodeObra.TabIndex = 30;
@@ -379,7 +394,7 @@ namespace SGM.WindowsForms
             // lblInformativoMaoDeObra
             // 
             this.lblInformativoMaoDeObra.AutoSize = true;
-            this.lblInformativoMaoDeObra.Location = new System.Drawing.Point(150, 145);
+            this.lblInformativoMaoDeObra.Location = new System.Drawing.Point(140, 148);
             this.lblInformativoMaoDeObra.Name = "lblInformativoMaoDeObra";
             this.lblInformativoMaoDeObra.Size = new System.Drawing.Size(290, 13);
             this.lblInformativoMaoDeObra.TabIndex = 31;
@@ -389,7 +404,7 @@ namespace SGM.WindowsForms
             // 
             this.lblQtdRegistrosMaoDeObra.AutoSize = true;
             this.lblQtdRegistrosMaoDeObra.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblQtdRegistrosMaoDeObra.Location = new System.Drawing.Point(396, 291);
+            this.lblQtdRegistrosMaoDeObra.Location = new System.Drawing.Point(348, 293);
             this.lblQtdRegistrosMaoDeObra.Name = "lblQtdRegistrosMaoDeObra";
             this.lblQtdRegistrosMaoDeObra.Size = new System.Drawing.Size(99, 12);
             this.lblQtdRegistrosMaoDeObra.TabIndex = 35;
@@ -397,19 +412,21 @@ namespace SGM.WindowsForms
             // 
             // txtValorTotalPecas
             // 
-            this.txtValorTotalPecas.Location = new System.Drawing.Point(631, 335);
+            this.txtValorTotalPecas.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtValorTotalPecas.Location = new System.Drawing.Point(633, 335);
             this.txtValorTotalPecas.Name = "txtValorTotalPecas";
-            this.txtValorTotalPecas.Size = new System.Drawing.Size(133, 20);
-            this.txtValorTotalPecas.TabIndex = 36;
+            this.txtValorTotalPecas.Size = new System.Drawing.Size(131, 22);
+            this.txtValorTotalPecas.TabIndex = 38;
             this.txtValorTotalPecas.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtValorTotalPecas.Enter += new System.EventHandler(this.TxtValorTotalPecas_Enter);
             this.txtValorTotalPecas.Leave += new System.EventHandler(this.TxtValorTotalPecas_Leave);
             // 
             // txtValorTotalMaodeObra
             // 
-            this.txtValorTotalMaodeObra.Location = new System.Drawing.Point(631, 309);
+            this.txtValorTotalMaodeObra.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtValorTotalMaodeObra.Location = new System.Drawing.Point(633, 309);
             this.txtValorTotalMaodeObra.Name = "txtValorTotalMaodeObra";
-            this.txtValorTotalMaodeObra.Size = new System.Drawing.Size(133, 20);
+            this.txtValorTotalMaodeObra.Size = new System.Drawing.Size(131, 22);
             this.txtValorTotalMaodeObra.TabIndex = 37;
             this.txtValorTotalMaodeObra.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtValorTotalMaodeObra.Enter += new System.EventHandler(this.TxtValorTotalMaodeObra_Enter);
@@ -418,28 +435,30 @@ namespace SGM.WindowsForms
             // lblValorMaoDeObraTexto
             // 
             this.lblValorMaoDeObraTexto.AutoSize = true;
-            this.lblValorMaoDeObraTexto.Location = new System.Drawing.Point(550, 312);
+            this.lblValorMaoDeObraTexto.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblValorMaoDeObraTexto.Location = new System.Drawing.Point(538, 312);
             this.lblValorMaoDeObraTexto.Name = "lblValorMaoDeObraTexto";
-            this.lblValorMaoDeObraTexto.Size = new System.Drawing.Size(75, 13);
+            this.lblValorMaoDeObraTexto.Size = new System.Drawing.Size(92, 16);
             this.lblValorMaoDeObraTexto.TabIndex = 38;
-            this.lblValorMaoDeObraTexto.Text = "Mão-de-Obra: ";
+            this.lblValorMaoDeObraTexto.Text = "Mão-de-Obra:";
             this.lblValorMaoDeObraTexto.TextAlign = System.Drawing.ContentAlignment.BottomRight;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(539, 338);
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(523, 338);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(90, 13);
+            this.label2.Size = new System.Drawing.Size(108, 16);
             this.label2.TabIndex = 39;
-            this.label2.Text = "Produtos/Peças: ";
+            this.label2.Text = "Produtos/Peças:";
             this.label2.TextAlign = System.Drawing.ContentAlignment.BottomRight;
             // 
             // lblQtdRegistrosPecas
             // 
             this.lblQtdRegistrosPecas.AutoSize = true;
             this.lblQtdRegistrosPecas.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblQtdRegistrosPecas.Location = new System.Drawing.Point(396, 460);
+            this.lblQtdRegistrosPecas.Location = new System.Drawing.Point(348, 459);
             this.lblQtdRegistrosPecas.Name = "lblQtdRegistrosPecas";
             this.lblQtdRegistrosPecas.Size = new System.Drawing.Size(99, 12);
             this.lblQtdRegistrosPecas.TabIndex = 40;
@@ -476,9 +495,9 @@ namespace SGM.WindowsForms
             // 
             // txtClienteVeiculoId
             // 
-            this.txtClienteVeiculoId.Enabled = false;
             this.txtClienteVeiculoId.Location = new System.Drawing.Point(719, 97);
             this.txtClienteVeiculoId.Name = "txtClienteVeiculoId";
+            this.txtClienteVeiculoId.ReadOnly = true;
             this.txtClienteVeiculoId.Size = new System.Drawing.Size(44, 20);
             this.txtClienteVeiculoId.TabIndex = 43;
             // 

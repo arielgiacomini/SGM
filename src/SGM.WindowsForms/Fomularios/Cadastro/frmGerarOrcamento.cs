@@ -29,7 +29,6 @@ namespace SGM.WindowsForms
             _veiculoApplication = veiculoApplication;
             _maoDeObraApplication = maodeObraApplication;
             _pecaApplication = pecaApplication;
-
             InitializeComponent();
         }
 
@@ -75,7 +74,7 @@ namespace SGM.WindowsForms
 
         private void FrmGerarOrcamento_Load(object sender, EventArgs e)
         {
-            OrganizarTelaOrcamento();
+            OrganizaTela();
 
             if (clienteId != 0 || clienteVeiculoId != 0)
             {
@@ -276,7 +275,7 @@ namespace SGM.WindowsForms
                     dgvMaodeObra.Columns[3].Visible = false;
                 }
 
-                OrganizarTelaOrcamento();
+                OrganizaTela();
             }
         }
 
@@ -332,7 +331,7 @@ namespace SGM.WindowsForms
                     dgvPeca.Columns[3].Visible = false;
                 }
 
-                OrganizarTelaOrcamento();
+                OrganizaTela();
             }
         }
 
@@ -357,7 +356,9 @@ namespace SGM.WindowsForms
                     Status = (int)EnumStatusOrcamento.ConcluidoSemGerarServico,
                     Ativo = true,
                     DataCadastro = orcamentoSalvo.DataCadastro,
-                    DataAlteracao = DateTime.Now
+                    DataAlteracao = DateTime.Now,
+                    OrcamentoMaodeObra = new List<OrcamentoMaodeObra>(),
+                    OrcamentoPeca = new List<OrcamentoPeca>()
                 };
 
                 _orcamentoApplication.AtualizarOrcamento(orcamento);
@@ -556,7 +557,7 @@ namespace SGM.WindowsForms
                     dgvMaodeObra.Columns[3].Visible = false;
                 }
 
-                OrganizarTelaOrcamento();
+                OrganizaTela();
             }
         }
 
@@ -610,7 +611,7 @@ namespace SGM.WindowsForms
                     dgvPeca.Columns[3].Visible = false;
                 }
 
-                OrganizarTelaOrcamento();
+                OrganizaTela();
             }
         }
 
@@ -628,38 +629,36 @@ namespace SGM.WindowsForms
 
         private void TxtValorTotalMaodeObra_Leave(object sender, EventArgs e)
         {
-            txtValorTotalMaodeObra.Text = TranslateValorEmStringDinheiro(txtValorTotalMaodeObra.Text);
+            txtValorTotalMaodeObra.Text = Util.TranslateValorEmStringDinheiro(txtValorTotalMaodeObra.Text);
 
-            OrganizarTelaOrcamento();
+            CalcularDesconto();
+
+            OrganizaTela();
         }
 
         private void TxtValorTotalPecas_Leave(object sender, EventArgs e)
         {
-            txtValorTotalPecas.Text = TranslateValorEmStringDinheiro(txtValorTotalPecas.Text);
+            txtValorTotalPecas.Text = Util.TranslateValorEmStringDinheiro(txtValorTotalPecas.Text);
 
-            OrganizarTelaOrcamento();
+            CalcularDesconto();
+
+            OrganizaTela();
         }
 
         private void TxtValorAdicional_Leave(object sender, EventArgs e)
         {
-            var valorAdicional = TranslateStringEmDecimal(txtValorAdicional.Text);
-            txtValorTotalPecas.Text = Convert.ToDecimal(valorAdicional).ToString("C");
-            txtPercentualDesconto.Focus();
+            txtValorAdicional.Text = Util.TranslateValorEmStringDinheiro(txtValorAdicional.Text);
 
-            OrganizarTelaOrcamento();
+            CalcularDesconto();
+
+            OrganizaTela();
         }
 
         private void TxtPercentualDesconto_Leave(object sender, EventArgs e)
         {
-            decimal percentualDesconto = TranslateStringEmDecimal(txtPercentualDesconto.Text);
-            decimal valorMaodeObra = TranslateStringEmDecimal(txtValorTotalMaodeObra.Text);
-            decimal valorPeca = TranslateStringEmDecimal(txtValorTotalPecas.Text);
-            decimal valorAdicional = TranslateStringEmDecimal(txtValorAdicional.Text);
-            decimal valorTotal = valorMaodeObra + valorPeca + valorAdicional;
+            CalcularDesconto();
 
-            txtValorDesconto.Text = Convert.ToString(Convert.ToDecimal(((valorTotal / 100) * percentualDesconto)).ToString("C"));
-
-            OrganizarTelaOrcamento();
+            OrganizaTela();
         }
 
         private void TxtValorTotalMaodeObra_Enter(object sender, EventArgs e)
@@ -682,70 +681,19 @@ namespace SGM.WindowsForms
             txtPercentualDesconto.Text = "";
         }
 
-        public string TranslateValorEmStringDinheiro(string valor)
-        {
-            string devolutiva;
-
-            if (valor == "")
-            {
-                devolutiva = 0.ToString("C");
-            }
-            else if (valor == "R$ 0,00")
-            {
-                devolutiva = valor;
-            }
-            else if ((!valor.Contains("R$") || !valor.Contains(",")) && Util.VerificaSeEhNumero(valor))
-            {
-                devolutiva = Convert.ToDecimal(valor).ToString("C");
-            }
-            else
-            {
-                devolutiva = valor;
-            }
-
-            return devolutiva;
-        }
-
-        public decimal TranslateStringEmDecimal(string valor, bool ehPercentual = false)
-        {
-            decimal devolutiva = 0;
-
-            bool ehNumero = Util.VerificaSeEhNumero(valor);
-
-            if (valor.Contains("R$"))
-            {
-                devolutiva = Convert.ToDecimal(valor.Replace("R$ ", ""));
-            }
-            else if (valor.Contains("%"))
-            {
-                devolutiva = (Convert.ToDecimal(valor.Replace("%", "")) / 100);
-            }
-            else if (ehNumero && !ehPercentual)
-            {
-                devolutiva = Convert.ToDecimal(valor);
-            }
-            else if (ehNumero && ehPercentual)
-            {
-                devolutiva = Convert.ToDecimal(valor);
-                devolutiva /= 100;
-            }
-
-            return devolutiva;
-        }
-
-        private void OrganizarTelaOrcamento()
+        private void OrganizaTela()
         {
             lblQtdRegistrosMaoDeObra.Text = "Quantidade de Registros: " + this.dgvMaodeObra.Rows.Count.ToString();
             lblQtdRegistrosPecas.Text = "Quantidade de Registros: " + this.dgvPeca.Rows.Count.ToString();
 
-            var tempValorMaodeObra = TranslateStringEmDecimal(txtValorTotalMaodeObra.Text);
-            var tempValorPeca = TranslateStringEmDecimal(txtValorTotalPecas.Text);
+            decimal tempValorMaodeObra = Util.TranslateStringEmDecimal(txtValorTotalMaodeObra.Text);
+            var tempValorPeca = Util.TranslateStringEmDecimal(txtValorTotalPecas.Text);
 
             var valorMaodeObra = Convert.ToDecimal(dgvMaodeObra.Rows.Cast<DataGridViewRow>().Sum(i => Convert.ToDecimal(i.Cells["Valor"].Value))) + tempValorMaodeObra;
             var valorPeca = Convert.ToDecimal(dgvPeca.Rows.Cast<DataGridViewRow>().Sum(i => Convert.ToDecimal(i.Cells["Valor"].Value))) + tempValorPeca;
-            var valorDesconto = TranslateStringEmDecimal(txtValorDesconto.Text);
-            var valorAdicional = TranslateStringEmDecimal(txtValorAdicional.Text);
-            var percentualDesconto = TranslateStringEmDecimal(txtPercentualDesconto.Text, true);
+            var valorDesconto = Util.TranslateStringEmDecimal(txtValorDesconto.Text);
+            var valorAdicional = Util.TranslateStringEmDecimal(txtValorAdicional.Text);
+            var percentualDesconto = Util.TranslateStringEmDecimal(txtPercentualDesconto.Text, true);
             var valorTotal = ((valorMaodeObra + valorPeca + valorAdicional) - valorDesconto);
 
             txtValorTotalMaodeObra.Text = valorMaodeObra.ToString("C");
@@ -754,6 +702,17 @@ namespace SGM.WindowsForms
             txtPercentualDesconto.Text = percentualDesconto.ToString("P");
             txtValorDesconto.Text = valorDesconto.ToString("C");
             txtValorTotal.Text = valorTotal.ToString("C");
+        }
+
+        private void CalcularDesconto()
+        {
+            decimal percentualDesconto = Util.TranslateStringEmDecimal(txtPercentualDesconto.Text, ehPercentual: true);
+            decimal valorMaodeObra = Util.TranslateStringEmDecimal(txtValorTotalMaodeObra.Text);
+            decimal valorPeca = Util.TranslateStringEmDecimal(txtValorTotalPecas.Text);
+            decimal valorAdicional = Util.TranslateStringEmDecimal(txtValorAdicional.Text);
+            decimal valorTotal = valorMaodeObra + valorPeca + valorAdicional;
+
+            txtValorDesconto.Text = Convert.ToString(Convert.ToDecimal((valorTotal * percentualDesconto)).ToString("C"));
         }
     }
 }
