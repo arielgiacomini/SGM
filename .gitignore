@@ -15,3 +15,4 @@
 *.v2
 /arquivos/AtualizacaoVeiculos
 /arquivos/Tabelas
+/src/SGM.Domain/obj/Debug/netstandard2.0/SGM.Domain.csproj.FileListAbsolute.txt
