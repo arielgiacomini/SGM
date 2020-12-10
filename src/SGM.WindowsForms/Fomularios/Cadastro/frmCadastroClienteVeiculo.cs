@@ -339,7 +339,7 @@ namespace SGM.WindowsForms
 
         private void AbrirPerguntaQualItemDesejaEfetuarParaCliente(int clienteId, int clienteVeiculoId, int veiculoId, string placaVeiculo)
         {
-            FrmPerguntaQualItemAbrir questionItemAbrir = new FrmPerguntaQualItemAbrir
+            FrmGerarServicoOuOrcamento questionItemAbrir = new FrmGerarServicoOuOrcamento
             {
                 clienteId = clienteId,
                 veiculoId = veiculoId,
