@@ -1,7 +1,6 @@
 C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\SGM.Domain\bin\Debug\netstandard2.0\SGM.Domain.deps.json
 C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\SGM.Domain\bin\Debug\netstandard2.0\SGM.Domain.dll
 C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\SGM.Domain\bin\Debug\netstandard2.0\SGM.Domain.pdb
-C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\SGM.Domain\obj\Debug\netstandard2.0\SGM.Domain.csprojAssemblyReference.cache
 C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\SGM.Domain\obj\Debug\netstandard2.0\SGM.Domain.AssemblyInfoInputs.cache
 C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\SGM.Domain\obj\Debug\netstandard2.0\SGM.Domain.AssemblyInfo.cs
 C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\SGM.Domain\obj\Debug\netstandard2.0\SGM.Domain.csproj.CoreCompileInputs.cache

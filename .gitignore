@@ -15,3 +15,12 @@
 *.v2
 /arquivos/AtualizacaoVeiculos
 /arquivos/Tabelas
+/src/SGM.Domain/obj/Debug/netstandard2.0/SGM.Domain.csproj.FileListAbsolute.txt
+/src/SGM.ApplicationServices/obj/Release/netstandard2.0/.NETStandard,Version=v2.0.AssemblyAttributes.cs
+/src/SGM.ApplicationServices/obj/Release/netstandard2.0/SGM.ApplicationServices.AssemblyInfo.cs
+/src/SGM.Domain/obj/Release/netstandard2.0/.NETStandard,Version=v2.0.AssemblyAttributes.cs
+/.vs/slnx.sqlite
+/src/SGM.Domain/obj/Release/netstandard2.0/SGM.Domain.AssemblyInfo.cs
+/src/SGM.WindowsForms/obj/Release/.NETFramework,Version=v4.6.1.AssemblyAttributes.cs
+/src/SGM.WindowsForms/obj/x86/Debug/.NETFramework,Version=v4.6.1.AssemblyAttributes.cs
+/src/SGM.WindowsForms/obj/x86/Release/.NETFramework,Version=v4.6.1.AssemblyAttributes.cs
