@@ -3,6 +3,7 @@ using SGM.Domain.DataSources;
 using SGM.Domain.Entities;
 using SGM.Domain.Enumeration;
 using SGM.Domain.Utils;
+using SGM.WindowsForms.Fomularios.Modelo;
 using SGM.WindowsForms.IoC;
 using System;
 using System.Collections.Generic;
@@ -217,6 +218,8 @@ namespace SGM.WindowsForms
                 OrcamentoPeca = new List<OrcamentoPeca>()
             };
 
+            FrmLoading loading = new FrmLoading();
+            loading.Show();
             var orcamentoId = _orcamentoApplication.SalvarOrcamento(orcamento);
 
             txtOrcamentoId.Text = orcamentoId.ToString();
