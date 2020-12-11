@@ -204,6 +204,12 @@
     <Compile Include="Fomularios\Cadastro\frmGerarServico.Designer.cs">
       <DependentUpon>frmGerarServico.cs</DependentUpon>
     </Compile>
+    <Compile Include="Fomularios\Login\frmLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Fomularios\Login\frmLogin.Designer.cs">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+    </Compile>
     <Compile Include="Fomularios\Modelo\frmLoading.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -297,6 +303,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Fomularios\Cadastro\frmGerarServico.resx">
       <DependentUpon>frmGerarServico.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Fomularios\Login\frmLogin.resx">
+      <DependentUpon>frmLogin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Fomularios\Modelo\frmLoading.resx">
       <DependentUpon>frmLoading.cs</DependentUpon>

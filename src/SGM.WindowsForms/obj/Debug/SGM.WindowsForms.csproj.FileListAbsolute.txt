@@ -139,3 +139,4 @@ C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\SGM.WindowsForms\obj\
 C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\SGM.WindowsForms\obj\Debug\SGM.WindowsForms.pdb
 C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\SGM.WindowsForms\obj\Debug\SGM.WindowsForms.FrmGerarServicoOuOrcamento.resources
 C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\SGM.WindowsForms\obj\Debug\SGM.WindowsForms.Fomularios.Modelo.frmLoading.resources
+C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\SGM.WindowsForms\obj\Debug\SGM.WindowsForms.Fomularios.Login.FrmLogin.resources

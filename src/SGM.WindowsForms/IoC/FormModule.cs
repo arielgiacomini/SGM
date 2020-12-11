@@ -41,6 +41,8 @@ namespace SGM.WindowsForms.IoC
 
             Bind<ICorreiosQuery>().To<CorreiosQuery>();
 
+            Bind<IColaboradorQuery>().To<ColaboradorQuery>();
+
             Bind<IClienteApplication>().To<ClienteApplication>();
             Bind<IClienteVeiculoApplication>().To<ClienteVeiculoApplication>();
             Bind<IMaodeObraApplication>().To<MaodeObraApplication>();
@@ -49,6 +51,7 @@ namespace SGM.WindowsForms.IoC
             Bind<IOrcamentoApplication>().To<OrcamentoApplication>();
             Bind<IServicoApplication>().To<ServicoApplication>();
             Bind<ICorreriosApplication>().To<CorreiosApplication>();
+            Bind<IColaboradorApplication>().To<ColaboradorApplication>();
 
             Bind<ISGMConfiguration>().To<SGMConfiguration>();
         }
