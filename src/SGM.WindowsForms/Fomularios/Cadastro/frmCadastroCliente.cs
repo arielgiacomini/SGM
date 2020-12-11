@@ -310,5 +310,38 @@ namespace SGM.WindowsForms
         {
             dtpDataNascimento.CustomFormat = "";
         }
+
+        private void TxtTelefoneFixo_Enter(object sender, EventArgs e)
+        {
+            txtTelefoneFixo.Mask = "";
+            txtTelefoneFixo.Text = "";
+        }
+
+        private void TxtCelular_Enter(object sender, EventArgs e)
+        {
+            txtCelular.Mask = "";
+            txtCelular.Text = "";
+        }
+
+        private void TxtTelefoneOutros_Enter(object sender, EventArgs e)
+        {
+            txtTelefoneOutros.Mask = "";
+            txtTelefoneOutros.Text = "";
+        }
+
+        private void TxtTelefoneFixo_Leave(object sender, EventArgs e)
+        {
+            txtTelefoneFixo.Mask = "(00) 0000-0000";
+        }
+
+        private void TxtCelular_Leave(object sender, EventArgs e)
+        {
+            txtCelular.Mask = "(00) 0,0000-0000";
+        }
+
+        private void TxtTelefoneOutros_Leave(object sender, EventArgs e)
+        {
+            txtTelefoneOutros.Mask = "(00) 0,0000-0000";
+        }
     }
 }

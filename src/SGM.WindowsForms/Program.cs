@@ -1,4 +1,5 @@
-﻿using SGM.WindowsForms.IoC;
+﻿using SGM.WindowsForms.Fomularios.Modelo;
+using SGM.WindowsForms.IoC;
 using System;
 using System.Windows.Forms;
 

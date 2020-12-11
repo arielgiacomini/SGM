@@ -462,6 +462,8 @@
             this.txtTelefoneFixo.Size = new System.Drawing.Size(90, 20);
             this.txtTelefoneFixo.TabIndex = 29;
             this.txtTelefoneFixo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtTelefoneFixo.Enter += new System.EventHandler(this.TxtTelefoneFixo_Enter);
+            this.txtTelefoneFixo.Leave += new System.EventHandler(this.TxtTelefoneFixo_Leave);
             // 
             // txtCelular
             // 
@@ -471,6 +473,8 @@
             this.txtCelular.Size = new System.Drawing.Size(97, 20);
             this.txtCelular.TabIndex = 30;
             this.txtCelular.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtCelular.Enter += new System.EventHandler(this.TxtCelular_Enter);
+            this.txtCelular.Leave += new System.EventHandler(this.TxtCelular_Leave);
             // 
             // txtTelefoneOutros
             // 
@@ -480,6 +484,8 @@
             this.txtTelefoneOutros.Size = new System.Drawing.Size(97, 20);
             this.txtTelefoneOutros.TabIndex = 31;
             this.txtTelefoneOutros.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtTelefoneOutros.Enter += new System.EventHandler(this.TxtTelefoneOutros_Enter);
+            this.txtTelefoneOutros.Leave += new System.EventHandler(this.TxtTelefoneOutros_Leave);
             // 
             // txtDataCadastro
             // 
