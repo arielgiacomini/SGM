@@ -1,6 +1,5 @@
 ﻿using SGM.ApplicationServices.Application.Interface;
 using SGM.WindowsForms.IoC;
-using System;
 using System.Windows.Forms;
 
 namespace SGM.WindowsForms.Fomularios.Login
