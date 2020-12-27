@@ -219,7 +219,7 @@ namespace SGM.WindowsForms
                 txtBairro.Text = cliente.LogradouroBairro;
                 txtUF.Text = cliente.LogradouroUF;
                 txtDataCadastro.Text = Convert.ToString(Util.ConvertHorarioOfServerToWorldReal(cliente.DataCadastro, 5));
-                txtDataAlteracao.Text = Convert.ToString(Util.ConvertHorarioOfServerToWorldReal(cliente.DataAlteracao.Value, 5));
+                //txtDataAlteracao.Text = Convert.ToString(Util.ConvertHorarioOfServerToWorldReal(cliente.DataAlteracao.Value, 5));
                 DisponibilizarBotoesTela(EnumControleTelas.AlterarExcluirCancelar);
             }
             else
