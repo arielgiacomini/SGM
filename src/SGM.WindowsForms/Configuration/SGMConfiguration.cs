@@ -1,4 +1,5 @@
 ﻿using SGM.ApplicationServices.Infrastructure;
+using System;
 using System.Configuration;
 
 namespace SGM.WindowsForms.Configuration
@@ -9,5 +10,6 @@ namespace SGM.WindowsForms.Configuration
         public string QuantidadeUltimosOrcamentos => ConfigurationManager.AppSettings["quantidade-ultimos-orcamentos-gerados"];
         public string QuantidadeUltimosServicos => ConfigurationManager.AppSettings["quantidade-ultimos-servicos-gerados"];
         public string ViaCepApiUrl => ConfigurationManager.AppSettings["via.cep.api.url"];
+        public bool UsuariosNecessitamEfetuarLogin => Convert.ToBoolean(ConfigurationManager.AppSettings["usuario.necessita.logar"]);
     }
 }
