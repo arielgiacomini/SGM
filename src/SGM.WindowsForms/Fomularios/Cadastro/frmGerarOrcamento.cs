@@ -227,6 +227,8 @@ namespace SGM.WindowsForms
 
         private void BtnAdicionarMaodeObra_Click(object sender, EventArgs e)
         {
+            bool apagaDadosTemporario = false;
+
             if (txtClienteId.Text == "")
             {
                 MessageBox.Show("Você precisa primeiro incluir um cliente acima!", "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -239,6 +241,20 @@ namespace SGM.WindowsForms
 
                 if (consultaMaodeObra.codigo != 0)
                 {
+                    decimal totalMaoDeObra = Util.TranslateStringEmDecimal(txtValorTotalMaodeObra.Text, false);
+                    decimal totalPecas = Util.TranslateStringEmDecimal(txtValorTotalPecas.Text, false);
+                    decimal totalAdicional = Util.TranslateStringEmDecimal(txtValorAdicional.Text, false);
+
+                    if (totalMaoDeObra > 0 || totalPecas > 0 || totalAdicional > 0)
+                    {
+                        DialogResult resposta = MessageBox.Show("Deseja realmente inserir essa mão de obra? Caso opte por sim, os valores ao lado serão apagados e serão considerados apenas os valores da mão de obra adicionada.", "Alerta", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+                        if (resposta.ToString() == "Yes")
+                        {
+                            apagaDadosTemporario = true;
+                        }
+                    }
+
                     OrcamentoMaodeObra orcamentoMaodeObra = new OrcamentoMaodeObra()
                     {
                         OrcamentoId = Convert.ToInt32(txtOrcamentoId.Text),
@@ -278,12 +294,15 @@ namespace SGM.WindowsForms
                     dgvMaodeObra.Columns[3].Visible = false;
                 }
 
-                OrganizaTela();
+                DesabilitaTextBoxValoresTotais();
+                OrganizaTela(apagaDadosTemporario);
             }
         }
 
         private void BtnAdicionarPeca_Click(object sender, EventArgs e)
         {
+            bool apagaDadosTemporario = false;
+
             if (txtClienteId.Text == "")
             {
                 MessageBox.Show("Você precisa primeiro incluir um cliente acima!", "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -296,6 +315,20 @@ namespace SGM.WindowsForms
 
                 if (consultaPeca.codigo != 0)
                 {
+                    decimal totalMaoDeObra = Util.TranslateStringEmDecimal(txtValorTotalMaodeObra.Text, false);
+                    decimal totalPecas = Util.TranslateStringEmDecimal(txtValorTotalPecas.Text, false);
+                    decimal totalAdicional = Util.TranslateStringEmDecimal(txtValorAdicional.Text, false);
+
+                    if (totalMaoDeObra > 0 || totalPecas > 0 || totalAdicional > 0)
+                    {
+                        DialogResult resposta = MessageBox.Show("Deseja realmente inserir essa mão de obra? Caso opte por sim, os valores ao lado serão apagados e serão considerados apenas os valores da mão de obra adicionada.", "Alerta", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+                        if (resposta.ToString() == "Yes")
+                        {
+                            apagaDadosTemporario = true;
+                        }
+                    }
+
                     OrcamentoPeca orcamentoPeca = new OrcamentoPeca()
                     {
                         OrcamentoId = Convert.ToInt32(txtOrcamentoId.Text),
@@ -332,9 +365,11 @@ namespace SGM.WindowsForms
                     dgvPeca.Columns[3].HeaderText = "OrcamentoPecaId";
                     dgvPeca.Columns[3].Width = 20;
                     dgvPeca.Columns[3].Visible = false;
+
                 }
 
-                OrganizaTela();
+                DesabilitaTextBoxValoresTotais();
+                OrganizaTela(apagaDadosTemporario);
             }
         }
 
@@ -684,19 +719,31 @@ namespace SGM.WindowsForms
             txtPercentualDesconto.Text = "";
         }
 
-        private void OrganizaTela()
+        private void OrganizaTela(bool resetDadosTemporario = false)
         {
             lblQtdRegistrosMaoDeObra.Text = "Quantidade de Registros: " + this.dgvMaodeObra.Rows.Count.ToString();
             lblQtdRegistrosPecas.Text = "Quantidade de Registros: " + this.dgvPeca.Rows.Count.ToString();
 
             decimal tempValorMaodeObra = Util.TranslateStringEmDecimal(txtValorTotalMaodeObra.Text);
-            var tempValorPeca = Util.TranslateStringEmDecimal(txtValorTotalPecas.Text);
+            decimal tempValorPeca = Util.TranslateStringEmDecimal(txtValorTotalPecas.Text);
+
+            if (resetDadosTemporario)
+            {
+                tempValorMaodeObra = 0;
+                tempValorPeca = 0;
+            }
+
+
 
             var valorMaodeObra = Convert.ToDecimal(dgvMaodeObra.Rows.Cast<DataGridViewRow>().Sum(i => Convert.ToDecimal(i.Cells["Valor"].Value))) + tempValorMaodeObra;
             var valorPeca = Convert.ToDecimal(dgvPeca.Rows.Cast<DataGridViewRow>().Sum(i => Convert.ToDecimal(i.Cells["Valor"].Value))) + tempValorPeca;
-            var valorDesconto = Util.TranslateStringEmDecimal(txtValorDesconto.Text);
             var valorAdicional = Util.TranslateStringEmDecimal(txtValorAdicional.Text);
             var percentualDesconto = Util.TranslateStringEmDecimal(txtPercentualDesconto.Text, true);
+
+            CalcularDesconto(percentualDesconto, valorMaodeObra, valorPeca, valorAdicional);
+
+            var valorDesconto = Util.TranslateStringEmDecimal(txtValorDesconto.Text);
+
             var valorTotal = ((valorMaodeObra + valorPeca + valorAdicional) - valorDesconto);
 
             txtValorTotalMaodeObra.Text = valorMaodeObra.ToString("C");
@@ -707,15 +754,21 @@ namespace SGM.WindowsForms
             txtValorTotal.Text = valorTotal.ToString("C");
         }
 
-        private void CalcularDesconto()
+        private void CalcularDesconto(decimal pd = 0, decimal vm = 0, decimal vp = 0, decimal va = 0)
         {
-            decimal percentualDesconto = Util.TranslateStringEmDecimal(txtPercentualDesconto.Text, ehPercentual: true);
-            decimal valorMaodeObra = Util.TranslateStringEmDecimal(txtValorTotalMaodeObra.Text);
-            decimal valorPeca = Util.TranslateStringEmDecimal(txtValorTotalPecas.Text);
-            decimal valorAdicional = Util.TranslateStringEmDecimal(txtValorAdicional.Text);
+            decimal percentualDesconto = pd == 0 ? Util.TranslateStringEmDecimal(txtPercentualDesconto.Text, ehPercentual: true) : pd;
+            decimal valorMaodeObra = vm == 0 ? Util.TranslateStringEmDecimal(txtValorTotalMaodeObra.Text) : vm;
+            decimal valorPeca = vp == 0 ? Util.TranslateStringEmDecimal(txtValorTotalPecas.Text) : vp;
+            decimal valorAdicional = va == 0 ? Util.TranslateStringEmDecimal(txtValorAdicional.Text) : va;
             decimal valorTotal = valorMaodeObra + valorPeca + valorAdicional;
 
             txtValorDesconto.Text = Convert.ToString(Convert.ToDecimal((valorTotal * percentualDesconto)).ToString("C"));
+        }
+
+        private void DesabilitaTextBoxValoresTotais()
+        {
+            txtValorTotalMaodeObra.Enabled = false;
+            txtValorTotalPecas.Enabled = false;
         }
     }
 }
