@@ -156,44 +156,36 @@ namespace SGM.WindowsForms
         {
             var cliente = _clienteApplication.GetClienteByLikePlacaOrNomeOrApelido(txtConsultaCliente.Text);
 
-            if (cliente.ClienteVeiculo != null)
+            var dataSource = new List<PesquisaClienteOrcamentoDataSource>();
+
+            foreach (var clienteVeiculo in cliente.ClienteVeiculo)
             {
+                var veiculo = _veiculoApplication.GetVeiculoByVeiculoId(clienteVeiculo.VeiculoId);
 
-                var dataSource = new List<PesquisaClienteOrcamentoDataSource>();
+                var marca = _veiculoApplication.GetMarcaByMarcaId(veiculo.MarcaId);
 
-                foreach (var clienteVeiculo in cliente.ClienteVeiculo)
+                dataSource.Add(new PesquisaClienteOrcamentoDataSource
                 {
-                    var veiculo = _veiculoApplication.GetVeiculoByVeiculoId(clienteVeiculo.VeiculoId);
-
-                    var marca = _veiculoApplication.GetMarcaByMarcaId(veiculo.MarcaId);
-
-                    dataSource.Add(new PesquisaClienteOrcamentoDataSource
-                    {
-                        ClienteId = cliente.ClienteId,
-                        NomeCliente = cliente.NomeCliente,
-                        PlacaVeiculo = clienteVeiculo.PlacaVeiculo,
-                        MarcaModeloVeiculo = marca.Marca + " / " + veiculo.Modelo,
-                        ClienteVeiculoId = clienteVeiculo.ClienteVeiculoId
-                    });
-                }
-
-                dgvCliente.DataSource = dataSource;
-                dgvCliente.Columns[0].HeaderText = "Código";
-                dgvCliente.Columns[0].Width = 50;
-                dgvCliente.Columns[1].HeaderText = "Cliente";
-                dgvCliente.Columns[1].Width = 296;
-                dgvCliente.Columns[2].HeaderText = "Placa Veículo";
-                dgvCliente.Columns[2].Width = 120;
-                dgvCliente.Columns[3].HeaderText = "Marca/Modelo";
-                dgvCliente.Columns[3].Width = 232;
-                dgvCliente.Columns[4].HeaderText = "ClienteVeiculoId";
-                dgvCliente.Columns[4].Width = 50;
-                dgvCliente.Columns[4].Visible = false;
+                    ClienteId = cliente.ClienteId,
+                    NomeCliente = cliente.NomeCliente,
+                    PlacaVeiculo = clienteVeiculo.PlacaVeiculo,
+                    MarcaModeloVeiculo = marca.Marca + " / " + veiculo.Modelo,
+                    ClienteVeiculoId = clienteVeiculo.ClienteVeiculoId
+                });
             }
-            else
-            {
-                MessageBox.Show("Não foi possível encontrar nenhum Cliente ou Veiculo", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+
+            dgvCliente.DataSource = dataSource;
+            dgvCliente.Columns[0].HeaderText = "Código";
+            dgvCliente.Columns[0].Width = 50;
+            dgvCliente.Columns[1].HeaderText = "Cliente";
+            dgvCliente.Columns[1].Width = 296;
+            dgvCliente.Columns[2].HeaderText = "Placa Veículo";
+            dgvCliente.Columns[2].Width = 120;
+            dgvCliente.Columns[3].HeaderText = "Marca/Modelo";
+            dgvCliente.Columns[3].Width = 232;
+            dgvCliente.Columns[4].HeaderText = "ClienteVeiculoId";
+            dgvCliente.Columns[4].Width = 50;
+            dgvCliente.Columns[4].Visible = false;
         }
 
         private void BtnInserir_Click(object sender, EventArgs e)
@@ -235,8 +227,6 @@ namespace SGM.WindowsForms
 
         private void BtnAdicionarMaodeObra_Click(object sender, EventArgs e)
         {
-            var ehInclusaoDeMaisDeUmItem = false;
-
             if (txtClienteId.Text == "")
             {
                 MessageBox.Show("Você precisa primeiro incluir um cliente acima!", "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -274,11 +264,6 @@ namespace SGM.WindowsForms
                         });
                     }
 
-                    if (orcamentoMaodeObraSalvo.Count > 1)
-                    {
-                        ehInclusaoDeMaisDeUmItem = true;
-                    }
-
                     dgvMaodeObra.DataSource = maoDeObra;
                     dgvMaodeObra.Columns[0].HeaderText = "Código";
                     dgvMaodeObra.Columns[0].Width = 50;
@@ -293,7 +278,7 @@ namespace SGM.WindowsForms
                     dgvMaodeObra.Columns[3].Visible = false;
                 }
 
-                OrganizaTela(ehInclusaoDeMaisDeUmItem);
+                OrganizaTela();
             }
         }
 
@@ -649,18 +634,18 @@ namespace SGM.WindowsForms
         {
             txtValorTotalMaodeObra.Text = Util.TranslateValorEmStringDinheiro(txtValorTotalMaodeObra.Text);
 
-            OrganizaTela(ehLeaveMaoDeObraTotal: true);
-
             CalcularDesconto();
+
+            OrganizaTela();
         }
 
         private void TxtValorTotalPecas_Leave(object sender, EventArgs e)
         {
             txtValorTotalPecas.Text = Util.TranslateValorEmStringDinheiro(txtValorTotalPecas.Text);
 
-            OrganizaTela(ehLeavePecaTotal: true);
-
             CalcularDesconto();
+
+            OrganizaTela();
         }
 
         private void TxtValorAdicional_Leave(object sender, EventArgs e)
@@ -699,44 +684,20 @@ namespace SGM.WindowsForms
             txtPercentualDesconto.Text = "";
         }
 
-        private void OrganizaTela(bool ehLeaveMaoDeObraTotal = false, bool ehLeavePecaTotal = false)
+        private void OrganizaTela()
         {
             lblQtdRegistrosMaoDeObra.Text = "Quantidade de Registros: " + this.dgvMaodeObra.Rows.Count.ToString();
             lblQtdRegistrosPecas.Text = "Quantidade de Registros: " + this.dgvPeca.Rows.Count.ToString();
 
-            var valorMaodeObra = 0.0;
-            var valorPeca = 0.0;
-            var valorDesconto = 0.0;
-            var valorAdicional = 0.0;
-            var percentualDesconto = 0.0;
-            var valorTotal = 0.0;
+            decimal tempValorMaodeObra = Util.TranslateStringEmDecimal(txtValorTotalMaodeObra.Text);
+            var tempValorPeca = Util.TranslateStringEmDecimal(txtValorTotalPecas.Text);
 
-            if (ehLeaveMaoDeObraTotal)
-            {
-                decimal tempValorMaodeObra = Util.TranslateStringEmDecimal(txtValorTotalMaodeObra.Text);
-                decimal valoresFixos = (Convert.ToDecimal(dgvMaodeObra.Rows.Cast<DataGridViewRow>().Sum(i => Convert.ToDecimal(i.Cells["Valor"].Value))));
-                valorMaodeObra = ((double)(Convert.ToDecimal(valoresFixos) + tempValorMaodeObra));
-            }
-            else
-            {
-                valorMaodeObra = (double)(Convert.ToDecimal(dgvMaodeObra.Rows.Cast<DataGridViewRow>().Sum(i => Convert.ToDecimal(i.Cells["Valor"].Value))));
-            }
-
-            if (ehLeavePecaTotal)
-            {
-                decimal tempValorPeca = Util.TranslateStringEmDecimal(txtValorTotalPecas.Text);
-                decimal valoresFixos = (Convert.ToDecimal(dgvPeca.Rows.Cast<DataGridViewRow>().Sum(i => Convert.ToDecimal(i.Cells["Valor"].Value))));
-                valorPeca = ((double)(Convert.ToDecimal(valoresFixos) + tempValorPeca));
-            }
-            else
-            {
-                valorPeca = (double)(Convert.ToDecimal(dgvPeca.Rows.Cast<DataGridViewRow>().Sum(i => Convert.ToDecimal(i.Cells["Valor"].Value))));
-            }
-
-            valorDesconto = (double)Util.TranslateStringEmDecimal(txtValorDesconto.Text);
-            valorAdicional = (double)Util.TranslateStringEmDecimal(txtValorAdicional.Text);
-            percentualDesconto = (double)Util.TranslateStringEmDecimal(txtPercentualDesconto.Text, true);
-            valorTotal = ((valorMaodeObra + valorPeca + valorAdicional) - valorDesconto);
+            var valorMaodeObra = Convert.ToDecimal(dgvMaodeObra.Rows.Cast<DataGridViewRow>().Sum(i => Convert.ToDecimal(i.Cells["Valor"].Value))) + tempValorMaodeObra;
+            var valorPeca = Convert.ToDecimal(dgvPeca.Rows.Cast<DataGridViewRow>().Sum(i => Convert.ToDecimal(i.Cells["Valor"].Value))) + tempValorPeca;
+            var valorDesconto = Util.TranslateStringEmDecimal(txtValorDesconto.Text);
+            var valorAdicional = Util.TranslateStringEmDecimal(txtValorAdicional.Text);
+            var percentualDesconto = Util.TranslateStringEmDecimal(txtPercentualDesconto.Text, true);
+            var valorTotal = ((valorMaodeObra + valorPeca + valorAdicional) - valorDesconto);
 
             txtValorTotalMaodeObra.Text = valorMaodeObra.ToString("C");
             txtValorTotalPecas.Text = valorPeca.ToString("C");

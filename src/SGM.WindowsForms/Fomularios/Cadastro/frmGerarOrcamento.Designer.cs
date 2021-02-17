@@ -468,7 +468,7 @@ namespace SGM.WindowsForms
             // 
             this.lblOrcamento.AutoSize = true;
             this.lblOrcamento.Font = new System.Drawing.Font("Impact", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblOrcamento.Location = new System.Drawing.Point(556, 218);
+            this.lblOrcamento.Location = new System.Drawing.Point(556, 242);
             this.lblOrcamento.Name = "lblOrcamento";
             this.lblOrcamento.Size = new System.Drawing.Size(198, 45);
             this.lblOrcamento.TabIndex = 41;
@@ -477,7 +477,7 @@ namespace SGM.WindowsForms
             // pictureBox1
             // 
             this.pictureBox1.Image = global::SGM.WindowsForms.Properties.Resources.LogotipoLoquinho;
-            this.pictureBox1.Location = new System.Drawing.Point(579, 159);
+            this.pictureBox1.Location = new System.Drawing.Point(579, 183);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(148, 56);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;

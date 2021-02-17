@@ -6,6 +6,5 @@
         string QuantidadeUltimosOrcamentos { get; }
         string QuantidadeUltimosServicos { get; }
         string ViaCepApiUrl { get; }
-        bool UsuariosNecessitamEfetuarLogin { get; }
     }
 }
