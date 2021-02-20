@@ -145,19 +145,19 @@ namespace SGM.WindowsForms
             // lblOrcamentoId
             // 
             this.lblOrcamentoId.AutoSize = true;
-            this.lblOrcamentoId.Location = new System.Drawing.Point(611, 126);
+            this.lblOrcamentoId.Location = new System.Drawing.Point(591, 126);
             this.lblOrcamentoId.Name = "lblOrcamentoId";
-            this.lblOrcamentoId.Size = new System.Drawing.Size(110, 13);
+            this.lblOrcamentoId.Size = new System.Drawing.Size(113, 13);
             this.lblOrcamentoId.TabIndex = 0;
-            this.lblOrcamentoId.Text = "Código do Orçamento";
+            this.lblOrcamentoId.Text = "Código do Orçamento:";
             // 
             // txtOrcamentoId
             // 
             this.txtOrcamentoId.Enabled = false;
-            this.txtOrcamentoId.Location = new System.Drawing.Point(719, 123);
+            this.txtOrcamentoId.Location = new System.Drawing.Point(701, 123);
             this.txtOrcamentoId.Name = "txtOrcamentoId";
             this.txtOrcamentoId.ReadOnly = true;
-            this.txtOrcamentoId.Size = new System.Drawing.Size(44, 20);
+            this.txtOrcamentoId.Size = new System.Drawing.Size(62, 20);
             this.txtOrcamentoId.TabIndex = 1;
             // 
             // txtConsultaCliente
@@ -206,7 +206,7 @@ namespace SGM.WindowsForms
             // txtClienteSelecionado
             // 
             this.txtClienteSelecionado.Enabled = false;
-            this.txtClienteSelecionado.Location = new System.Drawing.Point(123, 97);
+            this.txtClienteSelecionado.Location = new System.Drawing.Point(113, 97);
             this.txtClienteSelecionado.Name = "txtClienteSelecionado";
             this.txtClienteSelecionado.ReadOnly = true;
             this.txtClienteSelecionado.Size = new System.Drawing.Size(421, 20);
@@ -215,7 +215,7 @@ namespace SGM.WindowsForms
             // lblClienteSelecionado
             // 
             this.lblClienteSelecionado.AutoSize = true;
-            this.lblClienteSelecionado.Location = new System.Drawing.Point(19, 100);
+            this.lblClienteSelecionado.Location = new System.Drawing.Point(8, 100);
             this.lblClienteSelecionado.Name = "lblClienteSelecionado";
             this.lblClienteSelecionado.Size = new System.Drawing.Size(104, 13);
             this.lblClienteSelecionado.TabIndex = 10;
@@ -224,7 +224,7 @@ namespace SGM.WindowsForms
             // txtClienteId
             // 
             this.txtClienteId.Enabled = false;
-            this.txtClienteId.Location = new System.Drawing.Point(548, 97);
+            this.txtClienteId.Location = new System.Drawing.Point(538, 97);
             this.txtClienteId.Name = "txtClienteId";
             this.txtClienteId.ReadOnly = true;
             this.txtClienteId.Size = new System.Drawing.Size(45, 20);
@@ -476,17 +476,17 @@ namespace SGM.WindowsForms
             // lblOrcamento
             // 
             this.lblOrcamento.AutoSize = true;
-            this.lblOrcamento.Font = new System.Drawing.Font("Impact", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblOrcamento.Location = new System.Drawing.Point(556, 148);
+            this.lblOrcamento.Font = new System.Drawing.Font("Impact", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblOrcamento.Location = new System.Drawing.Point(575, 153);
             this.lblOrcamento.Name = "lblOrcamento";
-            this.lblOrcamento.Size = new System.Drawing.Size(198, 45);
+            this.lblOrcamento.Size = new System.Drawing.Size(170, 39);
             this.lblOrcamento.TabIndex = 41;
             this.lblOrcamento.Text = "ORÇAMENTO";
             // 
             // pictureBox1
             // 
             this.pictureBox1.Image = global::SGM.WindowsForms.Properties.Resources.LogotipoLoquinho;
-            this.pictureBox1.Location = new System.Drawing.Point(449, 126);
+            this.pictureBox1.Location = new System.Drawing.Point(485, 130);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(85, 32);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -496,11 +496,11 @@ namespace SGM.WindowsForms
             // lblClienteVeiculoId
             // 
             this.lblClienteVeiculoId.AutoSize = true;
-            this.lblClienteVeiculoId.Location = new System.Drawing.Point(593, 100);
+            this.lblClienteVeiculoId.Location = new System.Drawing.Point(589, 100);
             this.lblClienteVeiculoId.Name = "lblClienteVeiculoId";
-            this.lblClienteVeiculoId.Size = new System.Drawing.Size(128, 13);
+            this.lblClienteVeiculoId.Size = new System.Drawing.Size(131, 13);
             this.lblClienteVeiculoId.TabIndex = 42;
-            this.lblClienteVeiculoId.Text = "Código do Veiculo Cliente";
+            this.lblClienteVeiculoId.Text = "Código do Veiculo Cliente:";
             // 
             // txtClienteVeiculoId
             // 
