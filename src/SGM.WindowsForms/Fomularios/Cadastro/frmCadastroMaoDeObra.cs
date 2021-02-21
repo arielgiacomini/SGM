@@ -23,9 +23,11 @@ namespace SGM.WindowsForms
         {
             txtMaoDeObraId.Clear();
             txtMaoDeObra.Clear();
+            cboTipo.SelectedIndex = -1;
             txtValor.Clear();
             txtVigenciaInicial.Clear();
             txtVigenciaFinal.Clear();
+            cboAtivo.SelectedIndex = -1;
         }
 
         private void FrmCadastroMaoDeObra_Load(object sender, EventArgs e)
@@ -47,7 +49,7 @@ namespace SGM.WindowsForms
         private void BtnAlterar_Click(object sender, EventArgs e)
         {
             this.operacao = "alterar";
-            this.DisponibilizarBotoesTela(EnumControleTelas.SalvarCancelarExcluir);
+            this.DisponibilizarBotoesTela(EnumControleTelas.AlterarExcluirCancelar);
             cboAtivo.Enabled = true;
         }
 

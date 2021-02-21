@@ -3,6 +3,7 @@ using SGM.Domain.DataSources;
 using SGM.Domain.Entities;
 using SGM.Domain.Enumeration;
 using SGM.Domain.Utils;
+using SGM.WindowsForms.Fomularios.Modelo;
 using SGM.WindowsForms.IoC;
 using System;
 using System.Collections.Generic;
@@ -14,7 +15,6 @@ namespace SGM.WindowsForms
 {
     public partial class FrmGerarServico : FrmModeloDeFormularioDeCadastro
     {
-
         private readonly IClienteApplication _clienteApplication;
         private readonly IServicoApplication _servicoApplication;
         private readonly IClienteVeiculoApplication _clienteVeiculoApplication;
@@ -53,6 +53,9 @@ namespace SGM.WindowsForms
             txtValorTotal.Clear();
             txtValorTotalMaodeObra.Clear();
             txtValorTotalPecas.Clear();
+            txtValorPecaManual.Clear();
+            txtValorMaoDeObraManual.Clear();
+            checkInclusaoManual.Checked = false;
 
             for (int i = 0; i < dgvCliente.RowCount; i++)
             {
@@ -75,7 +78,7 @@ namespace SGM.WindowsForms
 
         private void FrmGerarServico_Load(object sender, EventArgs e)
         {
-            OrganizaTela();
+            CalcularServico();
 
             if (clienteId != 0 || clienteVeiculoId != 0)
             {
@@ -117,6 +120,8 @@ namespace SGM.WindowsForms
                 txtClienteSelecionado.Text = cliente.NomeCliente.ToString();
                 txtValorTotalMaodeObra.Text = Convert.ToDecimal("0").ToString("C");
                 txtValorTotalPecas.Text = Convert.ToDecimal("0").ToString("C");
+                txtValorMaoDeObraManual.Text = Convert.ToDecimal("0").ToString("C");
+                txtValorPecaManual.Text = Convert.ToDecimal("0").ToString("C");
                 txtValorAdicional.Text = Convert.ToDecimal("0").ToString("C");
                 txtPercentualDesconto.Text = Convert.ToDecimal("0").ToString("P");
                 txtValorDesconto.Text = Convert.ToDecimal("0").ToString("C");
@@ -149,29 +154,36 @@ namespace SGM.WindowsForms
             txtPercentualDesconto.Text = Convert.ToDecimal("0").ToString("P");
             txtValorDesconto.Text = Convert.ToDecimal("0").ToString("C");
             txtValorTotal.Text = Convert.ToDecimal("0").ToString("C");
+            checkInclusaoManual.Checked = false;
             txtDescricao.Text = "GERANDO SERVIÇO";
         }
 
         private void BtnConsultaCliente_Click(object sender, EventArgs e)
         {
             var cliente = _clienteApplication.GetClienteByLikePlacaOrNomeOrApelido(txtConsultaCliente.Text);
-
             var dataSource = new List<PesquisaClienteServicoDataSource>();
 
-            foreach (var clienteVeiculo in cliente.ClienteVeiculo)
+            if (cliente.ClienteVeiculo != null)
             {
-                var veiculo = _veiculoApplication.GetVeiculoByVeiculoId(clienteVeiculo.VeiculoId);
-
-                var marca = _veiculoApplication.GetMarcaByMarcaId(veiculo.MarcaId);
-
-                dataSource.Add(new PesquisaClienteServicoDataSource
+                foreach (var clienteVeiculo in cliente.ClienteVeiculo)
                 {
-                    ClienteId = cliente.ClienteId,
-                    NomeCliente = cliente.NomeCliente,
-                    PlacaVeiculo = clienteVeiculo.PlacaVeiculo,
-                    MarcaModeloVeiculo = marca.Marca + " / " + veiculo.Modelo,
-                    ClienteVeiculoId = clienteVeiculo.ClienteVeiculoId
-                });
+                    var veiculo = _veiculoApplication.GetVeiculoByVeiculoId(clienteVeiculo.VeiculoId);
+
+                    var marca = _veiculoApplication.GetMarcaByMarcaId(veiculo.MarcaId);
+
+                    dataSource.Add(new PesquisaClienteServicoDataSource
+                    {
+                        ClienteId = cliente.ClienteId,
+                        NomeCliente = cliente.NomeCliente,
+                        PlacaVeiculo = clienteVeiculo.PlacaVeiculo,
+                        MarcaModeloVeiculo = marca.Marca + " / " + veiculo.Modelo,
+                        ClienteVeiculoId = clienteVeiculo.ClienteVeiculoId
+                    });
+                }
+            }
+            else
+            {
+                MessageBox.Show("Não encontramos o veiculo.", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
             dgvCliente.DataSource = dataSource;
@@ -198,10 +210,14 @@ namespace SGM.WindowsForms
             txtClienteId.Text = Convert.ToString(1);
             txtClienteVeiculoId.Text = Convert.ToString(1);
             txtClienteSelecionado.Text = Convert.ToString("SEM CLIENTE");
-            txtValorDesconto.Text = Convert.ToDecimal("0").ToString("C");
-            txtValorTotal.Text = Convert.ToDecimal("0").ToString("C");
             txtValorTotalMaodeObra.Text = Convert.ToDecimal("0").ToString("C");
             txtValorTotalPecas.Text = Convert.ToDecimal("0").ToString("C");
+            txtValorMaoDeObraManual.Text = Convert.ToDecimal("0").ToString("C");
+            txtValorPecaManual.Text = Convert.ToDecimal("0").ToString("C");
+            txtValorAdicional.Text = Convert.ToDecimal("0").ToString("C");
+            txtPercentualDesconto.Text = Convert.ToDecimal("0").ToString("P");
+            txtValorDesconto.Text = Convert.ToDecimal("0").ToString("C");
+            txtValorTotal.Text = Convert.ToDecimal("0").ToString("C");
             txtDescricao.Text = "PESQUISANDO";
 
             Servico servico = new Servico
@@ -216,6 +232,8 @@ namespace SGM.WindowsForms
                 ServicoPeca = new List<ServicoPeca>()
             };
 
+            FrmLoading loading = new FrmLoading();
+            loading.Show();
             var servicoId = _servicoApplication.SalvarServico(servico);
 
             txtServicoId.Text = servicoId.ToString();
@@ -223,6 +241,8 @@ namespace SGM.WindowsForms
 
         private void BtnAdicionarMaodeObra_Click(object sender, EventArgs e)
         {
+            bool apagaDadosTemporario = true;
+
             if (txtClienteId.Text == "")
             {
                 MessageBox.Show("Você precisa primeiro incluir um cliente acima!", "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -274,12 +294,14 @@ namespace SGM.WindowsForms
                     dgvMaodeObra.Columns[3].Visible = false;
                 }
 
-                OrganizaTela();
+                CalcularServico(apagaDadosTemporario);
             }
         }
 
         private void BtnAdicionarPeca_Click(object sender, EventArgs e)
         {
+            bool apagaDadosTemporario = true;
+
             if (txtClienteId.Text == "")
             {
                 MessageBox.Show("Você precisa primeiro incluir um cliente acima!", "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -325,12 +347,12 @@ namespace SGM.WindowsForms
                     dgvPeca.Columns[2].Width = 70;
                     dgvPeca.Columns[2].DefaultCellStyle.Format = "C2";
                     dgvPeca.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                    dgvPeca.Columns[3].HeaderText = "OrcamentoPecaId";
+                    dgvPeca.Columns[3].HeaderText = "ServicoPecaId";
                     dgvPeca.Columns[3].Width = 20;
                     dgvPeca.Columns[3].Visible = false;
                 }
 
-                OrganizaTela();
+                CalcularServico(apagaDadosTemporario);
             }
         }
 
@@ -346,13 +368,15 @@ namespace SGM.WindowsForms
                     ClienteVeiculoId = Convert.ToInt32(txtClienteVeiculoId.Text),
                     ColaboradorId = 0,
                     Descricao = txtDescricao.Text,
-                    ValorMaodeObra = txtValorTotalMaodeObra.Text == "" ? 0 : Convert.ToDecimal(txtValorTotalMaodeObra.Text.Replace("R$ ", "")),
-                    ValorPeca = txtValorTotalPecas.Text == "" ? 0 : Convert.ToDecimal(txtValorTotalPecas.Text.Replace("R$ ", "")),
+                    ValorMaodeObra = txtValorTotalMaodeObra.Text == "" ? 0 : Convert.ToDecimal(txtValorTotalMaodeObra.Text.Replace("R$ ", ""))
+                                   + txtValorMaoDeObraManual.Text == "" ? 0 : Convert.ToDecimal(txtValorMaoDeObraManual.Text.Replace("R$ ", "")),
+                    ValorPeca = txtValorTotalPecas.Text == "" ? 0 : Convert.ToDecimal(txtValorTotalPecas.Text.Replace("R$ ", ""))
+                              + txtValorPecaManual.Text == "" ? 0 : Convert.ToDecimal(txtValorPecaManual.Text.Replace("R$ ", "")),
                     ValorAdicional = txtValorAdicional.Text == "R$ 0,00" ? 0 : Convert.ToDecimal(txtValorAdicional.Text.Replace("R$ ", "")),
                     PercentualDesconto = txtValorAdicional.Text == "R$ 0,00" ? 0 : (Convert.ToDecimal(txtPercentualDesconto.Text.Replace("%", "")) / 100),
                     ValorDesconto = Convert.ToDecimal(txtValorDesconto.Text.Replace("R$ ", "")),
                     ValorTotal = Convert.ToDecimal(txtValorTotal.Text.Replace("R$ ", "")),
-                    Status = (int)EnumStatusOrcamento.ConcluidoSemGerarServico,
+                    Status = (int)EnumStatusServico.GerouServico,
                     Ativo = true,
                     DataCadastro = servicoSalvo.DataCadastro,
                     DataAlteracao = DateTime.Now,
@@ -370,7 +394,6 @@ namespace SGM.WindowsForms
 
                 this.LimpaTela();
                 this.DisponibilizarBotoesTela(EnumControleTelas.InserirLocalizar);
-                this.Close();
             }
             catch (Exception erro)
             {
@@ -557,7 +580,7 @@ namespace SGM.WindowsForms
                     dgvMaodeObra.Columns[3].Visible = false;
                 }
 
-                OrganizaTela();
+                CalcularServico();
             }
         }
 
@@ -611,7 +634,7 @@ namespace SGM.WindowsForms
                     dgvMaodeObra.Columns[3].Visible = false;
                 }
 
-                OrganizaTela();
+                CalcularServico();
             }
         }
 
@@ -631,34 +654,40 @@ namespace SGM.WindowsForms
         {
             txtValorTotalMaodeObra.Text = Util.TranslateValorEmStringDinheiro(txtValorTotalMaodeObra.Text);
 
-            CalcularDesconto();
-
-            OrganizaTela();
+            CalcularServico(resetDadosTemporario: true);
         }
 
         private void TxtValorTotalPecas_Leave(object sender, EventArgs e)
         {
             txtValorTotalPecas.Text = Util.TranslateValorEmStringDinheiro(txtValorTotalPecas.Text);
 
-            CalcularDesconto();
+            CalcularServico(resetDadosTemporario: true);
+        }
 
-            OrganizaTela();
+        private void TxtValorMaoDeObraManual_Leave(object sender, EventArgs e)
+        {
+            txtValorMaoDeObraManual.Text = Util.TranslateValorEmStringDinheiro(txtValorMaoDeObraManual.Text);
+
+            CalcularServico(resetDadosTemporario: true);
+        }
+
+        private void TxtValorPecaManual_Leave(object sender, EventArgs e)
+        {
+            txtValorPecaManual.Text = Util.TranslateValorEmStringDinheiro(txtValorPecaManual.Text);
+
+            CalcularServico();
         }
 
         private void TxtValorAdicional_Leave(object sender, EventArgs e)
         {
             txtValorAdicional.Text = Util.TranslateValorEmStringDinheiro(txtValorAdicional.Text);
 
-            CalcularDesconto();
-
-            OrganizaTela();
+            CalcularServico();
         }
 
         private void TxtPercentualDesconto_Leave(object sender, EventArgs e)
         {
-            CalcularDesconto();
-
-            OrganizaTela();
+            CalcularServico(resetDadosTemporario: true);
         }
 
         private void TxtValorTotalMaodeObra_Enter(object sender, EventArgs e)
@@ -671,6 +700,16 @@ namespace SGM.WindowsForms
             txtValorTotalPecas.Text = "";
         }
 
+        private void TxtValorMaoDeObraManual_Enter(object sender, EventArgs e)
+        {
+            txtValorMaoDeObraManual.Text = "";
+        }
+
+        private void TxtValorPecaManual_Enter(object sender, EventArgs e)
+        {
+            txtValorPecaManual.Text = "";
+        }
+
         private void TxtValorAdicional_Enter(object sender, EventArgs e)
         {
             txtValorAdicional.Text = "";
@@ -681,38 +720,79 @@ namespace SGM.WindowsForms
             txtPercentualDesconto.Text = "";
         }
 
-        private void OrganizaTela()
+        private void CalcularServico(bool resetDadosTemporario = true)
         {
             lblQtdRegistrosMaoDeObra.Text = "Quantidade de Registros: " + this.dgvMaodeObra.Rows.Count.ToString();
             lblQtdRegistrosPecas.Text = "Quantidade de Registros: " + this.dgvPeca.Rows.Count.ToString();
 
             decimal tempValorMaodeObra = Util.TranslateStringEmDecimal(txtValorTotalMaodeObra.Text);
-            var tempValorPeca = Util.TranslateStringEmDecimal(txtValorTotalPecas.Text);
+            decimal tempValorPeca = Util.TranslateStringEmDecimal(txtValorTotalPecas.Text);
 
-            var valorMaodeObra = Convert.ToDecimal(dgvMaodeObra.Rows.Cast<DataGridViewRow>().Sum(i => Convert.ToDecimal(i.Cells["Valor"].Value))) + tempValorMaodeObra;
-            var valorPeca = Convert.ToDecimal(dgvPeca.Rows.Cast<DataGridViewRow>().Sum(i => Convert.ToDecimal(i.Cells["Valor"].Value))) + tempValorPeca;
-            var valorDesconto = Util.TranslateStringEmDecimal(txtValorDesconto.Text);
+            var valorMaodeObra = Convert.ToDecimal(dgvMaodeObra.Rows.Cast<DataGridViewRow>().Sum(i => Convert.ToDecimal(i.Cells["Valor"].Value)));
+            var valorPeca = Convert.ToDecimal(dgvPeca.Rows.Cast<DataGridViewRow>().Sum(i => Convert.ToDecimal(i.Cells["Valor"].Value)));
+            var valorManualMaodeObra = Util.TranslateStringEmDecimal(txtValorMaoDeObraManual.Text);
+            var valorManualPeca = Util.TranslateStringEmDecimal(txtValorPecaManual.Text);
             var valorAdicional = Util.TranslateStringEmDecimal(txtValorAdicional.Text);
             var percentualDesconto = Util.TranslateStringEmDecimal(txtPercentualDesconto.Text, true);
-            var valorTotal = ((valorMaodeObra + valorPeca + valorAdicional) - valorDesconto);
+
+            if (!checkInclusaoManual.Checked)
+            {
+                valorManualMaodeObra = 0;
+                valorManualPeca = 0;
+            }
+
+            CalcularDesconto(percentualDesconto, valorMaodeObra, valorPeca, valorAdicional, valorManualMaodeObra, valorManualPeca);
+
+            var valorDesconto = Util.TranslateStringEmDecimal(txtValorDesconto.Text);
+
+            var valorTotal = ((valorMaodeObra + valorManualMaodeObra + valorPeca + valorManualPeca + valorAdicional) - valorDesconto);
+
+            var vmM = Util.TranslateStringEmDecimal(txtValorMaoDeObraManual.Text);
+            var vpM = Util.TranslateStringEmDecimal(txtValorPecaManual.Text);
 
             txtValorTotalMaodeObra.Text = valorMaodeObra.ToString("C");
             txtValorTotalPecas.Text = valorPeca.ToString("C");
+            txtValorMaoDeObraManual.Text = vmM.ToString("C");
+            txtValorPecaManual.Text = vpM.ToString("C");
             txtValorAdicional.Text = valorAdicional.ToString("C");
             txtPercentualDesconto.Text = percentualDesconto.ToString("P");
             txtValorDesconto.Text = valorDesconto.ToString("C");
             txtValorTotal.Text = valorTotal.ToString("C");
         }
 
-        private void CalcularDesconto()
+        private void CalcularDesconto(decimal pd = 0, decimal vm = 0, decimal vp = 0, decimal va = 0, decimal vmM = 0, decimal vpM = 0)
         {
-            decimal percentualDesconto = Util.TranslateStringEmDecimal(txtPercentualDesconto.Text, ehPercentual: true);
-            decimal valorMaodeObra = Util.TranslateStringEmDecimal(txtValorTotalMaodeObra.Text);
-            decimal valorPeca = Util.TranslateStringEmDecimal(txtValorTotalPecas.Text);
-            decimal valorAdicional = Util.TranslateStringEmDecimal(txtValorAdicional.Text);
-            decimal valorTotal = valorMaodeObra + valorPeca + valorAdicional;
+            decimal percentualDesconto = pd == 0 ? Util.TranslateStringEmDecimal(txtPercentualDesconto.Text, ehPercentual: true) : pd;
+            decimal valorMaodeObra = vm == 0 ? Util.TranslateStringEmDecimal(txtValorTotalMaodeObra.Text) : vm;
+            decimal valorPeca = vp == 0 ? Util.TranslateStringEmDecimal(txtValorTotalPecas.Text) : vp;
+            decimal valorMaodeObraManual = vmM != 0 ? Util.TranslateStringEmDecimal(txtValorMaoDeObraManual.Text) : vmM;
+            decimal valorPecaManual = vpM != 0 ? Util.TranslateStringEmDecimal(txtValorPecaManual.Text) : vpM;
+            decimal valorAdicional = va == 0 ? Util.TranslateStringEmDecimal(txtValorAdicional.Text) : va;
+            decimal valorTotal = (valorMaodeObra + valorMaodeObraManual) + (valorPeca + valorPecaManual) + valorAdicional;
 
             txtValorDesconto.Text = Convert.ToString(Convert.ToDecimal((valorTotal * percentualDesconto)).ToString("C"));
+        }
+
+        private void checkInclusaoManual_CheckedChanged_1(object sender, EventArgs e)
+        {
+            if (checkInclusaoManual.Checked)
+            {
+                lblValorMaoDeObraManual.Visible = true;
+                lblValorPecaManual.Visible = true;
+                txtValorMaoDeObraManual.Visible = true;
+                txtValorPecaManual.Visible = true;
+
+                CalcularServico();
+            }
+            else
+            {
+                lblValorMaoDeObraManual.Visible = false;
+                lblValorPecaManual.Visible = false;
+                txtValorMaoDeObraManual.Visible = false;
+                txtValorPecaManual.Visible = false;
+
+                CalcularServico();
+            }
         }
     }
 }
