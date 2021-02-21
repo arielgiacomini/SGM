@@ -120,6 +120,8 @@ namespace SGM.WindowsForms
                 txtClienteSelecionado.Text = cliente.NomeCliente.ToString();
                 txtValorTotalMaodeObra.Text = Convert.ToDecimal("0").ToString("C");
                 txtValorTotalPecas.Text = Convert.ToDecimal("0").ToString("C");
+                txtValorMaoDeObraManual.Text = Convert.ToDecimal("0").ToString("C");
+                txtValorPecaManual.Text = Convert.ToDecimal("0").ToString("C");
                 txtValorAdicional.Text = Convert.ToDecimal("0").ToString("C");
                 txtPercentualDesconto.Text = Convert.ToDecimal("0").ToString("P");
                 txtValorDesconto.Text = Convert.ToDecimal("0").ToString("C");
@@ -203,6 +205,8 @@ namespace SGM.WindowsForms
             txtClienteSelecionado.Text = Convert.ToString("SEM CLIENTE");
             txtValorTotalMaodeObra.Text = Convert.ToDecimal("0").ToString("C");
             txtValorTotalPecas.Text = Convert.ToDecimal("0").ToString("C");
+            txtValorMaoDeObraManual.Text = Convert.ToDecimal("0").ToString("C");
+            txtValorPecaManual.Text = Convert.ToDecimal("0").ToString("C");
             txtValorAdicional.Text = Convert.ToDecimal("0").ToString("C");
             txtPercentualDesconto.Text = Convert.ToDecimal("0").ToString("P");
             txtValorDesconto.Text = Convert.ToDecimal("0").ToString("C");
@@ -357,8 +361,10 @@ namespace SGM.WindowsForms
                     ClienteVeiculoId = Convert.ToInt32(txtClienteVeiculoId.Text),
                     ColaboradorId = 0,
                     Descricao = txtDescricao.Text,
-                    ValorMaodeObra = txtValorTotalMaodeObra.Text == "" ? 0 : Convert.ToDecimal(txtValorTotalMaodeObra.Text.Replace("R$ ", "")),
-                    ValorPeca = txtValorTotalPecas.Text == "" ? 0 : Convert.ToDecimal(txtValorTotalPecas.Text.Replace("R$ ", "")),
+                    ValorMaodeObra = txtValorTotalMaodeObra.Text == "" ? 0 : Convert.ToDecimal(txtValorTotalMaodeObra.Text.Replace("R$ ", ""))
+                                   + txtValorMaoDeObraManual.Text == "" ? 0 : Convert.ToDecimal(txtValorMaoDeObraManual.Text.Replace("R$ ", "")),
+                    ValorPeca = txtValorTotalPecas.Text == "" ? 0 : Convert.ToDecimal(txtValorTotalPecas.Text.Replace("R$ ", ""))
+                              + txtValorPecaManual.Text == "" ? 0 : Convert.ToDecimal(txtValorPecaManual.Text.Replace("R$ ", "")),
                     ValorAdicional = txtValorAdicional.Text == "R$ 0,00" ? 0 : Convert.ToDecimal(txtValorAdicional.Text.Replace("R$ ", "")),
                     PercentualDesconto = txtPercentualDesconto.Text == "0,00%" ? 0 : (Convert.ToDecimal(txtPercentualDesconto.Text.Replace("%", "")) / 100),
                     ValorDesconto = Convert.ToDecimal(txtValorDesconto.Text.Replace("R$ ", "")),
@@ -755,8 +761,8 @@ namespace SGM.WindowsForms
             decimal percentualDesconto = pd == 0 ? Util.TranslateStringEmDecimal(txtPercentualDesconto.Text, ehPercentual: true) : pd;
             decimal valorMaodeObra = vm == 0 ? Util.TranslateStringEmDecimal(txtValorTotalMaodeObra.Text) : vm;
             decimal valorPeca = vp == 0 ? Util.TranslateStringEmDecimal(txtValorTotalPecas.Text) : vp;
-            decimal valorMaodeObraManual = vmM == 0 ? Util.TranslateStringEmDecimal(txtValorMaoDeObraManual.Text) : vmM;
-            decimal valorPecaManual = vpM == 0 ? Util.TranslateStringEmDecimal(txtValorPecaManual.Text) : vpM;
+            decimal valorMaodeObraManual = vmM != 0 ? Util.TranslateStringEmDecimal(txtValorMaoDeObraManual.Text) : vmM;
+            decimal valorPecaManual = vpM != 0 ? Util.TranslateStringEmDecimal(txtValorPecaManual.Text) : vpM;
             decimal valorAdicional = va == 0 ? Util.TranslateStringEmDecimal(txtValorAdicional.Text) : va;
             decimal valorTotal = (valorMaodeObra + valorMaodeObraManual) + (valorPeca + valorPecaManual) + valorAdicional;
 

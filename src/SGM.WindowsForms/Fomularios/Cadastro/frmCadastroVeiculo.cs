@@ -1,6 +1,7 @@
 ﻿using SGM.ApplicationServices.Application.Interface;
 using SGM.Domain.Entities;
 using SGM.Domain.Enumeration;
+using SGM.Domain.Utils;
 using SGM.WindowsForms.IoC;
 using System;
 using System.Windows.Forms;
@@ -20,8 +21,9 @@ namespace SGM.WindowsForms
         public void LimpaTela()
         {
             txtVeiculoid.Clear();
-            txtMarca.Clear();
             txtModelo.Clear();
+            txtCodigoFipe.Clear();
+            cboMarcaVeiculo.SelectedIndex = -1;
         }
 
         private void FrmCadastroVeiculo_Load(object sender, EventArgs e)
@@ -31,6 +33,13 @@ namespace SGM.WindowsForms
 
         private void BtnInserir_Click(object sender, EventArgs e)
         {
+            if (cboMarcaVeiculo.DataSource == null)
+            {
+                cboMarcaVeiculo.DataSource = _veiculoApplication.GetMarcasByAll();
+                cboMarcaVeiculo.DisplayMember = "Marca";
+                cboMarcaVeiculo.ValueMember = "MarcaId";
+            }
+
             this.operacao = "inserir";
             this.DisponibilizarBotoesTela(EnumControleTelas.SalvarCancelarExcluir);
         }
@@ -46,10 +55,10 @@ namespace SGM.WindowsForms
         {
             try
             {
-                Veiculo veiculo = new Veiculo
+                Veiculo novoVeiculo = new Veiculo()
                 {
-                    CodigoFipe = 0,
-                    MarcaId = 0,
+                    CodigoFipe = (long)Util.TranslateStringEmDecimal(txtCodigoFipe.Text),
+                    MarcaId = Convert.ToInt32(cboMarcaVeiculo.SelectedValue),
                     Modelo = txtModelo.Text,
                     VeiculoAtivo = true,
                     DataCadastro = DateTime.Now
@@ -57,13 +66,13 @@ namespace SGM.WindowsForms
 
                 if (this.operacao == "inserir")
                 {
-                    _veiculoApplication.SalvarVeiculo(veiculo);
+                    _veiculoApplication.SalvarVeiculo(novoVeiculo);
                     MessageBox.Show("Cadastro inserido com sucesso!", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
-                    veiculo.VeiculoId = Convert.ToInt32(txtVeiculoid.Text);
-                    _veiculoApplication.AtualizarVeiculo(veiculo);
+                    novoVeiculo.VeiculoId = Convert.ToInt32(txtVeiculoid.Text);
+                    _veiculoApplication.AtualizarVeiculo(novoVeiculo);
 
                     MessageBox.Show("Cadastro alterado com sucesso!", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
@@ -114,9 +123,11 @@ namespace SGM.WindowsForms
                 var veiculo = _veiculoApplication.GetVeiculoByVeiculoId(c.codigo);
                 var marca = _veiculoApplication.GetMarcaByMarcaId(veiculo.MarcaId);
 
+
                 txtVeiculoid.Text = veiculo.VeiculoId.ToString();
-                txtMarca.Text = marca.Marca;
+                cboMarcaVeiculo.SelectedValue = marca.MarcaId;
                 txtModelo.Text = veiculo.Modelo;
+                txtCodigoFipe.Text = veiculo.CodigoFipe.ToString();
 
                 DisponibilizarBotoesTela(EnumControleTelas.SalvarCancelarExcluir);
             }

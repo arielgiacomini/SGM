@@ -306,11 +306,11 @@ namespace SGM.WindowsForms
             // 
             // txtPercentualDesconto
             // 
-            this.txtPercentualDesconto.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPercentualDesconto.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.txtPercentualDesconto.ForeColor = System.Drawing.Color.RoyalBlue;
             this.txtPercentualDesconto.Location = new System.Drawing.Point(633, 430);
             this.txtPercentualDesconto.Name = "txtPercentualDesconto";
-            this.txtPercentualDesconto.Size = new System.Drawing.Size(131, 22);
+            this.txtPercentualDesconto.Size = new System.Drawing.Size(131, 26);
             this.txtPercentualDesconto.TabIndex = 48;
             this.txtPercentualDesconto.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtPercentualDesconto.Enter += new System.EventHandler(this.TxtPercentualDesconto_Enter);
@@ -319,12 +319,12 @@ namespace SGM.WindowsForms
             // txtValorDesconto
             // 
             this.txtValorDesconto.Enabled = false;
-            this.txtValorDesconto.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtValorDesconto.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.txtValorDesconto.ForeColor = System.Drawing.Color.Red;
             this.txtValorDesconto.Location = new System.Drawing.Point(633, 461);
             this.txtValorDesconto.Name = "txtValorDesconto";
             this.txtValorDesconto.ReadOnly = true;
-            this.txtValorDesconto.Size = new System.Drawing.Size(131, 22);
+            this.txtValorDesconto.Size = new System.Drawing.Size(131, 26);
             this.txtValorDesconto.TabIndex = 20;
             this.txtValorDesconto.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
