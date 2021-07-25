@@ -97,14 +97,11 @@ C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\SGM.WindowsForms\bin\
 C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\SGM.WindowsForms\bin\Debug\System.Xml.XmlSerializer.dll
 C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\SGM.WindowsForms\bin\Debug\System.Xml.XPath.dll
 C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\SGM.WindowsForms\bin\Debug\System.Xml.XPath.XDocument.dll
-C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\SGM.WindowsForms\bin\Debug\Microsoft.AnalysisServices.AppLocal.Core.dll
-C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\SGM.WindowsForms\bin\Debug\Microsoft.AnalysisServices.AppLocal.dll
-C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\SGM.WindowsForms\bin\Debug\Microsoft.AnalysisServices.AppLocal.Tabular.dll
 C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\SGM.WindowsForms\bin\Debug\SGM.ApplicationServices.dll
 C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\SGM.WindowsForms\bin\Debug\SGM.Domain.dll
 C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\SGM.WindowsForms\bin\Debug\SGM.ApplicationServices.pdb
 C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\SGM.WindowsForms\bin\Debug\SGM.Domain.pdb
-C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\SGM.WindowsForms\obj\Debug\SGM.WindowsForms.csprojAssemblyReference.cache
+C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\SGM.WindowsForms\obj\Debug\SGM.WindowsForms.csproj.AssemblyReference.cache
 C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\SGM.WindowsForms\obj\Debug\SGM.WindowsForms.exe.config
 C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\SGM.WindowsForms\obj\Debug\SGM.WindowsForms.FrmCadastroCliente.resources
 C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\SGM.WindowsForms\obj\Debug\SGM.WindowsForms.FrmCadastroClienteVeiculo.resources
@@ -124,6 +121,7 @@ C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\SGM.WindowsForms\obj\
 C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\SGM.WindowsForms\obj\Debug\SGM.WindowsForms.FrmGerarServico.resources
 C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\SGM.WindowsForms\obj\Debug\SGM.WindowsForms.Fomularios.Login.FrmLogin.resources
 C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\SGM.WindowsForms\obj\Debug\SGM.WindowsForms.Fomularios.Modelo.FrmLoading.resources
+C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\SGM.WindowsForms\obj\Debug\SGM.WindowsForms.Fomularios.Modelo.frmMenusIntegrados.resources
 C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\SGM.WindowsForms\obj\Debug\SGM.WindowsForms.FrmModeloDeFormularioDeCadastro.resources
 C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\SGM.WindowsForms\obj\Debug\SGM.WindowsForms.FrmGerarServicoOuOrcamento.resources
 C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\SGM.WindowsForms\obj\Debug\SGM.WindowsForms.FrmPrincipal.resources
