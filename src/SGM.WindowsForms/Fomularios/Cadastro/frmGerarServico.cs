@@ -575,7 +575,7 @@ namespace SGM.WindowsForms
                     dgvMaodeObra.Columns[2].Width = 70;
                     dgvMaodeObra.Columns[2].DefaultCellStyle.Format = "C2";
                     dgvMaodeObra.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                    dgvMaodeObra.Columns[3].HeaderText = "OrcamentoMaoDeObraId";
+                    dgvMaodeObra.Columns[3].HeaderText = "ServicoMaodeObraId";
                     dgvMaodeObra.Columns[3].Width = 20;
                     dgvMaodeObra.Columns[3].Visible = false;
                 }
@@ -589,7 +589,7 @@ namespace SGM.WindowsForms
             if (e.RowIndex >= 0)
             {
                 int pecaId = Convert.ToInt32(dgvPeca.Rows[e.RowIndex].Cells[0].Value);
-                int servicoMaodeObraId = Convert.ToInt32(dgvPeca.Rows[e.RowIndex].Cells[3].Value);
+                int servicoPecaId = Convert.ToInt32(dgvPeca.Rows[e.RowIndex].Cells[3].Value);
 
                 DialogResult res = MessageBox.Show("Deseja realmente EXCLUIR este item?", "Pergunta", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
@@ -597,7 +597,7 @@ namespace SGM.WindowsForms
                 {
                     ServicoPeca servicoPeca = new ServicoPeca()
                     {
-                        Id = servicoMaodeObraId,
+                        Id = servicoPecaId,
                         ServicoId = Convert.ToInt32(txtServicoId.Text),
                         PecaId = pecaId
                     };
@@ -620,18 +620,18 @@ namespace SGM.WindowsForms
                         });
                     }
 
-                    dgvMaodeObra.DataSource = peca;
-                    dgvMaodeObra.Columns[0].HeaderText = "Código";
-                    dgvMaodeObra.Columns[0].Width = 50;
-                    dgvMaodeObra.Columns[1].HeaderText = "Mão de Obra";
-                    dgvMaodeObra.Columns[1].Width = 330;
-                    dgvMaodeObra.Columns[2].HeaderText = "Valor";
-                    dgvMaodeObra.Columns[2].Width = 70;
-                    dgvMaodeObra.Columns[2].DefaultCellStyle.Format = "C2";
-                    dgvMaodeObra.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                    dgvMaodeObra.Columns[3].HeaderText = "OrcamentoMaoDeObraId";
-                    dgvMaodeObra.Columns[3].Width = 20;
-                    dgvMaodeObra.Columns[3].Visible = false;
+                    dgvPeca.DataSource = peca;
+                    dgvPeca.Columns[0].HeaderText = "Código";
+                    dgvPeca.Columns[0].Width = 50;
+                    dgvPeca.Columns[1].HeaderText = "Mão de Obra";
+                    dgvPeca.Columns[1].Width = 330;
+                    dgvPeca.Columns[2].HeaderText = "Valor";
+                    dgvPeca.Columns[2].Width = 70;
+                    dgvPeca.Columns[2].DefaultCellStyle.Format = "C2";
+                    dgvPeca.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                    dgvPeca.Columns[3].HeaderText = "ServicoPecaId";
+                    dgvPeca.Columns[3].Width = 20;
+                    dgvPeca.Columns[3].Visible = false;
                 }
 
                 CalcularServico();

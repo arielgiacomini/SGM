@@ -216,6 +216,12 @@
     <Compile Include="Fomularios\Modelo\frmLoading.Designer.cs">
       <DependentUpon>frmLoading.cs</DependentUpon>
     </Compile>
+    <Compile Include="Fomularios\Modelo\frmMenusIntegrados.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Fomularios\Modelo\frmMenusIntegrados.Designer.cs">
+      <DependentUpon>frmMenusIntegrados.cs</DependentUpon>
+    </Compile>
     <Compile Include="Fomularios\Modelo\frmModeloDeFormularioDeCadastro.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -309,6 +315,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Fomularios\Modelo\frmLoading.resx">
       <DependentUpon>frmLoading.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Fomularios\Modelo\frmMenusIntegrados.resx">
+      <DependentUpon>frmMenusIntegrados.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Fomularios\Modelo\frmModeloDeFormularioDeCadastro.resx">
       <DependentUpon>frmModeloDeFormularioDeCadastro.cs</DependentUpon>
