@@ -40,7 +40,8 @@ namespace SGM.WindowsForms
         public string placaVeiculo = "";
         public string nomeCliente = "";
         public IList<OrcamentoMaodeObra> orcamentoMaoDeObraTemporaria = new List<OrcamentoMaodeObra>(); //TO DO: Utilizar o objeto temporário para as alimentações
-
+        public decimal valorMaoDeObraDigitadoTextBox = 0;
+        public decimal valorPecaDigitadoTextBox = 0;
 
         public void LimpaTela()
         {
@@ -638,18 +639,16 @@ namespace SGM.WindowsForms
 
         private void TxtValorTotalMaodeObra_Leave(object sender, EventArgs e)
         {
+            valorMaoDeObraDigitadoTextBox = Util.TranslateStringEmDecimal(txtValorTotalMaodeObra.Text);
             txtValorTotalMaodeObra.Text = Util.TranslateValorEmStringDinheiro(txtValorTotalMaodeObra.Text);
-
-            //CalcularDesconto();
 
             OrganizaTela();
         }
 
         private void TxtValorTotalPecas_Leave(object sender, EventArgs e)
         {
+            valorPecaDigitadoTextBox = Util.TranslateStringEmDecimal(txtValorTotalPecas.Text);
             txtValorTotalPecas.Text = Util.TranslateValorEmStringDinheiro(txtValorTotalPecas.Text);
-
-            //CalcularDesconto();
 
             OrganizaTela();
         }
@@ -658,15 +657,11 @@ namespace SGM.WindowsForms
         {
             txtValorAdicional.Text = Util.TranslateValorEmStringDinheiro(txtValorAdicional.Text);
 
-            //CalcularDesconto();
-
             OrganizaTela();
         }
 
         private void TxtPercentualDesconto_Leave(object sender, EventArgs e)
         {
-            //CalcularDesconto();
-
             OrganizaTela();
         }
 
@@ -698,8 +693,8 @@ namespace SGM.WindowsForms
             decimal tempValorMaodeObra = Util.TranslateStringEmDecimal(txtValorTotalMaodeObra.Text);
             var tempValorPeca = Util.TranslateStringEmDecimal(txtValorTotalPecas.Text);
 
-            var valorMaodeObra = DevolutivaValoresInGridView("MaoDeObra");
-            var valorPeca = DevolutivaValoresInGridView("Peca");
+            var valorMaodeObra = DevolutivaValoresInGridView(EnumTipoServico.ServicoMaoDeObra);
+            var valorPeca = DevolutivaValoresInGridView(EnumTipoServico.ServicoPeca);
             var valorAdicional = Util.TranslateStringEmDecimal(txtValorAdicional.Text);
             var percentualDesconto = Util.TranslateStringEmDecimal(txtPercentualDesconto.Text, true);
             var valorDesconto = Convert.ToDecimal(((valorMaodeObra + valorPeca + valorAdicional) * percentualDesconto));
@@ -713,34 +708,51 @@ namespace SGM.WindowsForms
             txtValorTotal.Text = valorTotal.ToString("C");
         }
 
-        private decimal DevolutivaValoresInGridView(string type)
+        private decimal DevolutivaValoresInGridView(EnumTipoServico tipoServico)
         {
             decimal valorFinal = 0;
 
-            if (type == "MaoDeObra")
+            if (tipoServico == EnumTipoServico.ServicoMaoDeObra)
             {
                 var valorTotaltxtValorTotalMaodeObra = Util.TranslateStringEmDecimal(txtValorTotalMaodeObra.Text);
-                var valorTotalGridView = Convert.ToDecimal(dgvMaodeObra.Rows.Cast<DataGridViewRow>().Sum(i => Convert.ToDecimal(i.Cells["Valor"].Value)));
+                var valorTotalGridViewMaoDeObra = Convert.ToDecimal(dgvMaodeObra.Rows.Cast<DataGridViewRow>().Sum(i => Convert.ToDecimal(i.Cells["Valor"].Value)));
 
-                if (valorTotaltxtValorTotalMaodeObra == valorTotalGridView)
+                if (valorTotaltxtValorTotalMaodeObra == valorTotalGridViewMaoDeObra)
                 {
-                    valorFinal = valorTotalGridView;
+                    valorFinal = valorTotalGridViewMaoDeObra;
                 }
                 else
                 {
                     if (valorTotaltxtValorTotalMaodeObra == 0)
                     {
-                        valorFinal = valorTotalGridView + ((valorTotaltxtValorTotalMaodeObra - valorTotalGridView) < 0 ? 0 : (valorTotaltxtValorTotalMaodeObra - valorTotalGridView));
+                        valorFinal = valorTotalGridViewMaoDeObra + ((valorTotaltxtValorTotalMaodeObra - valorTotalGridViewMaoDeObra) < 0 ? 0 : (valorTotaltxtValorTotalMaodeObra - valorTotalGridViewMaoDeObra));
                     }
                     else
                     {
-                        valorFinal = valorTotalGridView + (valorTotaltxtValorTotalMaodeObra);
+                        valorFinal = valorTotalGridViewMaoDeObra + valorMaoDeObraDigitadoTextBox;
                     }
                 }
             }
-            else if (type == "Peca")
+            else if (tipoServico == EnumTipoServico.ServicoPeca)
             {
-                valorFinal = Convert.ToDecimal(dgvPeca.Rows.Cast<DataGridViewRow>().Sum(i => Convert.ToDecimal(i.Cells["Valor"].Value)));
+                var valorTotaltxtValorTotalPeca = Util.TranslateStringEmDecimal(txtValorTotalPecas.Text);
+                var valorTotalGridViewPeca = Convert.ToDecimal(dgvPeca.Rows.Cast<DataGridViewRow>().Sum(i => Convert.ToDecimal(i.Cells["Valor"].Value)));
+
+                if (valorTotaltxtValorTotalPeca == valorTotalGridViewPeca)
+                {
+                    valorFinal = valorTotalGridViewPeca;
+                }
+                else
+                {
+                    if (valorTotaltxtValorTotalPeca == 0)
+                    {
+                        valorFinal = valorTotalGridViewPeca + ((valorTotaltxtValorTotalPeca - valorTotalGridViewPeca) < 0 ? 0 : (valorTotaltxtValorTotalPeca - valorTotalGridViewPeca));
+                    }
+                    else
+                    {
+                        valorFinal = valorTotalGridViewPeca + valorPecaDigitadoTextBox;
+                    }
+                }
             }
 
             return valorFinal;
