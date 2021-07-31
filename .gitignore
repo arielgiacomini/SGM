@@ -13,6 +13,8 @@
 /src/SGM.Domain/obj/Debug/netstandard2.0/.NETStandard,Version=v2.0.AssemblyAttributes.cs
 *.dll
 *.v2
+*.pdb
+/src/SGM.Domain/bin/Debug/netstandard2.0/SGM.Domain.pdb
 /arquivos/AtualizacaoVeiculos
 /arquivos/Tabelas
 /src/SGM.Domain/obj/Debug/netstandard2.0/SGM.Domain.csproj.FileListAbsolute.txt
@@ -24,3 +26,9 @@
 /src/SGM.WindowsForms/obj/Release/.NETFramework,Version=v4.6.1.AssemblyAttributes.cs
 /src/SGM.WindowsForms/obj/x86/Debug/.NETFramework,Version=v4.6.1.AssemblyAttributes.cs
 /src/SGM.WindowsForms/obj/x86/Release/.NETFramework,Version=v4.6.1.AssemblyAttributes.cs
+/packages/Newtonsoft.Json.13.0.1/lib/net45/Newtonsoft.Json.xml
+/packages/Newtonsoft.Json.13.0.1/lib/netstandard1.3/Newtonsoft.Json.xml
+/packages/Newtonsoft.Json.13.0.1/lib
+/packages/Newtonsoft.Json.13.0.1
+/UpgradeLog.htm
+/UpgradeLog2.htm

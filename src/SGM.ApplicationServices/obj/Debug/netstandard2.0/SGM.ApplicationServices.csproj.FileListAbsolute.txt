@@ -3,7 +3,7 @@ C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\SGM.ApplicationServic
 C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\SGM.ApplicationServices\bin\Debug\netstandard2.0\SGM.ApplicationServices.pdb
 C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\SGM.ApplicationServices\bin\Debug\netstandard2.0\SGM.Domain.dll
 C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\SGM.ApplicationServices\bin\Debug\netstandard2.0\SGM.Domain.pdb
-C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\SGM.ApplicationServices\obj\Debug\netstandard2.0\SGM.ApplicationServices.csprojAssemblyReference.cache
+C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\SGM.ApplicationServices\obj\Debug\netstandard2.0\SGM.ApplicationServices.csproj.AssemblyReference.cache
 C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\SGM.ApplicationServices\obj\Debug\netstandard2.0\SGM.ApplicationServices.AssemblyInfoInputs.cache
 C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\SGM.ApplicationServices\obj\Debug\netstandard2.0\SGM.ApplicationServices.AssemblyInfo.cs
 C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\SGM.ApplicationServices\obj\Debug\netstandard2.0\SGM.ApplicationServices.csproj.CoreCompileInputs.cache
