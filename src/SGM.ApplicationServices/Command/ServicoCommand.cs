@@ -5,6 +5,7 @@ using SGM.Domain.Entities;
 using System;
 using System.Net.Http;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace SGM.ApplicationServices.Command
 {
@@ -100,7 +101,7 @@ namespace SGM.ApplicationServices.Command
             }
         }
 
-        public void DeletarServicoPeca(ServicoPeca servicoPeca)
+        public async Task DeletarServicoPecaAsync(ServicoPeca servicoPeca)
         {
             using (var client = new HttpClient())
             {
@@ -111,8 +112,8 @@ namespace SGM.ApplicationServices.Command
                     Content = new StringContent(JsonConvert.SerializeObject(servicoPeca), Encoding.UTF8, "application/json")
                 };
 
-                var result = client.SendAsync(request);
-                if (!result.Result.IsSuccessStatusCode)
+                var result = await client.SendAsync(request);
+                if (!result.IsSuccessStatusCode)
                 {
                     throw new ApplicationException($"Problema ao DELETAR serviço-peca. ServicoId: {servicoPeca.ServicoId}");
                 }

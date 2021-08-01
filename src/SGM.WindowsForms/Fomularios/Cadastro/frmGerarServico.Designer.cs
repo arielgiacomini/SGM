@@ -117,22 +117,31 @@
             // 
             // btnCancelar
             // 
+            this.btnCancelar.TabIndex = 32;
             this.btnCancelar.Click += new System.EventHandler(this.BtnCancelar_Click);
             // 
             // btnLocalizar
             // 
+            this.btnLocalizar.TabIndex = 30;
             this.btnLocalizar.Click += new System.EventHandler(this.BtnLocalizar_Click);
             // 
             // btnSalvar
             // 
+            this.btnSalvar.TabIndex = 31;
             this.btnSalvar.Click += new System.EventHandler(this.BtnSalvar_Click);
+            // 
+            // btnExcluir
+            // 
+            this.btnExcluir.TabIndex = 29;
             // 
             // btnAlterar
             // 
+            this.btnAlterar.TabIndex = 28;
             this.btnAlterar.Click += new System.EventHandler(this.BtnAlterar_Click);
             // 
             // btnInserir
             // 
+            this.btnInserir.TabIndex = 27;
             this.btnInserir.Click += new System.EventHandler(this.BtnInserir_Click);
             // 
             // lblQtdRegistrosPecas
@@ -142,7 +151,7 @@
             this.lblQtdRegistrosPecas.Location = new System.Drawing.Point(318, 461);
             this.lblQtdRegistrosPecas.Name = "lblQtdRegistrosPecas";
             this.lblQtdRegistrosPecas.Size = new System.Drawing.Size(99, 12);
-            this.lblQtdRegistrosPecas.TabIndex = 73;
+            this.lblQtdRegistrosPecas.TabIndex = 33;
             this.lblQtdRegistrosPecas.Text = "Quantidade Registros: ";
             // 
             // label2
@@ -152,7 +161,7 @@
             this.label2.Location = new System.Drawing.Point(524, 347);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(108, 16);
-            this.label2.TabIndex = 72;
+            this.label2.TabIndex = 15;
             this.label2.Text = "Produtos/Peças:";
             this.label2.TextAlign = System.Drawing.ContentAlignment.BottomRight;
             // 
@@ -163,7 +172,7 @@
             this.lblValorMaoDeObraTexto.Location = new System.Drawing.Point(538, 321);
             this.lblValorMaoDeObraTexto.Name = "lblValorMaoDeObraTexto";
             this.lblValorMaoDeObraTexto.Size = new System.Drawing.Size(95, 16);
-            this.lblValorMaoDeObraTexto.TabIndex = 71;
+            this.lblValorMaoDeObraTexto.TabIndex = 13;
             this.lblValorMaoDeObraTexto.Text = "Mão-de-Obra: ";
             this.lblValorMaoDeObraTexto.TextAlign = System.Drawing.ContentAlignment.BottomRight;
             // 
@@ -172,8 +181,9 @@
             this.txtValorTotalMaodeObra.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtValorTotalMaodeObra.Location = new System.Drawing.Point(634, 318);
             this.txtValorTotalMaodeObra.Name = "txtValorTotalMaodeObra";
-            this.txtValorTotalMaodeObra.Size = new System.Drawing.Size(129, 22);
-            this.txtValorTotalMaodeObra.TabIndex = 44;
+            this.txtValorTotalMaodeObra.Size = new System.Drawing.Size(133, 22);
+            this.txtValorTotalMaodeObra.TabIndex = 14;
+            this.txtValorTotalMaodeObra.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtValorTotalMaodeObra.Enter += new System.EventHandler(this.TxtValorTotalMaodeObra_Enter);
             this.txtValorTotalMaodeObra.Leave += new System.EventHandler(this.TxtValorTotalMaodeObra_Leave);
             // 
@@ -182,8 +192,9 @@
             this.txtValorTotalPecas.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtValorTotalPecas.Location = new System.Drawing.Point(634, 344);
             this.txtValorTotalPecas.Name = "txtValorTotalPecas";
-            this.txtValorTotalPecas.Size = new System.Drawing.Size(129, 22);
-            this.txtValorTotalPecas.TabIndex = 45;
+            this.txtValorTotalPecas.Size = new System.Drawing.Size(133, 22);
+            this.txtValorTotalPecas.TabIndex = 16;
+            this.txtValorTotalPecas.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtValorTotalPecas.Enter += new System.EventHandler(this.TxtValorTotalPecas_Enter);
             this.txtValorTotalPecas.Leave += new System.EventHandler(this.TxtValorTotalPecas_Leave);
             // 
@@ -194,7 +205,7 @@
             this.lblQtdRegistrosMaoDeObra.Location = new System.Drawing.Point(310, 284);
             this.lblQtdRegistrosMaoDeObra.Name = "lblQtdRegistrosMaoDeObra";
             this.lblQtdRegistrosMaoDeObra.Size = new System.Drawing.Size(99, 12);
-            this.lblQtdRegistrosMaoDeObra.TabIndex = 68;
+            this.lblQtdRegistrosMaoDeObra.TabIndex = 34;
             this.lblQtdRegistrosMaoDeObra.Text = "Quantidade Registros: ";
             // 
             // lblInformativoMaoDeObra
@@ -203,7 +214,7 @@
             this.lblInformativoMaoDeObra.Location = new System.Drawing.Point(142, 142);
             this.lblInformativoMaoDeObra.Name = "lblInformativoMaoDeObra";
             this.lblInformativoMaoDeObra.Size = new System.Drawing.Size(290, 13);
-            this.lblInformativoMaoDeObra.TabIndex = 65;
+            this.lblInformativoMaoDeObra.TabIndex = 12;
             this.lblInformativoMaoDeObra.Text = "Ao clicar no botão, selecione o registro e clique duas vezes.";
             // 
             // btnAdicionarMaodeObra
@@ -211,7 +222,7 @@
             this.btnAdicionarMaodeObra.Location = new System.Drawing.Point(14, 134);
             this.btnAdicionarMaodeObra.Name = "btnAdicionarMaodeObra";
             this.btnAdicionarMaodeObra.Size = new System.Drawing.Size(122, 28);
-            this.btnAdicionarMaodeObra.TabIndex = 64;
+            this.btnAdicionarMaodeObra.TabIndex = 11;
             this.btnAdicionarMaodeObra.Text = "Lista de Mao-de-Obras";
             this.btnAdicionarMaodeObra.UseVisualStyleBackColor = true;
             this.btnAdicionarMaodeObra.Click += new System.EventHandler(this.BtnAdicionarMaodeObra_Click);
@@ -255,8 +266,9 @@
             this.txtValorTotal.Location = new System.Drawing.Point(634, 453);
             this.txtValorTotal.Name = "txtValorTotal";
             this.txtValorTotal.ReadOnly = true;
-            this.txtValorTotal.Size = new System.Drawing.Size(129, 29);
-            this.txtValorTotal.TabIndex = 59;
+            this.txtValorTotal.Size = new System.Drawing.Size(133, 29);
+            this.txtValorTotal.TabIndex = 24;
+            this.txtValorTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtValorDesconto
             // 
@@ -266,8 +278,9 @@
             this.txtValorDesconto.Location = new System.Drawing.Point(634, 422);
             this.txtValorDesconto.Name = "txtValorDesconto";
             this.txtValorDesconto.ReadOnly = true;
-            this.txtValorDesconto.Size = new System.Drawing.Size(129, 22);
-            this.txtValorDesconto.TabIndex = 58;
+            this.txtValorDesconto.Size = new System.Drawing.Size(133, 22);
+            this.txtValorDesconto.TabIndex = 22;
+            this.txtValorDesconto.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtPercentualDesconto
             // 
@@ -275,8 +288,9 @@
             this.txtPercentualDesconto.ForeColor = System.Drawing.Color.RoyalBlue;
             this.txtPercentualDesconto.Location = new System.Drawing.Point(634, 396);
             this.txtPercentualDesconto.Name = "txtPercentualDesconto";
-            this.txtPercentualDesconto.Size = new System.Drawing.Size(129, 22);
-            this.txtPercentualDesconto.TabIndex = 47;
+            this.txtPercentualDesconto.Size = new System.Drawing.Size(133, 22);
+            this.txtPercentualDesconto.TabIndex = 20;
+            this.txtPercentualDesconto.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtPercentualDesconto.Enter += new System.EventHandler(this.TxtPercentualDesconto_Enter);
             this.txtPercentualDesconto.Leave += new System.EventHandler(this.TxtPercentualDesconto_Leave);
             // 
@@ -285,8 +299,9 @@
             this.txtValorAdicional.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtValorAdicional.Location = new System.Drawing.Point(634, 370);
             this.txtValorAdicional.Name = "txtValorAdicional";
-            this.txtValorAdicional.Size = new System.Drawing.Size(129, 22);
-            this.txtValorAdicional.TabIndex = 46;
+            this.txtValorAdicional.Size = new System.Drawing.Size(133, 22);
+            this.txtValorAdicional.TabIndex = 18;
+            this.txtValorAdicional.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtValorAdicional.Enter += new System.EventHandler(this.TxtValorAdicional_Enter);
             this.txtValorAdicional.Leave += new System.EventHandler(this.TxtValorAdicional_Leave);
             // 
@@ -297,7 +312,7 @@
             this.lblValorTotal.Location = new System.Drawing.Point(527, 456);
             this.lblValorTotal.Name = "lblValorTotal";
             this.lblValorTotal.Size = new System.Drawing.Size(101, 20);
-            this.lblValorTotal.TabIndex = 55;
+            this.lblValorTotal.TabIndex = 23;
             this.lblValorTotal.Text = "Valor Total:";
             this.lblValorTotal.TextAlign = System.Drawing.ContentAlignment.BottomRight;
             // 
@@ -309,7 +324,7 @@
             this.lblValorDesconto.Location = new System.Drawing.Point(528, 425);
             this.lblValorDesconto.Name = "lblValorDesconto";
             this.lblValorDesconto.Size = new System.Drawing.Size(104, 16);
-            this.lblValorDesconto.TabIndex = 54;
+            this.lblValorDesconto.TabIndex = 21;
             this.lblValorDesconto.Text = "Valor Desconto:";
             this.lblValorDesconto.TextAlign = System.Drawing.ContentAlignment.BottomRight;
             // 
@@ -321,7 +336,7 @@
             this.lblPercentualDesconto.Location = new System.Drawing.Point(527, 399);
             this.lblPercentualDesconto.Name = "lblPercentualDesconto";
             this.lblPercentualDesconto.Size = new System.Drawing.Size(103, 16);
-            this.lblPercentualDesconto.TabIndex = 53;
+            this.lblPercentualDesconto.TabIndex = 19;
             this.lblPercentualDesconto.Text = "% de Desconto:";
             this.lblPercentualDesconto.TextAlign = System.Drawing.ContentAlignment.BottomRight;
             // 
@@ -332,7 +347,7 @@
             this.lblValorAdicional.Location = new System.Drawing.Point(527, 373);
             this.lblValorAdicional.Name = "lblValorAdicional";
             this.lblValorAdicional.Size = new System.Drawing.Size(102, 16);
-            this.lblValorAdicional.TabIndex = 52;
+            this.lblValorAdicional.TabIndex = 17;
             this.lblValorAdicional.Text = "Valor Adicional:";
             this.lblValorAdicional.TextAlign = System.Drawing.ContentAlignment.BottomRight;
             // 
@@ -342,7 +357,7 @@
             this.txtDescricao.Multiline = true;
             this.txtDescricao.Name = "txtDescricao";
             this.txtDescricao.Size = new System.Drawing.Size(674, 38);
-            this.txtDescricao.TabIndex = 48;
+            this.txtDescricao.TabIndex = 25;
             // 
             // lblDescricao
             // 
@@ -350,7 +365,7 @@
             this.lblDescricao.Location = new System.Drawing.Point(11, 499);
             this.lblDescricao.Name = "lblDescricao";
             this.lblDescricao.Size = new System.Drawing.Size(73, 13);
-            this.lblDescricao.TabIndex = 50;
+            this.lblDescricao.TabIndex = 26;
             this.lblDescricao.Text = "Observações:";
             // 
             // txtClienteId
@@ -360,7 +375,7 @@
             this.txtClienteId.Name = "txtClienteId";
             this.txtClienteId.ReadOnly = true;
             this.txtClienteId.Size = new System.Drawing.Size(49, 20);
-            this.txtClienteId.TabIndex = 49;
+            this.txtClienteId.TabIndex = 6;
             // 
             // lblClienteSelecionado
             // 
@@ -368,7 +383,7 @@
             this.lblClienteSelecionado.Location = new System.Drawing.Point(20, 94);
             this.lblClienteSelecionado.Name = "lblClienteSelecionado";
             this.lblClienteSelecionado.Size = new System.Drawing.Size(104, 13);
-            this.lblClienteSelecionado.TabIndex = 48;
+            this.lblClienteSelecionado.TabIndex = 4;
             this.lblClienteSelecionado.Text = "Cliente Selecionado:";
             // 
             // txtClienteSelecionado
@@ -378,7 +393,7 @@
             this.txtClienteSelecionado.Name = "txtClienteSelecionado";
             this.txtClienteSelecionado.ReadOnly = true;
             this.txtClienteSelecionado.Size = new System.Drawing.Size(416, 20);
-            this.txtClienteSelecionado.TabIndex = 47;
+            this.txtClienteSelecionado.TabIndex = 5;
             // 
             // dgvCliente
             // 
@@ -402,7 +417,7 @@
             this.btnConsultaCliente.Location = new System.Drawing.Point(565, 5);
             this.btnConsultaCliente.Name = "btnConsultaCliente";
             this.btnConsultaCliente.Size = new System.Drawing.Size(199, 26);
-            this.btnConsultaCliente.TabIndex = 45;
+            this.btnConsultaCliente.TabIndex = 3;
             this.btnConsultaCliente.Text = "Buscar Cliente";
             this.btnConsultaCliente.UseVisualStyleBackColor = true;
             this.btnConsultaCliente.Click += new System.EventHandler(this.BtnConsultaCliente_Click);
@@ -413,7 +428,7 @@
             this.lblCliente.Location = new System.Drawing.Point(20, 12);
             this.lblCliente.Name = "lblCliente";
             this.lblCliente.Size = new System.Drawing.Size(186, 13);
-            this.lblCliente.TabIndex = 44;
+            this.lblCliente.TabIndex = 1;
             this.lblCliente.Text = "Nome, Apelido ou PLACA do Veículo:";
             // 
             // txtConsultaCliente
@@ -421,7 +436,7 @@
             this.txtConsultaCliente.Location = new System.Drawing.Point(209, 9);
             this.txtConsultaCliente.Name = "txtConsultaCliente";
             this.txtConsultaCliente.Size = new System.Drawing.Size(350, 20);
-            this.txtConsultaCliente.TabIndex = 43;
+            this.txtConsultaCliente.TabIndex = 2;
             // 
             // txtServicoId
             // 
@@ -430,7 +445,7 @@
             this.txtServicoId.Name = "txtServicoId";
             this.txtServicoId.ReadOnly = true;
             this.txtServicoId.Size = new System.Drawing.Size(44, 20);
-            this.txtServicoId.TabIndex = 42;
+            this.txtServicoId.TabIndex = 10;
             // 
             // lblOrcamentoId
             // 
@@ -438,7 +453,7 @@
             this.lblOrcamentoId.Location = new System.Drawing.Point(621, 120);
             this.lblOrcamentoId.Name = "lblOrcamentoId";
             this.lblOrcamentoId.Size = new System.Drawing.Size(97, 13);
-            this.lblOrcamentoId.TabIndex = 41;
+            this.lblOrcamentoId.TabIndex = 9;
             this.lblOrcamentoId.Text = "Código do Serviço:";
             // 
             // dgvMaodeObra
@@ -484,7 +499,7 @@
             this.txtClienteVeiculoId.Name = "txtClienteVeiculoId";
             this.txtClienteVeiculoId.ReadOnly = true;
             this.txtClienteVeiculoId.Size = new System.Drawing.Size(44, 20);
-            this.txtClienteVeiculoId.TabIndex = 76;
+            this.txtClienteVeiculoId.TabIndex = 8;
             // 
             // lblClienteVeiculoId
             // 
@@ -492,7 +507,7 @@
             this.lblClienteVeiculoId.Location = new System.Drawing.Point(596, 94);
             this.lblClienteVeiculoId.Name = "lblClienteVeiculoId";
             this.lblClienteVeiculoId.Size = new System.Drawing.Size(122, 13);
-            this.lblClienteVeiculoId.TabIndex = 75;
+            this.lblClienteVeiculoId.TabIndex = 7;
             this.lblClienteVeiculoId.Text = "Id do Veiculo do Cliente:";
             // 
             // FrmGerarServico

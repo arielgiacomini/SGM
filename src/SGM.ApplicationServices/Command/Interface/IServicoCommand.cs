@@ -1,4 +1,5 @@
 ﻿using SGM.Domain.Entities;
+using System.Threading.Tasks;
 
 namespace SGM.ApplicationServices.Command.Interface
 {
@@ -6,7 +7,7 @@ namespace SGM.ApplicationServices.Command.Interface
     {
         void AtualizarServico(Servico servico);
         void DeletarServicoMaodeObra(ServicoMaodeObra servicoMaodeObra);
-        void DeletarServicoPeca(ServicoPeca servicoPeca);
+        Task DeletarServicoPecaAsync(ServicoPeca servicoPeca);
         int SalvarServico(Servico servico);
         int SalvarServicoMaodeObra(ServicoMaodeObra servicoMaodeObra);
         int SalvarServicoPeca(ServicoPeca servicoPeca);
