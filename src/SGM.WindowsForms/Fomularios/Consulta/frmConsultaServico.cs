@@ -51,7 +51,7 @@ namespace SGM.WindowsForms
                     NomeCliente = cliente.NomeCliente,
                     MarcaModeloVeiculo = marca.Marca + " / " + veiculo.Modelo,
                     Placa = clienteVeiculo.PlacaVeiculo,
-                    Status = TranslateStatusServico(servico.Status),
+                    Status = StatusServico.TranslateStatusServico(servico.Status),
                     ValorTotal = servico.ValorTotal,
                     ValorAdicional = servico.ValorAdicional,
                     PercentualDesconto = servico.PercentualDesconto,
@@ -81,7 +81,7 @@ namespace SGM.WindowsForms
                         NomeCliente = cliente.NomeCliente,
                         MarcaModeloVeiculo = marca.Marca + " / " + veiculo.Modelo,
                         Placa = clienteVeiculo.PlacaVeiculo,
-                        Status = TranslateStatusServico(servico.Status),
+                        Status = StatusServico.TranslateStatusServico(servico.Status),
                         ValorTotal = servico.ValorTotal,
                         ValorAdicional = servico.ValorAdicional,
                         PercentualDesconto = servico.PercentualDesconto,
@@ -137,42 +137,11 @@ namespace SGM.WindowsForms
         {
             if (e.RowIndex >= 0)
             {
-                this.servicoId = Convert.ToInt32(dgvServicoHistoricoClienteVeiculo.Rows[e.RowIndex].Cells[0].Value == null ? 0 : dgvServicoHistoricoClienteVeiculo.Rows[e.RowIndex].Cells[0].Value);
-                this.clienteId = Convert.ToInt32(dgvServicoHistoricoClienteVeiculo.Rows[e.RowIndex].Cells[1].Value);
-                this.placaVeiculo = Convert.ToString(dgvServicoHistoricoClienteVeiculo.Rows[e.RowIndex].Cells[4].Value);
-                this.Close();
+                this.servicoId = Convert.ToInt32(dgvServicoHistoricoClienteVeiculo.Rows[e.RowIndex].Cells[0].Value ?? 0);
 
                 FrmDetalhesServicoGerado formDetalhesServicoGerado = FormResolve.Resolve<FrmDetalhesServicoGerado>();
                 formDetalhesServicoGerado.servicoId = servicoId;
                 formDetalhesServicoGerado.ShowDialog();
-            }
-        }
-
-        private string TranslateStatusServico(int statusServico)
-        {
-            if (statusServico == (int)EnumStatusServico.IniciadoPendente)
-            {
-                return EnumStatusOrcamento.IniciadoPendente.ToString();
-            }
-            else if (statusServico == (int)EnumStatusOrcamento.Expirado)
-            {
-                return EnumStatusOrcamento.Expirado.ToString();
-            }
-            else if (statusServico == (int)EnumStatusOrcamento.Desistido)
-            {
-                return EnumStatusOrcamento.Desistido.ToString();
-            }
-            else if (statusServico == (int)EnumStatusOrcamento.ConcluidoSemGerarServico)
-            {
-                return EnumStatusOrcamento.ConcluidoSemGerarServico.ToString();
-            }
-            else if (statusServico == (int)EnumStatusOrcamento.GerouServico)
-            {
-                return EnumStatusOrcamento.GerouServico.ToString();
-            }
-            else
-            {
-                return "";
             }
         }
 
@@ -182,7 +151,7 @@ namespace SGM.WindowsForms
             dgvServicoHistoricoClienteVeiculo.Columns[0].HeaderText = "Código";
             dgvServicoHistoricoClienteVeiculo.Columns[0].Width = 50;
             dgvServicoHistoricoClienteVeiculo.Columns[1].HeaderText = "Status";
-            dgvServicoHistoricoClienteVeiculo.Columns[1].Width = 80;
+            dgvServicoHistoricoClienteVeiculo.Columns[1].Width = 165;
             dgvServicoHistoricoClienteVeiculo.Columns[2].HeaderText = "Cliente";
             dgvServicoHistoricoClienteVeiculo.Columns[2].Width = 150;
             dgvServicoHistoricoClienteVeiculo.Columns[3].HeaderText = "Veiculo";
