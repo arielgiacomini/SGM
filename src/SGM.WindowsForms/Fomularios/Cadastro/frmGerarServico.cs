@@ -211,7 +211,7 @@ namespace SGM.WindowsForms
             {
                 ClienteVeiculoId = Convert.ToInt32(txtClienteVeiculoId.Text),
                 Descricao = txtDescricao.Text,
-                Status = (int)EnumStatusOrcamento.IniciadoPendente,
+                Status = (int)EnumStatusServico.IniciadoPendente,
                 DataCadastro = DateTime.Now,
                 DataAlteracao = null,
                 Ativo = true,
@@ -328,7 +328,7 @@ namespace SGM.WindowsForms
                     dgvPeca.Columns[2].Width = 70;
                     dgvPeca.Columns[2].DefaultCellStyle.Format = "C2";
                     dgvPeca.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                    dgvPeca.Columns[3].HeaderText = "OrcamentoPecaId";
+                    dgvPeca.Columns[3].HeaderText = "ServicoPecaId";
                     dgvPeca.Columns[3].Width = 20;
                     dgvPeca.Columns[3].Visible = false;
                 }
@@ -355,7 +355,7 @@ namespace SGM.WindowsForms
                     PercentualDesconto = txtValorAdicional.Text == "R$ 0,00" ? 0 : (Convert.ToDecimal(txtPercentualDesconto.Text.Replace("%", "")) / 100),
                     ValorDesconto = Convert.ToDecimal(txtValorDesconto.Text.Replace("R$ ", "")),
                     ValorTotal = Convert.ToDecimal(txtValorTotal.Text.Replace("R$ ", "")),
-                    Status = (int)EnumStatusOrcamento.ConcluidoSemGerarServico,
+                    Status = (int)EnumStatusServico.GerouServico,
                     Ativo = true,
                     DataCadastro = servicoSalvo.DataCadastro,
                     DataAlteracao = DateTime.Now,
@@ -555,7 +555,7 @@ namespace SGM.WindowsForms
                     dgvMaodeObra.Columns[2].Width = 70;
                     dgvMaodeObra.Columns[2].DefaultCellStyle.Format = "C2";
                     dgvMaodeObra.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                    dgvMaodeObra.Columns[3].HeaderText = "OrcamentoMaoDeObraId";
+                    dgvMaodeObra.Columns[3].HeaderText = "ServicoMaoDeObraId";
                     dgvMaodeObra.Columns[3].Width = 20;
                     dgvMaodeObra.Columns[3].Visible = false;
                 }
