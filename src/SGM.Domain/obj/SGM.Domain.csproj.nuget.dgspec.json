@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\RepositorioDeClones\\arielgiacomini\\SGM-WindowsForms\\src\\SGM.Domain\\SGM.Domain.csproj": {}
+    "C:\\RepositorioDeClones\\arielgiacomini\\SGM\\src\\SGM.Domain\\SGM.Domain.csproj": {}
   },
   "projects": {
-    "C:\\RepositorioDeClones\\arielgiacomini\\SGM-WindowsForms\\src\\SGM.Domain\\SGM.Domain.csproj": {
+    "C:\\RepositorioDeClones\\arielgiacomini\\SGM\\src\\SGM.Domain\\SGM.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\RepositorioDeClones\\arielgiacomini\\SGM-WindowsForms\\src\\SGM.Domain\\SGM.Domain.csproj",
+        "projectUniqueName": "C:\\RepositorioDeClones\\arielgiacomini\\SGM\\src\\SGM.Domain\\SGM.Domain.csproj",
         "projectName": "SGM.Domain",
-        "projectPath": "C:\\RepositorioDeClones\\arielgiacomini\\SGM-WindowsForms\\src\\SGM.Domain\\SGM.Domain.csproj",
+        "projectPath": "C:\\RepositorioDeClones\\arielgiacomini\\SGM\\src\\SGM.Domain\\SGM.Domain.csproj",
         "packagesPath": "C:\\Users\\ariel\\.nuget\\packages\\",
-        "outputPath": "C:\\RepositorioDeClones\\arielgiacomini\\SGM-WindowsForms\\src\\SGM.Domain\\obj\\",
+        "outputPath": "C:\\RepositorioDeClones\\arielgiacomini\\SGM\\src\\SGM.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ariel\\AppData\\Roaming\\NuGet\\NuGet.Config",
