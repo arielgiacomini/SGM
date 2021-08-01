@@ -28,15 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.lblVeiculoId = new System.Windows.Forms.Label();
+            this.lblCodigo = new System.Windows.Forms.Label();
+            this.lblMarca = new System.Windows.Forms.Label();
             this.lblModelo = new System.Windows.Forms.Label();
             this.txtVeiculoid = new System.Windows.Forms.TextBox();
+            this.txtMarca = new System.Windows.Forms.TextBox();
             this.txtModelo = new System.Windows.Forms.TextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.cboMarcaVeiculo = new System.Windows.Forms.ComboBox();
-            this.lblMarca = new System.Windows.Forms.Label();
-            this.lblCodigoFipe = new System.Windows.Forms.Label();
-            this.txtCodigoFipe = new System.Windows.Forms.TextBox();
             this.pnCadastro.SuspendLayout();
             this.pnBotoes.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -44,15 +42,13 @@
             // 
             // pnCadastro
             // 
-            this.pnCadastro.Controls.Add(this.txtCodigoFipe);
-            this.pnCadastro.Controls.Add(this.lblCodigoFipe);
-            this.pnCadastro.Controls.Add(this.cboMarcaVeiculo);
-            this.pnCadastro.Controls.Add(this.lblMarca);
             this.pnCadastro.Controls.Add(this.pictureBox1);
             this.pnCadastro.Controls.Add(this.txtModelo);
+            this.pnCadastro.Controls.Add(this.txtMarca);
             this.pnCadastro.Controls.Add(this.txtVeiculoid);
             this.pnCadastro.Controls.Add(this.lblModelo);
-            this.pnCadastro.Controls.Add(this.lblVeiculoId);
+            this.pnCadastro.Controls.Add(this.lblMarca);
+            this.pnCadastro.Controls.Add(this.lblCodigo);
             // 
             // btnCancelar
             // 
@@ -78,87 +74,64 @@
             // 
             this.btnInserir.Click += new System.EventHandler(this.BtnInserir_Click);
             // 
-            // lblVeiculoId
+            // lblCodigo
             // 
-            this.lblVeiculoId.AutoSize = true;
-            this.lblVeiculoId.Font = new System.Drawing.Font("Arial Narrow", 11.25F);
-            this.lblVeiculoId.Location = new System.Drawing.Point(24, 25);
-            this.lblVeiculoId.Name = "lblVeiculoId";
-            this.lblVeiculoId.Size = new System.Drawing.Size(49, 20);
-            this.lblVeiculoId.TabIndex = 0;
-            this.lblVeiculoId.Text = "Código";
+            this.lblCodigo.AutoSize = true;
+            this.lblCodigo.Location = new System.Drawing.Point(25, 25);
+            this.lblCodigo.Name = "lblCodigo";
+            this.lblCodigo.Size = new System.Drawing.Size(40, 13);
+            this.lblCodigo.TabIndex = 0;
+            this.lblCodigo.Text = "Código";
+            // 
+            // lblMarca
+            // 
+            this.lblMarca.AutoSize = true;
+            this.lblMarca.Location = new System.Drawing.Point(25, 76);
+            this.lblMarca.Name = "lblMarca";
+            this.lblMarca.Size = new System.Drawing.Size(37, 13);
+            this.lblMarca.TabIndex = 1;
+            this.lblMarca.Text = "Marca";
             // 
             // lblModelo
             // 
             this.lblModelo.AutoSize = true;
-            this.lblModelo.Font = new System.Drawing.Font("Arial Narrow", 11.25F);
-            this.lblModelo.Location = new System.Drawing.Point(25, 127);
+            this.lblModelo.Location = new System.Drawing.Point(25, 126);
             this.lblModelo.Name = "lblModelo";
-            this.lblModelo.Size = new System.Drawing.Size(54, 20);
+            this.lblModelo.Size = new System.Drawing.Size(42, 13);
             this.lblModelo.TabIndex = 2;
-            this.lblModelo.Text = "Modelo:";
+            this.lblModelo.Text = "Modelo";
             // 
             // txtVeiculoid
             // 
             this.txtVeiculoid.Enabled = false;
-            this.txtVeiculoid.Location = new System.Drawing.Point(80, 25);
+            this.txtVeiculoid.Location = new System.Drawing.Point(28, 41);
             this.txtVeiculoid.Name = "txtVeiculoid";
-            this.txtVeiculoid.Size = new System.Drawing.Size(119, 20);
+            this.txtVeiculoid.Size = new System.Drawing.Size(100, 20);
             this.txtVeiculoid.TabIndex = 3;
+            // 
+            // txtMarca
+            // 
+            this.txtMarca.Location = new System.Drawing.Point(28, 92);
+            this.txtMarca.Name = "txtMarca";
+            this.txtMarca.Size = new System.Drawing.Size(701, 20);
+            this.txtMarca.TabIndex = 4;
             // 
             // txtModelo
             // 
-            this.txtModelo.Location = new System.Drawing.Point(80, 127);
+            this.txtModelo.Location = new System.Drawing.Point(28, 151);
             this.txtModelo.Name = "txtModelo";
-            this.txtModelo.Size = new System.Drawing.Size(644, 20);
+            this.txtModelo.Size = new System.Drawing.Size(701, 20);
             this.txtModelo.TabIndex = 5;
             // 
             // pictureBox1
             // 
             this.pictureBox1.Image = global::SGM.WindowsForms.Properties.Resources.LogotipoLoquinho;
-            this.pictureBox1.Location = new System.Drawing.Point(378, 227);
+            this.pictureBox1.Location = new System.Drawing.Point(358, 239);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(320, 112);
+            this.pictureBox1.Size = new System.Drawing.Size(361, 143);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 34;
             this.pictureBox1.TabStop = false;
-            // 
-            // cboMarcaVeiculo
-            // 
-            this.cboMarcaVeiculo.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.cboMarcaVeiculo.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cboMarcaVeiculo.FormattingEnabled = true;
-            this.cboMarcaVeiculo.Location = new System.Drawing.Point(80, 74);
-            this.cboMarcaVeiculo.Name = "cboMarcaVeiculo";
-            this.cboMarcaVeiculo.Size = new System.Drawing.Size(455, 21);
-            this.cboMarcaVeiculo.TabIndex = 36;
-            // 
-            // lblMarca
-            // 
-            this.lblMarca.AutoSize = true;
-            this.lblMarca.Font = new System.Drawing.Font("Arial Narrow", 11.25F);
-            this.lblMarca.Location = new System.Drawing.Point(24, 75);
-            this.lblMarca.Name = "lblMarca";
-            this.lblMarca.Size = new System.Drawing.Size(48, 20);
-            this.lblMarca.TabIndex = 37;
-            this.lblMarca.Text = "Marca:";
-            // 
-            // lblCodigoFipe
-            // 
-            this.lblCodigoFipe.AutoSize = true;
-            this.lblCodigoFipe.Font = new System.Drawing.Font("Arial Narrow", 11.25F);
-            this.lblCodigoFipe.Location = new System.Drawing.Point(28, 180);
-            this.lblCodigoFipe.Name = "lblCodigoFipe";
-            this.lblCodigoFipe.Size = new System.Drawing.Size(82, 20);
-            this.lblCodigoFipe.TabIndex = 38;
-            this.lblCodigoFipe.Text = "Código FIPE:";
-            // 
-            // txtCodigoFipe
-            // 
-            this.txtCodigoFipe.Location = new System.Drawing.Point(116, 180);
-            this.txtCodigoFipe.Name = "txtCodigoFipe";
-            this.txtCodigoFipe.Size = new System.Drawing.Size(197, 20);
-            this.txtCodigoFipe.TabIndex = 39;
             // 
             // frmCadastroVeiculo
             // 
@@ -178,13 +151,11 @@
         #endregion
 
         private System.Windows.Forms.TextBox txtModelo;
+        private System.Windows.Forms.TextBox txtMarca;
         private System.Windows.Forms.TextBox txtVeiculoid;
         private System.Windows.Forms.Label lblModelo;
-        private System.Windows.Forms.Label lblVeiculoId;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.ComboBox cboMarcaVeiculo;
         private System.Windows.Forms.Label lblMarca;
-        private System.Windows.Forms.TextBox txtCodigoFipe;
-        private System.Windows.Forms.Label lblCodigoFipe;
+        private System.Windows.Forms.Label lblCodigo;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

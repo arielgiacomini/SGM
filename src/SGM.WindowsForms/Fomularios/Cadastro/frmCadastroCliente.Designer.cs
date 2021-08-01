@@ -105,7 +105,6 @@
             this.pnCadastro.Controls.Add(this.lblEmail);
             this.pnCadastro.Controls.Add(this.lblCelular);
             this.pnCadastro.Controls.Add(this.lblTelefoneFixo);
-            this.pnCadastro.Location = new System.Drawing.Point(3, 9);
             // 
             // btnCancelar
             // 
@@ -549,7 +548,7 @@
             // FrmCadastroCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.ClientSize = new System.Drawing.Size(783, 565);
+            this.ClientSize = new System.Drawing.Size(784, 561);
             this.Name = "FrmCadastroCliente";
             this.Text = "Sistema de Gerenciamento Mecânica - Cadastro de Clientes";
             this.pnCadastro.ResumeLayout(false);

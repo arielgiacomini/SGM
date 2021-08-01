@@ -1,6 +1,11 @@
 C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\SGM.WindowsForms\bin\Debug\SGM.WindowsForms.exe.config
 C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\SGM.WindowsForms\bin\Debug\SGM.WindowsForms.exe
 C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\SGM.WindowsForms\bin\Debug\SGM.WindowsForms.pdb
+C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\SGM.WindowsForms\bin\Debug\Newtonsoft.Json.dll
+C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\SGM.WindowsForms\bin\Debug\System.Configuration.ConfigurationManager.dll
+C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\SGM.WindowsForms\bin\Debug\System.Security.AccessControl.dll
+C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\SGM.WindowsForms\bin\Debug\System.Security.Permissions.dll
+C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\SGM.WindowsForms\bin\Debug\System.Security.Principal.Windows.dll
 C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\SGM.WindowsForms\bin\Debug\Microsoft.Win32.Primitives.dll
 C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\SGM.WindowsForms\bin\Debug\netstandard.dll
 C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\SGM.WindowsForms\bin\Debug\System.AppContext.dll
@@ -123,7 +128,6 @@ C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\SGM.WindowsForms\obj\
 C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\SGM.WindowsForms\obj\Debug\SGM.WindowsForms.FrmGerarServico.resources
 C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\SGM.WindowsForms\obj\Debug\SGM.WindowsForms.Fomularios.Login.FrmLogin.resources
 C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\SGM.WindowsForms\obj\Debug\SGM.WindowsForms.Fomularios.Modelo.FrmLoading.resources
-C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\SGM.WindowsForms\obj\Debug\SGM.WindowsForms.Fomularios.Modelo.frmMenusIntegrados.resources
 C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\SGM.WindowsForms\obj\Debug\SGM.WindowsForms.FrmModeloDeFormularioDeCadastro.resources
 C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\SGM.WindowsForms\obj\Debug\SGM.WindowsForms.FrmGerarServicoOuOrcamento.resources
 C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\SGM.WindowsForms\obj\Debug\SGM.WindowsForms.FrmPrincipal.resources
@@ -136,5 +140,3 @@ C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\SGM.WindowsForms\obj\
 C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\SGM.WindowsForms\obj\Debug\SGM.WindowsForms.csproj.CopyComplete
 C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\SGM.WindowsForms\obj\Debug\SGM.WindowsForms.exe
 C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\SGM.WindowsForms\obj\Debug\SGM.WindowsForms.pdb
-C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\SGM.WindowsForms\bin\Debug\Newtonsoft.Json.dll
-C:\RepositorioDeClones\arielgiacomini\SGM-WindowsForms\src\SGM.WindowsForms\bin\Debug\Newtonsoft.Json.xml

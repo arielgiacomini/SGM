@@ -6,7 +6,9 @@ namespace SGM.Domain.Utils
     {
         public static bool VerificaSeEhNumero(string valor)
         {
-            bool result = decimal.TryParse(valor, out _);
+            int i = 0;
+
+            bool result = int.TryParse(valor, out i);
 
             if (result)
             {

@@ -138,7 +138,7 @@
             this.btnInserir.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnInserir.UseVisualStyleBackColor = true;
             // 
-            // FrmModeloDeFormularioDeCadastro
+            // frmModeloDeFormularioDeCadastro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -147,7 +147,7 @@
             this.Controls.Add(this.pnCadastro);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
-            this.Name = "FrmModeloDeFormularioDeCadastro";
+            this.Name = "frmModeloDeFormularioDeCadastro";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Sistema de Gerenciamento Mecânica";
             this.Load += new System.EventHandler(this.FrmModeloDeFormularioDeCadastro_Load);

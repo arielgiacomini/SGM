@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.29009.5
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SGM.WindowsForms", "src\SGM.WindowsForms\SGM.WindowsForms.csproj", "{1F49ABDC-B8A5-43BE-BD61-E84694AA15E9}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "SGM.Instalador", "src\SGM.Instalador\SGM.Instalador.vdproj", "{DC3259D6-224C-4BDE-805D-9A1ED8F8613D}"
+EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2-ApplicationServices", "2-ApplicationServices", "{353A44A3-3693-4067-B7F9-2021F26C0F6A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1-Apresentation", "1-Apresentation", "{0915B30B-9B59-42B6-BBEF-A0D9B94BC751}"
@@ -31,6 +33,10 @@ Global
 		{1F49ABDC-B8A5-43BE-BD61-E84694AA15E9}.Release|Any CPU.Build.0 = Debug|Any CPU
 		{1F49ABDC-B8A5-43BE-BD61-E84694AA15E9}.Release|x86.ActiveCfg = Release|x86
 		{1F49ABDC-B8A5-43BE-BD61-E84694AA15E9}.Release|x86.Build.0 = Release|x86
+		{DC3259D6-224C-4BDE-805D-9A1ED8F8613D}.Debug|Any CPU.ActiveCfg = Debug
+		{DC3259D6-224C-4BDE-805D-9A1ED8F8613D}.Debug|x86.ActiveCfg = Debug
+		{DC3259D6-224C-4BDE-805D-9A1ED8F8613D}.Release|Any CPU.ActiveCfg = Release
+		{DC3259D6-224C-4BDE-805D-9A1ED8F8613D}.Release|x86.ActiveCfg = Release
 		{D83029AC-393C-41AF-9B3F-7EEBD9D1D762}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D83029AC-393C-41AF-9B3F-7EEBD9D1D762}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D83029AC-393C-41AF-9B3F-7EEBD9D1D762}.Debug|x86.ActiveCfg = Debug|Any CPU
