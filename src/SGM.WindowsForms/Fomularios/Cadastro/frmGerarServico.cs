@@ -39,6 +39,9 @@ namespace SGM.WindowsForms
         public int veiculoId = 0;
         public string placaVeiculo = "";
         public string nomeCliente = "";
+        public IList<ServicoMaodeObra> servicoMaoDeObraTemporaria = new List<ServicoMaodeObra>(); //TO DO: Utilizar o objeto temporário para as alimentações
+        public decimal valorMaoDeObraDigitadoTextBox = 0;
+        public decimal valorPecaDigitadoTextBox = 0;
 
         public void LimpaTela()
         {
@@ -581,34 +584,36 @@ namespace SGM.WindowsForms
 
                     _servicoApplication.DeletarServicoPeca(servicoPeca);
 
-                    var servicoPecaSalvo = _servicoApplication.GetServicoPecaByServicoId(Convert.ToInt32(txtServicoId.Text));
+                    //var servicoPecaSalvo = _servicoApplication.GetServicoPecaByServicoId(Convert.ToInt32(txtServicoId.Text));
+
+                    var servicoPecaSalvo = RemoverItemGridView(servicoPeca);
 
                     IList<PesquisaPecaServicoDataSource> peca = new List<PesquisaPecaServicoDataSource>();
 
-                    foreach (var item in servicoPecaSalvo)
+                    foreach (var servicoPecaUniq in servicoPecaSalvo)
                     {
-                        var pec = _pecaApplication.GetPecaByPecaId(item.PecaId);
+                        var pec = _pecaApplication.GetPecaByPecaId(servicoPecaUniq.PecaId);
                         peca.Add(new PesquisaPecaServicoDataSource
                         {
                             PecaId = pec.PecaId,
                             Peca = pec.Descricao,
                             Valor = pec.Valor,
-                            ServicoPecaId = item.Id
+                            ServicoPecaId = servicoPecaUniq.ServicoPecaId
                         });
                     }
 
-                    dgvMaodeObra.DataSource = peca;
-                    dgvMaodeObra.Columns[0].HeaderText = "Código";
-                    dgvMaodeObra.Columns[0].Width = 50;
-                    dgvMaodeObra.Columns[1].HeaderText = "Mão de Obra";
-                    dgvMaodeObra.Columns[1].Width = 330;
-                    dgvMaodeObra.Columns[2].HeaderText = "Valor";
-                    dgvMaodeObra.Columns[2].Width = 70;
-                    dgvMaodeObra.Columns[2].DefaultCellStyle.Format = "C2";
-                    dgvMaodeObra.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                    dgvMaodeObra.Columns[3].HeaderText = "OrcamentoMaoDeObraId";
-                    dgvMaodeObra.Columns[3].Width = 20;
-                    dgvMaodeObra.Columns[3].Visible = false;
+                    dgvPeca.DataSource = peca;
+                    dgvPeca.Columns[0].HeaderText = "Código";
+                    dgvPeca.Columns[0].Width = 50;
+                    dgvPeca.Columns[1].HeaderText = "Peça";
+                    dgvPeca.Columns[1].Width = 330;
+                    dgvPeca.Columns[2].HeaderText = "Valor";
+                    dgvPeca.Columns[2].Width = 70;
+                    dgvPeca.Columns[2].DefaultCellStyle.Format = "C2";
+                    dgvPeca.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                    dgvPeca.Columns[3].HeaderText = "ServicoPecaId";
+                    dgvPeca.Columns[3].Width = 20;
+                    dgvPeca.Columns[3].Visible = false;
                 }
 
                 OrganizaTela();
@@ -629,18 +634,16 @@ namespace SGM.WindowsForms
 
         private void TxtValorTotalMaodeObra_Leave(object sender, EventArgs e)
         {
+            valorMaoDeObraDigitadoTextBox = Util.TranslateStringEmDecimal(txtValorTotalMaodeObra.Text);
             txtValorTotalMaodeObra.Text = Util.TranslateValorEmStringDinheiro(txtValorTotalMaodeObra.Text);
-
-            CalcularDesconto();
 
             OrganizaTela();
         }
 
         private void TxtValorTotalPecas_Leave(object sender, EventArgs e)
         {
+            valorPecaDigitadoTextBox = Util.TranslateStringEmDecimal(txtValorTotalPecas.Text);
             txtValorTotalPecas.Text = Util.TranslateValorEmStringDinheiro(txtValorTotalPecas.Text);
-
-            CalcularDesconto();
 
             OrganizaTela();
         }
@@ -649,15 +652,11 @@ namespace SGM.WindowsForms
         {
             txtValorAdicional.Text = Util.TranslateValorEmStringDinheiro(txtValorAdicional.Text);
 
-            CalcularDesconto();
-
             OrganizaTela();
         }
 
         private void TxtPercentualDesconto_Leave(object sender, EventArgs e)
         {
-            CalcularDesconto();
-
             OrganizaTela();
         }
 
@@ -686,14 +685,11 @@ namespace SGM.WindowsForms
             lblQtdRegistrosMaoDeObra.Text = "Quantidade de Registros: " + this.dgvMaodeObra.Rows.Count.ToString();
             lblQtdRegistrosPecas.Text = "Quantidade de Registros: " + this.dgvPeca.Rows.Count.ToString();
 
-            decimal tempValorMaodeObra = Util.TranslateStringEmDecimal(txtValorTotalMaodeObra.Text);
-            var tempValorPeca = Util.TranslateStringEmDecimal(txtValorTotalPecas.Text);
-
-            var valorMaodeObra = Convert.ToDecimal(dgvMaodeObra.Rows.Cast<DataGridViewRow>().Sum(i => Convert.ToDecimal(i.Cells["Valor"].Value))) + tempValorMaodeObra;
-            var valorPeca = Convert.ToDecimal(dgvPeca.Rows.Cast<DataGridViewRow>().Sum(i => Convert.ToDecimal(i.Cells["Valor"].Value))) + tempValorPeca;
-            var valorDesconto = Util.TranslateStringEmDecimal(txtValorDesconto.Text);
+            var valorMaodeObra = DevolutivaValoresInGridView(EnumTipoServico.ServicoMaoDeObra);
+            var valorPeca = DevolutivaValoresInGridView(EnumTipoServico.ServicoPeca);
             var valorAdicional = Util.TranslateStringEmDecimal(txtValorAdicional.Text);
             var percentualDesconto = Util.TranslateStringEmDecimal(txtPercentualDesconto.Text, true);
+            var valorDesconto = Convert.ToDecimal(((valorMaodeObra + valorPeca + valorAdicional) * percentualDesconto));
             var valorTotal = ((valorMaodeObra + valorPeca + valorAdicional) - valorDesconto);
 
             txtValorTotalMaodeObra.Text = valorMaodeObra.ToString("C");
@@ -704,15 +700,67 @@ namespace SGM.WindowsForms
             txtValorTotal.Text = valorTotal.ToString("C");
         }
 
-        private void CalcularDesconto()
+        private decimal DevolutivaValoresInGridView(EnumTipoServico tipoServico)
         {
-            decimal percentualDesconto = Util.TranslateStringEmDecimal(txtPercentualDesconto.Text, ehPercentual: true);
-            decimal valorMaodeObra = Util.TranslateStringEmDecimal(txtValorTotalMaodeObra.Text);
-            decimal valorPeca = Util.TranslateStringEmDecimal(txtValorTotalPecas.Text);
-            decimal valorAdicional = Util.TranslateStringEmDecimal(txtValorAdicional.Text);
-            decimal valorTotal = valorMaodeObra + valorPeca + valorAdicional;
+            decimal valorFinal = 0;
 
-            txtValorDesconto.Text = Convert.ToString(Convert.ToDecimal((valorTotal * percentualDesconto)).ToString("C"));
+            if (tipoServico == EnumTipoServico.ServicoMaoDeObra)
+            {
+                var valorTotaltxtValorTotalMaodeObra = Util.TranslateStringEmDecimal(txtValorTotalMaodeObra.Text);
+                var valorTotalGridViewMaoDeObra = Convert.ToDecimal(dgvMaodeObra.Rows.Cast<DataGridViewRow>().Sum(i => Convert.ToDecimal(i.Cells["Valor"].Value)));
+
+                if (valorTotaltxtValorTotalMaodeObra == valorTotalGridViewMaoDeObra)
+                {
+                    valorFinal = valorTotalGridViewMaoDeObra;
+                }
+                else
+                {
+                    if (valorTotaltxtValorTotalMaodeObra == 0)
+                    {
+                        valorFinal = valorTotalGridViewMaoDeObra + ((valorTotaltxtValorTotalMaodeObra - valorTotalGridViewMaoDeObra) < 0 ? 0 : (valorTotaltxtValorTotalMaodeObra - valorTotalGridViewMaoDeObra));
+                    }
+                    else
+                    {
+                        valorFinal = valorTotalGridViewMaoDeObra + valorMaoDeObraDigitadoTextBox;
+                    }
+                }
+            }
+            else if (tipoServico == EnumTipoServico.ServicoPeca)
+            {
+                var valorTotaltxtValorTotalPeca = Util.TranslateStringEmDecimal(txtValorTotalPecas.Text);
+                var valorTotalGridViewPeca = Convert.ToDecimal(dgvPeca.Rows.Cast<DataGridViewRow>().Sum(i => Convert.ToDecimal(i.Cells["Valor"].Value)));
+
+                if (valorTotaltxtValorTotalPeca == valorTotalGridViewPeca)
+                {
+                    valorFinal = valorTotalGridViewPeca;
+                }
+                else
+                {
+                    if (valorTotaltxtValorTotalPeca == 0)
+                    {
+                        valorFinal = valorTotalGridViewPeca + ((valorTotaltxtValorTotalPeca - valorTotalGridViewPeca) < 0 ? 0 : (valorTotaltxtValorTotalPeca - valorTotalGridViewPeca));
+                    }
+                    else
+                    {
+                        valorFinal = valorTotalGridViewPeca + valorPecaDigitadoTextBox;
+                    }
+                }
+            }
+
+            return valorFinal;
+        }
+
+        private IList<PesquisaPecaServicoDataSource> RemoverItemGridView(ServicoPeca servicoPeca)
+        {
+            var dados = dgvPeca.DataSource;
+
+            var dadinhos = dados as IList<PesquisaPecaServicoDataSource>;
+
+            var paraRemover = dadinhos.Where(x => x.ServicoPecaId == servicoPeca.Id).FirstOrDefault();
+
+            dadinhos.Remove(paraRemover);
+
+            return dadinhos;
         }
     }
 }

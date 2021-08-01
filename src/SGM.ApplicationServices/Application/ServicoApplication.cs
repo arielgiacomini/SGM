@@ -54,7 +54,7 @@ namespace SGM.ApplicationServices.Application
 
         public void DeletarServicoPeca(ServicoPeca servicoPeca)
         {
-            _servicoCommand.DeletarServicoPeca(servicoPeca);
+            _servicoCommand.DeletarServicoPecaAsync(servicoPeca);
         }
 
         public IList<ServicoMaodeObra> GetServicoMaodeObraByServicoId(int servicoId)

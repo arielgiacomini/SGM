@@ -690,9 +690,6 @@ namespace SGM.WindowsForms
             lblQtdRegistrosMaoDeObra.Text = "Quantidade de Registros: " + this.dgvMaodeObra.Rows.Count.ToString();
             lblQtdRegistrosPecas.Text = "Quantidade de Registros: " + this.dgvPeca.Rows.Count.ToString();
 
-            decimal tempValorMaodeObra = Util.TranslateStringEmDecimal(txtValorTotalMaodeObra.Text);
-            var tempValorPeca = Util.TranslateStringEmDecimal(txtValorTotalPecas.Text);
-
             var valorMaodeObra = DevolutivaValoresInGridView(EnumTipoServico.ServicoMaoDeObra);
             var valorPeca = DevolutivaValoresInGridView(EnumTipoServico.ServicoPeca);
             var valorAdicional = Util.TranslateStringEmDecimal(txtValorAdicional.Text);

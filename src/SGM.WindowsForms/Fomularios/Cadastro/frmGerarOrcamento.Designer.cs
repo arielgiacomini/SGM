@@ -119,22 +119,31 @@ namespace SGM.WindowsForms
             // 
             // btnCancelar
             // 
+            this.btnCancelar.TabIndex = 31;
             this.btnCancelar.Click += new System.EventHandler(this.BtnCancelar_Click);
             // 
             // btnLocalizar
             // 
+            this.btnLocalizar.TabIndex = 29;
             this.btnLocalizar.Click += new System.EventHandler(this.BtnLocalizar_Click);
             // 
             // btnSalvar
             // 
+            this.btnSalvar.TabIndex = 30;
             this.btnSalvar.Click += new System.EventHandler(this.BtnSalvar_Click);
+            // 
+            // btnExcluir
+            // 
+            this.btnExcluir.TabIndex = 28;
             // 
             // btnAlterar
             // 
+            this.btnAlterar.TabIndex = 27;
             this.btnAlterar.Click += new System.EventHandler(this.BtnAlterar_Click);
             // 
             // btnInserir
             // 
+            this.btnInserir.TabIndex = 26;
             this.btnInserir.Click += new System.EventHandler(this.BtnInserir_Click);
             // 
             // lblOrcamentoId
@@ -143,7 +152,7 @@ namespace SGM.WindowsForms
             this.lblOrcamentoId.Location = new System.Drawing.Point(611, 126);
             this.lblOrcamentoId.Name = "lblOrcamentoId";
             this.lblOrcamentoId.Size = new System.Drawing.Size(110, 13);
-            this.lblOrcamentoId.TabIndex = 0;
+            this.lblOrcamentoId.TabIndex = 9;
             this.lblOrcamentoId.Text = "Código do Orçamento";
             // 
             // txtOrcamentoId
@@ -153,14 +162,14 @@ namespace SGM.WindowsForms
             this.txtOrcamentoId.Name = "txtOrcamentoId";
             this.txtOrcamentoId.ReadOnly = true;
             this.txtOrcamentoId.Size = new System.Drawing.Size(44, 20);
-            this.txtOrcamentoId.TabIndex = 1;
+            this.txtOrcamentoId.TabIndex = 10;
             // 
             // txtConsultaCliente
             // 
             this.txtConsultaCliente.Location = new System.Drawing.Point(208, 15);
             this.txtConsultaCliente.Name = "txtConsultaCliente";
             this.txtConsultaCliente.Size = new System.Drawing.Size(350, 20);
-            this.txtConsultaCliente.TabIndex = 36;
+            this.txtConsultaCliente.TabIndex = 2;
             // 
             // lblCliente
             // 
@@ -168,7 +177,7 @@ namespace SGM.WindowsForms
             this.lblCliente.Location = new System.Drawing.Point(19, 18);
             this.lblCliente.Name = "lblCliente";
             this.lblCliente.Size = new System.Drawing.Size(186, 13);
-            this.lblCliente.TabIndex = 4;
+            this.lblCliente.TabIndex = 1;
             this.lblCliente.Text = "Nome, Apelido ou PLACA do Veículo:";
             // 
             // btnConsultaCliente
@@ -178,7 +187,7 @@ namespace SGM.WindowsForms
             this.btnConsultaCliente.Location = new System.Drawing.Point(564, 11);
             this.btnConsultaCliente.Name = "btnConsultaCliente";
             this.btnConsultaCliente.Size = new System.Drawing.Size(199, 26);
-            this.btnConsultaCliente.TabIndex = 7;
+            this.btnConsultaCliente.TabIndex = 3;
             this.btnConsultaCliente.Text = "Buscar Cliente";
             this.btnConsultaCliente.UseVisualStyleBackColor = true;
             this.btnConsultaCliente.Click += new System.EventHandler(this.BtnConsultaCliente_Click);
@@ -205,7 +214,7 @@ namespace SGM.WindowsForms
             this.txtClienteSelecionado.Name = "txtClienteSelecionado";
             this.txtClienteSelecionado.ReadOnly = true;
             this.txtClienteSelecionado.Size = new System.Drawing.Size(421, 20);
-            this.txtClienteSelecionado.TabIndex = 9;
+            this.txtClienteSelecionado.TabIndex = 5;
             // 
             // lblClienteSelecionado
             // 
@@ -213,7 +222,7 @@ namespace SGM.WindowsForms
             this.lblClienteSelecionado.Location = new System.Drawing.Point(19, 100);
             this.lblClienteSelecionado.Name = "lblClienteSelecionado";
             this.lblClienteSelecionado.Size = new System.Drawing.Size(104, 13);
-            this.lblClienteSelecionado.TabIndex = 10;
+            this.lblClienteSelecionado.TabIndex = 4;
             this.lblClienteSelecionado.Text = "Cliente Selecionado:";
             // 
             // txtClienteId
@@ -223,7 +232,7 @@ namespace SGM.WindowsForms
             this.txtClienteId.Name = "txtClienteId";
             this.txtClienteId.ReadOnly = true;
             this.txtClienteId.Size = new System.Drawing.Size(45, 20);
-            this.txtClienteId.TabIndex = 11;
+            this.txtClienteId.TabIndex = 6;
             // 
             // lblDescricao
             // 
@@ -231,7 +240,7 @@ namespace SGM.WindowsForms
             this.lblDescricao.Location = new System.Drawing.Point(10, 498);
             this.lblDescricao.Name = "lblDescricao";
             this.lblDescricao.Size = new System.Drawing.Size(73, 13);
-            this.lblDescricao.TabIndex = 12;
+            this.lblDescricao.TabIndex = 28;
             this.lblDescricao.Text = "Observações:";
             // 
             // txtDescricao
@@ -240,7 +249,7 @@ namespace SGM.WindowsForms
             this.txtDescricao.Multiline = true;
             this.txtDescricao.Name = "txtDescricao";
             this.txtDescricao.Size = new System.Drawing.Size(674, 38);
-            this.txtDescricao.TabIndex = 41;
+            this.txtDescricao.TabIndex = 25;
             // 
             // lblValorAdicional
             // 
@@ -249,7 +258,7 @@ namespace SGM.WindowsForms
             this.lblValorAdicional.Location = new System.Drawing.Point(529, 364);
             this.lblValorAdicional.Name = "lblValorAdicional";
             this.lblValorAdicional.Size = new System.Drawing.Size(102, 16);
-            this.lblValorAdicional.TabIndex = 14;
+            this.lblValorAdicional.TabIndex = 17;
             this.lblValorAdicional.Text = "Valor Adicional:";
             this.lblValorAdicional.TextAlign = System.Drawing.ContentAlignment.BottomRight;
             // 
@@ -261,7 +270,7 @@ namespace SGM.WindowsForms
             this.lblPercentualDesconto.Location = new System.Drawing.Point(528, 390);
             this.lblPercentualDesconto.Name = "lblPercentualDesconto";
             this.lblPercentualDesconto.Size = new System.Drawing.Size(103, 16);
-            this.lblPercentualDesconto.TabIndex = 15;
+            this.lblPercentualDesconto.TabIndex = 19;
             this.lblPercentualDesconto.Text = "% de Desconto:";
             this.lblPercentualDesconto.TextAlign = System.Drawing.ContentAlignment.BottomRight;
             // 
@@ -273,7 +282,7 @@ namespace SGM.WindowsForms
             this.lblValorDesconto.Location = new System.Drawing.Point(527, 421);
             this.lblValorDesconto.Name = "lblValorDesconto";
             this.lblValorDesconto.Size = new System.Drawing.Size(104, 16);
-            this.lblValorDesconto.TabIndex = 16;
+            this.lblValorDesconto.TabIndex = 21;
             this.lblValorDesconto.Text = "Valor Desconto:";
             this.lblValorDesconto.TextAlign = System.Drawing.ContentAlignment.BottomRight;
             // 
@@ -284,7 +293,7 @@ namespace SGM.WindowsForms
             this.lblValorTotal.Location = new System.Drawing.Point(521, 449);
             this.lblValorTotal.Name = "lblValorTotal";
             this.lblValorTotal.Size = new System.Drawing.Size(101, 20);
-            this.lblValorTotal.TabIndex = 17;
+            this.lblValorTotal.TabIndex = 23;
             this.lblValorTotal.Text = "Valor Total:";
             this.lblValorTotal.TextAlign = System.Drawing.ContentAlignment.BottomRight;
             // 
@@ -294,7 +303,7 @@ namespace SGM.WindowsForms
             this.txtValorAdicional.Location = new System.Drawing.Point(633, 361);
             this.txtValorAdicional.Name = "txtValorAdicional";
             this.txtValorAdicional.Size = new System.Drawing.Size(131, 22);
-            this.txtValorAdicional.TabIndex = 39;
+            this.txtValorAdicional.TabIndex = 18;
             this.txtValorAdicional.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtValorAdicional.Enter += new System.EventHandler(this.TxtValorAdicional_Enter);
             this.txtValorAdicional.Leave += new System.EventHandler(this.TxtValorAdicional_Leave);
@@ -306,7 +315,7 @@ namespace SGM.WindowsForms
             this.txtPercentualDesconto.Location = new System.Drawing.Point(633, 387);
             this.txtPercentualDesconto.Name = "txtPercentualDesconto";
             this.txtPercentualDesconto.Size = new System.Drawing.Size(131, 22);
-            this.txtPercentualDesconto.TabIndex = 40;
+            this.txtPercentualDesconto.TabIndex = 20;
             this.txtPercentualDesconto.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtPercentualDesconto.Enter += new System.EventHandler(this.TxtPercentualDesconto_Enter);
             this.txtPercentualDesconto.Leave += new System.EventHandler(this.TxtPercentualDesconto_Leave);
@@ -320,7 +329,7 @@ namespace SGM.WindowsForms
             this.txtValorDesconto.Name = "txtValorDesconto";
             this.txtValorDesconto.ReadOnly = true;
             this.txtValorDesconto.Size = new System.Drawing.Size(131, 22);
-            this.txtValorDesconto.TabIndex = 20;
+            this.txtValorDesconto.TabIndex = 22;
             this.txtValorDesconto.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtValorTotal
@@ -331,7 +340,7 @@ namespace SGM.WindowsForms
             this.txtValorTotal.Name = "txtValorTotal";
             this.txtValorTotal.ReadOnly = true;
             this.txtValorTotal.Size = new System.Drawing.Size(133, 29);
-            this.txtValorTotal.TabIndex = 21;
+            this.txtValorTotal.TabIndex = 24;
             this.txtValorTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // dgvMaodeObra
@@ -368,7 +377,7 @@ namespace SGM.WindowsForms
             this.lblInformativoPeca.Location = new System.Drawing.Point(157, 315);
             this.lblInformativoPeca.Name = "lblInformativoPeca";
             this.lblInformativoPeca.Size = new System.Drawing.Size(290, 13);
-            this.lblInformativoPeca.TabIndex = 25;
+            this.lblInformativoPeca.TabIndex = 34;
             this.lblInformativoPeca.Text = "Ao clicar no botão, selecione o registro e clique duas vezes.";
             // 
             // btnAdicionarPeca
@@ -376,7 +385,7 @@ namespace SGM.WindowsForms
             this.btnAdicionarPeca.Location = new System.Drawing.Point(12, 304);
             this.btnAdicionarPeca.Name = "btnAdicionarPeca";
             this.btnAdicionarPeca.Size = new System.Drawing.Size(139, 28);
-            this.btnAdicionarPeca.TabIndex = 29;
+            this.btnAdicionarPeca.TabIndex = 33;
             this.btnAdicionarPeca.Text = "Lista de Produtos/Peças";
             this.btnAdicionarPeca.UseVisualStyleBackColor = true;
             this.btnAdicionarPeca.Click += new System.EventHandler(this.BtnAdicionarPeca_Click);
@@ -386,7 +395,7 @@ namespace SGM.WindowsForms
             this.btnAdicionarMaodeObra.Location = new System.Drawing.Point(12, 140);
             this.btnAdicionarMaodeObra.Name = "btnAdicionarMaodeObra";
             this.btnAdicionarMaodeObra.Size = new System.Drawing.Size(122, 28);
-            this.btnAdicionarMaodeObra.TabIndex = 30;
+            this.btnAdicionarMaodeObra.TabIndex = 11;
             this.btnAdicionarMaodeObra.Text = "Lista de Mao-de-Obras";
             this.btnAdicionarMaodeObra.UseVisualStyleBackColor = true;
             this.btnAdicionarMaodeObra.Click += new System.EventHandler(this.BtnAdicionarMaodeObra_Click);
@@ -397,7 +406,7 @@ namespace SGM.WindowsForms
             this.lblInformativoMaoDeObra.Location = new System.Drawing.Point(140, 148);
             this.lblInformativoMaoDeObra.Name = "lblInformativoMaoDeObra";
             this.lblInformativoMaoDeObra.Size = new System.Drawing.Size(290, 13);
-            this.lblInformativoMaoDeObra.TabIndex = 31;
+            this.lblInformativoMaoDeObra.TabIndex = 12;
             this.lblInformativoMaoDeObra.Text = "Ao clicar no botão, selecione o registro e clique duas vezes.";
             // 
             // lblQtdRegistrosMaoDeObra
@@ -416,7 +425,7 @@ namespace SGM.WindowsForms
             this.txtValorTotalPecas.Location = new System.Drawing.Point(633, 335);
             this.txtValorTotalPecas.Name = "txtValorTotalPecas";
             this.txtValorTotalPecas.Size = new System.Drawing.Size(131, 22);
-            this.txtValorTotalPecas.TabIndex = 38;
+            this.txtValorTotalPecas.TabIndex = 16;
             this.txtValorTotalPecas.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtValorTotalPecas.Enter += new System.EventHandler(this.TxtValorTotalPecas_Enter);
             this.txtValorTotalPecas.Leave += new System.EventHandler(this.TxtValorTotalPecas_Leave);
@@ -427,7 +436,7 @@ namespace SGM.WindowsForms
             this.txtValorTotalMaodeObra.Location = new System.Drawing.Point(633, 309);
             this.txtValorTotalMaodeObra.Name = "txtValorTotalMaodeObra";
             this.txtValorTotalMaodeObra.Size = new System.Drawing.Size(131, 22);
-            this.txtValorTotalMaodeObra.TabIndex = 37;
+            this.txtValorTotalMaodeObra.TabIndex = 14;
             this.txtValorTotalMaodeObra.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtValorTotalMaodeObra.Enter += new System.EventHandler(this.TxtValorTotalMaodeObra_Enter);
             this.txtValorTotalMaodeObra.Leave += new System.EventHandler(this.TxtValorTotalMaodeObra_Leave);
@@ -439,7 +448,7 @@ namespace SGM.WindowsForms
             this.lblValorMaoDeObraTexto.Location = new System.Drawing.Point(538, 312);
             this.lblValorMaoDeObraTexto.Name = "lblValorMaoDeObraTexto";
             this.lblValorMaoDeObraTexto.Size = new System.Drawing.Size(92, 16);
-            this.lblValorMaoDeObraTexto.TabIndex = 38;
+            this.lblValorMaoDeObraTexto.TabIndex = 13;
             this.lblValorMaoDeObraTexto.Text = "Mão-de-Obra:";
             this.lblValorMaoDeObraTexto.TextAlign = System.Drawing.ContentAlignment.BottomRight;
             // 
@@ -450,7 +459,7 @@ namespace SGM.WindowsForms
             this.label2.Location = new System.Drawing.Point(523, 338);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(108, 16);
-            this.label2.TabIndex = 39;
+            this.label2.TabIndex = 15;
             this.label2.Text = "Produtos/Peças:";
             this.label2.TextAlign = System.Drawing.ContentAlignment.BottomRight;
             // 
@@ -461,7 +470,7 @@ namespace SGM.WindowsForms
             this.lblQtdRegistrosPecas.Location = new System.Drawing.Point(348, 459);
             this.lblQtdRegistrosPecas.Name = "lblQtdRegistrosPecas";
             this.lblQtdRegistrosPecas.Size = new System.Drawing.Size(99, 12);
-            this.lblQtdRegistrosPecas.TabIndex = 40;
+            this.lblQtdRegistrosPecas.TabIndex = 32;
             this.lblQtdRegistrosPecas.Text = "Quantidade Registros: ";
             // 
             // lblOrcamento
@@ -490,7 +499,7 @@ namespace SGM.WindowsForms
             this.lblClienteVeiculoId.Location = new System.Drawing.Point(593, 100);
             this.lblClienteVeiculoId.Name = "lblClienteVeiculoId";
             this.lblClienteVeiculoId.Size = new System.Drawing.Size(128, 13);
-            this.lblClienteVeiculoId.TabIndex = 42;
+            this.lblClienteVeiculoId.TabIndex = 7;
             this.lblClienteVeiculoId.Text = "Código do Veiculo Cliente";
             // 
             // txtClienteVeiculoId
@@ -499,7 +508,7 @@ namespace SGM.WindowsForms
             this.txtClienteVeiculoId.Name = "txtClienteVeiculoId";
             this.txtClienteVeiculoId.ReadOnly = true;
             this.txtClienteVeiculoId.Size = new System.Drawing.Size(44, 20);
-            this.txtClienteVeiculoId.TabIndex = 43;
+            this.txtClienteVeiculoId.TabIndex = 8;
             // 
             // FrmGerarOrcamento
             // 
