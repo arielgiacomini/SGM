@@ -1,4 +1,6 @@
 ﻿
+using System.Windows.Forms;
+
 namespace SGM.WindowsForms.Fomularios.Login
 {
     partial class FrmLogin
@@ -80,6 +82,7 @@ namespace SGM.WindowsForms.Fomularios.Login
             this.txtSenha.Size = new System.Drawing.Size(174, 29);
             this.txtSenha.TabIndex = 2;
             this.txtSenha.UseSystemPasswordChar = true;
+            this.txtSenha.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtSenha_KeyDown);
             // 
             // btnEntrar
             // 

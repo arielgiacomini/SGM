@@ -1,4 +1,5 @@
 ﻿using SGM.ApplicationServices.Application.Interface;
+using SGM.WindowsForms.Fomularios.Modelo;
 using SGM.WindowsForms.IoC;
 using System.Windows.Forms;
 
@@ -16,6 +17,14 @@ namespace SGM.WindowsForms.Fomularios.Login
 
         private void BtnEntrar_Click(object sender, System.EventArgs e)
         {
+            Entrar();
+        }
+
+        private void Entrar()
+        {
+            FrmLoading loading = new FrmLoading();
+            loading.Show();
+
             var usuario = txtUsuario.Text;
             var senha = txtSenha.Text;
 
@@ -30,6 +39,14 @@ namespace SGM.WindowsForms.Fomularios.Login
             else
             {
                 MessageBox.Show("Usuário ou senha inválido", "Erro ao Autenticar", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void TxtSenha_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                Entrar();
             }
         }
     }
