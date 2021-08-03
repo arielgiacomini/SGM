@@ -3,6 +3,7 @@ using SGM.Domain.DataSources;
 using SGM.Domain.Entities;
 using SGM.Domain.Enumeration;
 using SGM.Domain.Utils;
+using SGM.WindowsForms.Fomularios.Modelo;
 using SGM.WindowsForms.IoC;
 using System;
 using System.Collections.Generic;
@@ -219,6 +220,8 @@ namespace SGM.WindowsForms
                 ServicoPeca = new List<ServicoPeca>()
             };
 
+            FrmLoading loading = new FrmLoading();
+            loading.Show();
             var servicoId = _servicoApplication.SalvarServico(servico);
 
             txtServicoId.Text = servicoId.ToString();
