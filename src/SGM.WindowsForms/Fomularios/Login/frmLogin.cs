@@ -32,9 +32,11 @@ namespace SGM.WindowsForms.Fomularios.Login
 
             if (usuarioAutenticado)
             {
+                loading.Dispose();
                 this.Hide();
                 FrmPrincipal formPrincipal = FormResolve.Resolve<FrmPrincipal>();
                 formPrincipal.ShowDialog();
+
             }
             else
             {
