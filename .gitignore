@@ -36,3 +36,7 @@
 /UpgradeLog2.htm
 /src/SGM.WindowsForms/bin/Debug/Newtonsoft.Json.xml
 /src/SGM.WindowsForms/obj/Debug/SGM.WindowsForms.Fomularios.Modelo.frmMenusIntegrados.resources
+/src/SGM.ApplicationServices/bin/Release/netstandard2.0/SGM.ApplicationServices.deps.json
+/src/SGM.ApplicationServices/obj/Release/netstandard2.0/SGM.ApplicationServices.csproj.CopyComplete
+/src/SGM.Domain/bin/Release/netstandard2.0/SGM.Domain.deps.json
+/src/SGM.Instalador/Release/SGM.Instalador.msi
