@@ -218,7 +218,7 @@ namespace SGM.WindowsForms
                 txtCidade.Text = cliente.LogradouroMunicipio;
                 txtBairro.Text = cliente.LogradouroBairro;
                 txtUF.Text = cliente.LogradouroUF;
-                txtDataCadastro.Text = Convert.ToString(Util.ConvertHorarioOfServerToWorldReal(cliente.DataCadastro, 5));
+                txtDataCadastro.Text = Convert.ToString(Util.ConvertHorarioOfServerToWorldReal(cliente.DataCadastro.Value, 5));
                 //txtDataAlteracao.Text = Convert.ToString(Util.ConvertHorarioOfServerToWorldReal(cliente.DataAlteracao.Value, 5));
                 DisponibilizarBotoesTela(EnumControleTelas.AlterarExcluirCancelar);
             }
@@ -265,7 +265,7 @@ namespace SGM.WindowsForms
                             txtCidade.Text = cliente.LogradouroMunicipio;
                             txtBairro.Text = cliente.LogradouroBairro;
                             txtUF.Text = cliente.LogradouroUF;
-                            txtDataCadastro.Text = Convert.ToString(Util.ConvertHorarioOfServerToWorldReal(cliente.DataCadastro, 5));
+                            txtDataCadastro.Text = Convert.ToString(Util.ConvertHorarioOfServerToWorldReal(cliente.DataCadastro.Value, 5));
                         }
                     }
                 }
