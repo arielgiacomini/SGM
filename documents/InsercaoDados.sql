@@ -1,6 +1,13 @@
 INSERT INTO Colaborador (Usuario, Nome, NomeCompleto, Apelido, CPF, RG, DataAdmissao, DataDemissao, DataCadastro, DataAlteracao, Senha) 
 VALUES ('ariel.giacomini', 'Ariel Giacomini', 'Ariel Giacomini da Silva', 'Ari', '440.229.698-65', '35.783.514-1', GETDATE(), NULL, GETDATE(), NULL, '123456')
 
+INSERT INTO FormaPagamento (Descricao, TemTaxaAdicional, PercentualTaxaAdicional, ValorTaxaAdicional, FormaPagamentoAtiva, DataCadastro, DataAlteracao) VALUES ('Dinheiro à vista', 0, 0, 0, 1, GETDATE(), NULL)
+INSERT INTO FormaPagamento (Descricao, TemTaxaAdicional, PercentualTaxaAdicional, ValorTaxaAdicional, FormaPagamentoAtiva, DataCadastro, DataAlteracao) VALUES ('Dinheiro Parcelado', 0, 0, 0, 1, GETDATE(), NULL)
+INSERT INTO FormaPagamento (Descricao, TemTaxaAdicional, PercentualTaxaAdicional, ValorTaxaAdicional, FormaPagamentoAtiva, DataCadastro, DataAlteracao) VALUES ('PIX', 0, 0, 0, 1, GETDATE(), NULL)
+INSERT INTO FormaPagamento (Descricao, TemTaxaAdicional, PercentualTaxaAdicional, ValorTaxaAdicional, FormaPagamentoAtiva, DataCadastro, DataAlteracao) VALUES ('Cartão de Débito', 0, 0, 0, 1, GETDATE(), NULL)
+INSERT INTO FormaPagamento (Descricao, TemTaxaAdicional, PercentualTaxaAdicional, ValorTaxaAdicional, FormaPagamentoAtiva, DataCadastro, DataAlteracao) VALUES ('Cartão de Crédito', 1, 0.02, 0, 1, GETDATE(), NULL)
+INSERT INTO FormaPagamento (Descricao, TemTaxaAdicional, PercentualTaxaAdicional, ValorTaxaAdicional, FormaPagamentoAtiva, DataCadastro, DataAlteracao) VALUES ('Outras', 1, 0.1, 0, 1, GETDATE(), NULL)
+
 INSERT INTO ControleStatus (TipoStatus, Descricao, DataCadastro) VALUES ('Table:Orcamento:Status', 'Iniciado - Pendente de Término', GETDATE())
 INSERT INTO ControleStatus (TipoStatus, Descricao, DataCadastro) VALUES ('Table:Orcamento:Status', 'Expirado', GETDATE())
 INSERT INTO ControleStatus (TipoStatus, Descricao, DataCadastro) VALUES ('Table:Orcamento:Status', 'Desistido pelo Cliente', GETDATE())
