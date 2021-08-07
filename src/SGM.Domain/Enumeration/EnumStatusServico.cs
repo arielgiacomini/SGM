@@ -7,15 +7,15 @@ namespace SGM.Domain.Enumeration
     public enum EnumStatusServico
     {
         [Description("Iniciado - Pendente de Término")]
-        IniciadoPendente = 1,
+        IniciadoPendente = 6,
         [Description("Expirado")]
-        Expirado = 2,
+        Expirado = 7,
         [Description("Desistido pelo Cliente")]
-        Desistido = 3,
-        [Description("Concluido - Gerado mas ainda não houve serviço")]
-        ConcluidoSemGerarServico = 5,
-        [Description("Gerou Ordem de Serviço")]
-        GerouServico = 6
+        DesistidoPeloCliente = 8,
+        [Description("Concluido - Serviço executado SEM Pagamento")]
+        ConcluidoServicoSemPagamento = 9,
+        [Description("Concluido - Serviço executado com Pagamento efetuado")]
+        ConcluidoServicoComPagamento = 10
     }
 
     public static class StatusServico

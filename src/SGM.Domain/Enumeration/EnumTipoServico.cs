@@ -2,7 +2,7 @@
 {
     public enum EnumTipoServico
     {
-        ServicoMaoDeObra = 1,
-        ServicoPeca = 2
+        ServicoMaoDeObra = 16,
+        ServicoPeca = 17
     }
 }

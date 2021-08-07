@@ -132,7 +132,9 @@ namespace SGM.WindowsForms
                     ClienteVeiculoId = Convert.ToInt32(txtClienteVeiculoId.Text),
                     Status = (int)EnumStatusServico.IniciadoPendente,
                     DataCadastro = DateTime.Now,
-                    Descricao = txtDescricao.Text
+                    Descricao = txtDescricao.Text,
+                    ServicoMaodeObra = new List<ServicoMaodeObra>(),
+                    ServicoPeca = new List<ServicoPeca>()
                 };
 
                 var servicoId = _servicoApplication.SalvarServico(servico);
@@ -358,7 +360,7 @@ namespace SGM.WindowsForms
                     PercentualDesconto = txtValorAdicional.Text == "R$ 0,00" ? 0 : (Convert.ToDecimal(txtPercentualDesconto.Text.Replace("%", "")) / 100),
                     ValorDesconto = Convert.ToDecimal(txtValorDesconto.Text.Replace("R$ ", "")),
                     ValorTotal = Convert.ToDecimal(txtValorTotal.Text.Replace("R$ ", "")),
-                    Status = (int)EnumStatusServico.GerouServico,
+                    Status = (int)EnumStatusServico.ConcluidoServicoSemPagamento,
                     Ativo = true,
                     DataCadastro = servicoSalvo.DataCadastro,
                     DataAlteracao = DateTime.Now,

@@ -2,10 +2,10 @@
 {
     public enum EnumControleTelas
     {
-        InserirLocalizar = 1,
-        SalvarCancelarExcluir = 2,
-        AlterarExcluirCancelar = 3,
-        Localizar = 4,
-        CancelarSalvar = 5
+        InserirLocalizar = 11,
+        SalvarCancelarExcluir = 12,
+        AlterarExcluirCancelar = 13,
+        Localizar = 14,
+        CancelarSalvar = 15
     }
 }
