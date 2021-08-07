@@ -11,8 +11,8 @@ namespace SGM.Domain.Enumeration
         [Description("Desistido pelo Cliente")]
         Desistido = 3,
         [Description("Concluido - Gerado mas ainda não houve serviço")]
-        ConcluidoSemGerarServico = 5,
-        [Description("Gerou Ordem de Serviço")]
-        GerouServico = 6
+        ConcluidoSemGerarServico = 4,
+        [Description("Concluido e Gerou Ordem de Serviço")]
+        GerouServico = 5
     }
 }
