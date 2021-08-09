@@ -24,19 +24,17 @@ namespace SGM.ApplicationServices.Command.External
 
                 if (result.StatusCode == System.Net.HttpStatusCode.OK)
                 {
-                    return JsonConvert.DeserializeObject<Cliente>(result.Content.ReadAsStringAsync().Result);
+                    return JsonConvert.DeserializeObject<WhatsAppMessage>(result.Content.ReadAsStringAsync().Result);
                 }
                 else if (result.StatusCode == System.Net.HttpStatusCode.NoContent)
                 {
-                    return new Cliente();
+                    return new WhatsAppMessage();
                 }
                 else
                 {
                     throw new ApplicationException($"Problema ao consumir a API, resultado: {result.Content.ReadAsStringAsync().Result}");
                 }
             }
-
-            return new WhatsAppMessage();
         }
     }
 }
