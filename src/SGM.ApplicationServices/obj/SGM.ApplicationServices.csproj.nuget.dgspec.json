@@ -42,7 +42,7 @@
           "dependencies": {
             "Giacomini.SGM.Domain": {
               "target": "Package",
-              "version": "[1.3.0, )"
+              "version": "[1.4.0, )"
             },
             "NETStandard.Library": {
               "suppressParent": "All",
