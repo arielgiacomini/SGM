@@ -2,7 +2,7 @@
   "version": 3,
   "targets": {
     ".NETStandard,Version=v2.0": {
-      "Giacomini.SGM.Domain/1.3.0": {
+      "Giacomini.SGM.Domain/1.4.0": {
         "type": "package",
         "compile": {
           "lib/netstandard2.0/SGM.Domain.dll": {}
@@ -164,14 +164,14 @@
     }
   },
   "libraries": {
-    "Giacomini.SGM.Domain/1.3.0": {
-      "sha512": "uD/IXYR6jL5Dm3SNv/DBq7Qe82HJPChe+2KY5kst0jXwI5RH5kItF49wO6QyCXPyDKLaByqhzZje18+NIq5NUw==",
+    "Giacomini.SGM.Domain/1.4.0": {
+      "sha512": "Iy55PPLoiRgSFsEJdSJZB2qfv6KqUi/5dI1BuHbODJFP8MGOpK8EhEzJY7eYyWFLipsb+hirmno4DeIVMTM57w==",
       "type": "package",
-      "path": "giacomini.sgm.domain/1.3.0",
+      "path": "giacomini.sgm.domain/1.4.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "giacomini.sgm.domain.1.3.0.nupkg.sha512",
+        "giacomini.sgm.domain.1.4.0.nupkg.sha512",
         "giacomini.sgm.domain.nuspec",
         "lib/netstandard2.0/SGM.Domain.dll"
       ]
@@ -684,7 +684,7 @@
   },
   "projectFileDependencyGroups": {
     ".NETStandard,Version=v2.0": [
-      "Giacomini.SGM.Domain >= 1.3.0",
+      "Giacomini.SGM.Domain >= 1.4.0",
       "NETStandard.Library >= 2.0.3",
       "Newtonsoft.Json >= 13.0.1",
       "System.Configuration.ConfigurationManager >= 6.0.0-preview.6.21352.12"
@@ -731,7 +731,7 @@
         "dependencies": {
           "Giacomini.SGM.Domain": {
             "target": "Package",
-            "version": "[1.3.0, )"
+            "version": "[1.4.0, )"
           },
           "NETStandard.Library": {
             "suppressParent": "All",
