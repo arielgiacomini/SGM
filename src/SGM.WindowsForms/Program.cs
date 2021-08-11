@@ -1,4 +1,5 @@
-﻿using SGM.WindowsForms.Fomularios.Login;
+﻿using SGM.WindowsForms.Fomularios.Cadastro;
+using SGM.WindowsForms.Fomularios.Login;
 using SGM.WindowsForms.IoC;
 using System;
 using System.Configuration;
@@ -21,7 +22,8 @@ namespace SGM.WindowsForms
             }
             else
             {
-                Application.Run(FormResolve.Resolve<FrmPrincipal>());
+                //Application.Run(FormResolve.Resolve<FrmPrincipal>());
+                Application.Run(FormResolve.Resolve<FrmGerarServicoPagamento>());
             }
         }
     }

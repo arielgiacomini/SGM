@@ -1,12 +1,24 @@
-INSERT INTO Colaborador (Usuario, Nome, NomeCompleto, Apelido, CPF, RG, DataAdmissao, DataDemissao, DataCadastro, DataAlteracao, Senha) 
-VALUES ('ariel.giacomini', 'Ariel Giacomini', 'Ariel Giacomini da Silva', 'Ari', '440.229.698-65', '35.783.514-1', GETDATE(), NULL, GETDATE(), NULL, '123456')
+INSERT INTO Colaborador (Usuario, Nome, NomeCompleto, Apelido, CPF, RG, DataAdmissao, DataDemissao, DataCadastro, DataAlteracao, Senha) VALUES ('ariel.giacomini', 'Ariel Giacomini', 'Ariel Giacomini da Silva', 'Ari', '440.229.698-65', '35.783.514-1', GETDATE(), NULL, GETDATE(), NULL, '123456')
 
-INSERT INTO FormaPagamento (Descricao, TemTaxaAdicional, PercentualTaxaAdicional, ValorTaxaAdicional, FormaPagamentoAtiva, DataCadastro, DataAlteracao) VALUES ('Dinheiro à vista', 0, 0, 0, 1, GETDATE(), NULL)
-INSERT INTO FormaPagamento (Descricao, TemTaxaAdicional, PercentualTaxaAdicional, ValorTaxaAdicional, FormaPagamentoAtiva, DataCadastro, DataAlteracao) VALUES ('Dinheiro Parcelado', 0, 0, 0, 1, GETDATE(), NULL)
-INSERT INTO FormaPagamento (Descricao, TemTaxaAdicional, PercentualTaxaAdicional, ValorTaxaAdicional, FormaPagamentoAtiva, DataCadastro, DataAlteracao) VALUES ('PIX', 0, 0, 0, 1, GETDATE(), NULL)
-INSERT INTO FormaPagamento (Descricao, TemTaxaAdicional, PercentualTaxaAdicional, ValorTaxaAdicional, FormaPagamentoAtiva, DataCadastro, DataAlteracao) VALUES ('Cartão de Débito', 0, 0, 0, 1, GETDATE(), NULL)
-INSERT INTO FormaPagamento (Descricao, TemTaxaAdicional, PercentualTaxaAdicional, ValorTaxaAdicional, FormaPagamentoAtiva, DataCadastro, DataAlteracao) VALUES ('Cartão de Crédito', 1, 0.02, 0, 1, GETDATE(), NULL)
-INSERT INTO FormaPagamento (Descricao, TemTaxaAdicional, PercentualTaxaAdicional, ValorTaxaAdicional, FormaPagamentoAtiva, DataCadastro, DataAlteracao) VALUES ('Outras', 1, 0.1, 0, 1, GETDATE(), NULL)
+INSERT INTO Cliente (NomeCliente, Apelido, DocumentoCliente, Sexo, EstadoCivil, DataNascimento, Email, TelefoneFixo, TelefoneCelular, TelefoneOutros, LogradouroCEP, LogradouroNome, LogradouroNumero, LogradouroComplemento, LogradouroMunicipio, LogradouroBairro, LogradouroUF, RecebeNotificacoes, ClienteAtivo, DataCadastro, DataAlteracao) VALUES ('SEM CLIENTE', 'SEM CLIENTE', '999.999.999-99', 'Masculino', 'Casado(a)', '1995-03-15 06:58:07.000', 'semcliente@sgm.com.br', '(11) 3793-6886', '(11) 9.8250-5422', '()', '03971-010', '', '', '', '', '', '', 0, 1, GETDATE(), NULL)
+
+INSERT INTO MaodeObra (Descricao, Tipo, Valor, VigenciaInicial, VigenciaFinal, Ativo, DataCadastro) VALUES ('Troca de Oléo (Carro Popular Pequeno)', 'Esforço-Baixo', 75, GETDATE(), DATEADD(YEAR, 5, GETDATE()), 1, GETDATE())
+INSERT INTO MaodeObra (Descricao, Tipo, Valor, VigenciaInicial, VigenciaFinal, Ativo, DataCadastro) VALUES ('Troca de Oléo (Carro Sedan Médio)', 'Esforço-Baixo', 90, GETDATE(), DATEADD(YEAR, 5, GETDATE()), 1, GETDATE())
+INSERT INTO MaodeObra (Descricao, Tipo, Valor, VigenciaInicial, VigenciaFinal, Ativo, DataCadastro) VALUES ('Troca de Oléo (Carro Grande SUV)', 'Esforço-Médio', 110, GETDATE(), DATEADD(YEAR, 5, GETDATE()), 1, GETDATE())
+INSERT INTO MaodeObra (Descricao, Tipo, Valor, VigenciaInicial, VigenciaFinal, Ativo, DataCadastro) VALUES ('Troca de Pastilha', 'Esforço-Baixo', 50, GETDATE(), DATEADD(YEAR, 5, GETDATE()), 1, GETDATE())
+INSERT INTO MaodeObra (Descricao, Tipo, Valor, VigenciaInicial, VigenciaFinal, Ativo, DataCadastro) VALUES ('Troca Junta de Cabeçote', 'Esforço-Alto', 770, GETDATE(), DATEADD(YEAR, 5, GETDATE()), 1, GETDATE())
+
+INSERT INTO Peca (Descricao, Fornecedor, Valor, ValorFrete, Ativo, DataCadastro) VALUES ('Pretinho para Pneus (300ml)', 'Jorge Augusto', 4.99, 1.99, 1, GETDATE())
+INSERT INTO Peca (Descricao, Fornecedor, Valor, ValorFrete, Ativo, DataCadastro) VALUES ('Liquído para Motor (Água) (Pestana 450ml)', 'Noga', 4.99, 1.99, 1, GETDATE())
+INSERT INTO Peca (Descricao, Fornecedor, Valor, ValorFrete, Ativo, DataCadastro) VALUES ('Oléo Ipiranga (1 Litro)', 'Mercado Car', 4.99, 1.99, 1, GETDATE())
+INSERT INTO Peca (Descricao, Fornecedor, Valor, ValorFrete, Ativo, DataCadastro) VALUES ('Junta de Cabeçote', 'Pedro Jorge', 4.99, 1.99, 1, GETDATE())
+
+INSERT INTO FormaPagamento (Descricao, TemTaxaAdicional, PercentualTaxaAdicional, ValorTaxaAdicional, QuantidadeMaximaParcela, FormaPagamentoAtiva, DataCadastro, DataAlteracao) VALUES ('Dinheiro à vista', 0, 0, 0, 0, 1, GETDATE(), NULL)
+INSERT INTO FormaPagamento (Descricao, TemTaxaAdicional, PercentualTaxaAdicional, ValorTaxaAdicional, QuantidadeMaximaParcela, FormaPagamentoAtiva, DataCadastro, DataAlteracao) VALUES ('Dinheiro Parcelado', 0, 0, 0, 3, 1, GETDATE(), NULL)
+INSERT INTO FormaPagamento (Descricao, TemTaxaAdicional, PercentualTaxaAdicional, ValorTaxaAdicional, QuantidadeMaximaParcela, FormaPagamentoAtiva, DataCadastro, DataAlteracao) VALUES ('Transferência via PIX', 0, 0, 0, 0, 1, GETDATE(), NULL)
+INSERT INTO FormaPagamento (Descricao, TemTaxaAdicional, PercentualTaxaAdicional, ValorTaxaAdicional, QuantidadeMaximaParcela, FormaPagamentoAtiva, DataCadastro, DataAlteracao) VALUES ('Cartão de Débito', 0, 0, 0, 0, 1, GETDATE(), NULL)
+INSERT INTO FormaPagamento (Descricao, TemTaxaAdicional, PercentualTaxaAdicional, ValorTaxaAdicional, QuantidadeMaximaParcela, FormaPagamentoAtiva, DataCadastro, DataAlteracao) VALUES ('Cartão de Crédito', 1, 0.02, 0, 12, 1, GETDATE(), NULL)
+INSERT INTO FormaPagamento (Descricao, TemTaxaAdicional, PercentualTaxaAdicional, ValorTaxaAdicional, QuantidadeMaximaParcela, FormaPagamentoAtiva, DataCadastro, DataAlteracao) VALUES ('Outras', 1, 0.1, 0, 0, 1, GETDATE(), NULL)
 
 INSERT INTO ControleStatus (TipoStatus, Descricao, DataCadastro) VALUES ('Table:Orcamento:Status', 'Iniciado - Pendente de Término', GETDATE())
 INSERT INTO ControleStatus (TipoStatus, Descricao, DataCadastro) VALUES ('Table:Orcamento:Status', 'Expirado', GETDATE())

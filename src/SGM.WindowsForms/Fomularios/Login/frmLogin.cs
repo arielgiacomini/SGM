@@ -34,9 +34,11 @@ namespace SGM.WindowsForms.Fomularios.Login
             {
                 loading.Dispose();
                 this.Hide();
+
                 FrmPrincipal formPrincipal = FormResolve.Resolve<FrmPrincipal>();
                 formPrincipal.ShowDialog();
 
+                this.Close();
             }
             else
             {

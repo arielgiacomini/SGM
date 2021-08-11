@@ -39,6 +39,9 @@ namespace SGM.WindowsForms.IoC
             Bind<IServicoCommand>().To<ServicoCommand>();
             Bind<IServicoQuery>().To<ServicoQuery>();
 
+            Bind<IServicoPagamentoCommand>().To<ServicoPagamentoCommand>();
+            Bind<IServicoPagamentoQuery>().To<ServicoPagamentoQuery>();
+
             Bind<ICorreiosQuery>().To<CorreiosQuery>();
 
             Bind<IColaboradorQuery>().To<ColaboradorQuery>();
@@ -52,6 +55,7 @@ namespace SGM.WindowsForms.IoC
             Bind<IServicoApplication>().To<ServicoApplication>();
             Bind<ICorreriosApplication>().To<CorreiosApplication>();
             Bind<IColaboradorApplication>().To<ColaboradorApplication>();
+            Bind<IServicoPagamentoApplication>().To<ServicoPagamentoApplication>();
 
             Bind<ISGMConfiguration>().To<SGMConfiguration>();
         }

@@ -195,6 +195,7 @@ CREATE TABLE [FormaPagamento] (
   [TemTaxaAdicional] BIT DEFAULT 0,
   [PercentualTaxaAdicional] DECIMAL(18,2),
   [ValorTaxaAdicional] DECIMAL(18,2),
+  [QuantidadeMaximaParcela] INT DEFAULT 0,
   [FormaPagamentoAtiva] BIT DEFAULT 1,
   [DataCadastro] DATETIME,
   [DataAlteracao] DATETIME

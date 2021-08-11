@@ -42,7 +42,7 @@
           "dependencies": {
             "Giacomini.SGM.Domain": {
               "target": "Package",
-              "version": "[1.4.0, )"
+              "version": "[1.8.0, )"
             },
             "NETStandard.Library": {
               "suppressParent": "All",
@@ -109,7 +109,7 @@
           "dependencies": {
             "Giacomini.SGM.Domain": {
               "target": "Package",
-              "version": "[1.4.0, )"
+              "version": "[1.8.0, )"
             },
             "Newtonsoft.Json": {
               "target": "Package",
