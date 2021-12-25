@@ -1,11 +1,11 @@
 ﻿using SGM.Domain.Entities;
+using System.Collections.Generic;
 
 namespace SGM.ApplicationServices.Application.Interface
 {
     public interface IServicoPagamentoApplication
     {
-        string[] GetFormaPagamento();
-        string[] GetParcelasDisponiveisByFormaPagamento(int? formaPagamentoId, bool temImputValor, string valorTotalPorExtenso, string valorParceladoPorExtenso);
+        IList<FormaPagamento> GetFormaPagamentoByAll();
         ServicoPagamento GetServicoPagamentoByServicoId(int servicoId);
     }
 }

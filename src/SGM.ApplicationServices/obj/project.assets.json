@@ -2,7 +2,7 @@
   "version": 3,
   "targets": {
     ".NETStandard,Version=v2.0": {
-      "Giacomini.SGM.Domain/1.8.0": {
+      "Giacomini.SGM.Domain/2.0.0": {
         "type": "package",
         "compile": {
           "lib/netstandard2.0/SGM.Domain.dll": {}
@@ -164,16 +164,18 @@
     }
   },
   "libraries": {
-    "Giacomini.SGM.Domain/1.8.0": {
-      "sha512": "NM9ts/OqLd1jD4i7QZVWjwm23OLAr8Xbsu5rIWMrRx3q3zmBtChMxlSIHe7LksNaLZhkqgWNBGaBz9hU6zIO1w==",
+    "Giacomini.SGM.Domain/2.0.0": {
+      "sha512": "qMUZ5Nsrv43U//fzuV1l3Qc/CZuVgDC6RjroNL+yeybe0vrzzc6nCpcn9qguhFUbMwM94u+rXOO9dQ7775CKFA==",
       "type": "package",
-      "path": "giacomini.sgm.domain/1.8.0",
+      "path": "giacomini.sgm.domain/2.0.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "giacomini.sgm.domain.1.8.0.nupkg.sha512",
+        "giacomini.sgm.domain.2.0.0.nupkg.sha512",
         "giacomini.sgm.domain.nuspec",
-        "lib/netstandard2.0/SGM.Domain.dll"
+        "lib/netstandard2.0/SGM.Domain.deps.json",
+        "lib/netstandard2.0/SGM.Domain.dll",
+        "lib/netstandard2.0/SGM.Domain.pdb"
       ]
     },
     "Microsoft.NETCore.Platforms/1.1.0": {
@@ -684,7 +686,7 @@
   },
   "projectFileDependencyGroups": {
     ".NETStandard,Version=v2.0": [
-      "Giacomini.SGM.Domain >= 1.8.0",
+      "Giacomini.SGM.Domain >= 2.0.0",
       "NETStandard.Library >= 2.0.3",
       "Newtonsoft.Json >= 13.0.1",
       "System.Configuration.ConfigurationManager >= 6.0.0-preview.6.21352.12"
@@ -731,7 +733,7 @@
         "dependencies": {
           "Giacomini.SGM.Domain": {
             "target": "Package",
-            "version": "[1.8.0, )"
+            "version": "[2.0.0, )"
           },
           "NETStandard.Library": {
             "suppressParent": "All",
@@ -758,7 +760,7 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.302\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.404\\RuntimeIdentifierGraph.json"
       }
     }
   }

@@ -46,6 +46,8 @@ namespace SGM.WindowsForms.IoC
 
             Bind<IColaboradorQuery>().To<ColaboradorQuery>();
 
+            Bind<IFormaPagamentoQuery>().To<FormaPagamentoQuery>();
+
             Bind<IClienteApplication>().To<ClienteApplication>();
             Bind<IClienteVeiculoApplication>().To<ClienteVeiculoApplication>();
             Bind<IMaodeObraApplication>().To<MaodeObraApplication>();

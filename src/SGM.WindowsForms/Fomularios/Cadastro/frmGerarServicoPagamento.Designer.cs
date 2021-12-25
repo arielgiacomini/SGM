@@ -37,6 +37,8 @@ namespace SGM.WindowsForms.Fomularios.Cadastro
             this.lblQuantidadeParcelas1 = new System.Windows.Forms.Label();
             this.cboQuantidadeParcelas1 = new System.Windows.Forms.ComboBox();
             this.grbFormaPagamento1 = new System.Windows.Forms.GroupBox();
+            this.txtValorOriginal = new System.Windows.Forms.TextBox();
+            this.lblValorOriginal = new System.Windows.Forms.Label();
             this.lblDataPagamento = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.grbFormaPagamento2 = new System.Windows.Forms.GroupBox();
@@ -121,7 +123,7 @@ namespace SGM.WindowsForms.Fomularios.Cadastro
             // 
             this.lblValorPagamento1.AutoSize = true;
             this.lblValorPagamento1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblValorPagamento1.Location = new System.Drawing.Point(24, 29);
+            this.lblValorPagamento1.Location = new System.Drawing.Point(7, 120);
             this.lblValorPagamento1.Name = "lblValorPagamento1";
             this.lblValorPagamento1.Size = new System.Drawing.Size(116, 16);
             this.lblValorPagamento1.TabIndex = 15;
@@ -131,11 +133,13 @@ namespace SGM.WindowsForms.Fomularios.Cadastro
             // txtValorPagamento1
             // 
             this.txtValorPagamento1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtValorPagamento1.Location = new System.Drawing.Point(146, 26);
+            this.txtValorPagamento1.Location = new System.Drawing.Point(129, 117);
             this.txtValorPagamento1.Name = "txtValorPagamento1";
             this.txtValorPagamento1.Size = new System.Drawing.Size(199, 22);
             this.txtValorPagamento1.TabIndex = 16;
             this.txtValorPagamento1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtValorPagamento1.Enter += new System.EventHandler(this.TxtValorPagamento1_Enter);
+            this.txtValorPagamento1.Leave += new System.EventHandler(this.TxtValorPagamento1_Leave);
             // 
             // ckbDuasFormasPagamento
             // 
@@ -152,16 +156,17 @@ namespace SGM.WindowsForms.Fomularios.Cadastro
             // cboFormaPagamento1
             // 
             this.cboFormaPagamento1.FormattingEnabled = true;
-            this.cboFormaPagamento1.Location = new System.Drawing.Point(523, 24);
+            this.cboFormaPagamento1.Location = new System.Drawing.Point(153, 50);
             this.cboFormaPagamento1.Name = "cboFormaPagamento1";
             this.cboFormaPagamento1.Size = new System.Drawing.Size(175, 21);
             this.cboFormaPagamento1.TabIndex = 20;
+            this.cboFormaPagamento1.SelectedValueChanged += new System.EventHandler(this.CboFormaPagamento1_SelectedValueChanged);
             // 
             // lblFormaPagamento1
             // 
             this.lblFormaPagamento1.AutoSize = true;
             this.lblFormaPagamento1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFormaPagamento1.Location = new System.Drawing.Point(375, 28);
+            this.lblFormaPagamento1.Location = new System.Drawing.Point(5, 53);
             this.lblFormaPagamento1.Name = "lblFormaPagamento1";
             this.lblFormaPagamento1.Size = new System.Drawing.Size(142, 16);
             this.lblFormaPagamento1.TabIndex = 21;
@@ -172,22 +177,25 @@ namespace SGM.WindowsForms.Fomularios.Cadastro
             // 
             this.lblQuantidadeParcelas1.AutoSize = true;
             this.lblQuantidadeParcelas1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
-            this.lblQuantidadeParcelas1.Location = new System.Drawing.Point(24, 69);
+            this.lblQuantidadeParcelas1.Location = new System.Drawing.Point(14, 84);
             this.lblQuantidadeParcelas1.Name = "lblQuantidadeParcelas1";
-            this.lblQuantidadeParcelas1.Size = new System.Drawing.Size(154, 16);
+            this.lblQuantidadeParcelas1.Size = new System.Drawing.Size(73, 16);
             this.lblQuantidadeParcelas1.TabIndex = 24;
-            this.lblQuantidadeParcelas1.Text = "Quantidade de Parcelas";
+            this.lblQuantidadeParcelas1.Text = "Parcela(s):";
             // 
             // cboQuantidadeParcelas1
             // 
             this.cboQuantidadeParcelas1.FormattingEnabled = true;
-            this.cboQuantidadeParcelas1.Location = new System.Drawing.Point(184, 66);
+            this.cboQuantidadeParcelas1.Location = new System.Drawing.Point(87, 81);
             this.cboQuantidadeParcelas1.Name = "cboQuantidadeParcelas1";
-            this.cboQuantidadeParcelas1.Size = new System.Drawing.Size(378, 21);
+            this.cboQuantidadeParcelas1.Size = new System.Drawing.Size(304, 21);
             this.cboQuantidadeParcelas1.TabIndex = 25;
+            this.cboQuantidadeParcelas1.SelectedValueChanged += new System.EventHandler(this.CboQuantidadeParcelas1_SelectedValueChanged);
             // 
             // grbFormaPagamento1
             // 
+            this.grbFormaPagamento1.Controls.Add(this.txtValorOriginal);
+            this.grbFormaPagamento1.Controls.Add(this.lblValorOriginal);
             this.grbFormaPagamento1.Controls.Add(this.cboFormaPagamento1);
             this.grbFormaPagamento1.Controls.Add(this.lblDataPagamento);
             this.grbFormaPagamento1.Controls.Add(this.cboQuantidadeParcelas1);
@@ -196,18 +204,40 @@ namespace SGM.WindowsForms.Fomularios.Cadastro
             this.grbFormaPagamento1.Controls.Add(this.txtValorPagamento1);
             this.grbFormaPagamento1.Controls.Add(this.lblValorPagamento1);
             this.grbFormaPagamento1.Controls.Add(this.lblFormaPagamento1);
-            this.grbFormaPagamento1.Location = new System.Drawing.Point(15, 66);
+            this.grbFormaPagamento1.Location = new System.Drawing.Point(15, 69);
             this.grbFormaPagamento1.Name = "grbFormaPagamento1";
-            this.grbFormaPagamento1.Size = new System.Drawing.Size(943, 100);
+            this.grbFormaPagamento1.Size = new System.Drawing.Size(414, 198);
             this.grbFormaPagamento1.TabIndex = 26;
             this.grbFormaPagamento1.TabStop = false;
             this.grbFormaPagamento1.Text = "Forma de Pagamento 1";
+            // 
+            // txtValorOriginal
+            // 
+            this.txtValorOriginal.Enabled = false;
+            this.txtValorOriginal.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtValorOriginal.Location = new System.Drawing.Point(129, 19);
+            this.txtValorOriginal.Name = "txtValorOriginal";
+            this.txtValorOriginal.ReadOnly = true;
+            this.txtValorOriginal.Size = new System.Drawing.Size(199, 22);
+            this.txtValorOriginal.TabIndex = 29;
+            this.txtValorOriginal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // lblValorOriginal
+            // 
+            this.lblValorOriginal.AutoSize = true;
+            this.lblValorOriginal.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblValorOriginal.Location = new System.Drawing.Point(33, 22);
+            this.lblValorOriginal.Name = "lblValorOriginal";
+            this.lblValorOriginal.Size = new System.Drawing.Size(92, 16);
+            this.lblValorOriginal.TabIndex = 28;
+            this.lblValorOriginal.Text = "Valor Original:";
+            this.lblValorOriginal.TextAlign = System.Drawing.ContentAlignment.BottomRight;
             // 
             // lblDataPagamento
             // 
             this.lblDataPagamento.AutoSize = true;
             this.lblDataPagamento.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDataPagamento.Location = new System.Drawing.Point(580, 69);
+            this.lblDataPagamento.Location = new System.Drawing.Point(34, 162);
             this.lblDataPagamento.Name = "lblDataPagamento";
             this.lblDataPagamento.Size = new System.Drawing.Size(113, 16);
             this.lblDataPagamento.TabIndex = 27;
@@ -216,7 +246,7 @@ namespace SGM.WindowsForms.Fomularios.Cadastro
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(699, 66);
+            this.dateTimePicker1.Location = new System.Drawing.Point(153, 159);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(238, 20);
             this.dateTimePicker1.TabIndex = 26;
@@ -229,9 +259,9 @@ namespace SGM.WindowsForms.Fomularios.Cadastro
             this.grbFormaPagamento2.Controls.Add(this.textBox2);
             this.grbFormaPagamento2.Controls.Add(this.label4);
             this.grbFormaPagamento2.Controls.Add(this.label5);
-            this.grbFormaPagamento2.Location = new System.Drawing.Point(15, 172);
+            this.grbFormaPagamento2.Location = new System.Drawing.Point(435, 69);
             this.grbFormaPagamento2.Name = "grbFormaPagamento2";
-            this.grbFormaPagamento2.Size = new System.Drawing.Size(943, 100);
+            this.grbFormaPagamento2.Size = new System.Drawing.Size(474, 198);
             this.grbFormaPagamento2.TabIndex = 27;
             this.grbFormaPagamento2.TabStop = false;
             this.grbFormaPagamento2.Text = "Forma de Pagamento 2";
@@ -240,24 +270,24 @@ namespace SGM.WindowsForms.Fomularios.Cadastro
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(523, 26);
+            this.comboBox1.Location = new System.Drawing.Point(169, 76);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(175, 21);
+            this.comboBox1.Size = new System.Drawing.Size(186, 21);
             this.comboBox1.TabIndex = 20;
             // 
             // comboBox3
             // 
             this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(184, 66);
+            this.comboBox3.Location = new System.Drawing.Point(169, 114);
             this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(378, 21);
+            this.comboBox3.Size = new System.Drawing.Size(249, 21);
             this.comboBox3.TabIndex = 25;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
-            this.label2.Location = new System.Drawing.Point(24, 69);
+            this.label2.Location = new System.Drawing.Point(9, 117);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(154, 16);
             this.label2.TabIndex = 24;
@@ -287,7 +317,7 @@ namespace SGM.WindowsForms.Fomularios.Cadastro
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(380, 29);
+            this.label5.Location = new System.Drawing.Point(21, 81);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(142, 16);
             this.label5.TabIndex = 21;
@@ -422,7 +452,7 @@ namespace SGM.WindowsForms.Fomularios.Cadastro
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightGreen;
-            this.ClientSize = new System.Drawing.Size(985, 783);
+            this.ClientSize = new System.Drawing.Size(985, 749);
             this.Name = "FrmGerarServicoPagamento";
             this.Text = "Sistema de Gerenciamento Mecânica - Registrar Pagamento";
             this.Load += new System.EventHandler(this.FrmGerarServicoPagamento_Load);
@@ -473,5 +503,7 @@ namespace SGM.WindowsForms.Fomularios.Cadastro
         private System.Windows.Forms.Label lblVeiculoCliente;
         private System.Windows.Forms.Label lblNomeCliente;
         private System.Windows.Forms.Button btnUltimosServicosGerados;
+        private System.Windows.Forms.TextBox txtValorOriginal;
+        private System.Windows.Forms.Label lblValorOriginal;
     }
 }

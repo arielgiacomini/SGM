@@ -26,6 +26,8 @@ BEGIN
 
 			DROP TABLE Cliente
 
+			DROP TABLE FormaPagamentoParcela
+
 			DROP TABLE FormaPagamento
 
 			DROP TABLE VeiculoMarca

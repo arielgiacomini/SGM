@@ -17,8 +17,8 @@ CREATE TABLE [Cliente] (
   [LogradouroMunicipio] VARCHAR(200),
   [LogradouroBairro] VARCHAR(200),
   [LogradouroUF] CHAR(2),
-  [RecebeNotificacoes] BIT DEFAULT 1,
-  [ClienteAtivo] BIT DEFAULT 1,
+  [RecebeNotificacoes] BIT DEFAULT (1),
+  [ClienteAtivo] BIT DEFAULT (1),
   [DataCadastro] DATETIME,
   [DataAlteracao] DATETIME
 )
@@ -33,7 +33,7 @@ CREATE TABLE [ClienteVeiculo] (
   [KmRodados] INT,
   [AnoVeiculo] INT,
   [DataCadastro] DATETIME,
-  [Ativo] BIT DEFAULT 1,
+  [Ativo] BIT DEFAULT (1),
   [DataAlteracao] DATETIME
 )
 GO
@@ -61,7 +61,7 @@ CREATE TABLE [MaodeObra] (
   [Valor] DECIMAL(18,2),
   [VigenciaInicial] DATETIME,
   [VigenciaFinal] DATETIME,
-  [Ativo] BIT DEFAULT 1,
+  [Ativo] BIT DEFAULT (1),
   [DataCadastro] DATETIME
 )
 GO
@@ -72,7 +72,7 @@ CREATE TABLE [Peca] (
   [Fornecedor] VARCHAR(500),
   [Valor] DECIMAL(18,2),
   [ValorFrete] DECIMAL(18,2),
-  [Ativo] BIT DEFAULT 1,
+  [Ativo] BIT DEFAULT (1),
   [DataCadastro] DATETIME
 )
 GO
@@ -88,7 +88,7 @@ CREATE TABLE [Orcamento] (
   [PercentualDesconto] DECIMAL(18,2),
   [ValorDesconto] DECIMAL(18,2),
   [ValorTotal] DECIMAL(18,2),
-  [Ativo] BIT DEFAULT 1,
+  [Ativo] BIT DEFAULT (1),
   [DataCadastro] DATETIME,
   [DataAlteracao] DATETIME,
   [Status] INT
@@ -96,14 +96,14 @@ CREATE TABLE [Orcamento] (
 GO
 
 CREATE TABLE [OrcamentoMaodeObra] (
-  [Id] INT,
+  [Id] INT PRIMARY KEY IDENTITY(1,1),
   [OrcamentoId] INT,
   [MaodeObraId] INT
 )
 GO
 
 CREATE TABLE [OrcamentoPeca] (
-  [Id] INT,
+  [Id] INT PRIMARY KEY IDENTITY(1,1),
   [OrcamentoId] INT,
   [PecaId] INT
 )
@@ -120,7 +120,7 @@ CREATE TABLE [Servico] (
   [PercentualDesconto] DECIMAL(18,2),
   [ValorDesconto] DECIMAL(18,2),
   [ValorTotal] DECIMAL(18,2),
-  [Ativo] BIT DEFAULT 1,
+  [Ativo] BIT DEFAULT (1),
   [DataCadastro] DATETIME,
   [DataAlteracao] DATETIME,
   [Status] INT
@@ -128,14 +128,14 @@ CREATE TABLE [Servico] (
 GO
 
 CREATE TABLE [ServicoMaodeObra] (
-  [Id] INT,
+  [Id] INT PRIMARY KEY IDENTITY(1,1),
   [ServicoId] INT,
   [MaodeObraId] INT
 )
 GO
 
 CREATE TABLE [ServicoPeca] (
-  [Id] INT,
+  [Id] INT PRIMARY KEY IDENTITY(1,1),
   [ServicoId] INT,
   [PecaId] INT
 )
@@ -146,7 +146,7 @@ CREATE TABLE [Veiculo] (
   [CodigoFipe] BIGINT,
   [MarcaId] INT,
   [Modelo] VARCHAR(8000),
-  [VeiculoAtivo] BIT DEFAULT 1,
+  [VeiculoAtivo] BIT DEFAULT (1),
   [DataCadastro] DATETIME
 )
 GO
@@ -166,8 +166,8 @@ CREATE TABLE [ServicoPagamento] (
   [ValorTotalPago] DECIMAL(18,2),
   [SaldoDevedorTotal] DECIMAL(18,2),
   [DataPagamento] DATETIME,
-  [EhPagamentoParcelado] BIT DEFAULT 0,
-  [EhPagamentoEmDuasFormaPagamento] BIT DEFAULT 0,
+  [EhPagamentoParcelado] BIT DEFAULT (0),
+  [EhPagamentoEmDuasFormaPagamento] BIT DEFAULT (0),
   [ValorPagoNaSegundaFormaPagamento] DECIMAL(18,2),
   [ColaboradorCadastroId] INT,
   [DataCadastro] DATETIME,
@@ -183,7 +183,7 @@ CREATE TABLE [ServicoPagamentoParcela] (
   [ValorOriginalParcela] DECIMAL(18,2),
   [DataPagamento] DATETIME,
   [Descricao] VARCHAR(250),
-  [ParcelaGeradaAutomaticamente] BIT DEFAULT 1,
+  [ParcelaGeradaAutomaticamente] BIT DEFAULT (1),
   [DataCadastro] DATETIME,
   [DataAlteracao] DATETIME
 )
@@ -192,11 +192,11 @@ GO
 CREATE TABLE [FormaPagamento] (
   [FormaPagamentoId] INT PRIMARY KEY IDENTITY(1, 1),
   [Descricao] VARCHAR(500),
-  [TemTaxaAdicional] BIT DEFAULT 0,
+  [TemTaxaAdicional] BIT DEFAULT (0),
   [PercentualTaxaAdicional] DECIMAL(18,2),
   [ValorTaxaAdicional] DECIMAL(18,2),
-  [QuantidadeMaximaParcela] INT DEFAULT 0,
-  [FormaPagamentoAtiva] BIT DEFAULT 1,
+  [QuantidadeMaximaParcela] INT DEFAULT (0),
+  [FormaPagamentoAtiva] BIT DEFAULT (1),
   [DataCadastro] DATETIME,
   [DataAlteracao] DATETIME
 )
@@ -208,6 +208,18 @@ CREATE TABLE [ControleStatus] (
   [Descricao] VARCHAR(500),
   [DataCadastro] DATETIME,
   [DataAlteracao] DATETIME
+)
+GO
+
+CREATE TABLE [FormaPagamentoParcela] (
+  [FormaPagamentoParcelaId] INT PRIMARY KEY IDENTITY(1, 1),
+  [FormaPagamentoId] INT,
+  [NumeroParcela] INT,
+  [TextoParcela] VARCHAR(500),
+  [DataCadastro] DATETIME,
+  [ColaboradorCadastroId] INT,
+  [DataAlteracao] DATETIME,
+  [ColaboradorAlteracaoId] INT
 )
 GO
 
@@ -263,4 +275,7 @@ ALTER TABLE [Servico] ADD FOREIGN KEY ([Status]) REFERENCES [ControleStatus] ([S
 GO
 
 ALTER TABLE [Orcamento] ADD FOREIGN KEY ([Status]) REFERENCES [ControleStatus] ([StatusId])
+GO
+
+ALTER TABLE [FormaPagamentoParcela] ADD FOREIGN KEY ([FormaPagamentoId]) REFERENCES [FormaPagamento] ([FormaPagamentoId])
 GO
