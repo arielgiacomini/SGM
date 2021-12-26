@@ -1,4 +1,4 @@
-﻿using SGM.ApplicationServices.Infrastructure;
+﻿using SGM.Infrastructure.Configuration;
 using System;
 using System.Configuration;
 

@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 using SGM.ApplicationServices.Command.Interface;
-using SGM.ApplicationServices.Infrastructure;
+using SGM.Infrastructure.Configuration;
 using SGM.Domain.Entities;
 using System;
 using System.Net.Http;

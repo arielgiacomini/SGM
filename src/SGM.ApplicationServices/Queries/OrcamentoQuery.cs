@@ -1,5 +1,5 @@
 ﻿using Newtonsoft.Json;
-using SGM.ApplicationServices.Infrastructure;
+using SGM.Infrastructure.Configuration;
 using SGM.ApplicationServices.Queries.Interface;
 using SGM.Domain.Entities;
 using System;

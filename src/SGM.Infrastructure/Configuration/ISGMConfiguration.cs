@@ -1,4 +1,4 @@
-﻿namespace SGM.ApplicationServices.Infrastructure
+﻿namespace SGM.Infrastructure.Configuration
 {
     public interface ISGMConfiguration
     {

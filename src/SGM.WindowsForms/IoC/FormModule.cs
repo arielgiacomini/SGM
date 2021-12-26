@@ -5,11 +5,11 @@ using SGM.ApplicationServices.Application.Interface;
 using SGM.ApplicationServices.Application.Interface.External;
 using SGM.ApplicationServices.Command;
 using SGM.ApplicationServices.Command.Interface;
-using SGM.ApplicationServices.Infrastructure;
 using SGM.ApplicationServices.Queries;
 using SGM.ApplicationServices.Queries.External;
 using SGM.ApplicationServices.Queries.Interface;
 using SGM.ApplicationServices.Queries.Interface.External;
+using SGM.Infrastructure.Configuration;
 using SGM.WindowsForms.Configuration;
 
 namespace SGM.WindowsForms.IoC
