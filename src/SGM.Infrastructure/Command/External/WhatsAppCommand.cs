@@ -1,9 +1,9 @@
 ﻿using Newtonsoft.Json;
-using SGM.Infrastructure.Configuration;
+using SGM.Domain.Intern.Interfaces.Command.External;
 using SGM.Domain.Entities.External;
+using SGM.Domain.Intern.Interfaces.Configuration;
 using System;
 using System.Net.Http;
-using SGM.Infrastructure.Command.Interface.External;
 
 namespace SGM.Infrastructure.Command.External
 {

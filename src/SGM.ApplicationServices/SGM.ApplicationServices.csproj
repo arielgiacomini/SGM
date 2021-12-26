@@ -11,13 +11,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\SGM.Domain\SGM.Domain.Intern.csproj" />
     <ProjectReference Include="..\SGM.Infrastructure\SGM.Infrastructure.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Interfaces\Application\External\" />
-    <Folder Include="Interfaces\Command\External\" />
-    <Folder Include="Interfaces\Query\External\" />
   </ItemGroup>
 
 </Project>

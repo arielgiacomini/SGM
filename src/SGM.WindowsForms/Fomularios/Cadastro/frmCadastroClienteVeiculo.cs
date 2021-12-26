@@ -1,4 +1,4 @@
-﻿using SGM.ApplicationServices.Application.Interface;
+﻿using SGM.Domain.Intern.Interfaces.Application;
 using SGM.Domain.Entities;
 using SGM.Domain.Enumeration;
 using SGM.Domain.Utils;

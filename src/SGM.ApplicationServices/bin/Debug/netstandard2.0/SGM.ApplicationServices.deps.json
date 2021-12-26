@@ -12,6 +12,7 @@
           "Giacomini.SGM.Domain": "2.0.0",
           "NETStandard.Library": "2.0.3",
           "Newtonsoft.Json": "13.0.1",
+          "SGM.Domain.Intern": "1.0.0",
           "SGM.Infrastructure": "1.0.0",
           "System.Configuration.ConfigurationManager": "6.0.0"
         },
@@ -131,11 +132,21 @@
           }
         }
       },
+      "SGM.Domain.Intern/1.0.0": {
+        "dependencies": {
+          "Giacomini.SGM.Domain": "2.0.0",
+          "Newtonsoft.Json": "13.0.1",
+          "System.Configuration.ConfigurationManager": "6.0.0"
+        },
+        "runtime": {
+          "SGM.Domain.Intern.dll": {}
+        }
+      },
       "SGM.Infrastructure/1.0.0": {
         "dependencies": {
           "Giacomini.SGM.Domain": "2.0.0",
-          "NETStandard.Library": "2.0.3",
           "Newtonsoft.Json": "13.0.1",
+          "SGM.Domain.Intern": "1.0.0",
           "System.Configuration.ConfigurationManager": "6.0.0"
         },
         "runtime": {
@@ -240,6 +251,11 @@
       "sha512": "sha512-t0MGLukB5WAVU9bO3MGzvlGnyJPgUlcwerXn1kzBRjwLKixT96XV0Uza41W49gVd8zEMFu9vQEFlv0IOrytICA==",
       "path": "system.security.principal.windows/5.0.0",
       "hashPath": "system.security.principal.windows.5.0.0.nupkg.sha512"
+    },
+    "SGM.Domain.Intern/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
     },
     "SGM.Infrastructure/1.0.0": {
       "type": "project",

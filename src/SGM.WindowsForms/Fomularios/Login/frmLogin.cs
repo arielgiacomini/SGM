@@ -1,4 +1,4 @@
-﻿using SGM.ApplicationServices.Application.Interface;
+﻿using SGM.Domain.Intern.Interfaces.Application;
 using SGM.WindowsForms.Fomularios.Modelo;
 using SGM.WindowsForms.IoC;
 using System.Windows.Forms;

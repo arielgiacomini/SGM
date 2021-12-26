@@ -1,8 +1,8 @@
-﻿using SGM.Domain.Entities;
-using SGM.Infrastructure.Application.Interface;
-using SGM.Infrastructure.Command.Interface;
-using SGM.Infrastructure.Queries.Interface;
-using SGM.Infrastructure.Queries.Interface.External;
+﻿using SGM.Domain.Intern.Interfaces.Application;
+using SGM.Domain.Intern.Interfaces.Command;
+using SGM.Domain.Intern.Interfaces.Query;
+using SGM.Domain.Intern.Interfaces.Query.External;
+using SGM.Domain.Entities;
 
 namespace SGM.Infrastructure.Application
 {

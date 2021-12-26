@@ -1,4 +1,4 @@
-﻿using SGM.ApplicationServices.Application.Interface;
+﻿using SGM.Domain.Intern.Interfaces.Application;
 using SGM.Domain.DataSources;
 using System;
 using System.Collections.Generic;

@@ -161,13 +161,28 @@
           }
         }
       },
+      "SGM.Domain.Intern/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "dependencies": {
+          "Giacomini.SGM.Domain": "2.0.0",
+          "Newtonsoft.Json": "13.0.1",
+          "System.Configuration.ConfigurationManager": "6.0.0"
+        },
+        "compile": {
+          "bin/placeholder/SGM.Domain.Intern.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/SGM.Domain.Intern.dll": {}
+        }
+      },
       "SGM.Infrastructure/1.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
           "Giacomini.SGM.Domain": "2.0.0",
-          "NETStandard.Library": "2.0.3",
           "Newtonsoft.Json": "13.0.1",
+          "SGM.Domain.Intern": "1.0.0",
           "System.Configuration.ConfigurationManager": "6.0.0"
         },
         "compile": {
@@ -664,6 +679,11 @@
         "version.txt"
       ]
     },
+    "SGM.Domain.Intern/1.0.0": {
+      "type": "project",
+      "path": "../SGM.Domain/SGM.Domain.Intern.csproj",
+      "msbuildProject": "../SGM.Domain/SGM.Domain.Intern.csproj"
+    },
     "SGM.Infrastructure/1.0.0": {
       "type": "project",
       "path": "../SGM.Infrastructure/SGM.Infrastructure.csproj",
@@ -675,6 +695,7 @@
       "Giacomini.SGM.Domain >= 2.0.0",
       "NETStandard.Library >= 2.0.3",
       "Newtonsoft.Json >= 13.0.1",
+      "SGM.Domain.Intern >= 1.0.0",
       "SGM.Infrastructure >= 1.0.0",
       "System.Configuration.ConfigurationManager >= 6.0.0"
     ]
@@ -706,6 +727,9 @@
         "netstandard2.0": {
           "targetAlias": "netstandard2.0",
           "projectReferences": {
+            "C:\\RepositorioDeClones\\arielgiacomini\\SGM\\src\\SGM.Domain\\SGM.Domain.Intern.csproj": {
+              "projectPath": "C:\\RepositorioDeClones\\arielgiacomini\\SGM\\src\\SGM.Domain\\SGM.Domain.Intern.csproj"
+            },
             "C:\\RepositorioDeClones\\arielgiacomini\\SGM\\src\\SGM.Infrastructure\\SGM.Infrastructure.csproj": {
               "projectPath": "C:\\RepositorioDeClones\\arielgiacomini\\SGM\\src\\SGM.Infrastructure\\SGM.Infrastructure.csproj"
             }
@@ -727,6 +751,7 @@
             "version": "[2.0.0, )"
           },
           "NETStandard.Library": {
+            "suppressParent": "All",
             "target": "Package",
             "version": "[2.0.3, )",
             "autoReferenced": true

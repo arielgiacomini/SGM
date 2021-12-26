@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
-using SGM.Infrastructure.Command.Interface;
-using SGM.Infrastructure.Configuration;
+using SGM.Domain.Intern.Interfaces.Command;
 using SGM.Domain.Entities;
+using SGM.Domain.Intern.Interfaces.Configuration;
 using System;
 using System.Net.Http;
 using System.Text;

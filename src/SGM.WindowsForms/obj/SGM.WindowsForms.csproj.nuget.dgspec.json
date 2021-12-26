@@ -4,14 +4,14 @@
     "C:\\RepositorioDeClones\\arielgiacomini\\SGM\\src\\SGM.WindowsForms\\SGM.WindowsForms.csproj": {}
   },
   "projects": {
-    "C:\\RepositorioDeClones\\arielgiacomini\\SGM\\src\\SGM.ApplicationServices\\SGM.ApplicationServices.csproj": {
+    "C:\\RepositorioDeClones\\arielgiacomini\\SGM\\src\\SGM.Domain\\SGM.Domain.Intern.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\RepositorioDeClones\\arielgiacomini\\SGM\\src\\SGM.ApplicationServices\\SGM.ApplicationServices.csproj",
-        "projectName": "SGM.ApplicationServices",
-        "projectPath": "C:\\RepositorioDeClones\\arielgiacomini\\SGM\\src\\SGM.ApplicationServices\\SGM.ApplicationServices.csproj",
+        "projectUniqueName": "C:\\RepositorioDeClones\\arielgiacomini\\SGM\\src\\SGM.Domain\\SGM.Domain.Intern.csproj",
+        "projectName": "SGM.Domain.Intern",
+        "projectPath": "C:\\RepositorioDeClones\\arielgiacomini\\SGM\\src\\SGM.Domain\\SGM.Domain.Intern.csproj",
         "packagesPath": "C:\\Users\\ariel\\.nuget\\packages\\",
-        "outputPath": "C:\\RepositorioDeClones\\arielgiacomini\\SGM\\src\\SGM.ApplicationServices\\obj\\",
+        "outputPath": "C:\\RepositorioDeClones\\arielgiacomini\\SGM\\src\\SGM.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ariel\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -27,11 +27,7 @@
         "frameworks": {
           "netstandard2.0": {
             "targetAlias": "netstandard2.0",
-            "projectReferences": {
-              "C:\\RepositorioDeClones\\arielgiacomini\\SGM\\src\\SGM.Infrastructure\\SGM.Infrastructure.csproj": {
-                "projectPath": "C:\\RepositorioDeClones\\arielgiacomini\\SGM\\src\\SGM.Infrastructure\\SGM.Infrastructure.csproj"
-              }
-            }
+            "projectReferences": {}
           }
         },
         "warningProperties": {
@@ -49,6 +45,7 @@
               "version": "[2.0.0, )"
             },
             "NETStandard.Library": {
+              "suppressParent": "All",
               "target": "Package",
               "version": "[2.0.3, )",
               "autoReferenced": true
@@ -99,7 +96,11 @@
         "frameworks": {
           "netstandard2.0": {
             "targetAlias": "netstandard2.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "C:\\RepositorioDeClones\\arielgiacomini\\SGM\\src\\SGM.Domain\\SGM.Domain.Intern.csproj": {
+                "projectPath": "C:\\RepositorioDeClones\\arielgiacomini\\SGM\\src\\SGM.Domain\\SGM.Domain.Intern.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -117,6 +118,7 @@
               "version": "[2.0.0, )"
             },
             "NETStandard.Library": {
+              "suppressParent": "All",
               "target": "Package",
               "version": "[2.0.3, )",
               "autoReferenced": true
@@ -168,8 +170,8 @@
         "frameworks": {
           "net461": {
             "projectReferences": {
-              "C:\\RepositorioDeClones\\arielgiacomini\\SGM\\src\\SGM.ApplicationServices\\SGM.ApplicationServices.csproj": {
-                "projectPath": "C:\\RepositorioDeClones\\arielgiacomini\\SGM\\src\\SGM.ApplicationServices\\SGM.ApplicationServices.csproj"
+              "C:\\RepositorioDeClones\\arielgiacomini\\SGM\\src\\SGM.Domain\\SGM.Domain.Intern.csproj": {
+                "projectPath": "C:\\RepositorioDeClones\\arielgiacomini\\SGM\\src\\SGM.Domain\\SGM.Domain.Intern.csproj"
               },
               "C:\\RepositorioDeClones\\arielgiacomini\\SGM\\src\\SGM.Infrastructure\\SGM.Infrastructure.csproj": {
                 "projectPath": "C:\\RepositorioDeClones\\arielgiacomini\\SGM\\src\\SGM.Infrastructure\\SGM.Infrastructure.csproj"

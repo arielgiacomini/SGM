@@ -1,4 +1,4 @@
-﻿using SGM.Infrastructure.Configuration;
+﻿using SGM.Domain.Intern.Interfaces.Configuration;
 using System;
 using System.Configuration;
 

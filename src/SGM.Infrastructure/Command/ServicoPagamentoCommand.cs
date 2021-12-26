@@ -1,4 +1,4 @@
-﻿using SGM.Infrastructure.Command.Interface;
+﻿using SGM.Domain.Intern.Interfaces.Command;
 
 namespace SGM.Infrastructure.Command
 {

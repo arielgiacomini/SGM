@@ -1,15 +1,15 @@
 ﻿using Ninject.Modules;
-using SGM.ApplicationServices.Application;
-using SGM.ApplicationServices.Application.External;
-using SGM.ApplicationServices.Application.Interface;
-using SGM.ApplicationServices.Application.Interface.External;
-using SGM.ApplicationServices.Command;
-using SGM.ApplicationServices.Command.Interface;
-using SGM.ApplicationServices.Queries;
-using SGM.ApplicationServices.Queries.External;
-using SGM.ApplicationServices.Queries.Interface;
-using SGM.ApplicationServices.Queries.Interface.External;
-using SGM.Infrastructure.Configuration;
+using SGM.Domain.Intern.Interfaces.Application;
+using SGM.Domain.Intern.Interfaces.Application.External;
+using SGM.Domain.Intern.Interfaces.Command;
+using SGM.Domain.Intern.Interfaces.Configuration;
+using SGM.Domain.Intern.Interfaces.Query;
+using SGM.Domain.Intern.Interfaces.Query.External;
+using SGM.Infrastructure.Application;
+using SGM.Infrastructure.Application.External;
+using SGM.Infrastructure.Command;
+using SGM.Infrastructure.Query;
+using SGM.Infrastructure.Query.External;
 using SGM.WindowsForms.Configuration;
 
 namespace SGM.WindowsForms.IoC

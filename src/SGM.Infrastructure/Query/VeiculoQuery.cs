@@ -1,12 +1,12 @@
 ﻿using Newtonsoft.Json;
-using SGM.Infrastructure.Configuration;
-using SGM.Infrastructure.Queries.Interface;
+using SGM.Domain.Intern.Interfaces.Query;
 using SGM.Domain.Entities;
+using SGM.Domain.Intern.Interfaces.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
 
-namespace SGM.Infrastructure.Queries
+namespace SGM.Infrastructure.Query
 {
     public class VeiculoQuery : IVeiculoQuery
     {

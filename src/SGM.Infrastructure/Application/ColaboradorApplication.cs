@@ -1,5 +1,5 @@
-﻿using SGM.Infrastructure.Application.Interface;
-using SGM.Infrastructure.Queries.Interface;
+﻿using SGM.Domain.Intern.Interfaces.Application;
+using SGM.Domain.Intern.Interfaces.Query;
 
 namespace SGM.Infrastructure.Application
 {

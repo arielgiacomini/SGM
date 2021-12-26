@@ -1,11 +1,11 @@
 ﻿using Newtonsoft.Json;
-using SGM.Infrastructure.Configuration;
-using SGM.Infrastructure.Queries.Interface.External;
+using SGM.Domain.Intern.Interfaces.Query.External;
 using SGM.Domain.Entities.External;
+using SGM.Domain.Intern.Interfaces.Configuration;
 using System;
 using System.Net.Http;
 
-namespace SGM.Infrastructure.Queries.External
+namespace SGM.Infrastructure.Query.External
 {
     public class CorreiosQuery : ICorreiosQuery
     {
