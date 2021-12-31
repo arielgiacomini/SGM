@@ -1,4 +1,4 @@
-﻿using SGM.ApplicationServices.Application.Interface;
+﻿using SGM.Domain.Intern.Interfaces.Application;
 using SGM.WindowsForms.Fomularios.Modelo;
 using SGM.WindowsForms.IoC;
 using System.Windows.Forms;
@@ -34,9 +34,11 @@ namespace SGM.WindowsForms.Fomularios.Login
             {
                 loading.Dispose();
                 this.Hide();
+
                 FrmPrincipal formPrincipal = FormResolve.Resolve<FrmPrincipal>();
                 formPrincipal.ShowDialog();
 
+                this.Close();
             }
             else
             {

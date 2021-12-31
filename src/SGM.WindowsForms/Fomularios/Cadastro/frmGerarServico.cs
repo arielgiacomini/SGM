@@ -1,8 +1,9 @@
-﻿using SGM.ApplicationServices.Application.Interface;
+﻿using SGM.Domain.Intern.Interfaces.Application;
 using SGM.Domain.DataSources;
 using SGM.Domain.Entities;
 using SGM.Domain.Enumeration;
 using SGM.Domain.Utils;
+using SGM.WindowsForms.Fomularios.Cadastro;
 using SGM.WindowsForms.Fomularios.Modelo;
 using SGM.WindowsForms.IoC;
 using System;
@@ -15,7 +16,6 @@ namespace SGM.WindowsForms
 {
     public partial class FrmGerarServico : FrmModeloDeFormularioDeCadastro
     {
-
         private readonly IClienteApplication _clienteApplication;
         private readonly IServicoApplication _servicoApplication;
         private readonly IClienteVeiculoApplication _clienteVeiculoApplication;
@@ -378,6 +378,16 @@ namespace SGM.WindowsForms
 
                 this.LimpaTela();
                 this.DisponibilizarBotoesTela(EnumControleTelas.InserirLocalizar);
+
+                var usuarioQuerAbrirPagamento = MessageBox.Show("Deseja abrir a tela de Pagamento?", "Pergunta", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (usuarioQuerAbrirPagamento == DialogResult.Yes)
+                {
+                    FrmGerarServicoPagamento frmGerarServicoPagamento = FormResolve.Resolve<FrmGerarServicoPagamento>();
+                    frmGerarServicoPagamento.ShowDialog();
+                }
+
+                this.Dispose();
                 this.Close();
             }
             catch (Exception erro)
@@ -475,9 +485,6 @@ namespace SGM.WindowsForms
                     dgvPeca.Columns[2].Width = 70;
                     dgvPeca.Columns[2].DefaultCellStyle.Format = "C2";
                     dgvPeca.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-
-
-
 
                     DisponibilizarBotoesTela(EnumControleTelas.AlterarExcluirCancelar);
                 }

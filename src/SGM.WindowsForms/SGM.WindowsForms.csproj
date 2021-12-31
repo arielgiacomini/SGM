@@ -129,6 +129,12 @@
     <Compile Include="Fomularios\Cadastro\frmCadastroVeiculo.Designer.cs">
       <DependentUpon>frmCadastroVeiculo.cs</DependentUpon>
     </Compile>
+    <Compile Include="Fomularios\Cadastro\frmGerarServicoPagamento.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Fomularios\Cadastro\frmGerarServicoPagamento.Designer.cs">
+      <DependentUpon>frmGerarServicoPagamento.cs</DependentUpon>
+    </Compile>
     <Compile Include="Fomularios\Consulta\frmConsultaCliente.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -262,6 +268,9 @@
     <EmbeddedResource Include="Fomularios\Cadastro\frmCadastroVeiculo.resx">
       <DependentUpon>frmCadastroVeiculo.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Fomularios\Cadastro\frmGerarServicoPagamento.resx">
+      <DependentUpon>frmGerarServicoPagamento.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Fomularios\Consulta\frmConsultaCliente.resx">
       <DependentUpon>frmConsultaCliente.cs</DependentUpon>
     </EmbeddedResource>
@@ -341,9 +350,13 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SGM.ApplicationServices\SGM.ApplicationServices.csproj">
-      <Project>{d83029ac-393c-41af-9b3f-7eebd9d1d762}</Project>
-      <Name>SGM.ApplicationServices</Name>
+    <ProjectReference Include="..\SGM.Domain\SGM.Domain.Intern.csproj">
+      <Project>{2B73FDE0-8111-41EC-B038-D257805EC24E}</Project>
+      <Name>SGM.Domain.Intern</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SGM.Infrastructure\SGM.Infrastructure.csproj">
+      <Project>{2f5a2772-1f48-4bad-9de7-4bd6ca9c33e5}</Project>
+      <Name>SGM.Infrastructure</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -468,10 +481,13 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Giacomini.SGM.Domain">
-      <Version>1.4.0</Version>
+      <Version>2.0.0</Version>
     </PackageReference>
     <PackageReference Include="Newtonsoft.Json">
       <Version>13.0.1</Version>
+    </PackageReference>
+    <PackageReference Include="System.Configuration.ConfigurationManager">
+      <Version>6.0.0</Version>
     </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

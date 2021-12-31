@@ -1,7 +1,7 @@
-﻿using SGM.ApplicationServices.Application.Interface;
-using SGM.ApplicationServices.Application.Interface.External;
-using SGM.Domain.Entities;
+﻿using SGM.Domain.Entities;
 using SGM.Domain.Enumeration;
+using SGM.Domain.Intern.Interfaces.Application;
+using SGM.Domain.Intern.Interfaces.Application.External;
 using SGM.Domain.Utils;
 using SGM.WindowsForms.IoC;
 using System;

@@ -1,15 +1,15 @@
 ﻿using Ninject.Modules;
-using SGM.ApplicationServices.Application;
-using SGM.ApplicationServices.Application.External;
-using SGM.ApplicationServices.Application.Interface;
-using SGM.ApplicationServices.Application.Interface.External;
-using SGM.ApplicationServices.Command;
-using SGM.ApplicationServices.Command.Interface;
-using SGM.ApplicationServices.Infrastructure;
-using SGM.ApplicationServices.Queries;
-using SGM.ApplicationServices.Queries.External;
-using SGM.ApplicationServices.Queries.Interface;
-using SGM.ApplicationServices.Queries.Interface.External;
+using SGM.Domain.Intern.Interfaces.Application;
+using SGM.Domain.Intern.Interfaces.Application.External;
+using SGM.Domain.Intern.Interfaces.Command;
+using SGM.Domain.Intern.Interfaces.Configuration;
+using SGM.Domain.Intern.Interfaces.Query;
+using SGM.Domain.Intern.Interfaces.Query.External;
+using SGM.Infrastructure.Application;
+using SGM.Infrastructure.Application.External;
+using SGM.Infrastructure.Command;
+using SGM.Infrastructure.Query;
+using SGM.Infrastructure.Query.External;
 using SGM.WindowsForms.Configuration;
 
 namespace SGM.WindowsForms.IoC
@@ -39,9 +39,14 @@ namespace SGM.WindowsForms.IoC
             Bind<IServicoCommand>().To<ServicoCommand>();
             Bind<IServicoQuery>().To<ServicoQuery>();
 
+            Bind<IServicoPagamentoCommand>().To<ServicoPagamentoCommand>();
+            Bind<IServicoPagamentoQuery>().To<ServicoPagamentoQuery>();
+
             Bind<ICorreiosQuery>().To<CorreiosQuery>();
 
             Bind<IColaboradorQuery>().To<ColaboradorQuery>();
+
+            Bind<IFormaPagamentoQuery>().To<FormaPagamentoQuery>();
 
             Bind<IClienteApplication>().To<ClienteApplication>();
             Bind<IClienteVeiculoApplication>().To<ClienteVeiculoApplication>();
@@ -52,6 +57,7 @@ namespace SGM.WindowsForms.IoC
             Bind<IServicoApplication>().To<ServicoApplication>();
             Bind<ICorreriosApplication>().To<CorreiosApplication>();
             Bind<IColaboradorApplication>().To<ColaboradorApplication>();
+            Bind<IServicoPagamentoApplication>().To<ServicoPagamentoApplication>();
 
             Bind<ISGMConfiguration>().To<SGMConfiguration>();
         }

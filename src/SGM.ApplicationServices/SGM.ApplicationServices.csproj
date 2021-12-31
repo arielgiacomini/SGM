@@ -5,9 +5,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Giacomini.SGM.Domain" Version="1.4.0" />
+    <PackageReference Include="Giacomini.SGM.Domain" Version="2.0.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-    <PackageReference Include="System.Configuration.ConfigurationManager" Version="6.0.0-preview.6.21352.12" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SGM.Domain\SGM.Domain.Intern.csproj" />
+    <ProjectReference Include="..\SGM.Infrastructure\SGM.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

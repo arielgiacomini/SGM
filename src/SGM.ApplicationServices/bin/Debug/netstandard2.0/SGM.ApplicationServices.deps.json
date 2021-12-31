@@ -9,20 +9,22 @@
     ".NETStandard,Version=v2.0/": {
       "SGM.ApplicationServices/1.0.0": {
         "dependencies": {
-          "Giacomini.SGM.Domain": "1.3.0",
+          "Giacomini.SGM.Domain": "2.0.0",
           "NETStandard.Library": "2.0.3",
           "Newtonsoft.Json": "13.0.1",
-          "System.Configuration.ConfigurationManager": "6.0.0-preview.6.21352.12"
+          "SGM.Domain.Intern": "1.0.0",
+          "SGM.Infrastructure": "1.0.0",
+          "System.Configuration.ConfigurationManager": "6.0.0"
         },
         "runtime": {
           "SGM.ApplicationServices.dll": {}
         }
       },
-      "Giacomini.SGM.Domain/1.3.0": {
+      "Giacomini.SGM.Domain/2.0.0": {
         "runtime": {
           "lib/netstandard2.0/SGM.Domain.dll": {
-            "assemblyVersion": "1.3.0.0",
-            "fileVersion": "1.3.0.0"
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "2.0.0.0"
           }
         }
       },
@@ -48,15 +50,15 @@
           }
         }
       },
-      "System.Configuration.ConfigurationManager/6.0.0-preview.6.21352.12": {
+      "System.Configuration.ConfigurationManager/6.0.0": {
         "dependencies": {
-          "System.Security.Cryptography.ProtectedData": "6.0.0-preview.6.21352.12",
-          "System.Security.Permissions": "6.0.0-preview.6.21352.12"
+          "System.Security.Cryptography.ProtectedData": "6.0.0",
+          "System.Security.Permissions": "6.0.0"
         },
         "runtime": {
           "lib/netstandard2.0/System.Configuration.ConfigurationManager.dll": {
             "assemblyVersion": "6.0.0.0",
-            "fileVersion": "6.0.21.35212"
+            "fileVersion": "6.0.21.52210"
           }
         }
       },
@@ -89,36 +91,36 @@
           }
         }
       },
-      "System.Security.AccessControl/5.0.0": {
+      "System.Security.AccessControl/6.0.0": {
         "dependencies": {
           "System.Security.Principal.Windows": "5.0.0"
         },
         "runtime": {
           "lib/netstandard2.0/System.Security.AccessControl.dll": {
-            "assemblyVersion": "5.0.0.0",
-            "fileVersion": "5.0.20.51904"
+            "assemblyVersion": "6.0.0.0",
+            "fileVersion": "6.0.21.52210"
           }
         }
       },
-      "System.Security.Cryptography.ProtectedData/6.0.0-preview.6.21352.12": {
+      "System.Security.Cryptography.ProtectedData/6.0.0": {
         "dependencies": {
           "System.Memory": "4.5.4"
         },
         "runtime": {
           "lib/netstandard2.0/System.Security.Cryptography.ProtectedData.dll": {
             "assemblyVersion": "6.0.0.0",
-            "fileVersion": "6.0.21.35212"
+            "fileVersion": "6.0.21.52210"
           }
         }
       },
-      "System.Security.Permissions/6.0.0-preview.6.21352.12": {
+      "System.Security.Permissions/6.0.0": {
         "dependencies": {
-          "System.Security.AccessControl": "5.0.0"
+          "System.Security.AccessControl": "6.0.0"
         },
         "runtime": {
           "lib/netstandard2.0/System.Security.Permissions.dll": {
             "assemblyVersion": "6.0.0.0",
-            "fileVersion": "6.0.21.35212"
+            "fileVersion": "6.0.21.52210"
           }
         }
       },
@@ -129,6 +131,27 @@
             "fileVersion": "5.0.20.51904"
           }
         }
+      },
+      "SGM.Domain.Intern/1.0.0": {
+        "dependencies": {
+          "Giacomini.SGM.Domain": "2.0.0",
+          "Newtonsoft.Json": "13.0.1",
+          "System.Configuration.ConfigurationManager": "6.0.0"
+        },
+        "runtime": {
+          "SGM.Domain.Intern.dll": {}
+        }
+      },
+      "SGM.Infrastructure/1.0.0": {
+        "dependencies": {
+          "Giacomini.SGM.Domain": "2.0.0",
+          "Newtonsoft.Json": "13.0.1",
+          "SGM.Domain.Intern": "1.0.0",
+          "System.Configuration.ConfigurationManager": "6.0.0"
+        },
+        "runtime": {
+          "SGM.Infrastructure.dll": {}
+        }
       }
     }
   },
@@ -138,12 +161,12 @@
       "serviceable": false,
       "sha512": ""
     },
-    "Giacomini.SGM.Domain/1.3.0": {
+    "Giacomini.SGM.Domain/2.0.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-uD/IXYR6jL5Dm3SNv/DBq7Qe82HJPChe+2KY5kst0jXwI5RH5kItF49wO6QyCXPyDKLaByqhzZje18+NIq5NUw==",
-      "path": "giacomini.sgm.domain/1.3.0",
-      "hashPath": "giacomini.sgm.domain.1.3.0.nupkg.sha512"
+      "sha512": "sha512-qMUZ5Nsrv43U//fzuV1l3Qc/CZuVgDC6RjroNL+yeybe0vrzzc6nCpcn9qguhFUbMwM94u+rXOO9dQ7775CKFA==",
+      "path": "giacomini.sgm.domain/2.0.0",
+      "hashPath": "giacomini.sgm.domain.2.0.0.nupkg.sha512"
     },
     "Microsoft.NETCore.Platforms/1.1.0": {
       "type": "package",
@@ -173,12 +196,12 @@
       "path": "system.buffers/4.5.1",
       "hashPath": "system.buffers.4.5.1.nupkg.sha512"
     },
-    "System.Configuration.ConfigurationManager/6.0.0-preview.6.21352.12": {
+    "System.Configuration.ConfigurationManager/6.0.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-AGv8T0mFolG5dHHMs8VvZtfB89Ne8DCZvWwFLHh72qWJ430bdEakBc9eA4VCkhxWrLAqp1ZvWEpkhn8pC4jYuA==",
-      "path": "system.configuration.configurationmanager/6.0.0-preview.6.21352.12",
-      "hashPath": "system.configuration.configurationmanager.6.0.0-preview.6.21352.12.nupkg.sha512"
+      "sha512": "sha512-7T+m0kDSlIPTHIkPMIu6m6tV6qsMqJpvQWW2jIc2qi7sn40qxFo0q+7mEQAhMPXZHMKnWrnv47ntGlM/ejvw3g==",
+      "path": "system.configuration.configurationmanager/6.0.0",
+      "hashPath": "system.configuration.configurationmanager.6.0.0.nupkg.sha512"
     },
     "System.Memory/4.5.4": {
       "type": "package",
@@ -201,26 +224,26 @@
       "path": "system.runtime.compilerservices.unsafe/4.5.3",
       "hashPath": "system.runtime.compilerservices.unsafe.4.5.3.nupkg.sha512"
     },
-    "System.Security.AccessControl/5.0.0": {
+    "System.Security.AccessControl/6.0.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-dagJ1mHZO3Ani8GH0PHpPEe/oYO+rVdbQjvjJkBRNQkX4t0r1iaeGn8+/ybkSLEan3/slM0t59SVdHzuHf2jmw==",
-      "path": "system.security.accesscontrol/5.0.0",
-      "hashPath": "system.security.accesscontrol.5.0.0.nupkg.sha512"
+      "sha512": "sha512-AUADIc0LIEQe7MzC+I0cl0rAT8RrTAKFHl53yHjEUzNVIaUlhFY11vc2ebiVJzVBuOzun6F7FBA+8KAbGTTedQ==",
+      "path": "system.security.accesscontrol/6.0.0",
+      "hashPath": "system.security.accesscontrol.6.0.0.nupkg.sha512"
     },
-    "System.Security.Cryptography.ProtectedData/6.0.0-preview.6.21352.12": {
+    "System.Security.Cryptography.ProtectedData/6.0.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-ABIdLjDiNJP6Gb7RLXnb1b1khixlHKEssGv1pdlBVf5VcK0s/TH5zsgsY6z+IOtBKw200LHIj58UlJUKJD+LvQ==",
-      "path": "system.security.cryptography.protecteddata/6.0.0-preview.6.21352.12",
-      "hashPath": "system.security.cryptography.protecteddata.6.0.0-preview.6.21352.12.nupkg.sha512"
+      "sha512": "sha512-rp1gMNEZpvx9vP0JW0oHLxlf8oSiQgtno77Y4PLUBjSiDYoD77Y8uXHr1Ea5XG4/pIKhqAdxZ8v8OTUtqo9PeQ==",
+      "path": "system.security.cryptography.protecteddata/6.0.0",
+      "hashPath": "system.security.cryptography.protecteddata.6.0.0.nupkg.sha512"
     },
-    "System.Security.Permissions/6.0.0-preview.6.21352.12": {
+    "System.Security.Permissions/6.0.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-oJcN+wEH81hLa98y5rAdDSH3sjWhSrNhBF+OZeXBRcNZHksa5pB6ZEwDoVYsx3yCSpwktKY862QQev6g86Xg1g==",
-      "path": "system.security.permissions/6.0.0-preview.6.21352.12",
-      "hashPath": "system.security.permissions.6.0.0-preview.6.21352.12.nupkg.sha512"
+      "sha512": "sha512-T/uuc7AklkDoxmcJ7LGkyX1CcSviZuLCa4jg3PekfJ7SU0niF0IVTXwUiNVP9DSpzou2PpxJ+eNY2IfDM90ZCg==",
+      "path": "system.security.permissions/6.0.0",
+      "hashPath": "system.security.permissions.6.0.0.nupkg.sha512"
     },
     "System.Security.Principal.Windows/5.0.0": {
       "type": "package",
@@ -228,6 +251,16 @@
       "sha512": "sha512-t0MGLukB5WAVU9bO3MGzvlGnyJPgUlcwerXn1kzBRjwLKixT96XV0Uza41W49gVd8zEMFu9vQEFlv0IOrytICA==",
       "path": "system.security.principal.windows/5.0.0",
       "hashPath": "system.security.principal.windows.5.0.0.nupkg.sha512"
+    },
+    "SGM.Domain.Intern/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "SGM.Infrastructure/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
     }
   }
 }

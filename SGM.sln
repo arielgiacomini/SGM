@@ -7,11 +7,19 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SGM.WindowsForms", "src\SGM
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "SGM.Instalador", "src\SGM.Instalador\SGM.Instalador.vdproj", "{DC3259D6-224C-4BDE-805D-9A1ED8F8613D}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2-ApplicationServices", "2-ApplicationServices", "{353A44A3-3693-4067-B7F9-2021F26C0F6A}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - ApplicationServices", "2 - ApplicationServices", "{353A44A3-3693-4067-B7F9-2021F26C0F6A}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1-Apresentation", "1-Apresentation", "{0915B30B-9B59-42B6-BBEF-A0D9B94BC751}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - Apresentation", "1 - Apresentation", "{0915B30B-9B59-42B6-BBEF-A0D9B94BC751}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SGM.ApplicationServices", "src\SGM.ApplicationServices\SGM.ApplicationServices.csproj", "{D83029AC-393C-41AF-9B3F-7EEBD9D1D762}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 - Infrastructure", "3 - Infrastructure", "{B7DA149A-EE58-4D03-BA76-758E51532662}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SGM.Infrastructure", "src\SGM.Infrastructure\SGM.Infrastructure.csproj", "{2F5A2772-1F48-4BAD-9DE7-4BD6CA9C33E5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4 - Domain", "4 - Domain", "{B8A5FE05-620E-4FA8-9D58-EBD73F9F6715}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SGM.Domain.Intern", "src\SGM.Domain\SGM.Domain.Intern.csproj", "{2B73FDE0-8111-41EC-B038-D257805EC24E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,13 +49,32 @@ Global
 		{D83029AC-393C-41AF-9B3F-7EEBD9D1D762}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D83029AC-393C-41AF-9B3F-7EEBD9D1D762}.Release|x86.ActiveCfg = Release|Any CPU
 		{D83029AC-393C-41AF-9B3F-7EEBD9D1D762}.Release|x86.Build.0 = Release|Any CPU
+		{2F5A2772-1F48-4BAD-9DE7-4BD6CA9C33E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F5A2772-1F48-4BAD-9DE7-4BD6CA9C33E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F5A2772-1F48-4BAD-9DE7-4BD6CA9C33E5}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{2F5A2772-1F48-4BAD-9DE7-4BD6CA9C33E5}.Debug|x86.Build.0 = Debug|Any CPU
+		{2F5A2772-1F48-4BAD-9DE7-4BD6CA9C33E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F5A2772-1F48-4BAD-9DE7-4BD6CA9C33E5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F5A2772-1F48-4BAD-9DE7-4BD6CA9C33E5}.Release|x86.ActiveCfg = Release|Any CPU
+		{2F5A2772-1F48-4BAD-9DE7-4BD6CA9C33E5}.Release|x86.Build.0 = Release|Any CPU
+		{2B73FDE0-8111-41EC-B038-D257805EC24E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B73FDE0-8111-41EC-B038-D257805EC24E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B73FDE0-8111-41EC-B038-D257805EC24E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{2B73FDE0-8111-41EC-B038-D257805EC24E}.Debug|x86.Build.0 = Debug|Any CPU
+		{2B73FDE0-8111-41EC-B038-D257805EC24E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B73FDE0-8111-41EC-B038-D257805EC24E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B73FDE0-8111-41EC-B038-D257805EC24E}.Release|x86.ActiveCfg = Release|Any CPU
+		{2B73FDE0-8111-41EC-B038-D257805EC24E}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{1F49ABDC-B8A5-43BE-BD61-E84694AA15E9} = {0915B30B-9B59-42B6-BBEF-A0D9B94BC751}
+		{DC3259D6-224C-4BDE-805D-9A1ED8F8613D} = {B7DA149A-EE58-4D03-BA76-758E51532662}
 		{D83029AC-393C-41AF-9B3F-7EEBD9D1D762} = {353A44A3-3693-4067-B7F9-2021F26C0F6A}
+		{2F5A2772-1F48-4BAD-9DE7-4BD6CA9C33E5} = {B7DA149A-EE58-4D03-BA76-758E51532662}
+		{2B73FDE0-8111-41EC-B038-D257805EC24E} = {B8A5FE05-620E-4FA8-9D58-EBD73F9F6715}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {80159BB2-2612-4935-A517-A314B820ED89}

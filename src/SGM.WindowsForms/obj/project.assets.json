@@ -2,7 +2,7 @@
   "version": 3,
   "targets": {
     ".NETFramework,Version=v4.6.1": {
-      "Giacomini.SGM.Domain/1.4.0": {
+      "Giacomini.SGM.Domain/2.0.0": {
         "type": "package",
         "compile": {
           "lib/netstandard2.0/SGM.Domain.dll": {}
@@ -20,34 +20,34 @@
           "lib/net45/Newtonsoft.Json.dll": {}
         }
       },
-      "System.Configuration.ConfigurationManager/6.0.0-preview.6.21352.12": {
+      "System.Configuration.ConfigurationManager/6.0.0": {
         "type": "package",
         "dependencies": {
-          "System.Security.Permissions": "6.0.0-preview.6.21352.12"
+          "System.Security.Permissions": "6.0.0"
         },
         "frameworkAssemblies": [
-          "System",
-          "System.Configuration",
-          "System.Drawing",
-          "mscorlib"
+          "System.Configuration"
         ],
         "compile": {
-          "ref/net461/System.Configuration.ConfigurationManager.dll": {}
+          "lib/net461/System.Configuration.ConfigurationManager.dll": {}
         },
         "runtime": {
           "lib/net461/System.Configuration.ConfigurationManager.dll": {}
+        },
+        "runtimeTargets": {
+          "runtimes/win/lib/net461/System.Configuration.ConfigurationManager.dll": {
+            "assetType": "runtime",
+            "rid": "win"
+          }
         }
       },
-      "System.Security.AccessControl/5.0.0": {
+      "System.Security.AccessControl/6.0.0": {
         "type": "package",
         "dependencies": {
           "System.Security.Principal.Windows": "5.0.0"
         },
-        "frameworkAssemblies": [
-          "mscorlib"
-        ],
         "compile": {
-          "ref/net461/System.Security.AccessControl.dll": {}
+          "lib/net461/System.Security.AccessControl.dll": {}
         },
         "runtime": {
           "lib/net461/System.Security.AccessControl.dll": {}
@@ -59,29 +59,31 @@
           }
         }
       },
-      "System.Security.Permissions/6.0.0-preview.6.21352.12": {
+      "System.Security.Permissions/6.0.0": {
         "type": "package",
         "dependencies": {
-          "System.Security.AccessControl": "5.0.0"
+          "System.Security.AccessControl": "6.0.0"
         },
         "frameworkAssemblies": [
-          "System",
           "System.Configuration",
-          "System.Data",
           "System.Data.OracleClient",
-          "System.Drawing",
           "System.Net",
           "System.Security",
           "System.ServiceProcess",
           "System.Transactions",
-          "WindowsBase",
-          "mscorlib"
+          "WindowsBase"
         ],
         "compile": {
-          "ref/net461/System.Security.Permissions.dll": {}
+          "lib/net461/System.Security.Permissions.dll": {}
         },
         "runtime": {
           "lib/net461/System.Security.Permissions.dll": {}
+        },
+        "runtimeTargets": {
+          "runtimes/win/lib/net461/System.Security.Permissions.dll": {
+            "assetType": "runtime",
+            "rid": "win"
+          }
         }
       },
       "System.Security.Principal.Windows/5.0.0": {
@@ -103,24 +105,40 @@
           }
         }
       },
-      "SGM.ApplicationServices/1.0.0": {
+      "SGM.Domain.Intern/1.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
-          "Giacomini.SGM.Domain": "1.4.0",
+          "Giacomini.SGM.Domain": "2.0.0",
           "Newtonsoft.Json": "13.0.1",
-          "System.Configuration.ConfigurationManager": "6.0.0-preview.6.21352.12"
+          "System.Configuration.ConfigurationManager": "6.0.0"
         },
         "compile": {
-          "bin/placeholder/SGM.ApplicationServices.dll": {}
+          "bin/placeholder/SGM.Domain.Intern.dll": {}
         },
         "runtime": {
-          "bin/placeholder/SGM.ApplicationServices.dll": {}
+          "bin/placeholder/SGM.Domain.Intern.dll": {}
+        }
+      },
+      "SGM.Infrastructure/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "dependencies": {
+          "Giacomini.SGM.Domain": "2.0.0",
+          "Newtonsoft.Json": "13.0.1",
+          "SGM.Domain.Intern": "1.0.0",
+          "System.Configuration.ConfigurationManager": "6.0.0"
+        },
+        "compile": {
+          "bin/placeholder/SGM.Infrastructure.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/SGM.Infrastructure.dll": {}
         }
       }
     },
     ".NETFramework,Version=v4.6.1/win": {
-      "Giacomini.SGM.Domain/1.4.0": {
+      "Giacomini.SGM.Domain/2.0.0": {
         "type": "package",
         "compile": {
           "lib/netstandard2.0/SGM.Domain.dll": {}
@@ -138,62 +156,52 @@
           "lib/net45/Newtonsoft.Json.dll": {}
         }
       },
-      "System.Configuration.ConfigurationManager/6.0.0-preview.6.21352.12": {
+      "System.Configuration.ConfigurationManager/6.0.0": {
         "type": "package",
         "dependencies": {
-          "System.Security.Permissions": "6.0.0-preview.6.21352.12"
+          "System.Security.Permissions": "6.0.0"
         },
         "frameworkAssemblies": [
-          "System",
-          "System.Configuration",
-          "System.Drawing",
-          "mscorlib"
+          "System.Configuration"
         ],
         "compile": {
-          "ref/net461/System.Configuration.ConfigurationManager.dll": {}
+          "lib/net461/System.Configuration.ConfigurationManager.dll": {}
         },
         "runtime": {
-          "lib/net461/System.Configuration.ConfigurationManager.dll": {}
+          "runtimes/win/lib/net461/System.Configuration.ConfigurationManager.dll": {}
         }
       },
-      "System.Security.AccessControl/5.0.0": {
+      "System.Security.AccessControl/6.0.0": {
         "type": "package",
         "dependencies": {
           "System.Security.Principal.Windows": "5.0.0"
         },
-        "frameworkAssemblies": [
-          "mscorlib"
-        ],
         "compile": {
-          "ref/net461/System.Security.AccessControl.dll": {}
+          "lib/net461/System.Security.AccessControl.dll": {}
         },
         "runtime": {
           "runtimes/win/lib/net461/System.Security.AccessControl.dll": {}
         }
       },
-      "System.Security.Permissions/6.0.0-preview.6.21352.12": {
+      "System.Security.Permissions/6.0.0": {
         "type": "package",
         "dependencies": {
-          "System.Security.AccessControl": "5.0.0"
+          "System.Security.AccessControl": "6.0.0"
         },
         "frameworkAssemblies": [
-          "System",
           "System.Configuration",
-          "System.Data",
           "System.Data.OracleClient",
-          "System.Drawing",
           "System.Net",
           "System.Security",
           "System.ServiceProcess",
           "System.Transactions",
-          "WindowsBase",
-          "mscorlib"
+          "WindowsBase"
         ],
         "compile": {
-          "ref/net461/System.Security.Permissions.dll": {}
+          "lib/net461/System.Security.Permissions.dll": {}
         },
         "runtime": {
-          "lib/net461/System.Security.Permissions.dll": {}
+          "runtimes/win/lib/net461/System.Security.Permissions.dll": {}
         }
       },
       "System.Security.Principal.Windows/5.0.0": {
@@ -209,24 +217,40 @@
           "runtimes/win/lib/net461/System.Security.Principal.Windows.dll": {}
         }
       },
-      "SGM.ApplicationServices/1.0.0": {
+      "SGM.Domain.Intern/1.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
-          "Giacomini.SGM.Domain": "1.4.0",
+          "Giacomini.SGM.Domain": "2.0.0",
           "Newtonsoft.Json": "13.0.1",
-          "System.Configuration.ConfigurationManager": "6.0.0-preview.6.21352.12"
+          "System.Configuration.ConfigurationManager": "6.0.0"
         },
         "compile": {
-          "bin/placeholder/SGM.ApplicationServices.dll": {}
+          "bin/placeholder/SGM.Domain.Intern.dll": {}
         },
         "runtime": {
-          "bin/placeholder/SGM.ApplicationServices.dll": {}
+          "bin/placeholder/SGM.Domain.Intern.dll": {}
+        }
+      },
+      "SGM.Infrastructure/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "dependencies": {
+          "Giacomini.SGM.Domain": "2.0.0",
+          "Newtonsoft.Json": "13.0.1",
+          "SGM.Domain.Intern": "1.0.0",
+          "System.Configuration.ConfigurationManager": "6.0.0"
+        },
+        "compile": {
+          "bin/placeholder/SGM.Infrastructure.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/SGM.Infrastructure.dll": {}
         }
       }
     },
     ".NETFramework,Version=v4.6.1/win-x64": {
-      "Giacomini.SGM.Domain/1.4.0": {
+      "Giacomini.SGM.Domain/2.0.0": {
         "type": "package",
         "compile": {
           "lib/netstandard2.0/SGM.Domain.dll": {}
@@ -244,59 +268,49 @@
           "lib/net45/Newtonsoft.Json.dll": {}
         }
       },
-      "System.Configuration.ConfigurationManager/6.0.0-preview.6.21352.12": {
+      "System.Configuration.ConfigurationManager/6.0.0": {
         "type": "package",
         "dependencies": {
-          "System.Security.Permissions": "6.0.0-preview.6.21352.12"
+          "System.Security.Permissions": "6.0.0"
         },
         "frameworkAssemblies": [
-          "System",
-          "System.Configuration",
-          "System.Drawing",
-          "mscorlib"
+          "System.Configuration"
         ],
         "compile": {
-          "ref/net461/System.Configuration.ConfigurationManager.dll": {}
+          "lib/net461/System.Configuration.ConfigurationManager.dll": {}
         },
         "runtime": {
           "lib/net461/System.Configuration.ConfigurationManager.dll": {}
         }
       },
-      "System.Security.AccessControl/5.0.0": {
+      "System.Security.AccessControl/6.0.0": {
         "type": "package",
         "dependencies": {
           "System.Security.Principal.Windows": "5.0.0"
         },
-        "frameworkAssemblies": [
-          "mscorlib"
-        ],
         "compile": {
-          "ref/net461/System.Security.AccessControl.dll": {}
+          "lib/net461/System.Security.AccessControl.dll": {}
         },
         "runtime": {
           "lib/net461/System.Security.AccessControl.dll": {}
         }
       },
-      "System.Security.Permissions/6.0.0-preview.6.21352.12": {
+      "System.Security.Permissions/6.0.0": {
         "type": "package",
         "dependencies": {
-          "System.Security.AccessControl": "5.0.0"
+          "System.Security.AccessControl": "6.0.0"
         },
         "frameworkAssemblies": [
-          "System",
           "System.Configuration",
-          "System.Data",
           "System.Data.OracleClient",
-          "System.Drawing",
           "System.Net",
           "System.Security",
           "System.ServiceProcess",
           "System.Transactions",
-          "WindowsBase",
-          "mscorlib"
+          "WindowsBase"
         ],
         "compile": {
-          "ref/net461/System.Security.Permissions.dll": {}
+          "lib/net461/System.Security.Permissions.dll": {}
         },
         "runtime": {
           "lib/net461/System.Security.Permissions.dll": {}
@@ -315,24 +329,40 @@
           "lib/net461/System.Security.Principal.Windows.dll": {}
         }
       },
-      "SGM.ApplicationServices/1.0.0": {
+      "SGM.Domain.Intern/1.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
-          "Giacomini.SGM.Domain": "1.4.0",
+          "Giacomini.SGM.Domain": "2.0.0",
           "Newtonsoft.Json": "13.0.1",
-          "System.Configuration.ConfigurationManager": "6.0.0-preview.6.21352.12"
+          "System.Configuration.ConfigurationManager": "6.0.0"
         },
         "compile": {
-          "bin/placeholder/SGM.ApplicationServices.dll": {}
+          "bin/placeholder/SGM.Domain.Intern.dll": {}
         },
         "runtime": {
-          "bin/placeholder/SGM.ApplicationServices.dll": {}
+          "bin/placeholder/SGM.Domain.Intern.dll": {}
+        }
+      },
+      "SGM.Infrastructure/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "dependencies": {
+          "Giacomini.SGM.Domain": "2.0.0",
+          "Newtonsoft.Json": "13.0.1",
+          "SGM.Domain.Intern": "1.0.0",
+          "System.Configuration.ConfigurationManager": "6.0.0"
+        },
+        "compile": {
+          "bin/placeholder/SGM.Infrastructure.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/SGM.Infrastructure.dll": {}
         }
       }
     },
     ".NETFramework,Version=v4.6.1/win-x86": {
-      "Giacomini.SGM.Domain/1.4.0": {
+      "Giacomini.SGM.Domain/2.0.0": {
         "type": "package",
         "compile": {
           "lib/netstandard2.0/SGM.Domain.dll": {}
@@ -350,59 +380,49 @@
           "lib/net45/Newtonsoft.Json.dll": {}
         }
       },
-      "System.Configuration.ConfigurationManager/6.0.0-preview.6.21352.12": {
+      "System.Configuration.ConfigurationManager/6.0.0": {
         "type": "package",
         "dependencies": {
-          "System.Security.Permissions": "6.0.0-preview.6.21352.12"
+          "System.Security.Permissions": "6.0.0"
         },
         "frameworkAssemblies": [
-          "System",
-          "System.Configuration",
-          "System.Drawing",
-          "mscorlib"
+          "System.Configuration"
         ],
         "compile": {
-          "ref/net461/System.Configuration.ConfigurationManager.dll": {}
+          "lib/net461/System.Configuration.ConfigurationManager.dll": {}
         },
         "runtime": {
           "lib/net461/System.Configuration.ConfigurationManager.dll": {}
         }
       },
-      "System.Security.AccessControl/5.0.0": {
+      "System.Security.AccessControl/6.0.0": {
         "type": "package",
         "dependencies": {
           "System.Security.Principal.Windows": "5.0.0"
         },
-        "frameworkAssemblies": [
-          "mscorlib"
-        ],
         "compile": {
-          "ref/net461/System.Security.AccessControl.dll": {}
+          "lib/net461/System.Security.AccessControl.dll": {}
         },
         "runtime": {
           "lib/net461/System.Security.AccessControl.dll": {}
         }
       },
-      "System.Security.Permissions/6.0.0-preview.6.21352.12": {
+      "System.Security.Permissions/6.0.0": {
         "type": "package",
         "dependencies": {
-          "System.Security.AccessControl": "5.0.0"
+          "System.Security.AccessControl": "6.0.0"
         },
         "frameworkAssemblies": [
-          "System",
           "System.Configuration",
-          "System.Data",
           "System.Data.OracleClient",
-          "System.Drawing",
           "System.Net",
           "System.Security",
           "System.ServiceProcess",
           "System.Transactions",
-          "WindowsBase",
-          "mscorlib"
+          "WindowsBase"
         ],
         "compile": {
-          "ref/net461/System.Security.Permissions.dll": {}
+          "lib/net461/System.Security.Permissions.dll": {}
         },
         "runtime": {
           "lib/net461/System.Security.Permissions.dll": {}
@@ -421,34 +441,52 @@
           "lib/net461/System.Security.Principal.Windows.dll": {}
         }
       },
-      "SGM.ApplicationServices/1.0.0": {
+      "SGM.Domain.Intern/1.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
-          "Giacomini.SGM.Domain": "1.4.0",
+          "Giacomini.SGM.Domain": "2.0.0",
           "Newtonsoft.Json": "13.0.1",
-          "System.Configuration.ConfigurationManager": "6.0.0-preview.6.21352.12"
+          "System.Configuration.ConfigurationManager": "6.0.0"
         },
         "compile": {
-          "bin/placeholder/SGM.ApplicationServices.dll": {}
+          "bin/placeholder/SGM.Domain.Intern.dll": {}
         },
         "runtime": {
-          "bin/placeholder/SGM.ApplicationServices.dll": {}
+          "bin/placeholder/SGM.Domain.Intern.dll": {}
+        }
+      },
+      "SGM.Infrastructure/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "dependencies": {
+          "Giacomini.SGM.Domain": "2.0.0",
+          "Newtonsoft.Json": "13.0.1",
+          "SGM.Domain.Intern": "1.0.0",
+          "System.Configuration.ConfigurationManager": "6.0.0"
+        },
+        "compile": {
+          "bin/placeholder/SGM.Infrastructure.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/SGM.Infrastructure.dll": {}
         }
       }
     }
   },
   "libraries": {
-    "Giacomini.SGM.Domain/1.4.0": {
-      "sha512": "Iy55PPLoiRgSFsEJdSJZB2qfv6KqUi/5dI1BuHbODJFP8MGOpK8EhEzJY7eYyWFLipsb+hirmno4DeIVMTM57w==",
+    "Giacomini.SGM.Domain/2.0.0": {
+      "sha512": "qMUZ5Nsrv43U//fzuV1l3Qc/CZuVgDC6RjroNL+yeybe0vrzzc6nCpcn9qguhFUbMwM94u+rXOO9dQ7775CKFA==",
       "type": "package",
-      "path": "giacomini.sgm.domain/1.4.0",
+      "path": "giacomini.sgm.domain/2.0.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "giacomini.sgm.domain.1.4.0.nupkg.sha512",
+        "giacomini.sgm.domain.2.0.0.nupkg.sha512",
         "giacomini.sgm.domain.nuspec",
-        "lib/netstandard2.0/SGM.Domain.dll"
+        "lib/netstandard2.0/SGM.Domain.deps.json",
+        "lib/netstandard2.0/SGM.Domain.dll",
+        "lib/netstandard2.0/SGM.Domain.pdb"
       ]
     },
     "Newtonsoft.Json/13.0.1": {
@@ -478,83 +516,64 @@
         "packageIcon.png"
       ]
     },
-    "System.Configuration.ConfigurationManager/6.0.0-preview.6.21352.12": {
-      "sha512": "AGv8T0mFolG5dHHMs8VvZtfB89Ne8DCZvWwFLHh72qWJ430bdEakBc9eA4VCkhxWrLAqp1ZvWEpkhn8pC4jYuA==",
+    "System.Configuration.ConfigurationManager/6.0.0": {
+      "sha512": "7T+m0kDSlIPTHIkPMIu6m6tV6qsMqJpvQWW2jIc2qi7sn40qxFo0q+7mEQAhMPXZHMKnWrnv47ntGlM/ejvw3g==",
       "type": "package",
-      "path": "system.configuration.configurationmanager/6.0.0-preview.6.21352.12",
+      "path": "system.configuration.configurationmanager/6.0.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
         "LICENSE.TXT",
         "THIRD-PARTY-NOTICES.TXT",
+        "buildTransitive/netcoreapp2.0/System.Configuration.ConfigurationManager.targets",
+        "buildTransitive/netcoreapp3.1/_._",
         "lib/net461/System.Configuration.ConfigurationManager.dll",
         "lib/net461/System.Configuration.ConfigurationManager.xml",
         "lib/net6.0/System.Configuration.ConfigurationManager.dll",
         "lib/net6.0/System.Configuration.ConfigurationManager.xml",
         "lib/netstandard2.0/System.Configuration.ConfigurationManager.dll",
         "lib/netstandard2.0/System.Configuration.ConfigurationManager.xml",
-        "ref/net461/System.Configuration.ConfigurationManager.dll",
-        "ref/net461/System.Configuration.ConfigurationManager.xml",
-        "ref/net6.0/System.Configuration.ConfigurationManager.dll",
-        "ref/net6.0/System.Configuration.ConfigurationManager.xml",
-        "ref/netstandard2.0/System.Configuration.ConfigurationManager.dll",
-        "ref/netstandard2.0/System.Configuration.ConfigurationManager.xml",
-        "system.configuration.configurationmanager.6.0.0-preview.6.21352.12.nupkg.sha512",
-        "system.configuration.configurationmanager.nuspec"
+        "runtimes/win/lib/net461/System.Configuration.ConfigurationManager.dll",
+        "runtimes/win/lib/net461/System.Configuration.ConfigurationManager.xml",
+        "system.configuration.configurationmanager.6.0.0.nupkg.sha512",
+        "system.configuration.configurationmanager.nuspec",
+        "useSharedDesignerContext.txt"
       ]
     },
-    "System.Security.AccessControl/5.0.0": {
-      "sha512": "dagJ1mHZO3Ani8GH0PHpPEe/oYO+rVdbQjvjJkBRNQkX4t0r1iaeGn8+/ybkSLEan3/slM0t59SVdHzuHf2jmw==",
+    "System.Security.AccessControl/6.0.0": {
+      "sha512": "AUADIc0LIEQe7MzC+I0cl0rAT8RrTAKFHl53yHjEUzNVIaUlhFY11vc2ebiVJzVBuOzun6F7FBA+8KAbGTTedQ==",
       "type": "package",
-      "path": "system.security.accesscontrol/5.0.0",
+      "path": "system.security.accesscontrol/6.0.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
         "LICENSE.TXT",
         "THIRD-PARTY-NOTICES.TXT",
-        "lib/net46/System.Security.AccessControl.dll",
+        "buildTransitive/netcoreapp2.0/System.Security.AccessControl.targets",
+        "buildTransitive/netcoreapp3.1/_._",
         "lib/net461/System.Security.AccessControl.dll",
         "lib/net461/System.Security.AccessControl.xml",
-        "lib/netstandard1.3/System.Security.AccessControl.dll",
+        "lib/net6.0/System.Security.AccessControl.dll",
+        "lib/net6.0/System.Security.AccessControl.xml",
         "lib/netstandard2.0/System.Security.AccessControl.dll",
         "lib/netstandard2.0/System.Security.AccessControl.xml",
-        "lib/uap10.0.16299/_._",
-        "ref/net46/System.Security.AccessControl.dll",
-        "ref/net461/System.Security.AccessControl.dll",
-        "ref/net461/System.Security.AccessControl.xml",
-        "ref/netstandard1.3/System.Security.AccessControl.dll",
-        "ref/netstandard1.3/System.Security.AccessControl.xml",
-        "ref/netstandard1.3/de/System.Security.AccessControl.xml",
-        "ref/netstandard1.3/es/System.Security.AccessControl.xml",
-        "ref/netstandard1.3/fr/System.Security.AccessControl.xml",
-        "ref/netstandard1.3/it/System.Security.AccessControl.xml",
-        "ref/netstandard1.3/ja/System.Security.AccessControl.xml",
-        "ref/netstandard1.3/ko/System.Security.AccessControl.xml",
-        "ref/netstandard1.3/ru/System.Security.AccessControl.xml",
-        "ref/netstandard1.3/zh-hans/System.Security.AccessControl.xml",
-        "ref/netstandard1.3/zh-hant/System.Security.AccessControl.xml",
-        "ref/netstandard2.0/System.Security.AccessControl.dll",
-        "ref/netstandard2.0/System.Security.AccessControl.xml",
-        "ref/uap10.0.16299/_._",
-        "runtimes/win/lib/net46/System.Security.AccessControl.dll",
         "runtimes/win/lib/net461/System.Security.AccessControl.dll",
         "runtimes/win/lib/net461/System.Security.AccessControl.xml",
-        "runtimes/win/lib/netcoreapp2.0/System.Security.AccessControl.dll",
-        "runtimes/win/lib/netcoreapp2.0/System.Security.AccessControl.xml",
-        "runtimes/win/lib/netstandard1.3/System.Security.AccessControl.dll",
-        "runtimes/win/lib/uap10.0.16299/_._",
-        "system.security.accesscontrol.5.0.0.nupkg.sha512",
+        "runtimes/win/lib/net6.0/System.Security.AccessControl.dll",
+        "runtimes/win/lib/net6.0/System.Security.AccessControl.xml",
+        "runtimes/win/lib/netstandard2.0/System.Security.AccessControl.dll",
+        "runtimes/win/lib/netstandard2.0/System.Security.AccessControl.xml",
+        "system.security.accesscontrol.6.0.0.nupkg.sha512",
         "system.security.accesscontrol.nuspec",
-        "useSharedDesignerContext.txt",
-        "version.txt"
+        "useSharedDesignerContext.txt"
       ]
     },
-    "System.Security.Permissions/6.0.0-preview.6.21352.12": {
-      "sha512": "oJcN+wEH81hLa98y5rAdDSH3sjWhSrNhBF+OZeXBRcNZHksa5pB6ZEwDoVYsx3yCSpwktKY862QQev6g86Xg1g==",
+    "System.Security.Permissions/6.0.0": {
+      "sha512": "T/uuc7AklkDoxmcJ7LGkyX1CcSviZuLCa4jg3PekfJ7SU0niF0IVTXwUiNVP9DSpzou2PpxJ+eNY2IfDM90ZCg==",
       "type": "package",
-      "path": "system.security.permissions/6.0.0-preview.6.21352.12",
+      "path": "system.security.permissions/6.0.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -573,18 +592,11 @@
         "lib/netcoreapp3.1/System.Security.Permissions.xml",
         "lib/netstandard2.0/System.Security.Permissions.dll",
         "lib/netstandard2.0/System.Security.Permissions.xml",
-        "ref/net461/System.Security.Permissions.dll",
-        "ref/net461/System.Security.Permissions.xml",
-        "ref/net5.0/System.Security.Permissions.dll",
-        "ref/net5.0/System.Security.Permissions.xml",
-        "ref/net6.0/System.Security.Permissions.dll",
-        "ref/net6.0/System.Security.Permissions.xml",
-        "ref/netcoreapp3.1/System.Security.Permissions.dll",
-        "ref/netcoreapp3.1/System.Security.Permissions.xml",
-        "ref/netstandard2.0/System.Security.Permissions.dll",
-        "ref/netstandard2.0/System.Security.Permissions.xml",
-        "system.security.permissions.6.0.0-preview.6.21352.12.nupkg.sha512",
-        "system.security.permissions.nuspec"
+        "runtimes/win/lib/net461/System.Security.Permissions.dll",
+        "runtimes/win/lib/net461/System.Security.Permissions.xml",
+        "system.security.permissions.6.0.0.nupkg.sha512",
+        "system.security.permissions.nuspec",
+        "useSharedDesignerContext.txt"
       ]
     },
     "System.Security.Principal.Windows/5.0.0": {
@@ -642,17 +654,24 @@
         "version.txt"
       ]
     },
-    "SGM.ApplicationServices/1.0.0": {
+    "SGM.Domain.Intern/1.0.0": {
       "type": "project",
-      "path": "../SGM.ApplicationServices/SGM.ApplicationServices.csproj",
-      "msbuildProject": "../SGM.ApplicationServices/SGM.ApplicationServices.csproj"
+      "path": "../SGM.Domain/SGM.Domain.Intern.csproj",
+      "msbuildProject": "../SGM.Domain/SGM.Domain.Intern.csproj"
+    },
+    "SGM.Infrastructure/1.0.0": {
+      "type": "project",
+      "path": "../SGM.Infrastructure/SGM.Infrastructure.csproj",
+      "msbuildProject": "../SGM.Infrastructure/SGM.Infrastructure.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETFramework,Version=v4.6.1": [
-      "Giacomini.SGM.Domain >= 1.4.0",
+      "Giacomini.SGM.Domain >= 2.0.0",
       "Newtonsoft.Json >= 13.0.1",
-      "SGM.ApplicationServices >= 1.0.0"
+      "SGM.Domain.Intern >= 1.0.0",
+      "SGM.Infrastructure >= 1.0.0",
+      "System.Configuration.ConfigurationManager >= 6.0.0"
     ]
   },
   "packageFolders": {
@@ -682,8 +701,11 @@
       "frameworks": {
         "net461": {
           "projectReferences": {
-            "C:\\RepositorioDeClones\\arielgiacomini\\SGM\\src\\SGM.ApplicationServices\\SGM.ApplicationServices.csproj": {
-              "projectPath": "C:\\RepositorioDeClones\\arielgiacomini\\SGM\\src\\SGM.ApplicationServices\\SGM.ApplicationServices.csproj"
+            "C:\\RepositorioDeClones\\arielgiacomini\\SGM\\src\\SGM.Domain\\SGM.Domain.Intern.csproj": {
+              "projectPath": "C:\\RepositorioDeClones\\arielgiacomini\\SGM\\src\\SGM.Domain\\SGM.Domain.Intern.csproj"
+            },
+            "C:\\RepositorioDeClones\\arielgiacomini\\SGM\\src\\SGM.Infrastructure\\SGM.Infrastructure.csproj": {
+              "projectPath": "C:\\RepositorioDeClones\\arielgiacomini\\SGM\\src\\SGM.Infrastructure\\SGM.Infrastructure.csproj"
             }
           }
         }
@@ -694,11 +716,15 @@
         "dependencies": {
           "Giacomini.SGM.Domain": {
             "target": "Package",
-            "version": "[1.4.0, )"
+            "version": "[2.0.0, )"
           },
           "Newtonsoft.Json": {
             "target": "Package",
             "version": "[13.0.1, )"
+          },
+          "System.Configuration.ConfigurationManager": {
+            "target": "Package",
+            "version": "[6.0.0, )"
           }
         }
       }

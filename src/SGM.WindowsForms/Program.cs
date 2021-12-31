@@ -1,4 +1,5 @@
-﻿using SGM.WindowsForms.Fomularios.Login;
+﻿using SGM.WindowsForms.Fomularios.Cadastro;
+using SGM.WindowsForms.Fomularios.Login;
 using SGM.WindowsForms.IoC;
 using System;
 using System.Configuration;
@@ -6,10 +7,10 @@ using System.Windows.Forms;
 
 namespace SGM.WindowsForms
 {
-    static class Program
+    public static class Program
     {
         [STAThread]
-        static void Main()
+        public static void Main()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
@@ -22,6 +23,7 @@ namespace SGM.WindowsForms
             else
             {
                 Application.Run(FormResolve.Resolve<FrmPrincipal>());
+                //Application.Run(FormResolve.Resolve<FrmGerarServicoPagamento>());
             }
         }
     }
