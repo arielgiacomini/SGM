@@ -17,7 +17,7 @@ namespace SGM.Infrastructure.Command
             _sGMConfiguration = sGMConfiguration;
         }
 
-        public void SalvarCliente(Cliente cliente)
+        public int SalvarCliente(Cliente cliente)
         {
             using (var client = new HttpClient())
             {
@@ -27,6 +27,10 @@ namespace SGM.Infrastructure.Command
                 {
                     throw new ApplicationException($"Problema ao SALVAR cliente. DocumentoCliente: {cliente.DocumentoCliente}");
                 }
+
+                int.TryParse(result.Content.ReadAsStringAsync().Result, out int clienteId);
+
+                return clienteId;
             }
         }
 

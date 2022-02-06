@@ -40,3 +40,5 @@
 /src/SGM.ApplicationServices/obj/Release/netstandard2.0/SGM.ApplicationServices.csproj.CopyComplete
 /src/SGM.Domain/bin/Release/netstandard2.0/SGM.Domain.deps.json
 /src/SGM.Instalador/Release/SGM.Instalador.msi
+*.v1
+/.vs/SGM/project-colors.json

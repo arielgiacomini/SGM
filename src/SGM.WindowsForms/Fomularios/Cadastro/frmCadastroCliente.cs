@@ -1,11 +1,12 @@
 ﻿using SGM.Domain.Entities;
 using SGM.Domain.Enumeration;
+using SGM.Domain.Intern.Enum;
 using SGM.Domain.Intern.Interfaces.Application;
 using SGM.Domain.Intern.Interfaces.Application.External;
+using SGM.Domain.Intern.Interfaces.Business;
 using SGM.Domain.Utils;
 using SGM.WindowsForms.IoC;
 using System;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace SGM.WindowsForms
@@ -13,18 +14,21 @@ namespace SGM.WindowsForms
     public partial class FrmCadastroCliente : FrmModeloDeFormularioDeCadastro
     {
         private readonly IClienteApplication _clienteApplication;
-        private readonly IClienteVeiculoApplication _clienteVeiculoApplication;
         private readonly ICorreriosApplication _correriosApplication;
+        private readonly IClienteBusiness _clienteBusiness;
 
-        public FrmCadastroCliente(IClienteApplication clienteApplication, IClienteVeiculoApplication clienteVeiculoApplication, ICorreriosApplication correriosApplication)
+        public FrmCadastroCliente(
+            IClienteApplication clienteApplication,
+            ICorreriosApplication correriosApplication,
+            IClienteBusiness clienteBusiness)
         {
             _clienteApplication = clienteApplication;
-            _clienteVeiculoApplication = clienteVeiculoApplication;
             _correriosApplication = correriosApplication;
+            _clienteBusiness = clienteBusiness;
             InitializeComponent();
         }
 
-        public void LimpaTela()
+        public void LimparCampos()
         {
             txtClienteId.Clear();
             txtCliente.Clear();
@@ -61,23 +65,61 @@ namespace SGM.WindowsForms
 
         private void BtnExcluir_Click(object sender, EventArgs e)
         {
-            try
-            {
-                DialogResult d = MessageBox.Show("Deseja realmente excluir o registro?", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult d = MessageBox.Show("Deseja realmente excluir o registro?", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-                if (d.ToString() == "Yes")
+            if (d.ToString() == "Yes")
+            {
+                var response = _clienteBusiness.Delete(txtClienteId.Text);
+
+                switch (response.TipoResponse)
                 {
-                    _clienteApplication.InativarCliente(Convert.ToInt32(txtClienteId.Text));
+                    case TipoResponseEnum.Sucess:
+                        foreach (var message in response.Mensagem)
+                        {
+                            switch (message.Key)
+                            {
+                                case TipoMensagemEnum.SucessWithMessage:
+                                    MessageBox.Show(
+                                        message.Value,
+                                        typeof(FrmCadastroCliente).Name,
+                                        response.MessageBoxButtons,
+                                        response.MessageBoxIcon);
+                                    this.LimparCampos();
+                                    this.DisponibilizarBotoesTela(EnumControleTelas.InserirLocalizar);
+                                    break;
+                                default:
+                                    break;
+                            }
+                        }
+                        break;
+                    case TipoResponseEnum.Error:
+                        foreach (var message in response.Mensagem)
+                        {
+                            switch (message.Key)
+                            {
+                                case TipoMensagemEnum.ErrorInDelete:
+                                    MessageBox.Show(
+                                        message.Value,
+                                        typeof(FrmCadastroCliente).Name,
+                                        response.MessageBoxButtons,
+                                        response.MessageBoxIcon);
 
-                    MessageBox.Show("Registro Excluído com Sucesso!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    this.LimpaTela();
-                    this.DisponibilizarBotoesTela(EnumControleTelas.InserirLocalizar);
+                                    if (response.InativacaoClienteWithError)
+                                    {
+                                        this.DisponibilizarBotoesTela(EnumControleTelas.AlterarExcluirCancelar);
+                                    }
+
+                                    break;
+                                default:
+                                    break;
+                            }
+                        }
+                        break;
+                    case TipoResponseEnum.Information:
+                        break;
+                    default:
+                        break;
                 }
-            }
-            catch
-            {
-                MessageBox.Show("Impossível excluir o registro. \n O registro está sendo utilizado em outro local.", "Erro!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                this.DisponibilizarBotoesTela(EnumControleTelas.AlterarExcluirCancelar);
             }
         }
 
@@ -108,74 +150,115 @@ namespace SGM.WindowsForms
                     DataAlteracao = null
                 };
 
-                if (this.operacao == "inserir")
+                var response = _clienteBusiness.SaveOrUpdate(this.operacao, cliente);
+
+                switch (response.TipoResponse)
                 {
-                    _clienteApplication.SalvarCliente(cliente);
-                    MessageBox.Show("Cadastro inserido com sucesso! Cliente: " + cliente.NomeCliente.ToString(), "Status", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                else
-                {
-                    cliente.ClienteId = Convert.ToInt32(txtClienteId.Text);
-                    _clienteApplication.AtualizarCliente(cliente);
-                    MessageBox.Show("Cadastro alterado com sucesso! Cliente: " + cliente.NomeCliente.ToString(), "Status", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-
-                var veiculosDoCliente = _clienteVeiculoApplication.GetVeiculosClienteByClienteId(cliente.ClienteId);
-
-                int quantidadeVeiculos = veiculosDoCliente.Count();
-
-                if (quantidadeVeiculos <= 0)
-                {
-                    DialogResult res = MessageBox.Show("Deseja incluir o veículo dele agora? \n Clicando em (Sim), será aberto uma lista de clientes você escolhe o cliente que você acabou de cadastrar \n e clicando duas vezes você automáticamente poderá cadastrar o veículo dele.", "Cadastro de Veículo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-                    if (res.ToString() == "Yes")
-                    {
-                        FrmCadastroClienteVeiculo formCadastroClienteVeiculo = FormResolve.Resolve<FrmCadastroClienteVeiculo>();
-                        formCadastroClienteVeiculo.clienteId = cliente.ClienteId;
-                        formCadastroClienteVeiculo.ShowDialog();
-                        formCadastroClienteVeiculo.Dispose();
-                    }
-                }
-                else
-                {
-                    if (quantidadeVeiculos > 1)
-                    {
-                        DialogResult clienteJaPossuiVeiculo = MessageBox.Show("Este cliente possui + de 1 veículo cadastrado no sistema, será aberto a lista de veículos.", "Cadastro de Veículo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-                        if (clienteJaPossuiVeiculo.ToString() == "Yes")
+                    case TipoResponseEnum.Sucess:
+                        foreach (var message in response.Mensagem)
                         {
-                            FrmConsultaClienteVeiculo formConsultaClienteVeiculo = FormResolve.Resolve<FrmConsultaClienteVeiculo>();
-                            formConsultaClienteVeiculo.clienteId = cliente.ClienteId;
-                            formConsultaClienteVeiculo.ShowDialog();
-
-                            if (formConsultaClienteVeiculo.clienteId != 0 || formConsultaClienteVeiculo.clienteVeiculoId != 0)
+                            switch (message.Key)
                             {
-                                FrmCadastroClienteVeiculo formCadastroClienteVeiculo = FormResolve.Resolve<FrmCadastroClienteVeiculo>();
-                                formCadastroClienteVeiculo.clienteId = formConsultaClienteVeiculo.clienteId;
-                                formCadastroClienteVeiculo.clienteVeiculoId = formConsultaClienteVeiculo.clienteVeiculoId;
-                                formCadastroClienteVeiculo.DisponibilizarBotoesTela(EnumControleTelas.AlterarExcluirCancelar);
-                                formCadastroClienteVeiculo.ShowDialog();
-                                formCadastroClienteVeiculo.Dispose();
+                                case TipoMensagemEnum.Information:
+                                    MessageBox.Show(
+                                                    message.Value,
+                                                    typeof(FrmCadastroCliente).Name,
+                                                    response.MessageBoxButtons,
+                                                    response.MessageBoxIcon);
+                                    break;
+                                case TipoMensagemEnum.SucessWithMessage:
+                                    MessageBox.Show(
+                                                    message.Value,
+                                                    typeof(FrmCadastroCliente).Name,
+                                                    response.MessageBoxButtons,
+                                                    response.MessageBoxIcon);
+
+                                    if (response.DeveAbrirFormularioCadastroVeiculoDoCliente)
+                                    {
+                                        FrmCadastroClienteVeiculo formCadastroClienteVeiculo = FormResolve.Resolve<FrmCadastroClienteVeiculo>();
+                                        formCadastroClienteVeiculo.clienteId = response.ClienteId;
+                                        formCadastroClienteVeiculo.clienteVeiculoId = response.ClienteVeiculoId;
+                                        formCadastroClienteVeiculo.ShowDialog();
+                                        formCadastroClienteVeiculo.Dispose();
+                                    }
+                                    break;
+                                case TipoMensagemEnum.SucessWithQuestion:
+                                    DialogResult respostaUsuario = MessageBox.Show(
+                                                    message.Value,
+                                                    typeof(FrmCadastroCliente).Name,
+                                                    response.MessageBoxButtons,
+                                                    response.MessageBoxIcon);
+
+                                    if (respostaUsuario.ToString() == "Yes")
+                                    {
+                                        if (response.DeveAbrirFormularioCadastroVeiculoDoCliente)
+                                        {
+                                            FrmCadastroClienteVeiculo formCadastroClienteVeiculo = FormResolve.Resolve<FrmCadastroClienteVeiculo>();
+                                            formCadastroClienteVeiculo.clienteId = response.ClienteId;
+                                            formCadastroClienteVeiculo.ShowDialog();
+                                            formCadastroClienteVeiculo.Dispose();
+                                        }
+                                        else if (response.DeveAbrirFormularioConsultaVeiculoDoCliente)
+                                        {
+                                            FrmConsultaClienteVeiculo formConsultaClienteVeiculo = FormResolve.Resolve<FrmConsultaClienteVeiculo>();
+                                            formConsultaClienteVeiculo.clienteId = cliente.ClienteId;
+                                            formConsultaClienteVeiculo.ShowDialog();
+
+                                            if (formConsultaClienteVeiculo.clienteId != 0 || formConsultaClienteVeiculo.clienteVeiculoId != 0)
+                                            {
+                                                FrmCadastroClienteVeiculo formCadastroClienteVeiculo = FormResolve.Resolve<FrmCadastroClienteVeiculo>();
+                                                formCadastroClienteVeiculo.clienteId = formConsultaClienteVeiculo.clienteId;
+                                                formCadastroClienteVeiculo.clienteVeiculoId = formConsultaClienteVeiculo.clienteVeiculoId;
+                                                formCadastroClienteVeiculo.DisponibilizarBotoesTela(EnumControleTelas.AlterarExcluirCancelar);
+                                                formCadastroClienteVeiculo.ShowDialog();
+                                                formCadastroClienteVeiculo.Dispose();
+                                            }
+                                        }
+                                    }
+                                    break;
+                                default:
+                                    break;
+                            }
+                        };
+                        break;
+                    case TipoResponseEnum.Error:
+                        foreach (var message in response.Mensagem)
+                        {
+                            switch (message.Key)
+                            {
+                                case TipoMensagemEnum.ErrorInSave:
+                                    MessageBox.Show(
+                                                message.Value,
+                                                typeof(FrmCadastroCliente).Name,
+                                                response.MessageBoxButtons,
+                                                response.MessageBoxIcon);
+                                    break;
+                                case TipoMensagemEnum.ErrorInUpdate:
+                                    MessageBox.Show(
+                                                message.Value,
+                                                typeof(FrmCadastroCliente).Name,
+                                                response.MessageBoxButtons,
+                                                response.MessageBoxIcon);
+                                    break;
+                                case TipoMensagemEnum.ErrorInValidation:
+                                    MessageBox.Show(
+                                                message.Value,
+                                                typeof(FrmCadastroCliente).Name,
+                                                response.MessageBoxButtons,
+                                                response.MessageBoxIcon);
+                                    break;
+                                default:
+                                    break;
                             }
                         }
-                    }
-                    else
-                    {
-                        DialogResult clienteJaPossuiVeiculo = MessageBox.Show("Este Cliente possui 1 veículo no cadastro, abriremos a tela de veiculo deste cliente.", "Cadastro de Veículo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                        if (veiculosDoCliente.FirstOrDefault().ClienteId != 0 || veiculosDoCliente.FirstOrDefault().ClienteVeiculoId != 0)
-                        {
-                            FrmCadastroClienteVeiculo formCadastroClienteVeiculo = FormResolve.Resolve<FrmCadastroClienteVeiculo>();
-                            formCadastroClienteVeiculo.clienteId = veiculosDoCliente.FirstOrDefault().ClienteId;
-                            formCadastroClienteVeiculo.clienteVeiculoId = veiculosDoCliente.FirstOrDefault().ClienteVeiculoId;
-                            formCadastroClienteVeiculo.DisponibilizarBotoesTela(EnumControleTelas.AlterarExcluirCancelar);
-                            formCadastroClienteVeiculo.ShowDialog();
-                            formCadastroClienteVeiculo.Dispose();
-                        }
-                    }
+                        break;
+                    case TipoResponseEnum.Information:
+                        break;
+                    default:
+                        break;
                 }
 
-                this.LimpaTela();
+                this.LimparCampos();
                 this.DisponibilizarBotoesTela(EnumControleTelas.InserirLocalizar);
                 this.Close();
             }
@@ -189,46 +272,79 @@ namespace SGM.WindowsForms
         {
             this.operacao = "cancelar";
             this.DisponibilizarBotoesTela(EnumControleTelas.InserirLocalizar);
-            this.LimpaTela();
+            this.LimparCampos();
         }
 
         private void BtnLocalizar_Click(object sender, EventArgs e)
         {
-            frmConsultaCliente formConsultaCliente = FormResolve.Resolve<frmConsultaCliente>();
-            formConsultaCliente.ShowDialog();
-            if (formConsultaCliente.codigo != 0)
-            {
-                var cliente = _clienteApplication.GetClienteById(formConsultaCliente.codigo);
+            var oneResponse = _clienteBusiness.Search();
 
-                txtClienteId.Text = cliente.ClienteId.ToString();
-                txtCliente.Text = cliente.NomeCliente;
-                txtApelido.Text = cliente.Apelido;
-                txtCPF.Text = cliente.DocumentoCliente;
-                cboSexo.Text = cliente.Sexo;
-                cboEstadoCivil.Text = cliente.EstadoCivil;
-                dtpDataNascimento.Value = Convert.ToDateTime(cliente.DataNascimento);
-                txtEmail.Text = cliente.Email;
-                txtTelefoneFixo.Text = cliente.TelefoneFixo;
-                txtCelular.Text = cliente.TelefoneCelular;
-                txtTelefoneOutros.Text = cliente.TelefoneOutros;
-                txtCEP.Text = cliente.LogradouroCEP;
-                txtEndereco.Text = cliente.LogradouroNome;
-                txtNumero.Text = cliente.LogradouroNumero;
-                txtComplemento.Text = cliente.LogradouroComplemento;
-                txtCidade.Text = cliente.LogradouroMunicipio;
-                txtBairro.Text = cliente.LogradouroBairro;
-                txtUF.Text = cliente.LogradouroUF;
-                txtDataCadastro.Text = Convert.ToString(Util.ConvertHorarioOfServerToWorldReal(cliente.DataCadastro.Value, 5));
-                //txtDataAlteracao.Text = Convert.ToString(Util.ConvertHorarioOfServerToWorldReal(cliente.DataAlteracao.Value, 5));
-                DisponibilizarBotoesTela(EnumControleTelas.AlterarExcluirCancelar);
-            }
-            else
+            switch (oneResponse.TipoResponse)
             {
-                this.LimpaTela();
-                this.DisponibilizarBotoesTela(EnumControleTelas.InserirLocalizar);
-            }
+                case TipoResponseEnum.Sucess:
+                    if (oneResponse.DeveAbrirFormularioConsultaCliente)
+                    {
+                        frmConsultaCliente formConsultaCliente = FormResolve.Resolve<frmConsultaCliente>();
+                        formConsultaCliente.ShowDialog();
 
-            formConsultaCliente.Dispose();
+                        if (formConsultaCliente.codigo != 0)
+                        {
+                            var twoResponse = _clienteBusiness.Search(formConsultaCliente.codigo);
+
+                            switch (twoResponse.TipoResponse)
+                            {
+                                case TipoResponseEnum.SucessWithoutMessageOrQuestion:
+
+                                    txtClienteId.Text = twoResponse.Cliente.ClienteId.ToString();
+                                    txtCliente.Text = twoResponse.Cliente.NomeCliente;
+                                    txtApelido.Text = twoResponse.Cliente.Apelido;
+                                    txtCPF.Text = twoResponse.Cliente.DocumentoCliente;
+                                    cboSexo.Text = twoResponse.Cliente.Sexo;
+                                    cboEstadoCivil.Text = twoResponse.Cliente.EstadoCivil;
+                                    dtpDataNascimento.Value = Convert.ToDateTime(twoResponse.Cliente.DataNascimento);
+                                    txtEmail.Text = twoResponse.Cliente.Email;
+                                    txtTelefoneFixo.Text = twoResponse.Cliente.TelefoneFixo;
+                                    txtCelular.Text = twoResponse.Cliente.TelefoneCelular;
+                                    txtTelefoneOutros.Text = twoResponse.Cliente.TelefoneOutros;
+                                    txtCEP.Text = twoResponse.Cliente.LogradouroCEP;
+                                    txtEndereco.Text = twoResponse.Cliente.LogradouroNome;
+                                    txtNumero.Text = twoResponse.Cliente.LogradouroNumero;
+                                    txtComplemento.Text = twoResponse.Cliente.LogradouroComplemento;
+                                    txtCidade.Text = twoResponse.Cliente.LogradouroMunicipio;
+                                    txtBairro.Text = twoResponse.Cliente.LogradouroBairro;
+                                    txtUF.Text = twoResponse.Cliente.LogradouroUF;
+                                    txtDataCadastro.Text = Convert.ToString(Util.ConvertHorarioOfServerToWorldReal(twoResponse.Cliente.DataCadastro.Value, 5));
+
+                                    DisponibilizarBotoesTela(EnumControleTelas.AlterarExcluirCancelar);
+                                    formConsultaCliente.Dispose();
+
+                                    break;
+                                case TipoResponseEnum.Error:
+                                    foreach (var message in twoResponse.Mensagem)
+                                    {
+                                        switch (message.Key)
+                                        {
+                                            case TipoMensagemEnum.ErrorInSearch:
+                                                MessageBox.Show(
+                                                    message.Value,
+                                                    typeof(FrmCadastroCliente).Name,
+                                                    twoResponse.MessageBoxButtons,
+                                                    twoResponse.MessageBoxIcon);
+                                                break;
+                                        }
+                                    }
+                                    break;
+                                default:
+                                    break;
+                            }
+                        }
+                        this.LimparCampos();
+                        this.DisponibilizarBotoesTela(EnumControleTelas.InserirLocalizar);
+                    }
+                    break;
+                default:
+                    break;
+            }
         }
 
         private void TxtCPF_Leave(object sender, EventArgs e)
@@ -274,6 +390,12 @@ namespace SGM.WindowsForms
             txtCPF.Mask = "000,000,000-00";
         }
 
+        private void TxtCPF_Enter(object sender, EventArgs e)
+        {
+            txtCPF.Mask = "";
+            txtCPF.Text = "";
+        }
+
         private void TxtCEP_Leave(object sender, EventArgs e)
         {
             if (txtCEP.Text != "")
@@ -298,12 +420,6 @@ namespace SGM.WindowsForms
         {
             txtCEP.Mask = "";
             txtCEP.Text = "";
-        }
-
-        private void TxtCPF_Enter(object sender, EventArgs e)
-        {
-            txtCPF.Mask = "";
-            txtCPF.Text = "";
         }
 
         private void DtpDataNascimento_Enter(object sender, EventArgs e)

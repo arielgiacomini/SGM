@@ -350,6 +350,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SGM.ApplicationServices\SGM.ApplicationServices.csproj">
+      <Project>{D83029AC-393C-41AF-9B3F-7EEBD9D1D762}</Project>
+      <Name>SGM.ApplicationServices</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SGM.Domain\SGM.Domain.Intern.csproj">
       <Project>{2B73FDE0-8111-41EC-B038-D257805EC24E}</Project>
       <Name>SGM.Domain.Intern</Name>
