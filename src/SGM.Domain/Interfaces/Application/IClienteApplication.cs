@@ -5,7 +5,7 @@ namespace SGM.Domain.Intern.Interfaces.Application
     public interface IClienteApplication
     {
         Cliente GetClienteById(int clienteId);
-        void SalvarCliente(Cliente cliente);
+        int SalvarCliente(Cliente cliente);
         void AtualizarCliente(Cliente cliente);
         void InativarCliente(int clienteId);
         Cliente GetClienteByDocumentoCliente(string documentoCliente);

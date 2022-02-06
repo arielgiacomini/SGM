@@ -1,11 +1,12 @@
 ﻿using SGM.Domain.Entities;
 using SGM.Domain.Enumeration;
+using SGM.Domain.Intern.Enum;
 using SGM.Domain.Intern.Interfaces.Application;
 using SGM.Domain.Intern.Interfaces.Application.External;
+using SGM.Domain.Intern.Interfaces.Business;
 using SGM.Domain.Utils;
 using SGM.WindowsForms.IoC;
 using System;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace SGM.WindowsForms
@@ -15,12 +16,18 @@ namespace SGM.WindowsForms
         private readonly IClienteApplication _clienteApplication;
         private readonly IClienteVeiculoApplication _clienteVeiculoApplication;
         private readonly ICorreriosApplication _correriosApplication;
+        private readonly IClienteBusiness _clienteBusiness;
 
-        public FrmCadastroCliente(IClienteApplication clienteApplication, IClienteVeiculoApplication clienteVeiculoApplication, ICorreriosApplication correriosApplication)
+        public FrmCadastroCliente(
+            IClienteApplication clienteApplication,
+            IClienteVeiculoApplication clienteVeiculoApplication,
+            ICorreriosApplication correriosApplication,
+            IClienteBusiness clienteBusiness)
         {
             _clienteApplication = clienteApplication;
             _clienteVeiculoApplication = clienteVeiculoApplication;
             _correriosApplication = correriosApplication;
+            _clienteBusiness = clienteBusiness;
             InitializeComponent();
         }
 
@@ -108,71 +115,105 @@ namespace SGM.WindowsForms
                     DataAlteracao = null
                 };
 
-                if (this.operacao == "inserir")
+                var response = _clienteBusiness.SalvarCliente(this.operacao, cliente);
+
+                switch (response.TipoResponse)
                 {
-                    _clienteApplication.SalvarCliente(cliente);
-                    MessageBox.Show("Cadastro inserido com sucesso! Cliente: " + cliente.NomeCliente.ToString(), "Status", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                else
-                {
-                    cliente.ClienteId = Convert.ToInt32(txtClienteId.Text);
-                    _clienteApplication.AtualizarCliente(cliente);
-                    MessageBox.Show("Cadastro alterado com sucesso! Cliente: " + cliente.NomeCliente.ToString(), "Status", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-
-                var veiculosDoCliente = _clienteVeiculoApplication.GetVeiculosClienteByClienteId(cliente.ClienteId);
-
-                int quantidadeVeiculos = veiculosDoCliente.Count();
-
-                if (quantidadeVeiculos <= 0)
-                {
-                    DialogResult res = MessageBox.Show("Deseja incluir o veículo dele agora? \n Clicando em (Sim), será aberto uma lista de clientes você escolhe o cliente que você acabou de cadastrar \n e clicando duas vezes você automáticamente poderá cadastrar o veículo dele.", "Cadastro de Veículo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-                    if (res.ToString() == "Yes")
-                    {
-                        FrmCadastroClienteVeiculo formCadastroClienteVeiculo = FormResolve.Resolve<FrmCadastroClienteVeiculo>();
-                        formCadastroClienteVeiculo.clienteId = cliente.ClienteId;
-                        formCadastroClienteVeiculo.ShowDialog();
-                        formCadastroClienteVeiculo.Dispose();
-                    }
-                }
-                else
-                {
-                    if (quantidadeVeiculos > 1)
-                    {
-                        DialogResult clienteJaPossuiVeiculo = MessageBox.Show("Este cliente possui + de 1 veículo cadastrado no sistema, será aberto a lista de veículos.", "Cadastro de Veículo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-                        if (clienteJaPossuiVeiculo.ToString() == "Yes")
+                    case TipoResponseEnum.Sucess:
+                        foreach (var message in response.Mensagem)
                         {
-                            FrmConsultaClienteVeiculo formConsultaClienteVeiculo = FormResolve.Resolve<FrmConsultaClienteVeiculo>();
-                            formConsultaClienteVeiculo.clienteId = cliente.ClienteId;
-                            formConsultaClienteVeiculo.ShowDialog();
-
-                            if (formConsultaClienteVeiculo.clienteId != 0 || formConsultaClienteVeiculo.clienteVeiculoId != 0)
+                            switch (message.Key)
                             {
-                                FrmCadastroClienteVeiculo formCadastroClienteVeiculo = FormResolve.Resolve<FrmCadastroClienteVeiculo>();
-                                formCadastroClienteVeiculo.clienteId = formConsultaClienteVeiculo.clienteId;
-                                formCadastroClienteVeiculo.clienteVeiculoId = formConsultaClienteVeiculo.clienteVeiculoId;
-                                formCadastroClienteVeiculo.DisponibilizarBotoesTela(EnumControleTelas.AlterarExcluirCancelar);
-                                formCadastroClienteVeiculo.ShowDialog();
-                                formCadastroClienteVeiculo.Dispose();
+                                case TipoMensagemEnum.Information:
+                                    MessageBox.Show(
+                                                    message.Value,
+                                                    typeof(frmCadastroVeiculo).Name,
+                                                    response.MessageBoxButtons,
+                                                    response.MessageBoxIcon);
+                                    break;
+                                case TipoMensagemEnum.SucessWithMessage:
+                                    MessageBox.Show(
+                                                    message.Value,
+                                                    typeof(frmCadastroVeiculo).Name,
+                                                    response.MessageBoxButtons,
+                                                    response.MessageBoxIcon);
+
+                                    if (response.DeveAbrirFormularioCadastroVeiculoDoCliente)
+                                    {
+                                        FrmCadastroClienteVeiculo formCadastroClienteVeiculo = FormResolve.Resolve<FrmCadastroClienteVeiculo>();
+                                        formCadastroClienteVeiculo.clienteId = response.ClienteId;
+                                        formCadastroClienteVeiculo.clienteVeiculoId = response.ClienteVeiculoId;
+                                        formCadastroClienteVeiculo.ShowDialog();
+                                        formCadastroClienteVeiculo.Dispose();
+                                    }
+                                    break;
+                                case TipoMensagemEnum.SucessWithQuestion:
+                                    DialogResult respostaUsuario = MessageBox.Show(
+                                                    message.Value,
+                                                    typeof(frmCadastroVeiculo).Name,
+                                                    response.MessageBoxButtons,
+                                                    response.MessageBoxIcon);
+
+                                    if (respostaUsuario.ToString() == "Yes")
+                                    {
+                                        if (response.DeveAbrirFormularioCadastroVeiculoDoCliente)
+                                        {
+                                            FrmCadastroClienteVeiculo formCadastroClienteVeiculo = FormResolve.Resolve<FrmCadastroClienteVeiculo>();
+                                            formCadastroClienteVeiculo.clienteId = response.ClienteId;
+                                            formCadastroClienteVeiculo.ShowDialog();
+                                            formCadastroClienteVeiculo.Dispose();
+                                        }
+                                        else if (response.DeveAbrirFormularioConsultaVeiculoDoCliente)
+                                        {
+                                            FrmConsultaClienteVeiculo formConsultaClienteVeiculo = FormResolve.Resolve<FrmConsultaClienteVeiculo>();
+                                            formConsultaClienteVeiculo.clienteId = cliente.ClienteId;
+                                            formConsultaClienteVeiculo.ShowDialog();
+
+                                            if (formConsultaClienteVeiculo.clienteId != 0 || formConsultaClienteVeiculo.clienteVeiculoId != 0)
+                                            {
+                                                FrmCadastroClienteVeiculo formCadastroClienteVeiculo = FormResolve.Resolve<FrmCadastroClienteVeiculo>();
+                                                formCadastroClienteVeiculo.clienteId = formConsultaClienteVeiculo.clienteId;
+                                                formCadastroClienteVeiculo.clienteVeiculoId = formConsultaClienteVeiculo.clienteVeiculoId;
+                                                formCadastroClienteVeiculo.DisponibilizarBotoesTela(EnumControleTelas.AlterarExcluirCancelar);
+                                                formCadastroClienteVeiculo.ShowDialog();
+                                                formCadastroClienteVeiculo.Dispose();
+                                            }
+                                        }
+                                    }
+                                    break;
+                            }
+                        };
+                        break;
+                    case TipoResponseEnum.Error:
+
+                        foreach (var message in response.Mensagem)
+                        {
+                            switch (message.Key)
+                            {
+                                case TipoMensagemEnum.ErrorInSave:
+                                    MessageBox.Show(
+                                                message.Value,
+                                                typeof(frmCadastroVeiculo).Name,
+                                                response.MessageBoxButtons,
+                                                response.MessageBoxIcon);
+                                    break;
+                                case TipoMensagemEnum.ErrorInUpdate:
+                                    MessageBox.Show(
+                                                message.Value,
+                                                typeof(frmCadastroVeiculo).Name,
+                                                response.MessageBoxButtons,
+                                                response.MessageBoxIcon);
+                                    break;
+                                case TipoMensagemEnum.ErrorInValidation:
+                                    MessageBox.Show(
+                                                message.Value,
+                                                typeof(frmCadastroVeiculo).Name,
+                                                response.MessageBoxButtons,
+                                                response.MessageBoxIcon);
+                                    break;
                             }
                         }
-                    }
-                    else
-                    {
-                        DialogResult clienteJaPossuiVeiculo = MessageBox.Show("Este Cliente possui 1 veículo no cadastro, abriremos a tela de veiculo deste cliente.", "Cadastro de Veículo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                        if (veiculosDoCliente.FirstOrDefault().ClienteId != 0 || veiculosDoCliente.FirstOrDefault().ClienteVeiculoId != 0)
-                        {
-                            FrmCadastroClienteVeiculo formCadastroClienteVeiculo = FormResolve.Resolve<FrmCadastroClienteVeiculo>();
-                            formCadastroClienteVeiculo.clienteId = veiculosDoCliente.FirstOrDefault().ClienteId;
-                            formCadastroClienteVeiculo.clienteVeiculoId = veiculosDoCliente.FirstOrDefault().ClienteVeiculoId;
-                            formCadastroClienteVeiculo.DisponibilizarBotoesTela(EnumControleTelas.AlterarExcluirCancelar);
-                            formCadastroClienteVeiculo.ShowDialog();
-                            formCadastroClienteVeiculo.Dispose();
-                        }
-                    }
+                        break;
                 }
 
                 this.LimpaTela();
@@ -196,6 +237,7 @@ namespace SGM.WindowsForms
         {
             frmConsultaCliente formConsultaCliente = FormResolve.Resolve<frmConsultaCliente>();
             formConsultaCliente.ShowDialog();
+
             if (formConsultaCliente.codigo != 0)
             {
                 var cliente = _clienteApplication.GetClienteById(formConsultaCliente.codigo);

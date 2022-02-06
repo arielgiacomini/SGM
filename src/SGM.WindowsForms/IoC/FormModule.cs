@@ -1,6 +1,8 @@
 ﻿using Ninject.Modules;
+using SGM.ApplicationServices.Business;
 using SGM.Domain.Intern.Interfaces.Application;
 using SGM.Domain.Intern.Interfaces.Application.External;
+using SGM.Domain.Intern.Interfaces.Business;
 using SGM.Domain.Intern.Interfaces.Command;
 using SGM.Domain.Intern.Interfaces.Configuration;
 using SGM.Domain.Intern.Interfaces.Query;
@@ -58,6 +60,8 @@ namespace SGM.WindowsForms.IoC
             Bind<ICorreriosApplication>().To<CorreiosApplication>();
             Bind<IColaboradorApplication>().To<ColaboradorApplication>();
             Bind<IServicoPagamentoApplication>().To<ServicoPagamentoApplication>();
+
+            Bind<IClienteBusiness>().To<ClienteBusiness>();
 
             Bind<ISGMConfiguration>().To<SGMConfiguration>();
         }

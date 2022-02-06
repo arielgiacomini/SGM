@@ -28,9 +28,9 @@ namespace SGM.Infrastructure.Application
             return cliente;
         }
 
-        public void SalvarCliente(Cliente cliente)
+        public int SalvarCliente(Cliente cliente)
         {
-            _clienteCommand.SalvarCliente(cliente);
+            return _clienteCommand.SalvarCliente(cliente);
         }
 
         public void AtualizarCliente(Cliente cliente)

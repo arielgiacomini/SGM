@@ -1,9 +1,9 @@
 ﻿namespace SGM.Domain.Intern.Enum
 {
-    public enum TipoCallbackEnum
+    public enum TipoResponseEnum
     {
-        Sucesso = 1,
-        Erro = 2,
+        Sucess = 1,
+        Error = 2,
         Information = 3
     }
 }
