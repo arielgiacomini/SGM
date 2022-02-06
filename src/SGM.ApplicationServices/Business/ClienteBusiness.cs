@@ -159,5 +159,44 @@ namespace SGM.ApplicationServices.Business
 
             return new ResponseCliente();
         }
+
+        public ResponseCliente Search()
+        {
+            ResponseCliente response = new ResponseCliente
+            {
+                Mensagem = new Dictionary<TipoMensagemEnum, string>()
+            };
+
+            response.DeveAbrirFormularioConsultaCliente = true;
+            response.TipoResponse = TipoResponseEnum.Sucess;
+
+            return response;
+        }
+
+        public ResponseCliente Search(int clienteId)
+        {
+            ResponseCliente response = new ResponseCliente
+            {
+                Mensagem = new Dictionary<TipoMensagemEnum, string>()
+            };
+
+            try
+            {
+                var cliente = _clienteApplication.GetClienteById(clienteId);
+                response.Cliente = cliente;
+                response.TipoResponse = TipoResponseEnum.SucessWithoutMessageOrQuestion;
+            }
+            catch (Exception ex)
+            {
+                response.TipoResponse = TipoResponseEnum.Error;
+                response.Mensagem.Add(TipoMensagemEnum.ErrorInSearch, $"{Messages.Mensagem(MensagemEnum.PesquisaSemSucesso)}, Mensagem de erro: {ex.Message}");
+                response.MessageBoxButtons = MessageBoxButtons.OK;
+                response.MessageBoxIcon = MessageBoxIcon.Error;
+
+                response.InativacaoClienteWithError = true;
+            }
+
+            return response;
+        }
     }
 }

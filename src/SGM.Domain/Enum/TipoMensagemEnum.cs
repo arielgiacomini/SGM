@@ -8,6 +8,7 @@
         SucessWithMessage = 4,
         ErrorInValidation = 5,
         Information = 6,
-        ErrorInDelete = 7
+        ErrorInDelete = 7,
+        ErrorInSearch = 8
     }
 }

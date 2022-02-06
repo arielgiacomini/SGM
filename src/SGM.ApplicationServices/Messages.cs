@@ -23,6 +23,8 @@
         const string ExclusaoComSucesso = "Registro Excluído com Sucesso!";
         const string ExclusaoSemSucesso = "A exclusão NÃO FOI EFETUADA!";
 
+        const string PesquisaSemSucesso = "Erro ao tentar pesquisar";
+
         public static string Mensagem(MensagemEnum tipoMessagem)
         {
             var mensagem = "";
@@ -73,7 +75,9 @@
             ClienteComApenasUmVeiculo = 7,
             ClienteComMaisDeUmVeiculo = 8,
             ExclusaoComSucesso = 9,
-            ExclusaoSemSucesso = 10
+            ExclusaoSemSucesso = 10,
+            PesquisaComSucesso = 11,
+            PesquisaSemSucesso = 12
         }
     }
 }

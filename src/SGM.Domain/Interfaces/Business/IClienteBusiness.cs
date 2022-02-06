@@ -7,5 +7,7 @@ namespace SGM.Domain.Intern.Interfaces.Business
     {
         ResponseCliente Delete(string clienteId);
         ResponseCliente SaveOrUpdate(string operacao, Cliente cliente);
+        ResponseCliente Search();
+        ResponseCliente Search(int clienteId);
     }
 }

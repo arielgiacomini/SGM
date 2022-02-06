@@ -14,18 +14,15 @@ namespace SGM.WindowsForms
     public partial class FrmCadastroCliente : FrmModeloDeFormularioDeCadastro
     {
         private readonly IClienteApplication _clienteApplication;
-        private readonly IClienteVeiculoApplication _clienteVeiculoApplication;
         private readonly ICorreriosApplication _correriosApplication;
         private readonly IClienteBusiness _clienteBusiness;
 
         public FrmCadastroCliente(
             IClienteApplication clienteApplication,
-            IClienteVeiculoApplication clienteVeiculoApplication,
             ICorreriosApplication correriosApplication,
             IClienteBusiness clienteBusiness)
         {
             _clienteApplication = clienteApplication;
-            _clienteVeiculoApplication = clienteVeiculoApplication;
             _correriosApplication = correriosApplication;
             _clienteBusiness = clienteBusiness;
             InitializeComponent();
@@ -280,42 +277,74 @@ namespace SGM.WindowsForms
 
         private void BtnLocalizar_Click(object sender, EventArgs e)
         {
-            frmConsultaCliente formConsultaCliente = FormResolve.Resolve<frmConsultaCliente>();
-            formConsultaCliente.ShowDialog();
+            var oneResponse = _clienteBusiness.Search();
 
-            if (formConsultaCliente.codigo != 0)
+            switch (oneResponse.TipoResponse)
             {
-                var cliente = _clienteApplication.GetClienteById(formConsultaCliente.codigo);
+                case TipoResponseEnum.Sucess:
+                    if (oneResponse.DeveAbrirFormularioConsultaCliente)
+                    {
+                        frmConsultaCliente formConsultaCliente = FormResolve.Resolve<frmConsultaCliente>();
+                        formConsultaCliente.ShowDialog();
 
-                txtClienteId.Text = cliente.ClienteId.ToString();
-                txtCliente.Text = cliente.NomeCliente;
-                txtApelido.Text = cliente.Apelido;
-                txtCPF.Text = cliente.DocumentoCliente;
-                cboSexo.Text = cliente.Sexo;
-                cboEstadoCivil.Text = cliente.EstadoCivil;
-                dtpDataNascimento.Value = Convert.ToDateTime(cliente.DataNascimento);
-                txtEmail.Text = cliente.Email;
-                txtTelefoneFixo.Text = cliente.TelefoneFixo;
-                txtCelular.Text = cliente.TelefoneCelular;
-                txtTelefoneOutros.Text = cliente.TelefoneOutros;
-                txtCEP.Text = cliente.LogradouroCEP;
-                txtEndereco.Text = cliente.LogradouroNome;
-                txtNumero.Text = cliente.LogradouroNumero;
-                txtComplemento.Text = cliente.LogradouroComplemento;
-                txtCidade.Text = cliente.LogradouroMunicipio;
-                txtBairro.Text = cliente.LogradouroBairro;
-                txtUF.Text = cliente.LogradouroUF;
-                txtDataCadastro.Text = Convert.ToString(Util.ConvertHorarioOfServerToWorldReal(cliente.DataCadastro.Value, 5));
-                //txtDataAlteracao.Text = Convert.ToString(Util.ConvertHorarioOfServerToWorldReal(cliente.DataAlteracao.Value, 5));
-                DisponibilizarBotoesTela(EnumControleTelas.AlterarExcluirCancelar);
-            }
-            else
-            {
-                this.LimparCampos();
-                this.DisponibilizarBotoesTela(EnumControleTelas.InserirLocalizar);
-            }
+                        if (formConsultaCliente.codigo != 0)
+                        {
+                            var twoResponse = _clienteBusiness.Search(formConsultaCliente.codigo);
 
-            formConsultaCliente.Dispose();
+                            switch (twoResponse.TipoResponse)
+                            {
+                                case TipoResponseEnum.SucessWithoutMessageOrQuestion:
+
+                                    txtClienteId.Text = twoResponse.Cliente.ClienteId.ToString();
+                                    txtCliente.Text = twoResponse.Cliente.NomeCliente;
+                                    txtApelido.Text = twoResponse.Cliente.Apelido;
+                                    txtCPF.Text = twoResponse.Cliente.DocumentoCliente;
+                                    cboSexo.Text = twoResponse.Cliente.Sexo;
+                                    cboEstadoCivil.Text = twoResponse.Cliente.EstadoCivil;
+                                    dtpDataNascimento.Value = Convert.ToDateTime(twoResponse.Cliente.DataNascimento);
+                                    txtEmail.Text = twoResponse.Cliente.Email;
+                                    txtTelefoneFixo.Text = twoResponse.Cliente.TelefoneFixo;
+                                    txtCelular.Text = twoResponse.Cliente.TelefoneCelular;
+                                    txtTelefoneOutros.Text = twoResponse.Cliente.TelefoneOutros;
+                                    txtCEP.Text = twoResponse.Cliente.LogradouroCEP;
+                                    txtEndereco.Text = twoResponse.Cliente.LogradouroNome;
+                                    txtNumero.Text = twoResponse.Cliente.LogradouroNumero;
+                                    txtComplemento.Text = twoResponse.Cliente.LogradouroComplemento;
+                                    txtCidade.Text = twoResponse.Cliente.LogradouroMunicipio;
+                                    txtBairro.Text = twoResponse.Cliente.LogradouroBairro;
+                                    txtUF.Text = twoResponse.Cliente.LogradouroUF;
+                                    txtDataCadastro.Text = Convert.ToString(Util.ConvertHorarioOfServerToWorldReal(twoResponse.Cliente.DataCadastro.Value, 5));
+
+                                    DisponibilizarBotoesTela(EnumControleTelas.AlterarExcluirCancelar);
+                                    formConsultaCliente.Dispose();
+
+                                    break;
+                                case TipoResponseEnum.Error:
+                                    foreach (var message in twoResponse.Mensagem)
+                                    {
+                                        switch (message.Key)
+                                        {
+                                            case TipoMensagemEnum.ErrorInSearch:
+                                                MessageBox.Show(
+                                                    message.Value,
+                                                    typeof(FrmCadastroCliente).Name,
+                                                    twoResponse.MessageBoxButtons,
+                                                    twoResponse.MessageBoxIcon);
+                                                break;
+                                        }
+                                    }
+                                    break;
+                                default:
+                                    break;
+                            }
+                        }
+                        this.LimparCampos();
+                        this.DisponibilizarBotoesTela(EnumControleTelas.InserirLocalizar);
+                    }
+                    break;
+                default:
+                    break;
+            }
         }
 
         private void TxtCPF_Leave(object sender, EventArgs e)
