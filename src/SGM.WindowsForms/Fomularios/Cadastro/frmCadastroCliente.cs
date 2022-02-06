@@ -31,7 +31,7 @@ namespace SGM.WindowsForms
             InitializeComponent();
         }
 
-        public void LimpaTela()
+        public void LimparCampos()
         {
             txtClienteId.Clear();
             txtCliente.Clear();
@@ -68,23 +68,61 @@ namespace SGM.WindowsForms
 
         private void BtnExcluir_Click(object sender, EventArgs e)
         {
-            try
-            {
-                DialogResult d = MessageBox.Show("Deseja realmente excluir o registro?", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult d = MessageBox.Show("Deseja realmente excluir o registro?", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-                if (d.ToString() == "Yes")
+            if (d.ToString() == "Yes")
+            {
+                var response = _clienteBusiness.Delete(txtClienteId.Text);
+
+                switch (response.TipoResponse)
                 {
-                    _clienteApplication.InativarCliente(Convert.ToInt32(txtClienteId.Text));
+                    case TipoResponseEnum.Sucess:
+                        foreach (var message in response.Mensagem)
+                        {
+                            switch (message.Key)
+                            {
+                                case TipoMensagemEnum.SucessWithMessage:
+                                    MessageBox.Show(
+                                        message.Value,
+                                        typeof(FrmCadastroCliente).Name,
+                                        response.MessageBoxButtons,
+                                        response.MessageBoxIcon);
+                                    this.LimparCampos();
+                                    this.DisponibilizarBotoesTela(EnumControleTelas.InserirLocalizar);
+                                    break;
+                                default:
+                                    break;
+                            }
+                        }
+                        break;
+                    case TipoResponseEnum.Error:
+                        foreach (var message in response.Mensagem)
+                        {
+                            switch (message.Key)
+                            {
+                                case TipoMensagemEnum.ErrorInDelete:
+                                    MessageBox.Show(
+                                        message.Value,
+                                        typeof(FrmCadastroCliente).Name,
+                                        response.MessageBoxButtons,
+                                        response.MessageBoxIcon);
 
-                    MessageBox.Show("Registro Excluído com Sucesso!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    this.LimpaTela();
-                    this.DisponibilizarBotoesTela(EnumControleTelas.InserirLocalizar);
+                                    if (response.InativacaoClienteWithError)
+                                    {
+                                        this.DisponibilizarBotoesTela(EnumControleTelas.AlterarExcluirCancelar);
+                                    }
+
+                                    break;
+                                default:
+                                    break;
+                            }
+                        }
+                        break;
+                    case TipoResponseEnum.Information:
+                        break;
+                    default:
+                        break;
                 }
-            }
-            catch
-            {
-                MessageBox.Show("Impossível excluir o registro. \n O registro está sendo utilizado em outro local.", "Erro!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                this.DisponibilizarBotoesTela(EnumControleTelas.AlterarExcluirCancelar);
             }
         }
 
@@ -115,7 +153,7 @@ namespace SGM.WindowsForms
                     DataAlteracao = null
                 };
 
-                var response = _clienteBusiness.SalvarCliente(this.operacao, cliente);
+                var response = _clienteBusiness.SaveOrUpdate(this.operacao, cliente);
 
                 switch (response.TipoResponse)
                 {
@@ -127,14 +165,14 @@ namespace SGM.WindowsForms
                                 case TipoMensagemEnum.Information:
                                     MessageBox.Show(
                                                     message.Value,
-                                                    typeof(frmCadastroVeiculo).Name,
+                                                    typeof(FrmCadastroCliente).Name,
                                                     response.MessageBoxButtons,
                                                     response.MessageBoxIcon);
                                     break;
                                 case TipoMensagemEnum.SucessWithMessage:
                                     MessageBox.Show(
                                                     message.Value,
-                                                    typeof(frmCadastroVeiculo).Name,
+                                                    typeof(FrmCadastroCliente).Name,
                                                     response.MessageBoxButtons,
                                                     response.MessageBoxIcon);
 
@@ -150,7 +188,7 @@ namespace SGM.WindowsForms
                                 case TipoMensagemEnum.SucessWithQuestion:
                                     DialogResult respostaUsuario = MessageBox.Show(
                                                     message.Value,
-                                                    typeof(frmCadastroVeiculo).Name,
+                                                    typeof(FrmCadastroCliente).Name,
                                                     response.MessageBoxButtons,
                                                     response.MessageBoxIcon);
 
@@ -181,11 +219,12 @@ namespace SGM.WindowsForms
                                         }
                                     }
                                     break;
+                                default:
+                                    break;
                             }
                         };
                         break;
                     case TipoResponseEnum.Error:
-
                         foreach (var message in response.Mensagem)
                         {
                             switch (message.Key)
@@ -193,30 +232,36 @@ namespace SGM.WindowsForms
                                 case TipoMensagemEnum.ErrorInSave:
                                     MessageBox.Show(
                                                 message.Value,
-                                                typeof(frmCadastroVeiculo).Name,
+                                                typeof(FrmCadastroCliente).Name,
                                                 response.MessageBoxButtons,
                                                 response.MessageBoxIcon);
                                     break;
                                 case TipoMensagemEnum.ErrorInUpdate:
                                     MessageBox.Show(
                                                 message.Value,
-                                                typeof(frmCadastroVeiculo).Name,
+                                                typeof(FrmCadastroCliente).Name,
                                                 response.MessageBoxButtons,
                                                 response.MessageBoxIcon);
                                     break;
                                 case TipoMensagemEnum.ErrorInValidation:
                                     MessageBox.Show(
                                                 message.Value,
-                                                typeof(frmCadastroVeiculo).Name,
+                                                typeof(FrmCadastroCliente).Name,
                                                 response.MessageBoxButtons,
                                                 response.MessageBoxIcon);
+                                    break;
+                                default:
                                     break;
                             }
                         }
                         break;
+                    case TipoResponseEnum.Information:
+                        break;
+                    default:
+                        break;
                 }
 
-                this.LimpaTela();
+                this.LimparCampos();
                 this.DisponibilizarBotoesTela(EnumControleTelas.InserirLocalizar);
                 this.Close();
             }
@@ -230,7 +275,7 @@ namespace SGM.WindowsForms
         {
             this.operacao = "cancelar";
             this.DisponibilizarBotoesTela(EnumControleTelas.InserirLocalizar);
-            this.LimpaTela();
+            this.LimparCampos();
         }
 
         private void BtnLocalizar_Click(object sender, EventArgs e)
@@ -266,7 +311,7 @@ namespace SGM.WindowsForms
             }
             else
             {
-                this.LimpaTela();
+                this.LimparCampos();
                 this.DisponibilizarBotoesTela(EnumControleTelas.InserirLocalizar);
             }
 
@@ -316,6 +361,12 @@ namespace SGM.WindowsForms
             txtCPF.Mask = "000,000,000-00";
         }
 
+        private void TxtCPF_Enter(object sender, EventArgs e)
+        {
+            txtCPF.Mask = "";
+            txtCPF.Text = "";
+        }
+
         private void TxtCEP_Leave(object sender, EventArgs e)
         {
             if (txtCEP.Text != "")
@@ -340,12 +391,6 @@ namespace SGM.WindowsForms
         {
             txtCEP.Mask = "";
             txtCEP.Text = "";
-        }
-
-        private void TxtCPF_Enter(object sender, EventArgs e)
-        {
-            txtCPF.Mask = "";
-            txtCPF.Text = "";
         }
 
         private void DtpDataNascimento_Enter(object sender, EventArgs e)

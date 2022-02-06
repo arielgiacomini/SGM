@@ -7,5 +7,6 @@
         public bool DeveAbrirFormularioConsultaVeiculoDoCliente { get; set; }
         public int ClienteId { get; set; }
         public int ClienteVeiculoId { get; set; }
+        public bool InativacaoClienteWithError { get; set; }
     }
 }

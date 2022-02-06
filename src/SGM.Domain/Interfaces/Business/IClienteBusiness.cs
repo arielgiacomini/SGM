@@ -5,6 +5,7 @@ namespace SGM.Domain.Intern.Interfaces.Business
 {
     public interface IClienteBusiness
     {
-        ResponseCliente SalvarCliente(string operacao, Cliente cliente);
+        ResponseCliente Delete(string clienteId);
+        ResponseCliente SaveOrUpdate(string operacao, Cliente cliente);
     }
 }
