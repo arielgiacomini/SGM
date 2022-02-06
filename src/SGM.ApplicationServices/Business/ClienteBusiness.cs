@@ -198,5 +198,15 @@ namespace SGM.ApplicationServices.Business
 
             return response;
         }
+
+        public ResponseCliente SearchByCPF(string documentoCliente)
+        {
+            ResponseCliente response = new ResponseCliente
+            {
+                Mensagem = new Dictionary<TipoMensagemEnum, string>()
+            };
+
+            return response;
+        }
     }
 }
