@@ -25,6 +25,8 @@
 
         const string PesquisaSemSucesso = "Erro ao tentar pesquisar";
 
+        const string CPFExistente = "Esse CPF já existe em nossa base de dados. Deseja alterar o registro?";
+
         public static string Mensagem(MensagemEnum tipoMessagem)
         {
             var mensagem = "";
@@ -60,6 +62,15 @@
                 case MensagemEnum.ExclusaoSemSucesso:
                     mensagem = ExclusaoSemSucesso;
                     break;
+                case MensagemEnum.PesquisaSemSucesso:
+                    mensagem = PesquisaSemSucesso;
+                    break;
+                case MensagemEnum.PesquisaComSucesso:
+                    mensagem = "";
+                    break;
+                case MensagemEnum.CPFExistente:
+                    mensagem = CPFExistente;
+                    break;
             }
             return mensagem;
         }
@@ -77,7 +88,8 @@
             ExclusaoComSucesso = 9,
             ExclusaoSemSucesso = 10,
             PesquisaComSucesso = 11,
-            PesquisaSemSucesso = 12
+            PesquisaSemSucesso = 12,
+            CPFExistente = 13
         }
     }
 }

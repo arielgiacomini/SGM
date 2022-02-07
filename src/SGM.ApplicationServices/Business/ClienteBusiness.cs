@@ -199,12 +199,36 @@ namespace SGM.ApplicationServices.Business
             return response;
         }
 
-        public ResponseCliente SearchByCPF(string documentoCliente)
+        public ResponseCliente SearchByCPF(string operacao, string documentoCliente)
         {
             ResponseCliente response = new ResponseCliente
             {
                 Mensagem = new Dictionary<TipoMensagemEnum, string>()
             };
+
+            if (string.IsNullOrEmpty(documentoCliente))
+            {
+                response.TipoResponse = TipoResponseEnum.Information;
+                response.Mensagem.Add(TipoMensagemEnum.Information, $"{Messages.Mensagem(MensagemEnum.PesquisaSemSucesso)}");
+                response.MessageBoxButtons = MessageBoxButtons.OK;
+                response.MessageBoxIcon = MessageBoxIcon.Information;
+
+                return response;
+            }
+
+            if (operacao == "inserir")
+            {
+                var cliente = _clienteApplication.GetClienteByDocumentoCliente(documentoCliente);
+
+                response.TipoResponse = TipoResponseEnum.Sucess;
+                response.Mensagem.Add(TipoMensagemEnum.SucessWithQuestion, $"{Messages.Mensagem(MensagemEnum.CPFExistente)}");
+                response.MessageBoxButtons = MessageBoxButtons.YesNo;
+                response.MessageBoxIcon = MessageBoxIcon.Question;
+
+                response.Cliente = cliente;
+
+                return response;
+            }
 
             return response;
         }

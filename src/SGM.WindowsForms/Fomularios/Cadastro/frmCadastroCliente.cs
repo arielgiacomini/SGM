@@ -349,45 +349,78 @@ namespace SGM.WindowsForms
 
         private void TxtCPF_Leave(object sender, EventArgs e)
         {
-            if (txtCPF.Text != "")
+            txtCPF.Mask = "000,000,000-00";
+
+            var pesquisa = _clienteBusiness.SearchByCPF(this.operacao, txtCPF.Text);
+
+            switch (pesquisa.TipoResponse)
             {
-                if (this.operacao == "inserir")
-                {
-                    var cliente = _clienteApplication.GetClienteByDocumentoCliente(txtCPF.Text);
-
-                    if (cliente.ClienteId != 0)
+                case TipoResponseEnum.Sucess:
+                    foreach (var message in pesquisa.Mensagem)
                     {
-                        DialogResult res = MessageBox.Show("Esse CPF já existe em nossa base de dados. Deseja alterar o registro?", "Aviso IMPORTANTE", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-
-                        if (res.ToString() == "Yes")
+                        switch (message.Key)
                         {
-                            this.operacao = "alterar";
+                            case TipoMensagemEnum.SucessWithQuestion:
+                                var respostaUser = MessageBox.Show(
+                                    message.Value,
+                                    typeof(FrmCadastroCliente).Name,
+                                    pesquisa.MessageBoxButtons,
+                                    pesquisa.MessageBoxIcon);
 
-                            txtClienteId.Text = Convert.ToString(cliente.ClienteId);
-                            txtCliente.Text = cliente.NomeCliente;
-                            txtApelido.Text = cliente.Apelido;
-                            txtCPF.Text = cliente.DocumentoCliente;
-                            cboSexo.Text = cliente.Sexo;
-                            cboEstadoCivil.Text = cliente.EstadoCivil;
-                            dtpDataNascimento.Value = Convert.ToDateTime(cliente.DataNascimento);
-                            txtEmail.Text = cliente.Email;
-                            txtTelefoneFixo.Text = cliente.TelefoneFixo;
-                            txtCelular.Text = cliente.TelefoneCelular;
-                            txtTelefoneOutros.Text = cliente.TelefoneOutros;
-                            txtCEP.Text = cliente.LogradouroCEP;
-                            txtEndereco.Text = cliente.LogradouroNome;
-                            txtNumero.Text = cliente.LogradouroNumero;
-                            txtComplemento.Text = cliente.LogradouroComplemento;
-                            txtCidade.Text = cliente.LogradouroMunicipio;
-                            txtBairro.Text = cliente.LogradouroBairro;
-                            txtUF.Text = cliente.LogradouroUF;
-                            txtDataCadastro.Text = Convert.ToString(Util.ConvertHorarioOfServerToWorldReal(cliente.DataCadastro.Value, 5));
+                                if (respostaUser.ToString() == "Yes")
+                                {
+                                    this.operacao = "alterar";
+
+                                    txtClienteId.Text = Convert.ToString(pesquisa.Cliente.ClienteId);
+                                    txtCliente.Text = pesquisa.Cliente.NomeCliente;
+                                    txtApelido.Text = pesquisa.Cliente.Apelido;
+                                    txtCPF.Text = pesquisa.Cliente.DocumentoCliente;
+                                    cboSexo.Text = pesquisa.Cliente.Sexo;
+                                    cboEstadoCivil.Text = pesquisa.Cliente.EstadoCivil;
+                                    dtpDataNascimento.Value = Convert.ToDateTime(pesquisa.Cliente.DataNascimento);
+                                    txtEmail.Text = pesquisa.Cliente.Email;
+                                    txtTelefoneFixo.Text = pesquisa.Cliente.TelefoneFixo;
+                                    txtCelular.Text = pesquisa.Cliente.TelefoneCelular;
+                                    txtTelefoneOutros.Text = pesquisa.Cliente.TelefoneOutros;
+                                    txtCEP.Text = pesquisa.Cliente.LogradouroCEP;
+                                    txtEndereco.Text = pesquisa.Cliente.LogradouroNome;
+                                    txtNumero.Text = pesquisa.Cliente.LogradouroNumero;
+                                    txtComplemento.Text = pesquisa.Cliente.LogradouroComplemento;
+                                    txtCidade.Text = pesquisa.Cliente.LogradouroMunicipio;
+                                    txtBairro.Text = pesquisa.Cliente.LogradouroBairro;
+                                    txtUF.Text = pesquisa.Cliente.LogradouroUF;
+                                    txtDataCadastro.Text = Convert.ToString(Util.ConvertHorarioOfServerToWorldReal(pesquisa.Cliente.DataCadastro.Value, 5));
+                                }
+                                break;
+                            default:
+                                break;
                         }
                     }
-                }
+                    break;
+                case TipoResponseEnum.Error:
+                    break;
+                case TipoResponseEnum.Information:
+                    foreach (var message in pesquisa.Mensagem)
+                    {
+                        switch (message.Key)
+                        {
+                            case TipoMensagemEnum.Information:
+                                MessageBox.Show(
+                                    message.Value,
+                                    typeof(FrmCadastroCliente).Name,
+                                    pesquisa.MessageBoxButtons,
+                                    pesquisa.MessageBoxIcon);
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                    break;
+                case TipoResponseEnum.SucessWithoutMessageOrQuestion:
+                    break;
+                default:
+                    break;
             }
-
-            txtCPF.Mask = "000,000,000-00";
         }
 
         private void TxtCPF_Enter(object sender, EventArgs e)
