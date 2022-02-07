@@ -65,9 +65,9 @@ namespace SGM.WindowsForms
 
         private void BtnExcluir_Click(object sender, EventArgs e)
         {
-            DialogResult d = MessageBox.Show("Deseja realmente excluir o registro?", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult desejaExcluir = MessageBox.Show("Deseja realmente excluir o registro?", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-            if (d.ToString() == "Yes")
+            if (desejaExcluir.ToString() == "Yes")
             {
                 var response = _clienteBusiness.Delete(txtClienteId.Text);
 
