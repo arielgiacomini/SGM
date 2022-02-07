@@ -9,5 +9,6 @@ namespace SGM.Domain.Intern.Interfaces.Business
         ResponseCliente SaveOrUpdate(string operacao, Cliente cliente);
         ResponseCliente Search();
         ResponseCliente Search(int clienteId);
+        ResponseCliente SearchByCPF(string operacao, string documentoCliente);
     }
 }
