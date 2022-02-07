@@ -29,6 +29,15 @@
           "lib/net45/Newtonsoft.Json.dll": {}
         }
       },
+      "Ninject/3.3.4": {
+        "type": "package",
+        "compile": {
+          "lib/net45/Ninject.dll": {}
+        },
+        "runtime": {
+          "lib/net45/Ninject.dll": {}
+        }
+      },
       "System.Collections/4.3.0": {
         "type": "package",
         "frameworkAssemblies": [
@@ -206,6 +215,15 @@
           "lib/net45/Newtonsoft.Json.dll": {}
         }
       },
+      "Ninject/3.3.4": {
+        "type": "package",
+        "compile": {
+          "lib/net45/Ninject.dll": {}
+        },
+        "runtime": {
+          "lib/net45/Ninject.dll": {}
+        }
+      },
       "System.Collections/4.3.0": {
         "type": "package",
         "frameworkAssemblies": [
@@ -359,6 +377,15 @@
           "lib/net45/Newtonsoft.Json.dll": {}
         }
       },
+      "Ninject/3.3.4": {
+        "type": "package",
+        "compile": {
+          "lib/net45/Ninject.dll": {}
+        },
+        "runtime": {
+          "lib/net45/Ninject.dll": {}
+        }
+      },
       "System.Collections/4.3.0": {
         "type": "package",
         "frameworkAssemblies": [
@@ -510,6 +537,15 @@
         },
         "runtime": {
           "lib/net45/Newtonsoft.Json.dll": {}
+        }
+      },
+      "Ninject/3.3.4": {
+        "type": "package",
+        "compile": {
+          "lib/net45/Ninject.dll": {}
+        },
+        "runtime": {
+          "lib/net45/Ninject.dll": {}
         }
       },
       "System.Collections/4.3.0": {
@@ -699,6 +735,21 @@
         "newtonsoft.json.13.0.1.nupkg.sha512",
         "newtonsoft.json.nuspec",
         "packageIcon.png"
+      ]
+    },
+    "Ninject/3.3.4": {
+      "sha512": "CmbWW97FfJuh4LEOVZM/spqXl4KAulRUjqeMwRd5J9rDMQArmIYaDMU3pyzXXHT062tbF0OPIMwI7tSOtprPfg==",
+      "type": "package",
+      "path": "ninject/3.3.4",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net45/Ninject.dll",
+        "lib/net45/Ninject.xml",
+        "lib/netstandard2.0/Ninject.dll",
+        "lib/netstandard2.0/Ninject.xml",
+        "ninject.3.3.4.nupkg.sha512",
+        "ninject.nuspec"
       ]
     },
     "System.Collections/4.3.0": {
@@ -927,6 +978,7 @@
     ".NETFramework,Version=v4.6.1": [
       "Giacomini.SGM.Domain >= 2.0.0",
       "Newtonsoft.Json >= 13.0.1",
+      "Ninject >= 3.3.4",
       "SGM.ApplicationServices >= 1.0.0",
       "SGM.Domain.Intern >= 1.0.0",
       "SGM.Infrastructure >= 1.0.0",
@@ -934,40 +986,49 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\ariel\\.nuget\\packages\\": {}
+    "C:\\Users\\U006800\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
+    "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\RepositorioDeClones\\arielgiacomini\\SGM\\src\\SGM.WindowsForms\\SGM.WindowsForms.csproj",
+      "projectUniqueName": "C:\\Clones\\arielgiacomini\\SGM\\src\\SGM.WindowsForms\\SGM.WindowsForms.csproj",
       "projectName": "SGM.WindowsForms",
-      "projectPath": "C:\\RepositorioDeClones\\arielgiacomini\\SGM\\src\\SGM.WindowsForms\\SGM.WindowsForms.csproj",
-      "packagesPath": "C:\\Users\\ariel\\.nuget\\packages\\",
-      "outputPath": "C:\\RepositorioDeClones\\arielgiacomini\\SGM\\src\\SGM.WindowsForms\\obj\\",
+      "projectPath": "C:\\Clones\\arielgiacomini\\SGM\\src\\SGM.WindowsForms\\SGM.WindowsForms.csproj",
+      "packagesPath": "C:\\Users\\U006800\\.nuget\\packages\\",
+      "outputPath": "C:\\Clones\\arielgiacomini\\SGM\\src\\SGM.WindowsForms\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+        "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+      ],
       "configFilePaths": [
-        "C:\\Users\\ariel\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\U006800\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net461"
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "https://api.nuget.org/v3/index.json": {}
+        "https://api.nuget.org/v3/index.json": {},
+        "https://xpinvestimentos.pkgs.visualstudio.com/_packaging/PackagesXP/nuget/v3/index.json": {}
       },
       "frameworks": {
         "net461": {
           "projectReferences": {
-            "C:\\RepositorioDeClones\\arielgiacomini\\SGM\\src\\SGM.ApplicationServices\\SGM.ApplicationServices.csproj": {
-              "projectPath": "C:\\RepositorioDeClones\\arielgiacomini\\SGM\\src\\SGM.ApplicationServices\\SGM.ApplicationServices.csproj"
+            "C:\\Clones\\arielgiacomini\\SGM\\src\\SGM.ApplicationServices\\SGM.ApplicationServices.csproj": {
+              "projectPath": "C:\\Clones\\arielgiacomini\\SGM\\src\\SGM.ApplicationServices\\SGM.ApplicationServices.csproj"
             },
-            "C:\\RepositorioDeClones\\arielgiacomini\\SGM\\src\\SGM.Domain\\SGM.Domain.Intern.csproj": {
-              "projectPath": "C:\\RepositorioDeClones\\arielgiacomini\\SGM\\src\\SGM.Domain\\SGM.Domain.Intern.csproj"
+            "C:\\Clones\\arielgiacomini\\SGM\\src\\SGM.Domain\\SGM.Domain.Intern.csproj": {
+              "projectPath": "C:\\Clones\\arielgiacomini\\SGM\\src\\SGM.Domain\\SGM.Domain.Intern.csproj"
             },
-            "C:\\RepositorioDeClones\\arielgiacomini\\SGM\\src\\SGM.Infrastructure\\SGM.Infrastructure.csproj": {
-              "projectPath": "C:\\RepositorioDeClones\\arielgiacomini\\SGM\\src\\SGM.Infrastructure\\SGM.Infrastructure.csproj"
+            "C:\\Clones\\arielgiacomini\\SGM\\src\\SGM.Infrastructure\\SGM.Infrastructure.csproj": {
+              "projectPath": "C:\\Clones\\arielgiacomini\\SGM\\src\\SGM.Infrastructure\\SGM.Infrastructure.csproj"
             }
           }
         }
@@ -983,6 +1044,10 @@
           "Newtonsoft.Json": {
             "target": "Package",
             "version": "[13.0.1, )"
+          },
+          "Ninject": {
+            "target": "Package",
+            "version": "[3.3.4, )"
           },
           "System.Configuration.ConfigurationManager": {
             "target": "Package",

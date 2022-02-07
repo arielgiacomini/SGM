@@ -1,38 +1,46 @@
 {
   "format": 1,
   "restore": {
-    "C:\\RepositorioDeClones\\arielgiacomini\\SGM\\src\\SGM.WindowsForms\\SGM.WindowsForms.csproj": {}
+    "C:\\Clones\\arielgiacomini\\SGM\\src\\SGM.WindowsForms\\SGM.WindowsForms.csproj": {}
   },
   "projects": {
-    "C:\\RepositorioDeClones\\arielgiacomini\\SGM\\src\\SGM.ApplicationServices\\SGM.ApplicationServices.csproj": {
+    "C:\\Clones\\arielgiacomini\\SGM\\src\\SGM.ApplicationServices\\SGM.ApplicationServices.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\RepositorioDeClones\\arielgiacomini\\SGM\\src\\SGM.ApplicationServices\\SGM.ApplicationServices.csproj",
+        "projectUniqueName": "C:\\Clones\\arielgiacomini\\SGM\\src\\SGM.ApplicationServices\\SGM.ApplicationServices.csproj",
         "projectName": "SGM.ApplicationServices",
-        "projectPath": "C:\\RepositorioDeClones\\arielgiacomini\\SGM\\src\\SGM.ApplicationServices\\SGM.ApplicationServices.csproj",
-        "packagesPath": "C:\\Users\\ariel\\.nuget\\packages\\",
-        "outputPath": "C:\\RepositorioDeClones\\arielgiacomini\\SGM\\src\\SGM.ApplicationServices\\obj\\",
+        "projectPath": "C:\\Clones\\arielgiacomini\\SGM\\src\\SGM.ApplicationServices\\SGM.ApplicationServices.csproj",
+        "packagesPath": "C:\\Users\\U006800\\.nuget\\packages\\",
+        "outputPath": "C:\\Clones\\arielgiacomini\\SGM\\src\\SGM.ApplicationServices\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "C:\\Users\\ariel\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\U006800\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netstandard2.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {}
+          "https://api.nuget.org/v3/index.json": {},
+          "https://xpinvestimentos.pkgs.visualstudio.com/_packaging/PackagesXP/nuget/v3/index.json": {}
         },
         "frameworks": {
           "netstandard2.0": {
             "targetAlias": "netstandard2.0",
             "projectReferences": {
-              "C:\\RepositorioDeClones\\arielgiacomini\\SGM\\src\\SGM.Domain\\SGM.Domain.Intern.csproj": {
-                "projectPath": "C:\\RepositorioDeClones\\arielgiacomini\\SGM\\src\\SGM.Domain\\SGM.Domain.Intern.csproj"
+              "C:\\Clones\\arielgiacomini\\SGM\\src\\SGM.Domain\\SGM.Domain.Intern.csproj": {
+                "projectPath": "C:\\Clones\\arielgiacomini\\SGM\\src\\SGM.Domain\\SGM.Domain.Intern.csproj"
               },
-              "C:\\RepositorioDeClones\\arielgiacomini\\SGM\\src\\SGM.Infrastructure\\SGM.Infrastructure.csproj": {
-                "projectPath": "C:\\RepositorioDeClones\\arielgiacomini\\SGM\\src\\SGM.Infrastructure\\SGM.Infrastructure.csproj"
+              "C:\\Clones\\arielgiacomini\\SGM\\src\\SGM.Infrastructure\\SGM.Infrastructure.csproj": {
+                "projectPath": "C:\\Clones\\arielgiacomini\\SGM\\src\\SGM.Infrastructure\\SGM.Infrastructure.csproj"
               }
             }
           }
@@ -84,25 +92,33 @@
         }
       }
     },
-    "C:\\RepositorioDeClones\\arielgiacomini\\SGM\\src\\SGM.Domain\\SGM.Domain.Intern.csproj": {
+    "C:\\Clones\\arielgiacomini\\SGM\\src\\SGM.Domain\\SGM.Domain.Intern.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\RepositorioDeClones\\arielgiacomini\\SGM\\src\\SGM.Domain\\SGM.Domain.Intern.csproj",
+        "projectUniqueName": "C:\\Clones\\arielgiacomini\\SGM\\src\\SGM.Domain\\SGM.Domain.Intern.csproj",
         "projectName": "SGM.Domain.Intern",
-        "projectPath": "C:\\RepositorioDeClones\\arielgiacomini\\SGM\\src\\SGM.Domain\\SGM.Domain.Intern.csproj",
-        "packagesPath": "C:\\Users\\ariel\\.nuget\\packages\\",
-        "outputPath": "C:\\RepositorioDeClones\\arielgiacomini\\SGM\\src\\SGM.Domain\\obj\\",
+        "projectPath": "C:\\Clones\\arielgiacomini\\SGM\\src\\SGM.Domain\\SGM.Domain.Intern.csproj",
+        "packagesPath": "C:\\Users\\U006800\\.nuget\\packages\\",
+        "outputPath": "C:\\Clones\\arielgiacomini\\SGM\\src\\SGM.Domain\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "C:\\Users\\ariel\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\U006800\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netstandard2.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {}
+          "https://api.nuget.org/v3/index.json": {},
+          "https://xpinvestimentos.pkgs.visualstudio.com/_packaging/PackagesXP/nuget/v3/index.json": {}
         },
         "frameworks": {
           "netstandard2.0": {
@@ -157,32 +173,40 @@
         }
       }
     },
-    "C:\\RepositorioDeClones\\arielgiacomini\\SGM\\src\\SGM.Infrastructure\\SGM.Infrastructure.csproj": {
+    "C:\\Clones\\arielgiacomini\\SGM\\src\\SGM.Infrastructure\\SGM.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\RepositorioDeClones\\arielgiacomini\\SGM\\src\\SGM.Infrastructure\\SGM.Infrastructure.csproj",
+        "projectUniqueName": "C:\\Clones\\arielgiacomini\\SGM\\src\\SGM.Infrastructure\\SGM.Infrastructure.csproj",
         "projectName": "SGM.Infrastructure",
-        "projectPath": "C:\\RepositorioDeClones\\arielgiacomini\\SGM\\src\\SGM.Infrastructure\\SGM.Infrastructure.csproj",
-        "packagesPath": "C:\\Users\\ariel\\.nuget\\packages\\",
-        "outputPath": "C:\\RepositorioDeClones\\arielgiacomini\\SGM\\src\\SGM.Infrastructure\\obj\\",
+        "projectPath": "C:\\Clones\\arielgiacomini\\SGM\\src\\SGM.Infrastructure\\SGM.Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\U006800\\.nuget\\packages\\",
+        "outputPath": "C:\\Clones\\arielgiacomini\\SGM\\src\\SGM.Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "C:\\Users\\ariel\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\U006800\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netstandard2.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {}
+          "https://api.nuget.org/v3/index.json": {},
+          "https://xpinvestimentos.pkgs.visualstudio.com/_packaging/PackagesXP/nuget/v3/index.json": {}
         },
         "frameworks": {
           "netstandard2.0": {
             "targetAlias": "netstandard2.0",
             "projectReferences": {
-              "C:\\RepositorioDeClones\\arielgiacomini\\SGM\\src\\SGM.Domain\\SGM.Domain.Intern.csproj": {
-                "projectPath": "C:\\RepositorioDeClones\\arielgiacomini\\SGM\\src\\SGM.Domain\\SGM.Domain.Intern.csproj"
+              "C:\\Clones\\arielgiacomini\\SGM\\src\\SGM.Domain\\SGM.Domain.Intern.csproj": {
+                "projectPath": "C:\\Clones\\arielgiacomini\\SGM\\src\\SGM.Domain\\SGM.Domain.Intern.csproj"
               }
             }
           }
@@ -230,38 +254,45 @@
         }
       }
     },
-    "C:\\RepositorioDeClones\\arielgiacomini\\SGM\\src\\SGM.WindowsForms\\SGM.WindowsForms.csproj": {
+    "C:\\Clones\\arielgiacomini\\SGM\\src\\SGM.WindowsForms\\SGM.WindowsForms.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\RepositorioDeClones\\arielgiacomini\\SGM\\src\\SGM.WindowsForms\\SGM.WindowsForms.csproj",
+        "projectUniqueName": "C:\\Clones\\arielgiacomini\\SGM\\src\\SGM.WindowsForms\\SGM.WindowsForms.csproj",
         "projectName": "SGM.WindowsForms",
-        "projectPath": "C:\\RepositorioDeClones\\arielgiacomini\\SGM\\src\\SGM.WindowsForms\\SGM.WindowsForms.csproj",
-        "packagesPath": "C:\\Users\\ariel\\.nuget\\packages\\",
-        "outputPath": "C:\\RepositorioDeClones\\arielgiacomini\\SGM\\src\\SGM.WindowsForms\\obj\\",
+        "projectPath": "C:\\Clones\\arielgiacomini\\SGM\\src\\SGM.WindowsForms\\SGM.WindowsForms.csproj",
+        "packagesPath": "C:\\Users\\U006800\\.nuget\\packages\\",
+        "outputPath": "C:\\Clones\\arielgiacomini\\SGM\\src\\SGM.WindowsForms\\obj\\",
         "projectStyle": "PackageReference",
         "skipContentFileWrite": true,
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+        ],
         "configFilePaths": [
-          "C:\\Users\\ariel\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\U006800\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net461"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {}
+          "https://api.nuget.org/v3/index.json": {},
+          "https://xpinvestimentos.pkgs.visualstudio.com/_packaging/PackagesXP/nuget/v3/index.json": {}
         },
         "frameworks": {
           "net461": {
             "projectReferences": {
-              "C:\\RepositorioDeClones\\arielgiacomini\\SGM\\src\\SGM.ApplicationServices\\SGM.ApplicationServices.csproj": {
-                "projectPath": "C:\\RepositorioDeClones\\arielgiacomini\\SGM\\src\\SGM.ApplicationServices\\SGM.ApplicationServices.csproj"
+              "C:\\Clones\\arielgiacomini\\SGM\\src\\SGM.ApplicationServices\\SGM.ApplicationServices.csproj": {
+                "projectPath": "C:\\Clones\\arielgiacomini\\SGM\\src\\SGM.ApplicationServices\\SGM.ApplicationServices.csproj"
               },
-              "C:\\RepositorioDeClones\\arielgiacomini\\SGM\\src\\SGM.Domain\\SGM.Domain.Intern.csproj": {
-                "projectPath": "C:\\RepositorioDeClones\\arielgiacomini\\SGM\\src\\SGM.Domain\\SGM.Domain.Intern.csproj"
+              "C:\\Clones\\arielgiacomini\\SGM\\src\\SGM.Domain\\SGM.Domain.Intern.csproj": {
+                "projectPath": "C:\\Clones\\arielgiacomini\\SGM\\src\\SGM.Domain\\SGM.Domain.Intern.csproj"
               },
-              "C:\\RepositorioDeClones\\arielgiacomini\\SGM\\src\\SGM.Infrastructure\\SGM.Infrastructure.csproj": {
-                "projectPath": "C:\\RepositorioDeClones\\arielgiacomini\\SGM\\src\\SGM.Infrastructure\\SGM.Infrastructure.csproj"
+              "C:\\Clones\\arielgiacomini\\SGM\\src\\SGM.Infrastructure\\SGM.Infrastructure.csproj": {
+                "projectPath": "C:\\Clones\\arielgiacomini\\SGM\\src\\SGM.Infrastructure\\SGM.Infrastructure.csproj"
               }
             }
           }
@@ -277,6 +308,10 @@
             "Newtonsoft.Json": {
               "target": "Package",
               "version": "[13.0.1, )"
+            },
+            "Ninject": {
+              "target": "Package",
+              "version": "[3.3.4, )"
             },
             "System.Configuration.ConfigurationManager": {
               "target": "Package",
