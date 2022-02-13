@@ -9,6 +9,7 @@
         ErrorInValidation = 5,
         Information = 6,
         ErrorInDelete = 7,
-        ErrorInSearch = 8
+        ErrorInSearch = 8,
+        SucessNotMessageAndNotQuestion = 9
     }
 }
