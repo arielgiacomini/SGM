@@ -1,8 +1,6 @@
 ﻿using SGM.Domain.Entities;
 using SGM.Domain.Enumeration;
 using SGM.Domain.Intern.Enum;
-using SGM.Domain.Intern.Interfaces.Application;
-using SGM.Domain.Intern.Interfaces.Application.External;
 using SGM.Domain.Intern.Interfaces.Business;
 using SGM.Domain.Utils;
 using SGM.WindowsForms.IoC;
@@ -13,22 +11,20 @@ namespace SGM.WindowsForms
 {
     public partial class FrmCadastroCliente : FrmModeloDeFormularioDeCadastro
     {
-        private readonly IClienteApplication _clienteApplication;
-        private readonly ICorreriosApplication _correriosApplication;
+        private readonly ICorreiosBusiness _correriosBusiness;
         private readonly IClienteBusiness _clienteBusiness;
 
         public FrmCadastroCliente(
-            IClienteApplication clienteApplication,
-            ICorreriosApplication correriosApplication,
+            ICorreiosBusiness correriosBusiness,
             IClienteBusiness clienteBusiness)
         {
-            _clienteApplication = clienteApplication;
-            _correriosApplication = correriosApplication;
+            _correriosBusiness = correriosBusiness;
             _clienteBusiness = clienteBusiness;
+
             InitializeComponent();
         }
 
-        public void LimparCampos()
+        public void Clean()
         {
             txtClienteId.Clear();
             txtCliente.Clear();
@@ -84,7 +80,7 @@ namespace SGM.WindowsForms
                                         typeof(FrmCadastroCliente).Name,
                                         response.MessageBoxButtons,
                                         response.MessageBoxIcon);
-                                    this.LimparCampos();
+                                    this.Clean();
                                     this.DisponibilizarBotoesTela(EnumControleTelas.InserirLocalizar);
                                     break;
                                 default:
@@ -258,7 +254,7 @@ namespace SGM.WindowsForms
                         break;
                 }
 
-                this.LimparCampos();
+                this.Clean();
                 this.DisponibilizarBotoesTela(EnumControleTelas.InserirLocalizar);
                 this.Close();
             }
@@ -272,7 +268,7 @@ namespace SGM.WindowsForms
         {
             this.operacao = "cancelar";
             this.DisponibilizarBotoesTela(EnumControleTelas.InserirLocalizar);
-            this.LimparCampos();
+            this.Clean();
         }
 
         private void BtnLocalizar_Click(object sender, EventArgs e)
@@ -289,7 +285,7 @@ namespace SGM.WindowsForms
 
                         if (formConsultaCliente.codigo != 0)
                         {
-                            var twoResponse = _clienteBusiness.Search(formConsultaCliente.codigo);
+                            var twoResponse = _clienteBusiness.SearchByClienteId(formConsultaCliente.codigo);
 
                             switch (twoResponse.TipoResponse)
                             {
@@ -338,7 +334,7 @@ namespace SGM.WindowsForms
                                     break;
                             }
                         }
-                        this.LimparCampos();
+                        this.Clean();
                         this.DisponibilizarBotoesTela(EnumControleTelas.InserirLocalizar);
                     }
                     break;
@@ -398,6 +394,21 @@ namespace SGM.WindowsForms
                     }
                     break;
                 case TipoResponseEnum.Error:
+                    foreach (var message in pesquisa.Mensagem)
+                    {
+                        switch (message.Key)
+                        {
+                            case TipoMensagemEnum.ErrorInSearch:
+                                MessageBox.Show(
+                                            message.Value,
+                                            typeof(FrmCadastroCliente).Name,
+                                            pesquisa.MessageBoxButtons,
+                                            pesquisa.MessageBoxIcon);
+                                break;
+                            default:
+                                break;
+                        }
+                    }
                     break;
                 case TipoResponseEnum.Information:
                     foreach (var message in pesquisa.Mensagem)
@@ -416,8 +427,6 @@ namespace SGM.WindowsForms
                         }
                     }
                     break;
-                case TipoResponseEnum.SucessWithoutMessageOrQuestion:
-                    break;
                 default:
                     break;
             }
@@ -431,22 +440,73 @@ namespace SGM.WindowsForms
 
         private void TxtCEP_Leave(object sender, EventArgs e)
         {
-            if (txtCEP.Text != "")
-            {
-                var enderecoApi = _correriosApplication.GetEnderecoByCEP(txtCEP.Text.Replace("-", ""));
-
-                if (enderecoApi.Logradouro != "" || enderecoApi.Logradouro != null)
-                {
-                    txtEndereco.Text = enderecoApi.Logradouro;
-                    txtBairro.Text = enderecoApi.Bairro;
-                    txtCidade.Text = enderecoApi.Localidade;
-                    txtUF.Text = enderecoApi.UF;
-
-                    txtNumero.Focus();
-                }
-            }
-
             txtCEP.Mask = "00000-000";
+
+            var response = _correriosBusiness.SearchByCEP(txtCEP.Text);
+
+            switch (response.TipoResponse)
+            {
+                case TipoResponseEnum.SucessWithoutMessageOrQuestion:
+                    foreach (var message in response.Mensagem)
+                    {
+                        switch (message.Key)
+                        {
+                            case TipoMensagemEnum.Information:
+                                if (response.ReturnCompleted)
+                                {
+                                    txtEndereco.Text = response.Logradouro;
+                                    txtBairro.Text = response.Bairro;
+                                    txtCidade.Text = response.Localidade;
+                                    txtUF.Text = response.UF;
+
+                                    if (response.FocusNumber)
+                                    {
+                                        txtNumero.Focus();
+                                    }
+                                }
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                    break;
+                case TipoResponseEnum.Information:
+                    foreach (var message in response.Mensagem)
+                    {
+                        switch (message.Key)
+                        {
+                            case TipoMensagemEnum.Information:
+                                MessageBox.Show(
+                                    message.Value,
+                                    typeof(FrmCadastroCliente).Name,
+                                    response.MessageBoxButtons,
+                                    response.MessageBoxIcon);
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                    break;
+                case TipoResponseEnum.Error:
+                    foreach (var message in response.Mensagem)
+                    {
+                        switch (message.Key)
+                        {
+                            case TipoMensagemEnum.ErrorInSearch:
+                                MessageBox.Show(
+                                            message.Value,
+                                            typeof(FrmCadastroCliente).Name,
+                                            response.MessageBoxButtons,
+                                            response.MessageBoxIcon);
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                    break;
+                default:
+                    break;
+            };
         }
 
         private void TxtCEP_Enter(object sender, EventArgs e)

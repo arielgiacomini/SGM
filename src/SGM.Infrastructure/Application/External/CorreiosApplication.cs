@@ -1,6 +1,6 @@
-﻿using SGM.Domain.Intern.Interfaces.Application.External;
+﻿using SGM.Domain.Entities.External;
+using SGM.Domain.Intern.Interfaces.Application.External;
 using SGM.Domain.Intern.Interfaces.Query.External;
-using SGM.Domain.Entities.External;
 
 namespace SGM.Infrastructure.Application.External
 {

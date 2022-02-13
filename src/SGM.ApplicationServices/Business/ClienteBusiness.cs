@@ -173,7 +173,7 @@ namespace SGM.ApplicationServices.Business
             return response;
         }
 
-        public ResponseCliente Search(int clienteId)
+        public ResponseCliente SearchByClienteId(int clienteId)
         {
             ResponseCliente response = new ResponseCliente
             {
@@ -218,16 +218,28 @@ namespace SGM.ApplicationServices.Business
 
             if (operacao == "inserir")
             {
-                var cliente = _clienteApplication.GetClienteByDocumentoCliente(documentoCliente);
+                try
+                {
+                    var cliente = _clienteApplication.GetClienteByDocumentoCliente(documentoCliente);
 
-                response.TipoResponse = TipoResponseEnum.Sucess;
-                response.Mensagem.Add(TipoMensagemEnum.SucessWithQuestion, $"{Messages.Mensagem(MensagemEnum.CPFExistente)}");
-                response.MessageBoxButtons = MessageBoxButtons.YesNo;
-                response.MessageBoxIcon = MessageBoxIcon.Question;
+                    response.TipoResponse = TipoResponseEnum.Sucess;
+                    response.Mensagem.Add(TipoMensagemEnum.SucessWithQuestion, $"{Messages.Mensagem(MensagemEnum.CPFExistente)}");
+                    response.MessageBoxButtons = MessageBoxButtons.YesNo;
+                    response.MessageBoxIcon = MessageBoxIcon.Question;
 
-                response.Cliente = cliente;
+                    response.Cliente = cliente;
 
-                return response;
+                    return response;
+                }
+                catch (Exception ex)
+                {
+                    response.TipoResponse = TipoResponseEnum.Error;
+                    response.Mensagem.Add(TipoMensagemEnum.ErrorInSearch, $"{Messages.Mensagem(MensagemEnum.PesquisaSemSucesso)}, Mensagem de erro: {ex.Message}");
+                    response.MessageBoxButtons = MessageBoxButtons.OK;
+                    response.MessageBoxIcon = MessageBoxIcon.Error;
+
+                    return response;
+                }
             }
 
             return response;

@@ -25,7 +25,13 @@
 
         const string PesquisaSemSucesso = "Erro ao tentar pesquisar";
 
+        const string PesquisaComSucesso = "";
+
         const string CPFExistente = "Esse CPF já existe em nossa base de dados. Deseja alterar o registro?";
+
+        const string CEPInexistente = "CEP não encontrado na base dos Correios. Está correto?";
+
+        const string CEPEncontrado = "CEP Localizado. Digite o número...";
 
         public static string Mensagem(MensagemEnum tipoMessagem)
         {
@@ -66,10 +72,16 @@
                     mensagem = PesquisaSemSucesso;
                     break;
                 case MensagemEnum.PesquisaComSucesso:
-                    mensagem = "";
+                    mensagem = PesquisaComSucesso;
                     break;
                 case MensagemEnum.CPFExistente:
                     mensagem = CPFExistente;
+                    break;
+                case MensagemEnum.CEPEncontrado:
+                    mensagem = CEPEncontrado;
+                    break;
+                case MensagemEnum.CEPInexistente:
+                    mensagem = CEPInexistente;
                     break;
             }
             return mensagem;
@@ -89,7 +101,9 @@
             ExclusaoSemSucesso = 10,
             PesquisaComSucesso = 11,
             PesquisaSemSucesso = 12,
-            CPFExistente = 13
+            CPFExistente = 13,
+            CEPEncontrado = 14,
+            CEPInexistente = 15
         }
     }
 }
