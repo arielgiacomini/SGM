@@ -62,6 +62,7 @@ namespace SGM.WindowsForms.IoC
             Bind<IServicoPagamentoApplication>().To<ServicoPagamentoApplication>();
 
             Bind<IClienteBusiness>().To<ClienteBusiness>();
+            Bind<ICorreiosBusiness>().To<CorreiosBusiness>();
 
             Bind<ISGMConfiguration>().To<SGMConfiguration>();
         }
