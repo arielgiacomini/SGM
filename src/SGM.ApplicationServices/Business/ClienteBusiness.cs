@@ -164,11 +164,10 @@ namespace SGM.ApplicationServices.Business
         {
             ResponseCliente response = new ResponseCliente
             {
-                Mensagem = new Dictionary<TipoMensagemEnum, string>()
+                Mensagem = new Dictionary<TipoMensagemEnum, string>(),
+                DeveAbrirFormularioConsultaCliente = true,
+                TipoResponse = TipoResponseEnum.Sucess
             };
-
-            response.DeveAbrirFormularioConsultaCliente = true;
-            response.TipoResponse = TipoResponseEnum.Sucess;
 
             return response;
         }
