@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
-using SGM.Domain.Intern.Interfaces.Query.External;
 using SGM.Domain.Entities.External;
 using SGM.Domain.Intern.Interfaces.Configuration;
+using SGM.Domain.Intern.Interfaces.Query.External;
 using System;
 using System.Net.Http;
 
