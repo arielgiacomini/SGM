@@ -4,12 +4,14 @@ using SGM.Domain.Intern.Interfaces.Application;
 using SGM.Domain.Intern.Interfaces.Application.External;
 using SGM.Domain.Intern.Interfaces.Business;
 using SGM.Domain.Intern.Interfaces.Command;
+using SGM.Domain.Intern.Interfaces.Command.External;
 using SGM.Domain.Intern.Interfaces.Configuration;
 using SGM.Domain.Intern.Interfaces.Query;
 using SGM.Domain.Intern.Interfaces.Query.External;
 using SGM.Infrastructure.Application;
 using SGM.Infrastructure.Application.External;
 using SGM.Infrastructure.Command;
+using SGM.Infrastructure.Command.External;
 using SGM.Infrastructure.Query;
 using SGM.Infrastructure.Query.External;
 using SGM.WindowsForms.Configuration;
@@ -46,6 +48,8 @@ namespace SGM.WindowsForms.IoC
 
             Bind<ICorreiosQuery>().To<CorreiosQuery>();
 
+            Bind<IWhatsAppCommand>().To<WhatsAppCommand>();
+
             Bind<IColaboradorQuery>().To<ColaboradorQuery>();
 
             Bind<IFormaPagamentoQuery>().To<FormaPagamentoQuery>();
@@ -60,6 +64,7 @@ namespace SGM.WindowsForms.IoC
             Bind<ICorreriosApplication>().To<CorreiosApplication>();
             Bind<IColaboradorApplication>().To<ColaboradorApplication>();
             Bind<IServicoPagamentoApplication>().To<ServicoPagamentoApplication>();
+            Bind<IWhatsAppApplication>().To<WhatsAppApplication>();
 
             Bind<IClienteBusiness>().To<ClienteBusiness>();
             Bind<ICorreiosBusiness>().To<CorreiosBusiness>();

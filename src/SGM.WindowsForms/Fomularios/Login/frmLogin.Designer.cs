@@ -123,6 +123,7 @@ namespace SGM.WindowsForms.Fomularios.Login
             this.linkLabelMeuPrimeiroAcesso.TabIndex = 4;
             this.linkLabelMeuPrimeiroAcesso.TabStop = true;
             this.linkLabelMeuPrimeiroAcesso.Text = "Meu primeiro acesso...";
+            this.linkLabelMeuPrimeiroAcesso.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabelMeuPrimeiroAcesso_LinkClicked);
             // 
             // FrmLogin
             // 
