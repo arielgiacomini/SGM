@@ -146,10 +146,10 @@
     <Compile Include="Fomularios\Cadastro\frmCadastroVeiculo.Designer.cs">
       <DependentUpon>frmCadastroVeiculo.cs</DependentUpon>
     </Compile>
-    <Compile Include="Fomularios\Cadastro\frmGerarServicoPagamento.cs">
+    <Compile Include="Fomularios\Cadastro\Gerar\frmGerarServicoPagamento.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Fomularios\Cadastro\frmGerarServicoPagamento.Designer.cs">
+    <Compile Include="Fomularios\Cadastro\Gerar\frmGerarServicoPagamento.Designer.cs">
       <DependentUpon>frmGerarServicoPagamento.cs</DependentUpon>
     </Compile>
     <Compile Include="Fomularios\Consulta\frmConsultaCliente.cs">
@@ -206,16 +206,16 @@
     <Compile Include="Fomularios\Consulta\frmDetalhesServicoGerado.Designer.cs">
       <DependentUpon>frmDetalhesServicoGerado.cs</DependentUpon>
     </Compile>
-    <Compile Include="Fomularios\Cadastro\frmGerarOrcamento.cs">
+    <Compile Include="Fomularios\Cadastro\Gerar\frmGerarOrcamento.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Fomularios\Cadastro\frmGerarOrcamento.Designer.cs">
+    <Compile Include="Fomularios\Cadastro\Gerar\frmGerarOrcamento.Designer.cs">
       <DependentUpon>frmGerarOrcamento.cs</DependentUpon>
     </Compile>
-    <Compile Include="Fomularios\Cadastro\frmGerarServico.cs">
+    <Compile Include="Fomularios\Cadastro\Gerar\frmGerarServico.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Fomularios\Cadastro\frmGerarServico.Designer.cs">
+    <Compile Include="Fomularios\Cadastro\Gerar\frmGerarServico.Designer.cs">
       <DependentUpon>frmGerarServico.cs</DependentUpon>
     </Compile>
     <Compile Include="Fomularios\Login\frmLogin.cs">
@@ -236,10 +236,10 @@
     <Compile Include="Fomularios\Modelo\frmModeloDeFormularioDeCadastro.Designer.cs">
       <DependentUpon>frmModeloDeFormularioDeCadastro.cs</DependentUpon>
     </Compile>
-    <Compile Include="Fomularios\Cadastro\frmGerarServicoOuOrcamento.cs">
+    <Compile Include="Fomularios\Cadastro\Gerar\frmGerarServicoOuOrcamento.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Fomularios\Cadastro\frmGerarServicoOuOrcamento.Designer.cs">
+    <Compile Include="Fomularios\Cadastro\Gerar\frmGerarServicoOuOrcamento.Designer.cs">
       <DependentUpon>frmGerarServicoOuOrcamento.cs</DependentUpon>
     </Compile>
     <Compile Include="Fomularios\frmPrincipal.cs">
@@ -285,7 +285,7 @@
     <EmbeddedResource Include="Fomularios\Cadastro\frmCadastroVeiculo.resx">
       <DependentUpon>frmCadastroVeiculo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Fomularios\Cadastro\frmGerarServicoPagamento.resx">
+    <EmbeddedResource Include="Fomularios\Cadastro\Gerar\frmGerarServicoPagamento.resx">
       <DependentUpon>frmGerarServicoPagamento.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Fomularios\Consulta\frmConsultaCliente.resx">
@@ -315,10 +315,10 @@
     <EmbeddedResource Include="Fomularios\Consulta\frmDetalhesServicoGerado.resx">
       <DependentUpon>frmDetalhesServicoGerado.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Fomularios\Cadastro\frmGerarOrcamento.resx">
+    <EmbeddedResource Include="Fomularios\Cadastro\Gerar\frmGerarOrcamento.resx">
       <DependentUpon>frmGerarOrcamento.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Fomularios\Cadastro\frmGerarServico.resx">
+    <EmbeddedResource Include="Fomularios\Cadastro\Gerar\frmGerarServico.resx">
       <DependentUpon>frmGerarServico.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Fomularios\Login\frmLogin.resx">
@@ -330,7 +330,7 @@
     <EmbeddedResource Include="Fomularios\Modelo\frmModeloDeFormularioDeCadastro.resx">
       <DependentUpon>frmModeloDeFormularioDeCadastro.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Fomularios\Cadastro\frmGerarServicoOuOrcamento.resx">
+    <EmbeddedResource Include="Fomularios\Cadastro\Gerar\frmGerarServicoOuOrcamento.resx">
       <DependentUpon>frmGerarServicoOuOrcamento.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Fomularios\frmPrincipal.resx">

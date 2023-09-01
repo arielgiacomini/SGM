@@ -20,7 +20,11 @@ namespace SGM.Infrastructure.Command.External
         {
             using (var client = new HttpClient())
             {
-                var result = client.GetAsync($"{_sGMConfiguration.WhatsAppApiUrl}send?phone=5511982505422&text=oi").Result;
+                string path = $"{_sGMConfiguration.WhatsAppApiUrl}" +
+                    $"send?phone={whatsAppMessage.NumeroPais}{whatsAppMessage.NumeroDDD}{whatsAppMessage.NumeroTelefone}" +
+                    $"&text={whatsAppMessage.MensagemTexto}";
+
+                var result = client.GetAsync(path).Result;
 
                 if (result.StatusCode == System.Net.HttpStatusCode.OK)
                 {

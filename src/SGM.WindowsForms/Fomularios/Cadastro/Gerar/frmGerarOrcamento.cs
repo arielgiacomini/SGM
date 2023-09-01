@@ -1,13 +1,14 @@
-﻿using SGM.Domain.Intern.Interfaces.Application;
-using SGM.Domain.DataSources;
+﻿using SGM.Domain.DataSources;
 using SGM.Domain.Entities;
 using SGM.Domain.Enumeration;
+using SGM.Domain.Intern.Interfaces.Application;
 using SGM.Domain.Utils;
 using SGM.WindowsForms.Fomularios.Modelo;
 using SGM.WindowsForms.IoC;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -42,6 +43,7 @@ namespace SGM.WindowsForms
         public IList<OrcamentoMaodeObra> orcamentoMaoDeObraTemporaria = new List<OrcamentoMaodeObra>(); //TO DO: Utilizar o objeto temporário para as alimentações
         public decimal valorMaoDeObraDigitadoTextBox = 0;
         public decimal valorPecaDigitadoTextBox = 0;
+        private string TEXTO_PADRAO_DESCRICAO_ORCAMENTO = "Acrescente as informações adicionais sobre o Orçamento Gerado para o seu cliente.";
 
         public void LimpaTela()
         {
@@ -78,7 +80,7 @@ namespace SGM.WindowsForms
 
         private void FrmGerarOrcamento_Load(object sender, EventArgs e)
         {
-            OrganizaTela();
+            CalculateAll();
 
             if (clienteId != 0 || clienteVeiculoId != 0)
             {
@@ -124,7 +126,8 @@ namespace SGM.WindowsForms
                 txtPercentualDesconto.Text = Convert.ToDecimal("0").ToString("P");
                 txtValorDesconto.Text = Convert.ToDecimal("0").ToString("C");
                 txtValorTotal.Text = Convert.ToDecimal("0").ToString("C");
-                txtDescricao.Text = "PESQUISANDO";
+                txtDescricao.Text = TEXTO_PADRAO_DESCRICAO_ORCAMENTO;
+                txtDescricao.ForeColor = Color.LightGray;
 
                 Orcamento orcamento = new Orcamento
                 {
@@ -152,7 +155,8 @@ namespace SGM.WindowsForms
             txtPercentualDesconto.Text = Convert.ToDecimal("0").ToString("P");
             txtValorDesconto.Text = Convert.ToDecimal("0").ToString("C");
             txtValorTotal.Text = Convert.ToDecimal("0").ToString("C");
-            txtDescricao.Text = "PESQUISANDO";
+            txtDescricao.Text = TEXTO_PADRAO_DESCRICAO_ORCAMENTO;
+            txtDescricao.ForeColor = Color.LightGray;
         }
 
         private void BtnConsultaCliente_Click(object sender, EventArgs e)
@@ -207,7 +211,8 @@ namespace SGM.WindowsForms
             txtPercentualDesconto.Text = Convert.ToDecimal("0").ToString("P");
             txtValorDesconto.Text = Convert.ToDecimal("0").ToString("C");
             txtValorTotal.Text = Convert.ToDecimal("0").ToString("C");
-            txtDescricao.Text = "PESQUISANDO";
+            txtDescricao.Text = TEXTO_PADRAO_DESCRICAO_ORCAMENTO;
+            txtDescricao.ForeColor = Color.LightGray;
 
             Orcamento orcamento = new Orcamento
             {
@@ -283,7 +288,7 @@ namespace SGM.WindowsForms
                     dgvMaodeObra.Columns[3].Visible = false;
                 }
 
-                OrganizaTela();
+                CalculateAll();
             }
         }
 
@@ -339,7 +344,7 @@ namespace SGM.WindowsForms
                     dgvPeca.Columns[3].Visible = false;
                 }
 
-                OrganizaTela();
+                CalculateAll();
             }
         }
 
@@ -567,7 +572,7 @@ namespace SGM.WindowsForms
                     dgvMaodeObra.Columns[3].Visible = false;
                 }
 
-                OrganizaTela();
+                CalculateAll();
             }
         }
 
@@ -621,7 +626,7 @@ namespace SGM.WindowsForms
                     dgvPeca.Columns[3].Visible = false;
                 }
 
-                OrganizaTela();
+                CalculateAll();
             }
         }
 
@@ -642,7 +647,7 @@ namespace SGM.WindowsForms
             valorMaoDeObraDigitadoTextBox = Util.TranslateStringEmDecimal(txtValorTotalMaodeObra.Text);
             txtValorTotalMaodeObra.Text = Util.TranslateValorEmStringDinheiro(txtValorTotalMaodeObra.Text);
 
-            OrganizaTela();
+            CalculateAll();
         }
 
         private void TxtValorTotalPecas_Leave(object sender, EventArgs e)
@@ -650,19 +655,19 @@ namespace SGM.WindowsForms
             valorPecaDigitadoTextBox = Util.TranslateStringEmDecimal(txtValorTotalPecas.Text);
             txtValorTotalPecas.Text = Util.TranslateValorEmStringDinheiro(txtValorTotalPecas.Text);
 
-            OrganizaTela();
+            CalculateAll();
         }
 
         private void TxtValorAdicional_Leave(object sender, EventArgs e)
         {
             txtValorAdicional.Text = Util.TranslateValorEmStringDinheiro(txtValorAdicional.Text);
 
-            OrganizaTela();
+            CalculateAll();
         }
 
         private void TxtPercentualDesconto_Leave(object sender, EventArgs e)
         {
-            OrganizaTela();
+            CalculateAll();
         }
 
         private void TxtValorTotalMaodeObra_Enter(object sender, EventArgs e)
@@ -685,7 +690,7 @@ namespace SGM.WindowsForms
             txtPercentualDesconto.Text = "";
         }
 
-        private void OrganizaTela()
+        private void CalculateAll()
         {
             lblQtdRegistrosMaoDeObra.Text = "Quantidade de Registros: " + this.dgvMaodeObra.Rows.Count.ToString();
             lblQtdRegistrosPecas.Text = "Quantidade de Registros: " + this.dgvPeca.Rows.Count.ToString();
@@ -753,6 +758,24 @@ namespace SGM.WindowsForms
             }
 
             return valorFinal;
+        }
+
+        private void TxtDescricao_Leave(object sender, EventArgs e)
+        {
+            if (txtDescricao.Text == "")
+            {
+                txtDescricao.Text = TEXTO_PADRAO_DESCRICAO_ORCAMENTO;
+                txtDescricao.ForeColor = Color.LightGray;
+            }
+        }
+
+        private void TxtDescricao_Enter(object sender, EventArgs e)
+        {
+            if (txtDescricao.Text == TEXTO_PADRAO_DESCRICAO_ORCAMENTO)
+            {
+                txtDescricao.Text = "";
+                txtDescricao.ForeColor = Color.Black;
+            }
         }
     }
 }

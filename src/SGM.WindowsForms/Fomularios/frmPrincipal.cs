@@ -1,4 +1,5 @@
 ﻿using Ninject;
+using SGM.Domain.Intern.Interfaces.Application.External;
 using SGM.WindowsForms.IoC;
 using System;
 using System.Windows.Forms;
@@ -7,9 +8,12 @@ namespace SGM.WindowsForms
 {
     public partial class FrmPrincipal : Form
     {
+        private readonly IWhatsAppApplication _whatsAppApplication;
+
         [Inject()]
-        public FrmPrincipal()
+        public FrmPrincipal(IWhatsAppApplication whatsAppApplication)
         {
+            _whatsAppApplication = whatsAppApplication;
             InitializeComponent();
         }
 
@@ -173,6 +177,18 @@ namespace SGM.WindowsForms
             FrmConsultaServico consultaHistorico = FormResolve.Resolve<FrmConsultaServico>();
             consultaHistorico.ShowDialog();
             consultaHistorico.Dispose();
+        }
+
+        private void btnWhatsApp_Click(object sender, EventArgs e)
+        {
+            _whatsAppApplication.SendWhatsAppMessageTest(
+                    new Domain.Entities.External.WhatsAppMessage
+                    {
+                        NumeroPais = "55",
+                        NumeroDDD = "11",
+                        NumeroTelefone = "982505422",
+                        MensagemTexto = "Oi"
+                    });
         }
     }
 }

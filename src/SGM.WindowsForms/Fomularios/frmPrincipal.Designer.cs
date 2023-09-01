@@ -62,6 +62,7 @@
             this.btnVeiculoCliente = new System.Windows.Forms.Button();
             this.lblVersionSystem = new System.Windows.Forms.Label();
             this.btnBuscarHistoricoServicoCliente = new System.Windows.Forms.Button();
+            this.btnWhatsApp = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -368,13 +369,24 @@
             this.btnBuscarHistoricoServicoCliente.UseVisualStyleBackColor = true;
             this.btnBuscarHistoricoServicoCliente.Click += new System.EventHandler(this.BtnBuscarHistoricoServicoCliente_Click);
             // 
-            // frmPrincipal
+            // btnWhatsApp
+            // 
+            this.btnWhatsApp.Location = new System.Drawing.Point(44, 249);
+            this.btnWhatsApp.Name = "btnWhatsApp";
+            this.btnWhatsApp.Size = new System.Drawing.Size(124, 41);
+            this.btnWhatsApp.TabIndex = 11;
+            this.btnWhatsApp.Text = "Enviar WhatsApp Teste";
+            this.btnWhatsApp.UseVisualStyleBackColor = true;
+            this.btnWhatsApp.Click += new System.EventHandler(this.btnWhatsApp_Click);
+            // 
+            // FrmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::SGM.WindowsForms.Properties.Resources.frmPrincipal;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1350, 729);
+            this.Controls.Add(this.btnWhatsApp);
             this.Controls.Add(this.btnBuscarHistoricoServicoCliente);
             this.Controls.Add(this.lblVersionSystem);
             this.Controls.Add(this.btnVeiculoCliente);
@@ -386,7 +398,7 @@
             this.DoubleBuffered = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
-            this.Name = "frmPrincipal";
+            this.Name = "FrmPrincipal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Sistema de Gerenciamento Mecanica";
             this.Load += new System.EventHandler(this.FrmPrincipal_Load);
@@ -432,5 +444,6 @@
         private System.Windows.Forms.Button btnVeiculoCliente;
         private System.Windows.Forms.Label lblVersionSystem;
         private System.Windows.Forms.Button btnBuscarHistoricoServicoCliente;
+        private System.Windows.Forms.Button btnWhatsApp;
     }
 }

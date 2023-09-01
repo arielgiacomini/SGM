@@ -250,6 +250,8 @@ namespace SGM.WindowsForms
             this.txtDescricao.Name = "txtDescricao";
             this.txtDescricao.Size = new System.Drawing.Size(674, 38);
             this.txtDescricao.TabIndex = 25;
+            this.txtDescricao.Enter += new System.EventHandler(this.TxtDescricao_Enter);
+            this.txtDescricao.Leave += new System.EventHandler(this.TxtDescricao_Leave);
             // 
             // lblValorAdicional
             // 
@@ -257,7 +259,7 @@ namespace SGM.WindowsForms
             this.lblValorAdicional.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblValorAdicional.Location = new System.Drawing.Point(529, 364);
             this.lblValorAdicional.Name = "lblValorAdicional";
-            this.lblValorAdicional.Size = new System.Drawing.Size(102, 16);
+            this.lblValorAdicional.Size = new System.Drawing.Size(101, 16);
             this.lblValorAdicional.TabIndex = 17;
             this.lblValorAdicional.Text = "Valor Adicional:";
             this.lblValorAdicional.TextAlign = System.Drawing.ContentAlignment.BottomRight;
@@ -269,7 +271,7 @@ namespace SGM.WindowsForms
             this.lblPercentualDesconto.ForeColor = System.Drawing.Color.RoyalBlue;
             this.lblPercentualDesconto.Location = new System.Drawing.Point(528, 390);
             this.lblPercentualDesconto.Name = "lblPercentualDesconto";
-            this.lblPercentualDesconto.Size = new System.Drawing.Size(103, 16);
+            this.lblPercentualDesconto.Size = new System.Drawing.Size(102, 16);
             this.lblPercentualDesconto.TabIndex = 19;
             this.lblPercentualDesconto.Text = "% de Desconto:";
             this.lblPercentualDesconto.TextAlign = System.Drawing.ContentAlignment.BottomRight;
@@ -281,7 +283,7 @@ namespace SGM.WindowsForms
             this.lblValorDesconto.ForeColor = System.Drawing.Color.Red;
             this.lblValorDesconto.Location = new System.Drawing.Point(527, 421);
             this.lblValorDesconto.Name = "lblValorDesconto";
-            this.lblValorDesconto.Size = new System.Drawing.Size(104, 16);
+            this.lblValorDesconto.Size = new System.Drawing.Size(103, 16);
             this.lblValorDesconto.TabIndex = 21;
             this.lblValorDesconto.Text = "Valor Desconto:";
             this.lblValorDesconto.TextAlign = System.Drawing.ContentAlignment.BottomRight;
@@ -447,7 +449,7 @@ namespace SGM.WindowsForms
             this.lblValorMaoDeObraTexto.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblValorMaoDeObraTexto.Location = new System.Drawing.Point(538, 312);
             this.lblValorMaoDeObraTexto.Name = "lblValorMaoDeObraTexto";
-            this.lblValorMaoDeObraTexto.Size = new System.Drawing.Size(92, 16);
+            this.lblValorMaoDeObraTexto.Size = new System.Drawing.Size(91, 16);
             this.lblValorMaoDeObraTexto.TabIndex = 13;
             this.lblValorMaoDeObraTexto.Text = "Mão-de-Obra:";
             this.lblValorMaoDeObraTexto.TextAlign = System.Drawing.ContentAlignment.BottomRight;
@@ -458,7 +460,7 @@ namespace SGM.WindowsForms
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(523, 338);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(108, 16);
+            this.label2.Size = new System.Drawing.Size(107, 16);
             this.label2.TabIndex = 15;
             this.label2.Text = "Produtos/Peças:";
             this.label2.TextAlign = System.Drawing.ContentAlignment.BottomRight;

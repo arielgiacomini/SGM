@@ -53,5 +53,10 @@ namespace SGM.WindowsForms.Fomularios.Login
                 Entrar();
             }
         }
+
+        private void LinkLabelMeuPrimeiroAcesso_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+
+        }
     }
 }
